@@ -1,148 +1,114 @@
-<!-- LongFi snippet | lf-footer-v3-fixed.html | v1.6 | updated 2026-07-15 17:05 | REVIEW -->
-<!-- ============================================================
-     LongFi FOOTER - lf_footer_v3_fixed
-     Fixes aplicados vs. brief original:
-       [FIX-1] CSS scopeado completamente bajo #footer (sin selectores globales)
-       [FIX-2] Variables CSS definidas localmente: --indigo, --white, --gold, --head
-       [FIX-3] .btn / .btn-gold / .btn-ghost-dark / .btn-row definidas en el snippet
-       [FIX-4] Copyright año dinamizado con JS (nunca más desactualizado)
-       [FIX-5] Bloque CTA superior "Let's talk connectivity" ELIMINADO (a pedido)
-       [FIX-6] Social links ahora son iconos SVG inline (X, Instagram, LinkedIn, Facebook),
-               autosuficientes, sin depender de Lucide ni de fuentes de iconos
-     Bonus confirmado: id="footer" presente -> href="#footer" del nav funciona
-     ============================================================ -->
+<!-- LongFi snippet | lf-footer-v3-fixed.html | v1.7 | updated 2026-07-20 | REVIEW | Variation B: brand bar top + 6 columns; new Case Studies column with gleam; contact moved out of a main column -->
 <style>
-/* ============================================================
-   lf_footer_v3_fixed
-   Scopeado 100% bajo #footer; cero selectores globales.
-   ============================================================ */
-/* [FIX-2] Variables locales - snippet autosuficiente aunque el tema no las defina */
-#footer {
-  --indigo: #16182E;
-  --white:  #FFFFFF;
-  --gold:   #EBBC45;
-  --head:   'Inter', 'Segoe UI', system-ui, sans-serif;
-}
-/* - Base - */
-/* [FIX-1] .footer → #footer */
-#footer{background:linear-gradient(160deg,var(--indigo) 0%,#14172B 70%);color:rgba(255,255,255,.82);padding:52px 0 26px;position:relative;overflow:hidden}
+#footer{--indigo:#16182E;--white:#FFFFFF;--gold:#EBBC45;--head:'Inter','Segoe UI',system-ui,sans-serif}
+#footer{background:linear-gradient(160deg,var(--indigo) 0%,#14172B 70%);color:rgba(255,255,255,.82);padding:48px 0 24px;position:relative;overflow:hidden;font-family:var(--head)}
+#footer *{box-sizing:border-box}
 #footer::after{content:"";position:absolute;inset:0;background:radial-gradient(560px circle at 95% 0%,rgba(36,72,153,.34),transparent 60%);pointer-events:none}
-/* - Wrap - */
-#footer .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px;box-sizing:border-box} /* evita que padding sume al ancho en content-box */
-/* - Columns grid - */
-#footer .foot-cols{display:grid;grid-template-columns:1.6fr repeat(5,1fr);gap:26px;padding:0 0 28px}
-@media(max-width:1020px){#footer .foot-cols{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:680px){#footer .foot-cols{grid-template-columns:repeat(2,1fr)}}
-/* - Brand column - */
-#footer .foot-brand img{height:28px;width:auto;margin-bottom:14px}
-#footer .foot-brand .tag{font-style:italic;color:rgba(255,255,255,.75);font-size:14.5px;line-height:1.5;margin-bottom:14px}
-#footer .foot-brand p{font-size:13.5px;line-height:1.7;margin:0 0 4px}
-#footer .foot-brand a{color:#C9D3E4;text-decoration:none}
-#footer .foot-brand a:hover{color:var(--gold)}
-/* - Social icons - [FIX-6] iconos SVG inline - */
-#footer .foot-social{display:flex;gap:12px;margin-top:16px}
+#footer .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 24px}
+/* brand bar (top): logo + tagline left, social right */
+#footer .foot-topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:22px;margin-bottom:26px;border-bottom:1px solid rgba(255,255,255,.1)}
+#footer .foot-topbar .l{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+#footer .foot-topbar img{height:26px;width:auto;display:block}
+#footer .foot-topbar .tag{font-style:italic;color:rgba(255,255,255,.75);font-size:14px;line-height:1.4;margin:0}
+#footer .foot-social{display:flex;gap:10px}
 #footer .foot-social a{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;color:#C9D3E4;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:color .2s ease,background .2s ease,transform .2s ease,border-color .2s ease}
 #footer .foot-social a:hover{color:var(--gold);background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);transform:translateY(-1px)}
 #footer .foot-social svg{width:17px;height:17px;display:block;fill:currentColor}
-/* - Nav columns - */
+/* columns */
+#footer .foot-cols{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;padding-bottom:16px}
+@media(max-width:1020px){#footer .foot-cols{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){#footer .foot-cols{grid-template-columns:repeat(2,1fr)}}
 #footer .foot-col h4{font-family:var(--head);font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--white);margin:0 0 12px}
-#footer .foot-col a{display:block;font-size:13px;color:rgba(255,255,255,.7);padding:4px 0;text-decoration:none;transition:color .18s ease,padding-left .18s ease}
+#footer .foot-col a{display:block;font-size:12.5px;color:rgba(255,255,255,.7);padding:4px 0;text-decoration:none;transition:color .18s ease,padding-left .18s ease}
 #footer .foot-col a:hover{color:var(--gold);padding-left:4px}
-/* - Bottom bar - */
-#footer .foot-bottom{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;color:rgba(255,255,255,.55)}
-#footer .foot-bottom a{color:rgba(255,255,255,.72);text-decoration:none;transition:color .18s ease}
-#footer .foot-bottom a:hover{color:var(--gold)}
+/* Case Studies heading: continuous subtle gold gleam on the letters (matches nav) */
+#footer .cases h4{background:linear-gradient(110deg,#ffffff 0%,#ffffff 22%,#F3D06B 42%,#EBBC45 50%,#F3D06B 58%,#ffffff 78%,#ffffff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:footCsGleam 3s ease-in-out infinite alternate}
+@keyframes footCsGleam{from{background-position:0% center}to{background-position:100% center}}
+/* bottom bar */
+#footer .foot-bottom{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;padding-top:20px;margin-top:8px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;color:rgba(255,255,255,.55)}
+#footer .foot-bottom .addr{color:rgba(255,255,255,.58)}
+#footer .foot-bottom .addr a{color:#C9D3E4;text-decoration:none}
+#footer .foot-bottom .addr a:hover{color:var(--gold)}
+#footer .foot-bottom .legal a{color:rgba(255,255,255,.72);text-decoration:none}
+#footer .foot-bottom .legal a:hover{color:var(--gold)}
+@media(prefers-reduced-motion:reduce){#footer .cases h4{animation:none;-webkit-text-fill-color:var(--gold);color:var(--gold)}}
 </style>
 <footer id="footer">
   <div class="wrap">
-    <!-- [FIX-5] Bloque CTA "Let's talk connectivity" eliminado -->
-    <!-- Nav columns -->
-    <div class="foot-cols">
-      <!-- Brand -->
-      <div class="foot-brand">
+    <!-- Brand bar: logo + tagline left, social right -->
+    <div class="foot-topbar">
+      <div class="l">
         <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2025/02/longfi-solutions-white-footer-logo.webp" alt="LongFi Solutions">
-        <p class="tag">When connectivity works,<br>everything else works better.</p>
-        <p>
-          <a href="mailto:info@longfisolutions.com">info@longfisolutions.com</a><br>
-          5900 Balcones Drive, 28666<br>
-          Austin, TX 78731<br>
-          USA
-        </p>
-        <!-- [FIX-6] Iconos SVG inline -->
-        <div class="foot-social">
-          <a href="https://x.com/LongFiSolutions" target="_blank" rel="noopener" aria-label="X">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/longfisolutions/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163C8.741 0 8.332.014 7.052.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.332 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/company/longfisolutions/" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/longfisolution" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-        </div>
+        <p class="tag">When connectivity works, everything else works better.</p>
       </div>
-      <!-- Solutions -->
+      <div class="foot-social">
+        <a href="https://x.com/LongFiSolutions" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a href="https://www.instagram.com/longfisolutions/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0 3.675a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.linkedin.com/company/longfisolutions/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg></a>
+        <a href="https://www.facebook.com/longfisolution" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      </div>
+    </div>
+    <!-- Columns -->
+    <div class="foot-cols">
       <div class="foot-col">
         <h4>Solutions</h4>
         <a href="https://www.longfisolutions.com/longficonnect/">LongFi Connect</a>
         <a href="https://www.longfisolutions.com/how-it-works/">How it works</a>
         <a href="https://www.longfisolutions.com/connectivity-value/">The Value of Cell Connectivity</a>
       </div>
-      <!-- Industries -->
       <div class="foot-col">
         <h4>Industries</h4>
         <a href="https://www.longfisolutions.com/restaurants/">Restaurants</a>
         <a href="https://www.longfisolutions.com/sports-bars/">Sports Bars</a>
-        <a href="https://www.longfisolutions.com/shoppingcenters/">Shopping Malls</a>
-        <a href="https://www.longfisolutions.com/gyms/">Gyms and Wellness Centers</a>
-        <a href="https://www.longfisolutions.com/hotels/">Hotels</a>
         <a href="https://www.longfisolutions.com/nightclubs/">Nightclubs</a>
         <a href="https://www.longfisolutions.com/casinos/">Casinos</a>
         <a href="https://www.longfisolutions.com/event-centers/">Event Centers</a>
+        <a href="https://www.longfisolutions.com/hotels/">Hotels</a>
+        <a href="https://www.longfisolutions.com/gyms/">Gyms and Wellness Centers</a>
+        <a href="https://www.longfisolutions.com/offices/">Offices</a>
+        <a href="https://www.longfisolutions.com/shoppingcenters/">Shopping Malls</a>
         <a href="https://www.longfisolutions.com/education-campuses/">Education Campuses</a>
         <a href="https://www.longfisolutions.com/hospital-clinics/">Hospitals and Clinics</a>
         <a href="https://www.longfisolutions.com/convention-centers/">Convention Centers</a>
         <a href="https://www.longfisolutions.com/airports/">Airports</a>
       </div>
-      <!-- Partners -->
+      <div class="foot-col cases">
+        <h4>Case Studies</h4>
+        <a href="https://www.longfisolutions.com/case-studies/silo-brooklyn/">SILO, Brooklyn</a>
+        <a href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/">Sunset Rooftop, Houston</a>
+        <a href="https://www.longfisolutions.com/case-studies/jazzfest-2026/">JazzFest 2026</a>
+        <a href="https://www.longfisolutions.com/case-studies/bauhaus-houston/">Bauhaus, Houston</a>
+        <a href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/">Mardi Gras 2026</a>
+        <a href="https://www.longfisolutions.com/case-studies/mccarthy/">McCarthy</a>
+        <a href="https://www.longfisolutions.com/case-studies/">See all case studies</a>
+      </div>
       <div class="foot-col">
         <h4>Partners</h4>
         <a href="https://www.longfisolutions.com/partners-hub/">Partners Hub</a>
         <a href="https://www.longfisolutions.com/msps/">Managed Service Providers (MSPs)</a>
         <a href="https://www.longfisolutions.com/portfolio-owners/">Portfolio Owners</a>
       </div>
-      <!-- About -->
       <div class="foot-col">
         <h4>About</h4>
         <a href="https://www.longfisolutions.com/about-us/">About LongFi</a>
         <a href="https://www.longfisolutions.com/about-us/#main">Our Team</a>
         <a href="https://www.longfisolutions.com/#Bottom">Contact</a>
       </div>
-      <!-- Resources -->
       <div class="foot-col">
         <h4>Resources</h4>
-        <a href="https://www.longfisolutions.com/case-studies/">Case Studies</a>
         <a href="https://www.longfisolutions.com/blog/">Blogs</a>
         <a href="https://www.longfisolutions.com/connect-coming-soon/">Videos</a>
         <a href="https://www.longfisolutions.com/connect-coming-soon/">Technical Docs</a>
         <a href="https://www.longfisolutions.com/faq/">FAQs</a>
       </div>
     </div>
-    <!-- Bottom bar -->
+    <!-- Bottom bar: address inline + legal -->
     <div class="foot-bottom">
-      <a href="https://www.longfisolutions.com/privacypolicy/">Privacy Policy</a>
-      <!-- [FIX-4] Año dinámico - nunca más desactualizado -->
-      <span>&copy; <span id="lfFooterYear">2026</span> LongFi Solutions. All Rights Reserved.</span>
+      <span class="addr"><a href="mailto:info@longfisolutions.com">info@longfisolutions.com</a> &nbsp;&middot;&nbsp; 5900 Balcones Drive #28666, Austin, TX 78731, USA</span>
+      <span class="legal">&copy; <span id="lfFooterYear">2026</span> LongFi Solutions. All Rights Reserved. &nbsp;&middot;&nbsp; <a href="https://www.longfisolutions.com/privacypolicy/">Privacy Policy</a></span>
     </div>
   </div>
 </footer>
-<!-- [FIX-4] Año dinámico -->
 <script>
-(function(){
-  var y=document.getElementById('lfFooterYear');
-  if(y)y.textContent=new Date().getFullYear();
-})();
+(function(){var y=document.getElementById('lfFooterYear');if(y)y.textContent=new Date().getFullYear();})();
 </script>

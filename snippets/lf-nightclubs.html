@@ -475,6 +475,19 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 #lfcs .lfx-rev{opacity:0;transform:translateY(20px);filter:blur(3px);transition:opacity .7s,transform .7s,filter .7s}
 #lfcs .lfx-rev.in{opacity:1;transform:none;filter:none}
 @media(prefers-reduced-motion:reduce){#lfcs .lfx-rev{opacity:1 !important;transform:none !important;filter:none !important}}
+
+/* Compact band (2026-07-20): side-by-side vertical cards, less vertical space */
+#lfcs{padding:44px 0 !important}
+#lfcs .lfx-wrap{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(300px,468px)) !important;gap:20px !important;justify-content:center;align-items:start}
+#lfcs .lfx-card{display:flex !important;flex-direction:column !important;margin-top:0 !important;grid-template-columns:none !important}
+#lfcs .lfx-img{min-height:0 !important;height:158px !important}
+#lfcs .lfx-c{padding:18px 20px !important}
+#lfcs .lfx-ey{margin-bottom:6px !important}
+#lfcs .lfx-h{font-size:19px !important;line-height:1.18 !important;margin-bottom:8px !important}
+#lfcs .lfx-q{font-size:13.5px !important;line-height:1.5 !important;margin-bottom:12px !important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+#lfcs .lfx-btns{gap:10px !important}
+#lfcs .lfx-p{padding:10px 16px !important;font-size:12.5px !important}
+#lfcs .lfx-g{font-size:12.5px !important}
 </style>
     <div class="lfx-wrap">
       <div class="lfx-card lfx-rev" style="border-left:5px solid #1FA58E">

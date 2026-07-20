@@ -257,7 +257,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 /* Round 8b: no container behind the icon; icon spans full eyebrow+headline height */
 #lf-eventcenters .dcard-ic{flex:none;display:flex;align-items:center;justify-content:center}
 #lf-eventcenters .dcard-ic img{height:100%;width:auto;max-width:130px;object-fit:contain}
-#lf-eventcenters .dcard h2{font-size:clamp(18px,1.9vw,23px);margin-bottom:0}
+#lf-eventcenters .dcard h2{font-size:clamp(14px,1.45vw,17px);margin-bottom:0}
 #lf-eventcenters .dcard .lede{font-size:14.5px;max-width:none;margin-top:14px}
 #lf-eventcenters .dcard .lede + .lede{margin-top:8px}
 /* CTA pinned to the bottom so both cards' buttons sit on the same baseline */
@@ -448,76 +448,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
      Round 8 merge of Compatibility + Monetization into one compact band.
      ============================================================ -->
   <!-- ===== LongFi matched case study feature ===== -->
-  <div id="lfcs">
-    <style>
-#lfcs{background:linear-gradient(180deg,#FFFFFF,#F1F4FB);border-top:1px solid #E6EAF2;padding:60px 0;font-family:'Poppins',sans-serif}
-#lfcs *{box-sizing:border-box}
-#lfcs .lfx-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-#lfcs .lfx-card{display:grid;grid-template-columns:.70fr 1.30fr;gap:0;background:#fff;border:1px solid #E6EAF2;border-radius:18px;overflow:hidden;box-shadow:0 10px 34px rgba(36,72,153,.10)}
-@media(max-width:820px){#lfcs .lfx-card{grid-template-columns:1fr}}
-#lfcs .lfx-img{position:relative;min-height:221px;background:#0F1122;overflow:hidden}
-#lfcs .lfx-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#lfcs .lfx-badge{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);border-radius:9px;padding:6px 11px;box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center}
-#lfcs .lfx-badge img{height:19px;width:auto;max-width:104px;object-fit:contain;display:block}
-#lfcs .lfx-badge .jz{font-family:'Poppins';font-weight:800;font-size:13px;color:#9a7a15}
-#lfcs .lfx-c{padding:32px 34px}
-@media(max-width:820px){#lfcs .lfx-c{padding:24px 22px}}
-#lfcs .lfx-ey{display:inline-block;font-family:'Poppins';font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin:0 0 8px !important}
-#lfcs .lfx-h{font-family:'Poppins';font-size:clamp(20px,2.3vw,26px) !important;font-weight:800 !important;color:#14172B !important;line-height:1.14 !important;margin:0 0 14px !important}
-#lfcs .lfx-q{font-family:'Nunito';font-size:16px;font-style:italic;color:#39435C;line-height:1.55;margin:0 0 16px !important}
-#lfcs .lfx-stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
-#lfcs .lfx-chip{font-family:'Poppins';font-size:12px;font-weight:700;color:#14172B;background:#F2F5FB;border:1px solid #E6EAF2;border-radius:999px;padding:6px 13px}
-#lfcs .lfx-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-#lfcs .lfx-p{display:inline-flex;align-items:center;gap:7px;font-family:'Poppins';font-size:13px;font-weight:600;color:#fff !important;padding:12px 22px;border-radius:12px;text-decoration:none !important;box-shadow:0 8px 20px rgba(36,72,153,.26);transition:transform .2s}
-#lfcs .lfx-p:hover{transform:translateY(-2px)}
-#lfcs .lfx-g{font-family:'Poppins';font-size:13px;font-weight:600;color:#244899 !important;text-decoration:none !important}
-#lfcs .lfx-g:hover{text-decoration:underline !important}
-#lfcs .lfx-rev{opacity:0;transform:translateY(20px);filter:blur(3px);transition:opacity .7s,transform .7s,filter .7s}
-#lfcs .lfx-rev.in{opacity:1;transform:none;filter:none}
-@media(prefers-reduced-motion:reduce){#lfcs .lfx-rev{opacity:1 !important;transform:none !important;filter:none !important}}
-
-/* Compact band (2026-07-20): side-by-side vertical cards, less vertical space */
-#lfcs{padding:44px 0 !important}
-#lfcs .lfx-wrap{display:grid !important;grid-template-columns:repeat(auto-fit,minmax(300px,468px)) !important;gap:20px !important;justify-content:center;align-items:start}
-#lfcs .lfx-card{display:flex !important;flex-direction:column !important;margin-top:0 !important;grid-template-columns:none !important}
-#lfcs .lfx-img{min-height:0 !important;height:158px !important}
-#lfcs .lfx-c{padding:18px 20px !important}
-#lfcs .lfx-ey{margin-bottom:6px !important}
-#lfcs .lfx-h{font-size:19px !important;line-height:1.18 !important;margin-bottom:8px !important}
-#lfcs .lfx-q{font-size:13.5px !important;line-height:1.5 !important;margin-bottom:12px !important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-#lfcs .lfx-btns{gap:10px !important}
-#lfcs .lfx-p{padding:10px 16px !important;font-size:12.5px !important}
-#lfcs .lfx-g{font-size:12.5px !important}
-</style>
-    <div class="lfx-wrap">
-      <div class="lfx-card lfx-rev" style="border-left:5px solid #C9A227">
-        <div class="lfx-img"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img02.jpg" alt="JazzFest 2026: festival guests connected in&nbsp;the&nbsp;crowd." loading="lazy" decoding="async"><span class="lfx-badge"><span class="jz">JazzFest&nbsp;2026</span></span></div>
-        <div class="lfx-c">
-          <span class="lfx-ey" style="color:#9a7a15">Case Study</span>
-          <h2 class="lfx-h">JazzFest 2026: festival guests connected in&nbsp;the&nbsp;crowd.</h2>
-          <p class="lfx-q">&ldquo;Tickets live in an app, so data at the gate is everything. LongFi Connect kept 104,080 guests&nbsp;moving.&rdquo;</p>
-          <div class="lfx-stats"><span class="lfx-chip">104,080 devices</span><span class="lfx-chip">91% rated excellent</span></div>
-          <div class="lfx-btns"><a class="lfx-p" style="background:linear-gradient(135deg,#C9A227,#C9A227cc)" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/">Read the case study &rarr;</a><a class="lfx-g" href="https://www.longfisolutions.com/case-studies/">See all case studies</a></div>
-        </div>
-      </div>
-      <div class="lfx-card lfx-rev" style="border-left:5px solid #2E9E7E;margin-top:18px">
-        <div class="lfx-img"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mardi-gras-2026-01-image.jpg" alt="Mardi Gras 2026: guests stayed connected through the New Orleans&nbsp;crowds." loading="lazy" decoding="async"><span class="lfx-badge"><span class="jz" style="color:#1f7d62">Mardi Gras&nbsp;2026</span></span></div>
-        <div class="lfx-c">
-          <span class="lfx-ey" style="color:#1f7d62">Case Study</span>
-          <h2 class="lfx-h">Mardi Gras 2026: guests stayed connected through the New Orleans&nbsp;crowds.</h2>
-          <p class="lfx-q">&ldquo;In past Mardi Gras weekends we heard complaints about cell signal. This year we&nbsp;did&nbsp;not.&rdquo;</p>
-          <div class="lfx-btns"><a class="lfx-p" style="background:linear-gradient(135deg,#2E9E7E,#2E9E7Ecc)" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/">Read the case study &rarr;</a><a class="lfx-g" href="https://www.longfisolutions.com/case-studies/">See all case studies</a></div>
-        </div>
-      </div>
-    </div>
-    <script>
-(function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;
- if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){r.querySelectorAll('.lfx-rev').forEach(function(e){e.classList.add('in');});return;}
- var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
- r.querySelectorAll('.lfx-rev').forEach(function(e){io.observe(e);});
- setTimeout(function(){r.querySelectorAll('.lfx-rev').forEach(function(e){var c=e.getBoundingClientRect();if(c.top<innerHeight&&c.bottom>0)e.classList.add('in');});},150);})();
-</script>
-  </div>
+  <div id="lfcs"><style>#lfcs{background:linear-gradient(180deg,#FFFFFF,#F1F4FB);border-top:1px solid #E6EAF2;padding:54px 0;font-family:'Poppins',sans-serif}#lfcs *{box-sizing:border-box}#lfcs .lfx-wrap{max-width:1080px;margin:0 auto;padding:0 24px}#lfcs .lfx-head{text-align:center;margin-bottom:26px}#lfcs .lfx-ttl{font-family:'Poppins';font-weight:800;font-size:clamp(20px,2.2vw,26px);color:#14172B;line-height:1.15;margin:0 0 6px}#lfcs .lfx-sub{font-family:'Nunito';font-size:14.5px;color:#4A536B;margin:0}#lfcs .hcards{display:grid;gap:16px;align-items:stretch;margin:0 auto}@media(max-width:920px){#lfcs .hcards{grid-template-columns:1fr !important;max-width:560px !important}}#lfcs .hcard{display:grid;grid-template-columns:138px 1fr;background:#fff;border:1px solid #E6EAF2;border-radius:14px;overflow:hidden;text-decoration:none;box-shadow:0 4px 16px rgba(36,72,153,.07);transition:transform .26s ease,box-shadow .26s ease}#lfcs .hcard:hover{transform:translateY(-5px);box-shadow:0 14px 46px rgba(36,72,153,.12)}#lfcs .hcard .im{position:relative;overflow:hidden;background:#0F1122;min-height:150px}#lfcs .hcard .im::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;z-index:1}#lfcs .hcard .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}#lfcs .hcard:hover .im img{transform:scale(1.06)}#lfcs .hcard .cc{padding:16px 18px;display:flex;flex-direction:column}#lfcs .hcard .tg{font-family:'Poppins';font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7A8299;min-height:13px}#lfcs .hcard .vn{font-family:'Poppins';font-size:16px;font-weight:800;color:#14172B;margin:5px 0 8px;line-height:1.1}#lfcs .hcard .qq{font-family:'Nunito';font-size:13.5px;font-style:italic;color:#4A536B;line-height:1.45;margin-bottom:12px;min-height:3.8em}#lfcs .hcard .mm{margin-top:auto;font-family:'Poppins';font-size:12.5px;font-weight:700;color:#244899;display:inline-flex;align-items:center;gap:6px;transition:gap .2s ease}#lfcs .hcard:hover .mm{gap:10px}#lfcs .hcard.t .im::after{background:#1FA58E}#lfcs .hcard.t .tg{color:#12876f}#lfcs .hcard.t .mm{color:#12876f}#lfcs .hcard.c .im::after{background:#FF4E7A}#lfcs .hcard.c .tg{color:#d63862}#lfcs .hcard.c .mm{color:#d63862}#lfcs .hcard.g .im::after{background:#C9A227}#lfcs .hcard.g .tg{color:#9a7a15}#lfcs .hcard.g .mm{color:#9a7a15}#lfcs .hcard.p .im::after{background:#C13AF0}#lfcs .hcard.p .tg{color:#9b1fce}#lfcs .hcard.p .mm{color:#9b1fce}#lfcs .hcard.gr .im::after{background:#2E9E7E}#lfcs .hcard.gr .tg{color:#1f7d62}#lfcs .hcard.gr .mm{color:#1f7d62}#lfcs .hcard.b .im::after{background:#244899}#lfcs .hcard.b .tg{color:#1d3b80}#lfcs .hcard.b .mm{color:#1d3b80}#lfcs .lfx-all{display:block;text-align:center;margin-top:22px;font-family:'Poppins';font-weight:700;font-size:13px;color:#244899;text-decoration:none}#lfcs .lfx-all:hover{text-decoration:underline}#lfcs .lfx-rev{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity .6s ease,transform .6s ease,filter .6s ease}#lfcs .lfx-rev.in{opacity:1;transform:none;filter:none}@media(prefers-reduced-motion:reduce){#lfcs .lfx-rev{opacity:1;transform:none;filter:none;transition:none}}</style><div class="lfx-wrap"><div class="lfx-head lfx-rev"><h2 class="lfx-ttl">Proven at real venues, under&nbsp;pressure</h2><p class="lfx-sub">See how LongFi Connect performs where the crowds are&nbsp;biggest.</p></div><div class="hcards lfx-rev" style="grid-template-columns:repeat(2,1fr);max-width:760px"><a class="hcard g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-jazzfest-2026-01-a-packed-daytime-crowd-at-a-jazzfest-stage.jpg" alt="JazzFest 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">JazzFest 2026 &middot;&nbsp;New Orleans</span><span class="vn">JazzFest 2026</span><span class="qq">&ldquo;Guests picked up the network as they walked up and moved through the line&nbsp;faster.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a><a class="hcard gr" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mardi-gras-2026-01-image.jpg" alt="Mardi Gras 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Mardi Gras 2026 &middot;&nbsp;New Orleans</span><span class="vn">Mardi Gras 2026</span><span class="qq">&ldquo;In past Mardi Gras weekends we heard complaints about cell signal. This year we&nbsp;did&nbsp;not.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a></div><a class="lfx-all" href="https://www.longfisolutions.com/case-studies/">See all case studies &rarr;</a></div><script>(function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;var els=r.querySelectorAll('.lfx-rev');if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in')});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)})})();</script></div>
 
   <section class="dualstrip">
   <div class="wrap">

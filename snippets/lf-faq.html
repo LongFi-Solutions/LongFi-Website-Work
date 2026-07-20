@@ -1,0 +1,859 @@
+<!-- LongFi snippet | lf-faq.html | v1.15 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- [1] Google Fonts, load once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+<!-- [2] Page styles, scoped under #lf-faq (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   Persona hooks (.dark-band, .h-grad, .h-shine, .btn-primary,
+   light eyebrow accent) are tinted for the Sports Bars persona.
+   ============================================================ */
+#lf-faq{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-faq),.e-con-inner:has(#lf-faq),.elementor-widget-html:has(#lf-faq),.elementor-widget-shortcode:has(#lf-faq),.elementor-widget-container:has(#lf-faq){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-faq *{box-sizing:border-box;margin:0;padding:0}
+#lf-faq{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-faq{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-faq img{max-width:100%;height:auto;display:block}
+#lf-faq a{color:var(--skyline);text-decoration:none}
+#lf-faq h1,#lf-faq h2,#lf-faq h3,#lf-faq h4,#lf-faq .eyebrow,#lf-faq .btn,#lf-faq .stat-n{font-family:var(--head)}
+#lf-faq .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){#lf-faq .wrap{padding:0 16px}}
+/* Compact spec: tighter section rhythm */
+#lf-faq section{padding:64px 0}
+@media(max-width:680px){#lf-faq section{padding:48px 0}}
+
+/* Persona accent for light-background eyebrows: skyline blue */
+#lf-faq .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#234C99;margin-bottom:12px}
+#lf-faq .on-dark .eyebrow{color:#BFD2F2}
+#lf-faq h1,#lf-faq h2,#lf-faq h3{text-wrap:balance}
+#lf-faq p{text-wrap:pretty} /* prevents orphaned last lines per the copywriting rule */
+/* Compact spec: section H2s step down. Impact from content and color, never size. */
+#lf-faq h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+#lf-faq .on-dark h2{color:var(--white)}
+/* Designed section titles on light backgrounds: gradient depth, never plain black.
+   Skyline-blue persona: ink to skyline blue. */
+#lf-faq .h-grad{background:linear-gradient(115deg,var(--ink) 6%,#1E3C6E 46%,#2E63C8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 12px rgba(46,99,200,.24));padding-bottom:.12em;margin-bottom:.1em} /* padding protects descenders from gradient clipping */
+/* SIGNAL GLEAM. Core LongFi animation: a slow light sweep across one power
+   word or headline per page. Skyline-blue tint: mid stop near white
+   (#E8F0FB), blue glow. Two gleams max on this page. */
+#lf-faq .h-shine{background:linear-gradient(115deg,#234C99 0%,#5C84E0 35%,#E8F0FB 50%,#5C84E0 65%,#234C99 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-faq 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(46,99,200,.18));padding-bottom:.12em}
+#lf-faq .lede{font-size:16.5px;line-height:1.6;max-width:680px}
+#lf-faq .on-dark .lede{color:rgba(255,255,255,.9)}
+
+#lf-faq .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-faq 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-faq{from{background-position:0% center}to{background-position:100% center}}
+
+#lf-faq .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Low saturation, permanent soft ambient glow. */
+#lf-faq .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-faq .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: skyline-blue gradient with white text. */
+#lf-faq .btn-primary{
+  background:linear-gradient(135deg,#2E63C8 0%,#1A3F8F 100%);
+  color:#FFFFFF;
+  border-color:rgba(150,186,246,.65);
+  box-shadow:0 0 26px rgba(46,99,200,.5),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.25);
+}
+#lf-faq .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(46,99,200,.66),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.3)}
+#lf-faq .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-faq .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-faq .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-faq .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-faq .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+
+/* Skyline-blue persona dark band: deep navy with blue radial glow. */
+#lf-faq .dark-band{background:linear-gradient(150deg,#141B33 0%,#22315E 58%,#16203F 118%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-faq .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(560px circle at 88% 4%, rgba(46,99,200,.18), transparent 58%),radial-gradient(480px circle at 6% 96%, rgba(46,99,200,.1), transparent 58%);pointer-events:none}
+#lf-faq .dark-band>.wrap{position:relative;z-index:1}
+
+#lf-faq .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-faq .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+
+/* Scroll reveal */
+#lf-faq .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-faq .rv.in-view{opacity:1;transform:none}
+#lf-faq .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-faq .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-faq .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-faq .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-faq .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-faq .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-faq .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-faq .rv,#lf-faq .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-faq .metal,#lf-faq .h-shine{animation:none}
+  #lf-faq{scroll-behavior:auto}
+}
+
+/* ============================================================
+   SNIPPET: lf_nav_v3  (slim glassmorphism bar, shrink-on-scroll,
+   micro-interactions. TEMPORARY REPLICA; theme owns the real nav.
+   This nav + the footer below will be extracted to their own Woody
+   snippet code once approved, so the whole site can migrate to it.)
+   ============================================================ */
+/* Solid, opaque bar color so the bar and its dropdowns are always identical,
+   never shifted by the light page at the top vs the dark hero below. */
+
+
+
+
+
+
+
+
+
+
+
+/* center-out underline on hover */
+
+
+/* caret that flips when the menu opens */
+
+
+/* Dropdown reads as the bar extending downward: same dark frosted color, no gap,
+   attached to the bar, rounded only at the bottom, light links. */
+
+
+
+
+
+/* dropdown icons: muted by default, brighten to gold and snap-pop on hover */
+
+
+/* Compact refined CTA: small frosted pill with a nudging arrow, not the big silver button */
+
+
+
+
+
+
+
+
+
+
+
+@keyframes navDrop-lf-faq{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+
+@media(max-width:920px){
+  
+  
+}
+@media(prefers-reduced-motion:reduce){
+  
+  
+}
+
+/* ============================================================
+   SNIPPET: lf_hero_sportsbars_v2  (split hero on the persona dark band)
+   ============================================================ */
+#lf-faq .hero{padding:84px 0 56px}
+#lf-faq .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:end}
+@media(max-width:920px){#lf-faq .hero-grid{grid-template-columns:1fr;gap:34px}#lf-faq .hero{padding:60px 0 44px}}
+#lf-faq .hero .eyebrow{color:#BFD2F2;background:rgba(46,99,200,.12);border:1px solid rgba(150,186,246,.35);padding:6px 14px;border-radius:999px}
+/* Compact spec: hero one step smaller than the prior sports-bars hero */
+#lf-faq .hero h1{font-size:clamp(28px,3.4vw,42px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--white);margin-bottom:14px}
+#lf-faq .hero .lede{color:rgba(255,255,255,.9);font-size:17px;max-width:540px}
+#lf-faq .hero-emph{font-family:var(--head);font-weight:700;font-size:17px;color:var(--white);margin-top:12px}
+#lf-faq .hero-img{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14)}
+#lf-faq .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-faq .hero-img:hover img{transform:scale(1.04)}
+
+/* ============================================================
+   SNIPPET: lf_statstrip_sportsbars_v2  (industry-page layout variation:
+   slim hairline stat strip instead of the homepage stat cards)
+   ============================================================ */
+#lf-faq .strip-band{padding:0 0 60px}
+#lf-faq .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid transparent;border-bottom:1px solid transparent;transition:border-color .6s ease}
+#lf-faq .strip.lines-on{border-top-color:rgba(150,186,246,.28);border-bottom-color:rgba(150,186,246,.28)}
+@media(max-width:920px){#lf-faq .strip{grid-template-columns:repeat(2,1fr)}}
+#lf-faq .stat{padding:18px 14px;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;border-right:1px solid rgba(150,186,246,.18)}
+#lf-faq .stat:last-child{border-right:0}
+@media(max-width:920px){#lf-faq .stat:nth-child(2){border-right:0}#lf-faq .stat:nth-child(-n+2){border-bottom:1px solid rgba(150,186,246,.18)}}
+#lf-faq .stat.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){#lf-faq .stat{opacity:1;transform:none;transition:none}}
+/* Numbers run smaller with a professional ambient glow; labels sit just below. */
+#lf-faq .stat-n{font-size:clamp(21px,2.2vw,29px);font-weight:700;line-height:1.1;filter:drop-shadow(0 0 14px rgba(150,186,246,.4))}
+#lf-faq .stat-l{font-size:12px;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.4}
+
+/* ============================================================
+   SNIPPET: lf_pain_sportsbars_v2
+   ============================================================ */
+#lf-faq .pain{background:var(--white)}
+#lf-faq .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+@media(max-width:920px){#lf-faq .pain-grid{grid-template-columns:1fr}}
+#lf-faq .pain-card{padding:24px 22px;display:flex;flex-direction:column;gap:14px}
+/* Icon-scale companions, always fully contained, never cropped */
+#lf-faq .pain-card .ph{width:60px;height:60px;border-radius:14px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:10px}
+#lf-faq .pain-card .ph img{width:100%;height:100%;object-fit:contain}
+#lf-faq .pain-card p{font-size:15px;margin:0}
+
+/* ============================================================
+   SNIPPET: lf_connect_sportsbars_v2  (dark band, the wordmark is the star)
+   ============================================================ */
+#lf-faq .connect-head{max-width:820px}
+/* Compact spec: the LongFi Connect star steps down hard from the prior size */
+#lf-faq .connect-star{font-size:clamp(30px,4vw,46px);font-weight:800;line-height:1.06;letter-spacing:-.02em;filter:drop-shadow(0 0 24px rgba(150,186,246,.3))}
+#lf-faq .connect-sub{font-family:var(--head);font-weight:600;font-size:clamp(15px,1.7vw,18px);color:var(--white);margin:14px 0 0}
+#lf-faq .cfeat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+@media(max-width:920px){#lf-faq .cfeat-grid{grid-template-columns:1fr}}
+#lf-faq .cfeat{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:18px 20px;transition:transform .25s ease,background .25s ease}
+#lf-faq .cfeat:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+#lf-faq .cfeat .ph{width:58px;height:58px;flex:none;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;padding:8px}
+/* contain, never cover: product and icon imagery must fit fully inside its container */
+#lf-faq .cfeat .ph img{width:100%;height:100%;object-fit:contain}
+#lf-faq .cfeat h3{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
+#lf-faq .cfeat p{font-size:14px;color:rgba(255,255,255,.85);margin:0 0 8px}
+#lf-faq .cfeat a{font-family:var(--head);font-size:13px;font-weight:600;color:#9FC0F2}
+#lf-faq .cfeat a:hover{text-decoration:underline}
+#lf-faq .connect-close{font-family:var(--head);font-weight:600;font-size:15.5px;color:rgba(255,255,255,.92);max-width:760px;margin:32px auto 0;text-align:center}
+
+/* ============================================================
+   SNIPPET: lf_compat_partnership_sportsbars_v2
+   Round 8 merge: Compatibility + Partnership in ONE compact dual band.
+   Images shrink dramatically to icon-scale companions, fully contained.
+   ============================================================ */
+#lf-faq .dualstrip{background:var(--bg)}
+#lf-faq .dual{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+@media(max-width:920px){#lf-faq .dual{grid-template-columns:1fr}}
+#lf-faq .dcard{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft);padding:28px 30px;display:flex;flex-direction:column;height:100%;transition:transform .25s ease,box-shadow .25s ease}
+#lf-faq .dcard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+#lf-faq .dcard-head{display:flex;gap:20px;align-items:stretch}
+#lf-faq .dcard-head>div{flex:1}
+/* Round 8b: no container behind the icon; icon spans full eyebrow+headline height */
+#lf-faq .dcard-ic{flex:none;display:flex;align-items:center;justify-content:center}
+#lf-faq .dcard-ic img{height:100%;width:auto;max-width:130px;object-fit:contain}
+#lf-faq .dcard h2{font-size:clamp(18px,1.9vw,23px);margin-bottom:0}
+#lf-faq .dcard .lede{font-size:14.5px;max-width:none;margin-top:14px}
+#lf-faq .dcard .lede + .lede{margin-top:8px}
+/* CTA pinned to the bottom so both cards' buttons sit on the same baseline */
+#lf-faq .dcard .btn-row{margin-top:auto;padding-top:18px}
+
+/* ============================================================
+   SNIPPET: lf_recap_cta_sportsbars_v2  (one dark band: recap, then the ask)
+   ============================================================ */
+#lf-faq .recap .kicker{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#BFD2F2;text-align:center;margin-bottom:26px}
+#lf-faq .recap-hero{text-align:center;max-width:880px;margin:0 auto}
+/* Compact spec: recap statement sized down, the shout goes */
+#lf-faq .recap-hero h3{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+#lf-faq .recap-hero p{font-family:var(--head);font-size:clamp(15px,1.8vw,18px);font-weight:500;color:rgba(255,255,255,.7);margin:12px 0 0}
+#lf-faq .cta-panel{margin-top:40px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 44px rgba(46,99,200,.1)}
+@media(max-width:920px){#lf-faq .cta-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}}
+#lf-faq .cta-panel h2{font-size:clamp(20px,2.2vw,27px);margin-bottom:10px}
+#lf-faq .cta-panel .lede{font-size:15px}
+#lf-faq .cta-form .fl{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#BFD2F2;margin:14px 0 6px}
+#lf-faq .cta-form .fl:first-child{margin-top:0}
+#lf-faq .cta-form .fi{height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)}
+#lf-faq .cta-form .btn{width:100%;margin-top:20px}
+#lf-faq .cta-form .note{font-size:12px;color:rgba(255,255,255,.55);margin-top:12px;text-align:center}
+
+/* ============================================================
+   SNIPPET: lf_faq_v2  (search box, category chips, accordion)
+   Skyline-blue resource persona. FAQ-specific layout for this page.
+   ============================================================ */
+/* Live search box in the hero */
+#lf-faq .faq-search{position:relative;max-width:560px;margin-top:24px}
+#lf-faq .faq-search svg{position:absolute;left:18px;top:50%;transform:translateY(-50%);width:19px;height:19px;color:rgba(255,255,255,.55);pointer-events:none}
+#lf-faq .faq-search input{width:100%;height:54px;padding:0 18px 0 48px;border-radius:14px;background:rgba(255,255,255,.08);border:1px solid rgba(150,186,246,.32);color:#fff;font-family:var(--body-font);font-size:15.5px;outline:none;transition:border-color .2s ease,background .2s ease,box-shadow .2s ease}
+#lf-faq .faq-search input::placeholder{color:rgba(255,255,255,.55)}
+#lf-faq .faq-search input:focus{border-color:rgba(150,186,246,.7);background:rgba(255,255,255,.12);box-shadow:0 0 0 3px rgba(46,99,200,.18)}
+#lf-faq .faq-search .count{margin-top:10px;font-size:13px;color:rgba(255,255,255,.6);min-height:18px}
+
+/* Category jump-nav chips (sticky under the nav) */
+#lf-faq .faq-chips-band{position:sticky;top:58px;z-index:40;background:var(--bg);border-bottom:1px solid var(--line)}
+#lf-faq .faq-chips{display:flex;flex-wrap:wrap;gap:9px;padding:16px 0}
+#lf-faq .faq-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--head);font-size:12.5px;font-weight:600;color:#34406B;background:var(--white);border:1px solid var(--line);padding:8px 14px;border-radius:999px;cursor:pointer;transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+#lf-faq .faq-chip svg{width:15px;height:15px;color:#2E63C8;transition:color .18s ease}
+#lf-faq .faq-chip:hover{transform:translateY(-1px);border-color:#9FC0F2;box-shadow:0 4px 12px rgba(46,99,200,.12)}
+#lf-faq .faq-chip.active{background:linear-gradient(135deg,#2E63C8 0%,#1A3F8F 100%);color:#fff;border-color:transparent}
+#lf-faq .faq-chip.active svg{color:#fff}
+
+/* Category sections + accordion */
+#lf-faq .faq-cat{scroll-margin-top:128px;padding:48px 0 8px}
+#lf-faq .faq-cat:first-of-type{padding-top:40px}
+#lf-faq .faq-cat-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+#lf-faq .faq-cat-ic{flex:none;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(46,99,200,.12),rgba(46,99,200,.04));border:1px solid #D6E2F7}
+#lf-faq .faq-cat-ic svg{width:23px;height:23px;color:#2E63C8}
+#lf-faq .faq-cat-head h2{margin-bottom:0}
+#lf-faq .faq-cat-sub{font-size:14.5px;color:var(--muted);margin:4px 0 18px}
+#lf-faq .faq-list{display:flex;flex-direction:column;gap:10px}
+#lf-faq .faq-item{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-soft);overflow:hidden;transition:box-shadow .25s ease,border-color .25s ease}
+#lf-faq .faq-item.open{border-color:#9FC0F2;box-shadow:var(--shadow)}
+#lf-faq .faq-q{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;text-align:left;background:none;border:0;cursor:pointer;padding:18px 22px;font-family:var(--head);font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.4}
+#lf-faq .faq-q .qmk{width:24px;height:24px;min-width:24px;border-radius:7px;background:var(--soft);color:#2E63C8;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+#lf-faq .faq-q .faq-txt{min-width:0;overflow-wrap:break-word}
+#lf-faq .faq-q:hover{color:#1A3F8F}
+#lf-faq .faq-q:focus-visible{outline:2px solid #2E63C8;outline-offset:-2px;border-radius:14px}
+#lf-faq .faq-chev{flex:none;width:30px;height:30px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;transition:transform .3s cubic-bezier(.4,0,.2,1),background .2s ease}
+#lf-faq .faq-chev svg{width:17px;height:17px;color:#2E63C8}
+#lf-faq .faq-item.open .faq-chev{transform:rotate(180deg);background:#E3EDFC}
+#lf-faq .faq-a{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+#lf-faq .faq-a-inner{padding:0 22px 20px;font-size:15px;line-height:1.65;color:var(--body)}
+#lf-faq .faq-a-inner p{margin:0 0 10px}
+#lf-faq .faq-a-inner p:last-child{margin-bottom:0}
+#lf-faq .faq-a-inner strong{color:var(--ink);font-weight:700}
+#lf-faq .faq-cat.hide,#lf-faq .faq-item.hide{display:none}
+/* Empty-state when search matches nothing */
+#lf-faq .faq-empty{display:none;text-align:center;padding:48px 0;color:var(--muted)}
+#lf-faq .faq-empty.show{display:block}
+#lf-faq .faq-empty svg{width:34px;height:34px;color:#9FC0F2;margin:0 auto 12px}
+@media(prefers-reduced-motion:reduce){#lf-faq .faq-chev,#lf-faq .faq-a{transition:none}}
+
+/* ============================================================
+   SNIPPET: lf_footer_replica  (TEMPORARY REPLICA, theme owns the real footer)
+   ============================================================ */
+
+
+
+
+
+
+
+
+@media(max-width:1020px){}
+@media(max-width:680px){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Beacon lead form fields */
+#lf-faq .cta-form .fi{display:block;width:100%;height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body-font);font-size:15px;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-faq .cta-form .fi::placeholder{color:rgba(255,255,255,.45)}
+#lf-faq .cta-form .fi:focus{outline:none;border-color:rgba(47,184,136,.7);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(47,184,136,.18)}
+#lf-faq .cta-form .fi.bad{border-color:rgba(255,120,120,.8);box-shadow:0 0 0 3px rgba(255,120,120,.16)}
+#lf-faq .cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+#lf-faq .cta-form .btn[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-faq .cta-form .note a{color:#8FE3C2}
+#lf-faq .cta-form .note a:hover{text-decoration:underline}
+#lf-faq .cta-form .lf-err{display:none;font-size:13px;color:#FFC2C2;margin-top:12px;text-align:center}
+#lf-faq .cta-form .lf-err.show{display:block}
+#lf-faq .cta-ok{text-align:center;padding:8px 4px}
+#lf-faq .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
+#lf-faq .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
+#lf-faq .cta-ok .lede{font-size:15px;margin:0 auto}
+/* FAQ wrap hardening: win over any theme/Elementor global so questions can never be cut */
+#lf-faq .faq-q{display:grid !important;grid-template-columns:auto 1fr auto !important;align-items:center !important}
+#lf-faq .faq-q .faq-txt{min-width:0 !important;white-space:normal !important;overflow-wrap:anywhere !important;word-break:break-word}
+</style>
+<!-- [3] Page content -->
+<main id="lf-faq"><!-- ============================================================
+     SNIPPET: lf_nav_replica  TEMPORARY REPLICA of the live site nav.
+     The production page receives nav from the theme. Remove before push.
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SNIPPET: lf_faq_hero_v2  (compact hero on the persona dark band,
+     with a live search box that filters the questions below)
+     ============================================================ -->
+<div class="dark-band on-dark">
+  <section class="hero" style="padding:72px 0 48px">
+    <div class="wrap" style="max-width:760px;margin:0 auto;text-align:center">
+      <div class="rv-stagger">
+        <h1 class="metal" style="margin-top:6px">Clear answers about <span class="h-shine">LongFi&nbsp;Connect</span></h1>
+        <p class="lede" style="margin:0 auto">How it works, what it needs from your network, how it stays secure, and how it delivers strong indoor cell connectivity. Search below or jump to&nbsp;a&nbsp;category.</p>
+        <div class="faq-search" style="margin-left:auto;margin-right:auto">
+          <i data-lucide="search"></i>
+          <input id="faqSearch" type="text" placeholder="Search questions, e.g. security, compatibility, coverage" aria-label="Search frequently asked questions" autocomplete="off">
+          <div class="count" id="faqCount" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_faq_chips_v2  (sticky category jump-nav)
+     ============================================================ -->
+<div class="faq-chips-band">
+  <div class="wrap">
+    <div class="faq-chips" id="faqChips" role="navigation" aria-label="FAQ categories">
+      <a class="faq-chip" href="#basics"><i data-lucide="circle-help"></i>The basics</a>
+      <a class="faq-chip" href="#how"><i data-lucide="workflow"></i>How it works</a>
+      <a class="faq-chip" href="#compatibility"><i data-lucide="wifi"></i>Compatibility &amp; hardware</a>
+      <a class="faq-chip" href="#security"><i data-lucide="shield-check"></i>Security &amp; privacy</a>
+      <a class="faq-chip" href="#revenue"><i data-lucide="signal"></i>Partnership &amp; qualification</a>
+      <a class="faq-chip" href="#install"><i data-lucide="settings"></i>Installation &amp; operations</a>
+      <a class="faq-chip" href="#it"><i data-lucide="server"></i>For I.T. &amp; networking</a>
+      <a class="faq-chip" href="#partners"><i data-lucide="handshake"></i>Partners &amp; referrals</a>
+      <a class="faq-chip" href="#getstarted"><i data-lucide="rocket"></i>Getting started</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_faq_sections_v2  (accordion Q&A by category)
+     ============================================================ -->
+<section class="pain" style="padding-top:8px">
+  <div class="wrap">
+
+    <!-- ===== CATEGORY: THE BASICS ===== -->
+    <div class="faq-cat" id="basics" data-cat="The basics">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="circle-help"></i></div><h2 class="h-grad">The&nbsp;basics</h2></div>
+      <p class="faq-cat-sub">Start here for the short version of what LongFi Connect is and what it does.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What is LongFi Connect?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>LongFi turns the Wi&#8209;Fi a venue already has into excellent indoor cell connectivity. Guests stay connected through the carriers they already use, and the venue gets a stronger guest experience at no cost. LongFi Connect is the managed service that makes that happen on the existing network.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How does it work, in one sentence?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>LongFi configures the Wi&#8209;Fi you already have so it can securely carry cellular data for major carriers, and guests get strong indoor cell service the moment they walk in.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Is this a signal booster or a cell extender?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. It is not a booster or an extender, and there is no RF amplification involved. Using the Passpoint standard, LongFi Connect lets compatible phones carry their carrier traffic over your existing Wi&#8209;Fi, so coverage indoors improves where outdoor towers struggle to reach.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Who is this for?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Venues and properties with compatible Wi&#8209;Fi environments and indoor cellular dead spots: restaurants, sports bars, hotels, shopping centers, gyms, casinos, event and convention centers, campuses, clinics, and airports. It also fits MSPs and portfolio owners who manage Wi&#8209;Fi across many sites.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What does it cost to get started?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Compatible environments start at no cost. No new hardware is required when the Wi&#8209;Fi environment is compatible, and compatibility is reviewed during site qualification.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Does LongFi work with the carriers?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes. Major carriers work with LongFi to serve their subscribers indoors. LongFi Connect carries that traffic securely on the venue's existing Wi&#8209;Fi, and the largest share of mobile subscribers can be supported on day one.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: HOW IT WORKS ===== -->
+    <div class="faq-cat" id="how" data-cat="How it works">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="workflow"></i></div><h2 class="h-grad">How&nbsp;it&nbsp;works</h2></div>
+      <p class="faq-cat-sub">The mechanism behind better indoor coverage on the Wi&#8209;Fi already in place.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What is Passpoint and why does it matter?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Passpoint, also called Hotspot 2.0, is a Wi&#8209;Fi Alliance standard that lets a phone discover and authenticate to a Wi&#8209;Fi network automatically using its SIM, with no captive portal and no password. That automatic, SIM-based handoff is what lets carrier traffic move onto your Wi&#8209;Fi, so guests just get coverage the moment they walk in.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How does LongFi Connect work with the carriers?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Major carriers work with LongFi to serve their subscribers indoors. LongFi Connect carries that traffic securely on the venue's existing Wi&#8209;Fi, on its own isolated lane, and systems already running on the network stay untouched.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Do guests have to download an app or sign in?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. Eligible phones connect automatically through Passpoint. There is no app, no portal, and no password for the guest to deal with. Coverage just works.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Does this replace my guest Wi&#8209;Fi or captive portal?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. LongFi Connect runs in parallel with your existing guest Wi&#8209;Fi and captive portal. Nothing about your current setup has to change. You can keep your normal guest network for laptops and tablets, while phones with a SIM use the Passpoint lane.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How long until it is up and running?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Timing depends on your platform and the site qualification, but compatible sites move quickly because no new hardware is needed. LongFi handles assessment, setup, monitoring, and optimization, and the Passpoint Wi&#8209;Fi can be disabled at any time.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What proof do you have that this works?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>LongFi supports 200+ active venues across the U.S., moving 130+ TB of mobile data monthly for 7M+ mobile users. During Mardi Gras 2026, 41 active venues supported 1.22M mobile user sessions and 25.8 TB of data across 7 days, with zero reported disruptions to POS, cameras, or core operations.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: COMPATIBILITY & HARDWARE ===== -->
+    <div class="faq-cat" id="compatibility" data-cat="Compatibility and hardware">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="wifi"></i></div><h2 class="h-grad">Compatibility&nbsp;&amp;&nbsp;hardware</h2></div>
+      <p class="faq-cat-sub">What your network needs, and what stays exactly as it is today.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Do I need to buy new hardware?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No new hardware is required when the Wi&#8209;Fi environment is compatible. The service runs on the enterprise access points and controller you already have.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Which Wi&#8209;Fi systems are compatible?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Compatible environments run enterprise-grade Wi&#8209;Fi infrastructure that supports Passpoint, WPA2 or WPA3-Enterprise with 802.1X and RADIUS, and RadSec or an approved alternate RadSec architecture. Platforms such as Meraki, Aruba, UniFi, Ruckus, Cisco, Juniper Mist, Omada, and other Passpoint-capable systems are commonly compatible.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How do I know if my venue qualifies?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Compatibility is reviewed during site qualification, based on the Wi&#8209;Fi platform, controller architecture, firmware, segmentation model, authentication support, and implementation constraints. Share your platform and we will confirm fit.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What if my equipment does not support RadSec?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>There are approved alternate RadSec architectures. If gear does not natively support RadSec, a small always-on local host with a static IP can run a RadSec proxy, or LongFi can assist with a low-power mini PC for that purpose. Some vendors offer native RadSec with mutual certificate management.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What internet connection do I need?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Carriers expect voice-grade connectivity: low latency, minimal jitter, and very low packet loss. A low-latency wired connection is strongly recommended. Low-latency satellite such as Starlink can work; high-latency satellite is not voice-grade and traffic may be rejected by the carriers.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Will this slow down my existing Wi&#8209;Fi?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>In many cases the Passpoint lane uses a small fraction of available bandwidth, and it runs on spare capacity. You can apply a bandwidth cap to protect business-critical traffic, for example reserving most of the link for internal use, and adjust as observed usage grows.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: SECURITY & PRIVACY ===== -->
+    <div class="faq-cat" id="security" data-cat="Security and privacy">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="shield-check"></i></div><h2 class="h-grad">Security&nbsp;&amp;&nbsp;privacy</h2></div>
+      <p class="faq-cat-sub">All the benefits, with the venue's security posture and standards kept in place.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Is this secure? We cannot put anything near our core systems.</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>The LongFi Connect carrier offload runs on its own isolated lane, separated from your POS, cameras, staff devices, internal office networks, servers, and business-critical systems using firewall rules, ACLs, and client isolation. The LongFi Connect lane sits to the right of your internal networks, not inside them. Systems already running on that network stay untouched, and the existing security posture and standards stay in place.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How is this different from open guest Wi&#8209;Fi?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Passpoint offers much stronger security than open or captive-portal guest Wi&#8209;Fi. Phones authenticate by SIM, traffic is encrypted with WPA2 or WPA3 and EAP-TLS, and voice and text are secured by IPSec tunnels directly from the device to the carrier network.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Can you see what our guests are doing online?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. The carrier traffic is encrypted and isolated. The venue has no visibility into the subscriber traffic, which also means no liability for it. Your team manages and monitors the network segment to your own security requirements.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Does any inbound port need to be opened?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No open inbound ports are required. The RadSec port needs to be allowed outbound to the internet. A next-generation firewall with current threat signatures and IDS/IPS is recommended, with optional content filtering.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Will this pass our security review?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>The architecture is built to satisfy I.T. and security expectations: enterprise authentication, encrypted transport, strict segmentation, and client isolation. LongFi engineers can answer detailed segmentation and liability questions in writing and bring the technical team in for sophisticated I.T. shops.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Is there legal protection for the venue?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Carrier offload via Passpoint Wi&#8209;Fi carries strong legal protection for the access network provider and Passpoint operator. The full legal framework and indemnification language is available on request.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: PARTNERSHIP & QUALIFICATION ===== -->
+    <div class="faq-cat" id="revenue" data-cat="Partnership and qualification">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="signal"></i></div><h2 class="h-grad">Partnership&nbsp;&amp;&nbsp;qualification</h2></div>
+      <p class="faq-cat-sub">What the LongFi partnership includes, reviewed with our team during site qualification.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What does the LongFi partnership include?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>The LongFi partnership covers assessment, setup, monitoring, and optimization of LongFi Connect on the venue's existing Wi&#8209;Fi. The specifics are reviewed with our team during site qualification.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How is the partnership structured?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Partnership structure is reviewed with our team during site qualification, based on the venue's Wi&#8209;Fi platform, footprint, and deployment.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Does the venue pay anything to take part?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. Compatible environments start at no cost, and LongFi Connect runs on the Wi&#8209;Fi already in place. Partnership details are reviewed with our team during site qualification.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How does better connectivity help the business?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Guests who stay connected tend to stay longer, and longer visits are associated with higher spend. Many venues see stronger reviews and smoother mobile payments. The benefits start on day one and compound the longer LongFi Connect is in place.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Is LongFi Connect a cost to the business?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. Compatible environments start at no cost, the service runs on the Wi&#8209;Fi already in place, and it improves guest connectivity without disruption to operations.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: INSTALLATION & OPERATIONS ===== -->
+    <div class="faq-cat" id="install" data-cat="Installation and operations">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="settings"></i></div><h2 class="h-grad">Installation&nbsp;&amp;&nbsp;operations</h2></div>
+      <p class="faq-cat-sub">What setup looks like and how it runs day to day.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Will installation disrupt my business?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>LongFi handles assessment, setup, monitoring, and optimization with no downtime and no changes to how your operation runs. Compatible sites start at no cost, with secure separation and no disruption to operations.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Who manages it after launch?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>It is fully managed by LongFi. We monitor performance and tune the configuration over time, so your team does not have to operate it.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Is there a minimum commitment?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>There is no minimum commitment to start, and the Passpoint Wi&#8209;Fi can be disabled at any time.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Can I start with one location before scaling?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes. Many partners begin with one strong location, or one to three locations, to prove it out before expanding. Larger, ready portfolios often start with a handful of sites. We size the pilot to your scale and readiness.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What happens if I want to pause or stop?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>The Passpoint Wi&#8209;Fi can be disabled at any time. Because it runs in parallel with your existing networks, turning it off does not affect your normal guest Wi&#8209;Fi or business systems.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: FOR I.T. & NETWORKING ===== -->
+    <div class="faq-cat" id="it" data-cat="For I.T. and networking teams">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="server"></i></div><h2 class="h-grad">For I.T. &amp;&nbsp;networking&nbsp;teams</h2></div>
+      <p class="faq-cat-sub">The technical detail your network and security teams will want.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What is the technical baseline?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>LongFi Connect requires Wi&#8209;Fi infrastructure that supports Passpoint or Hotspot 2.0, WPA2-Enterprise or WPA3-Enterprise, 802.1X, RADIUS, and RadSec or an approved alternate RadSec architecture. Carrier offload should run on a dedicated Guest or Passpoint VLAN, or a properly isolated existing guest VLAN.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How should the VLAN and segmentation be set up?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Use a Guest or Passpoint VLAN isolated from internal VLANs with firewall rules and ACLs. The lane should allow clients to reach the internet while denying communication to other users, devices, and subnets through client isolation. A larger DHCP pool with a short lease time accommodates the high number of transient devices.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Can we reuse our existing guest VLAN?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>You can use an existing guest VLAN, subnet, and DHCP scope, though a dedicated VLAN is strongly recommended for security, capacity, and monitoring, and for setting distinct rate limits and policies. Keeping a separate normal guest VLAN for non-cellular devices like laptops and tablets is also common.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What firewall and port requirements apply?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No open inbound ports are required. The RadSec port must be allowed outbound. A next-generation firewall with updated threat signatures and IDS/IPS is recommended, with optional content filtering. Avoid double NAT, which can break the encapsulation that Wi&#8209;Fi Calling depends on.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How should we plan capacity and logging?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Apply per-SSID and per-client rate limits, and plan client limits per access point. Expect many more transient users than a normal guest network, since devices join automatically, so each consumes an IP and a syslog entry. Consider external logging so log retention is not exhausted quickly.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Which roaming and Wi&#8209;Fi Calling settings help?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Enable 802.11r secure fast roaming, with 802.11k and 802.11v optional depending on legacy clients. Avoid captive portals, grace periods, and walled gardens on the Passpoint SSID, since devices need low-latency access to DNS and RadSec. WPA3 with Protected Management Frames is required for 6 GHz.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Where can my team get the deployment guides?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>The LongFi Solutions technical documentation site carries the overview, best practices, and vendor deployment guides for UniFi and Omada, with more vendors planned. It is the source of truth for implementation detail. Ask your LongFi contact for the current links and any vendor-specific guidance.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: PARTNERS & REFERRALS ===== -->
+    <div class="faq-cat" id="partners" data-cat="Partners and referrals">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="handshake"></i></div><h2 class="h-grad">Partners&nbsp;&amp;&nbsp;referrals</h2></div>
+      <p class="faq-cat-sub">For MSPs, portfolio owners, and people who can open doors.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">I run an MSP or manage Wi&#8209;Fi for clients. How do I partner?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>MSPs and managed Wi&#8209;Fi providers are a strong match. LongFi brings the technology and carrier relationships, and you bring the client relationships and access across your installed base. It is a complementary fit that adds a new managed connectivity offering to your portfolio.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">I own or manage a portfolio of properties. Where do I start?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Portfolio owners can start with a few ready sites as proof points, then expand across the rest of the portfolio. A first go-live that proves out becomes the reference for sister sites under the same ownership.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">Can I refer a venue as a LongFi Connector?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Yes. LongFi Connectors can introduce venues and partners. Reach out and we will walk through the details of the arrangement with our team.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What does LongFi bring to the partnership?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>LongFi brings the technology, the carrier relationships, and the managed service: assessment, setup, monitoring, and optimization. The partner brings relationships and access. Together that lines up well to deliver better connectivity across more sites.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- ===== CATEGORY: GETTING STARTED ===== -->
+    <div class="faq-cat" id="getstarted" data-cat="Getting started">
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="rocket"></i></div><h2 class="h-grad">Getting&nbsp;started</h2></div>
+      <p class="faq-cat-sub">The simple path from question to first site.</p>
+      <div class="faq-list">
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What is the first step?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Tell us about your venue or portfolio and your Wi&#8209;Fi platform. We confirm compatibility and show how LongFi Connect works without disruption to your operations.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">What information should I have ready?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Helpful details include your Wi&#8209;Fi platform and controller, roughly how new the gear is, whether guest Wi&#8209;Fi is already segmented, your internet connection type, and where indoor coverage complaints come up most.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">How do I check compatibility?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Compatibility is reviewed during site qualification against your platform, controller, firmware, segmentation, and authentication support. Send your platform details and we will confirm whether your environment is a fit.</p></div></div></div>
+
+        <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%"><span class="qmk">Q</span><span class="faq-txt" style="min-width:0;overflow-wrap:anywhere;word-break:break-word;text-align:left">My question is not answered here. What do I do?</span><span class="faq-chev"><i data-lucide="chevron-down"></i></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Reach out and we will continue the conversation. The LongFi team is available to walk through compatibility, security, and deployment for your specific situation.</p></div></div></div>
+
+      </div>
+    </div>
+
+    <!-- Empty-state for live search -->
+    <div class="faq-empty" id="faqEmpty">
+      <i data-lucide="search-x"></i>
+      <p>No questions match that search. Try a different word, or reach out and we will answer it directly.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_faq_cta_v2  (closing CTA on the persona dark band)
+     ============================================================ -->
+<div class="dark-band on-dark" id="ask">
+  <section class="recap">
+    <div class="wrap">
+      <div class="kicker rv">Still curious</div>
+      <div class="recap-hero rv">
+        <h3 class="metal">Still have questions? Talk&nbsp;to&nbsp;us.</h3>
+        <p>We will confirm compatibility and show how it works without disruption.</p>
+      </div>
+      <div class="cta-panel rv">
+        <div>
+          <h2>Tell us about your venue and&nbsp;your&nbsp;Wi&#8209;Fi.</h2>
+          <p class="lede">Share your platform and where coverage struggles, and we will walk you through compatibility, security, and next steps for your location. Compatible environments start at no cost, with secure separation and no disruption&nbsp;to&nbsp;operations.</p>
+        </div>
+        <div class="cta-form">
+            <form id="lf-faq-form" novalidate>
+              <label class="fl" for="lf-faq-full_name">Name</label>
+              <input class="fi" id="lf-faq-full_name" name="full_name" type="text" autocomplete="name" required>
+              <label class="fl" for="lf-faq-email">Business email</label>
+              <input class="fi" id="lf-faq-email" name="email" type="email" autocomplete="email" required>
+              <label class="fl" for="lf-faq-company_name">Venue or company</label>
+              <input class="fi" id="lf-faq-company_name" name="company_name" type="text" autocomplete="organization">
+              <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn-primary" type="submit">Talk to us</button>
+              <div class="lf-err" role="alert"></div>
+              <p class="note">By submitting, you agree to our <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. We use your details only to evaluate your site.</p>
+            </form>
+            <div class="cta-ok" id="lf-faq-ok" hidden>
+              <div class="ok-ic" aria-hidden="true">&#10003;</div>
+              <h2>Thanks. We have&nbsp;your&nbsp;details.</h2>
+              <p class="lede">Our team will review your site and reach out with&nbsp;next&nbsp;steps.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+  <!-- ===== LongFi Case Studies proof band (portable, self-contained) ===== -->
+  <div id="lfcs">
+    <style>
+    #lfcs{background:linear-gradient(180deg,#FFFFFF 0%,#F1F4FB 100%);border-top:1px solid #E6EAF2;padding:64px 0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    #lfcs *{box-sizing:border-box}
+    #lfcs .lfcs-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    #lfcs .lfcs-head{max-width:720px;margin:0 auto 30px;text-align:center}
+    #lfcs .lfcs-ey{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#244899;margin:0 0 10px !important}
+    #lfcs .lfcs-h{font-family:'Poppins',sans-serif;font-size:clamp(23px,2.7vw,31px) !important;font-weight:700 !important;color:#14172B !important;line-height:1.16 !important;margin:0 0 10px !important;letter-spacing:-.01em}
+    #lfcs .lfcs-sub{font-family:'Nunito',sans-serif;font-size:16px;color:#4A536B;margin:0 !important;line-height:1.55}
+    #lfcs .lfcs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:860px){ #lfcs .lfcs-cards{grid-template-columns:1fr;max-width:520px;margin:0 auto} }
+    #lfcs .lfcs-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E6EAF2;border-left:4px solid #244899;border-radius:14px;padding:22px 22px 20px;text-decoration:none !important;box-shadow:0 4px 16px rgba(36,72,153,.07);transition:transform .26s ease,box-shadow .26s ease}
+    #lfcs .lfcs-card:hover{transform:translateY(-5px);box-shadow:0 16px 42px rgba(36,72,153,.15)}
+    #lfcs .lfcs-card.t{border-left-color:#1FA58E}
+    #lfcs .lfcs-card.c{border-left-color:#FF4E7A}
+    #lfcs .lfcs-card.g{border-left-color:#C9A227}
+    #lfcs .lfcs-tag{font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A8299}
+    #lfcs .lfcs-card.t .lfcs-tag{color:#12876f}#lfcs .lfcs-card.c .lfcs-tag{color:#d63862}#lfcs .lfcs-card.g .lfcs-tag{color:#9a7a15}
+    #lfcs .lfcs-venue{font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#14172B;margin:8px 0 6px;line-height:1.1}
+    #lfcs .lfcs-line{font-family:'Nunito',sans-serif;font-size:14.5px;color:#4A536B;margin:0 0 16px;line-height:1.5}
+    #lfcs .lfcs-more{margin-top:auto;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:#244899 !important;display:inline-flex;align-items:center;gap:7px;transition:gap .2s ease}
+    #lfcs .lfcs-card.t .lfcs-more{color:#12876f !important}#lfcs .lfcs-card.c .lfcs-more{color:#d63862 !important}#lfcs .lfcs-card.g .lfcs-more{color:#9a7a15 !important}
+    #lfcs .lfcs-card:hover .lfcs-more{gap:11px}
+    #lfcs .lfcs-allbtn{text-align:center;margin-top:30px}
+    #lfcs .lfcs-allbtn a{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:600;color:#fff !important;background:linear-gradient(135deg,#244899,#2C2C6E);padding:13px 26px;border-radius:12px;text-decoration:none !important;box-shadow:0 8px 22px rgba(36,72,153,.28);transition:transform .2s ease,box-shadow .2s ease}
+    #lfcs .lfcs-allbtn a:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(36,72,153,.4)}
+    #lfcs .lfcs-reveal{opacity:0;transform:translateY(20px);filter:blur(3px);transition:opacity .7s ease,transform .7s ease,filter .7s ease}
+    #lfcs .lfcs-reveal.in{opacity:1;transform:none;filter:none}
+    #lfcs .lfcs-cards.lfcs-reveal.in .lfcs-card:nth-child(2){transition-delay:.1s}
+    #lfcs .lfcs-cards.lfcs-reveal.in .lfcs-card:nth-child(3){transition-delay:.2s}
+    @media(prefers-reduced-motion:reduce){ #lfcs .lfcs-reveal{opacity:1 !important;transform:none !important;filter:none !important;transition:none} }
+    </style>
+    <div class="lfcs-wrap">
+      <div class="lfcs-head lfcs-reveal">
+        <span class="lfcs-ey">Case&nbsp;Studies</span>
+        <h2 class="lfcs-h">Proof under real&nbsp;pressure.</h2>
+        <p class="lfcs-sub">See how LongFi Connect held up at real venues and&nbsp;big&nbsp;crowds.</p>
+      </div>
+      <div class="lfcs-cards lfcs-reveal">
+        <a class="lfcs-card t" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/">
+          <span class="lfcs-tag">Nightlife &amp;&nbsp;Hospitality</span>
+          <span class="lfcs-venue">SILO &middot;&nbsp;Brooklyn</span>
+          <span class="lfcs-line">Guests stay and settle up without stepping&nbsp;outside.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+        <a class="lfcs-card c" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/">
+          <span class="lfcs-tag">Rooftop Bar &amp;&nbsp;Events</span>
+          <span class="lfcs-venue">Sunset Rooftop &middot;&nbsp;Houston</span>
+          <span class="lfcs-line">A packed rooftop, connected through the&nbsp;busy&nbsp;rush.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+        <a class="lfcs-card g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/">
+          <span class="lfcs-tag">Live&nbsp;Events</span>
+          <span class="lfcs-venue">JazzFest 2026 &middot;&nbsp;New&nbsp;Orleans</span>
+          <span class="lfcs-line">104,080 guests through the gates, staying&nbsp;connected.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+      </div>
+      <div class="lfcs-allbtn lfcs-reveal"><a href="https://www.longfisolutions.com/case-studies/">See all case studies &rarr;</a></div>
+    </div>
+    <script>
+    (function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){r.querySelectorAll('.lfcs-reveal').forEach(function(e){e.classList.add('in');});return;}
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
+      r.querySelectorAll('.lfcs-reveal').forEach(function(e){io.observe(e);});
+      setTimeout(function(){r.querySelectorAll('.lfcs-reveal').forEach(function(e){var c=e.getBoundingClientRect();if(c.top<innerHeight&&c.bottom>0)e.classList.add('in');});},150);
+    })();
+    </script>
+  </div>
+</main>
+
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-faq');
+  if(!r)return;
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);}});},{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  var so=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var strip=x.target.closest('.strip');if(strip)strip.classList.add('lines-on');x.target.classList.add('on');var n=x.target.querySelector('.stat-n');if(n&&n.dataset.count){var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;(function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p;n.textContent=Math.round(tgt*p)+sfx;if(p<1)requestAnimationFrame(step);})(performance.now());}so.unobserve(x.target);});},{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  setTimeout(function(){r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view');});r.querySelectorAll('.stat').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0){el.classList.add('on');var s=el.closest('.strip');if(s)s.classList.add('lines-on');}});},150);
+})();
+</script>
+<!-- [4b] JavaScript: FAQ accordion, live search, category chips -->
+<script>
+(function(){
+  var r=document.getElementById('lf-faq'); if(!r)return;
+  /* Accordion */
+  r.querySelectorAll('.faq-item').forEach(function(item){
+    var q=item.querySelector('.faq-q'), a=item.querySelector('.faq-a'); if(!q||!a)return;
+    q.addEventListener('click',function(){
+      var open=item.classList.toggle('open');
+      q.setAttribute('aria-expanded',open?'true':'false');
+      a.style.maxHeight=open?(a.scrollHeight+'px'):null;
+    });
+  });
+  /* Live search */
+  var search=document.getElementById('faqSearch'),countEl=document.getElementById('faqCount'),empty=document.getElementById('faqEmpty');
+  function nrm(s){return (s||'').toLowerCase();}
+  function txtOf(el){return el?nrm(el.textContent):'';}
+  if(search){
+    search.addEventListener('input',function(){
+      var term=nrm(search.value.trim()),shown=0;
+      r.querySelectorAll('.faq-cat').forEach(function(cat){
+        var vis=0, cn=nrm(cat.getAttribute('data-cat'));
+        cat.querySelectorAll('.faq-item').forEach(function(item){
+          var hay=txtOf(item.querySelector('.faq-txt'))+' '+txtOf(item.querySelector('.faq-a-inner'))+' '+cn;
+          var match=!term||hay.indexOf(term)>-1;
+          item.classList.toggle('hide',!match);
+          if(match){vis++;shown++;}
+          else{item.classList.remove('open');var aa=item.querySelector('.faq-a');if(aa)aa.style.maxHeight=null;var qq=item.querySelector('.faq-q');if(qq)qq.setAttribute('aria-expanded','false');}
+        });
+        cat.classList.toggle('hide',vis===0);
+      });
+      if(empty)empty.classList.toggle('show',shown===0);
+      if(countEl)countEl.textContent=term?(shown+' result'+(shown===1?'':'s')):'';
+    });
+  }
+  /* Category chips active state */
+  r.querySelectorAll('.faq-chip').forEach(function(c){
+    c.addEventListener('click',function(){
+      r.querySelectorAll('.faq-chip').forEach(function(x){x.classList.remove('active');});
+      c.classList.add('active');
+    });
+  });
+})();
+</script>
+<!-- [5] JavaScript: Beacon lead intake. Change only PAGE_KEY and CONTACT_TYPE to reuse on another page. -->
+<script>
+(function(){
+  var PAGE_KEY='faq';
+  var CONTACT_TYPE='venue_operator';
+  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
+  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
+  var form=document.getElementById('lf-faq-form');
+  if(!form)return;
+  var ok=document.getElementById('lf-faq-ok');
+  var btn=form.querySelector('button[type=submit]');var err=form.querySelector('.lf-err');var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function showErr(m){err.textContent=m;err.classList.add('show');}function clearErr(){err.textContent='';err.classList.remove('show');}
+  form.addEventListener('submit',function(ev){ev.preventDefault();clearErr();var name=form.full_name.value.trim();var email=form.email.value.trim();var company=form.company_name?form.company_name.value.trim():'';var honeypot=form.company_website.value.trim();form.full_name.classList.remove('bad');form.email.classList.remove('bad');
+    if(!name){form.full_name.classList.add('bad');showErr('Please enter your name.');return;}
+    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
+    btn.disabled=true;var label=btn.textContent;btn.textContent='Sending...';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':APIKEY},body:JSON.stringify({full_name:name,email:email,company_name:company,company_website:honeypot,page_key:PAGE_KEY,contact_type:CONTACT_TYPE,cta_label:label,page_url:window.location.href,referrer:document.referrer||''})}).then(function(res){return res.json().catch(function(){return {ok:res.ok};});}).then(function(data){if(data&&data.ok){form.setAttribute('hidden','');if(ok)ok.removeAttribute('hidden');}else{btn.disabled=false;btn.textContent=label;showErr('Something went wrong. Please try again in a moment.');}}).catch(function(){btn.disabled=false;btn.textContent=label;showErr('Network issue. Please try again in a moment.');});
+  });
+})();
+</script>
+<!-- Lucide icons loader (was missing: renders category, chip, and chevron icons) -->
+<script src="https://unpkg.com/lucide@0.383.0" onload="lucide.createIcons();try{console.log('LongFi lf-faq v1.14 FAQ-grid active');}catch(e){}"></script>

@@ -1,0 +1,853 @@
+<!-- LongFi snippet | lf-connect.html | v1.11 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- [1] Google Fonts, load-once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+
+<!-- [2] Page styles, all scoped under #lf-connect (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   ============================================================ */
+#lf-connect{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-connect),.e-con-inner:has(#lf-connect),.elementor-widget-html:has(#lf-connect),.elementor-widget-shortcode:has(#lf-connect),.elementor-widget-container:has(#lf-connect){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-connect *{box-sizing:border-box;margin:0;padding:0}
+#lf-connect{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-connect{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-connect img{max-width:100%;height:auto;display:block}
+#lf-connect a{color:var(--skyline);text-decoration:none}
+#lf-connect h1, #lf-connect h2, #lf-connect h3, #lf-connect h4, #lf-connect .eyebrow, #lf-connect .btn, #lf-connect .stat-n{font-family:var(--head)}
+#lf-connect .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){
+  #lf-connect .wrap{padding:0 16px}
+}
+#lf-connect section{padding:84px 0}
+@media(max-width:680px){
+  #lf-connect section{padding:56px 0}
+}
+/* ── Page persona: LongFi Connect runs on the indigo-to-violet palette.
+   Every page keeps the brand family but owns its own gradients. ── */
+#lf-connect .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:14px}
+#lf-connect .on-dark .eyebrow{color:#D9C9F2}
+#lf-connect h1, #lf-connect h2, #lf-connect h3, #lf-connect h4, #lf-connect .stack{font-family:var(--head)}
+#lf-connect h1, #lf-connect h2, #lf-connect h3{text-wrap:balance}
+#lf-connect p{text-wrap:pretty}
+/* prevents orphaned last lines per the copywriting rule */
+#lf-connect h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.14;letter-spacing:-.01em;color:var(--ink);margin-bottom:14px}
+#lf-connect .on-dark h2{color:var(--white)}
+/* Designed section titles on light backgrounds: gradient depth, never plain black */
+#lf-connect .h-grad{background:linear-gradient(120deg,var(--ink) 25%,#3D2A6E 60%,var(--purple) 105%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 10px rgba(102,10,183,.14));padding-bottom:.12em;margin-bottom:.1em}
+/* padding protects descenders from gradient clipping */
+/* Alternate persona gradient: a warmer violet-to-magenta lean so a paired
+   second clause reads distinct from .h-grad without leaving the palette. */
+#lf-connect .h-grad2{background:linear-gradient(120deg,var(--purple) 8%,#9326C7 55%,#C13B9A 105%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 10px rgba(150,38,199,.16));padding-bottom:.12em;margin-bottom:.1em}
+#lf-connect .lede{font-size:17.5px;line-height:1.65;max-width:720px}
+#lf-connect .on-dark .lede{color:rgba(255,255,255,.9)}
+/* SIGNAL GLEAM. Core LongFi animation: a slow light sweep across one power
+   word or headline per page. Use sparingly; tint follows the page persona. */
+#lf-connect .h-shine{background:linear-gradient(115deg,#4A1280 0%,#8B52D4 35%,#C9ABF5 50%,#8B52D4 65%,#4A1280 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-connect 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(157,92,232,.18));padding-bottom:.12em;margin-bottom:.1em}
+#lf-connect .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-connect 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-connect{from{background-position:0% center}to{background-position:100% center}}
+#lf-connect .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Low saturation, permanent soft ambient glow. */
+#lf-connect .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-connect .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: LongFi Connect runs the bold violet variant. */
+#lf-connect .btn-primary{
+  background:linear-gradient(135deg,#8A66D9 0%,#54309F 100%);
+  color:#FFFFFF;
+  border-color:rgba(200,170,255,.6);
+  box-shadow:0 0 26px rgba(150,110,235,.5),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.4);
+}
+#lf-connect .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(165,125,250,.65),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.45)}
+#lf-connect .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-connect .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-connect .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-connect .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-connect .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+#lf-connect .dark-band{background:linear-gradient(140deg,var(--indigo) 0%,#3A1370 58%,#54128F 100%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-connect .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at 90% 0%, rgba(233,238,246,.15), transparent 55%),radial-gradient(520px circle at 8% 95%, rgba(168,120,255,.18), transparent 55%);pointer-events:none}
+#lf-connect .dark-band>.wrap{position:relative;z-index:1}
+#lf-connect .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-connect .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+/* Scroll reveal */
+#lf-connect .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-connect .rv.in-view{opacity:1;transform:none}
+#lf-connect .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-connect .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-connect .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-connect .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-connect .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-connect .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-connect .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-connect .rv, #lf-connect .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-connect .metal{animation:none}
+  #lf-connect{scroll-behavior:auto}
+}
+/* ============================================================
+   SNIPPET: lf_hero_longficonnect_v2  (dark band hero)
+   ============================================================ */
+#lf-connect .hero{padding:100px 0 90px}
+#lf-connect .hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:center}
+@media(max-width:920px){
+  #lf-connect .hero-grid{grid-template-columns:1fr;gap:32px}
+  #lf-connect .hero{padding:56px 0 48px}
+}
+#lf-connect .hero .eyebrow{color:#D9C9F2;background:none;border:0;padding:0;border-radius:0}
+/* Dimensional wordmark: layered glow plus a grounded soft shadow for depth */
+#lf-connect .hero h1{font-size:clamp(42px,5.8vw,70px);font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--white);margin-bottom:20px;filter:drop-shadow(0 14px 38px rgba(20,8,50,.55)) drop-shadow(0 0 26px rgba(216,198,255,.28))}
+#lf-connect .hero h1 span{display:block}
+#lf-connect .hero .hero-sub{font-family:var(--head);font-size:clamp(18px,2vw,23px);font-weight:700;color:var(--white);margin-bottom:16px;line-height:1.3}
+#lf-connect .hero .lede{color:rgba(255,255,255,.9);font-size:17px;max-width:470px;text-wrap:balance}
+/* balance kills lone last-word orphans in the short hero block */
+#lf-connect .hero .lede + .lede{margin-top:12px}
+@media(max-width:920px){
+  #lf-connect .hero .lede{max-width:none}
+}
+/* Round 8: zoomed the hero photo out (shorter box = less aggressive cover crop)
+   so more of the scene around the woman reads; framing kept on her. */
+#lf-connect .hero-img{border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14);aspect-ratio:4/3.85;max-height:560px}
+#lf-connect .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .6s ease}
+#lf-connect .hero-img:hover img{transform:scale(1.04)}
+/* ============================================================
+   SNIPPET: lf_carrier_grade_v2  (light, three feature cards)
+   ============================================================ */
+#lf-connect .cgrade{background:var(--white)}
+/* Round 8: widened so the lede never drops "fully protected." to an orphan line. */
+#lf-connect .cgrade-head{max-width:880px;margin-bottom:42px}
+#lf-connect .cgrade-head .lede{max-width:880px}
+#lf-connect .cgrade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:920px){
+  #lf-connect .cgrade-grid{grid-template-columns:1fr}
+}
+#lf-connect .fcard{display:flex;flex-direction:column;overflow:hidden}
+/* Imagery stays icon-scale and subtle; the text carries the story. Contain, never cover. */
+#lf-connect .fcard .ph{width:60px;height:60px;flex:none;border-radius:12px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:8px;margin:26px 0 0 26px}
+#lf-connect .fcard .ph img{width:100%;height:100%;object-fit:contain}
+#lf-connect .fcard .tx{padding:18px 26px 28px;display:flex;flex-direction:column;flex:1}
+#lf-connect .fcard h3{font-size:19px;font-weight:700;color:var(--ink);margin-bottom:8px}
+#lf-connect .fcard p{font-size:15.5px;margin-bottom:16px}
+#lf-connect .fcard .more{margin-top:auto;font-family:var(--head);font-size:14px;font-weight:600;color:var(--purple);display:inline-flex;align-items:center;gap:6px}
+#lf-connect .fcard .more::after{content:"\2192";transition:transform .2s ease}
+#lf-connect .fcard:hover .more::after{transform:translateX(4px)}
+/* ============================================================
+   SNIPPET: lf_better_experiences_v2  (dark band)
+   ============================================================ */
+#lf-connect .bx-head{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:48px}
+@media(max-width:920px){
+  #lf-connect .bx-head{grid-template-columns:1fr;gap:32px}
+}
+#lf-connect .bx-head .stack{font-family:var(--head);font-size:clamp(34px,4.8vw,62px);font-weight:800;line-height:1.06;letter-spacing:-.02em}
+#lf-connect .bx-head .stack span{display:block}
+#lf-connect .bx-img{border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14)}
+#lf-connect .bx-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-connect .bx-img:hover img{transform:scale(1.04)}
+#lf-connect .bx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:920px){
+  #lf-connect .bx-grid{grid-template-columns:1fr}
+}
+#lf-connect .bx{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:26px 26px 28px;transition:transform .25s ease,background .25s ease}
+#lf-connect .bx:hover{transform:translateY(-4px);background:rgba(255,255,255,.1)}
+#lf-connect .bx h3{font-size:18.5px;font-weight:700;color:var(--white);margin-bottom:8px}
+#lf-connect .bx p{font-size:15px;color:rgba(255,255,255,.85)}
+#lf-connect .bx .dot{width:10px;height:10px;border-radius:50%;background:#BA94FF;box-shadow:0 0 10px rgba(186,148,255,.6);margin-bottom:16px}
+/* ============================================================
+   SNIPPET: lf_passpoint_v2  (light section. Bird's-eye LongFi Connect range
+   animation: people walk into range and connect automatically.)
+   ============================================================ */
+#lf-connect .pp{background:var(--white)}
+#lf-connect .pp-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:920px){
+  #lf-connect .pp-grid{grid-template-columns:1fr;gap:40px}
+}
+#lf-connect .pp h2{margin-bottom:6px}
+#lf-connect .pp h2 + h2{margin-bottom:18px}
+/* Stack sized below the headline; lines blur in one by one */
+#lf-connect .pp-stack{margin:16px 0 14px}
+#lf-connect .pp-stack span{display:block;font-family:var(--head);font-size:clamp(19px,2.2vw,26px);font-weight:700;line-height:1.3;letter-spacing:-.01em;color:var(--ink)}
+#lf-connect .pp-stack span:nth-child(2){color:var(--purple)}
+#lf-connect .pp-stack span:nth-child(3){background:linear-gradient(115deg,var(--indigo),var(--purple));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+#lf-connect .blurin>*{opacity:0;filter:blur(10px);transition:opacity .7s ease,filter .7s ease}
+#lf-connect .blurin.in-view>*,#lf-connect .rv.in-view .blurin>*{opacity:1;filter:blur(0)}
+#lf-connect .rv.in-view .blurin>*:nth-child(2){transition-delay:.25s}
+#lf-connect .rv.in-view .blurin>*:nth-child(3){transition-delay:.5s}
+#lf-connect .blurin.in-view>*:nth-child(2){transition-delay:.25s}
+#lf-connect .blurin.in-view>*:nth-child(3){transition-delay:.5s}
+@media(prefers-reduced-motion:reduce){
+  #lf-connect .blurin>*{opacity:1;filter:none;transition:none}
+}
+#lf-connect .pp-line{font-family:var(--head);font-size:16.5px;font-weight:600;color:var(--ink);margin-top:8px}
+/* The range stage: top-down view on a clean white floor. The LongFi symbol
+   sits squarely at the center of the signal boundary; the boundary carries
+   the label. Walkers face the direction they travel, fade in and out, and
+   not all of them cross the center: some pass along the edges, some stay
+   and congregate. */
+#lf-connect .cnx-stage{position:relative;height:420px;border-radius:24px;overflow:hidden;background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-soft)}
+#lf-connect .cnx-range{position:absolute;left:50%;top:50%;width:300px;height:300px;transform:translate(-50%,-50%);border-radius:50%;border:1.5px dashed rgba(102,10,183,.3);background:radial-gradient(circle, rgba(102,10,183,.05) 0%, rgba(102,10,183,.015) 70%, transparent 75%)}
+#lf-connect .cnx-ring{position:absolute;left:50%;top:50%;width:300px;height:300px;transform:translate(-50%,-50%);border-radius:50%;border:1.5px solid rgba(102,10,183,.22);animation:cnxPulse-lf-connect 3.5s ease-out infinite}
+#lf-connect .cnx-ring:nth-of-type(3){animation-delay:1.75s}
+@keyframes cnxPulse-lf-connect{0%{transform:translate(-50%,-50%) scale(.4);opacity:.8}100%{transform:translate(-50%,-50%) scale(1.15);opacity:0}}
+#lf-connect .cnx-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3}
+#lf-connect .cnx-core img{width:46px;height:46px;object-fit:contain;filter:drop-shadow(0 6px 18px rgba(102,10,183,.35))}
+#lf-connect .cnx-edge{position:absolute;left:50%;top:calc(50% - 150px);transform:translate(-50%,-50%);z-index:3;font-family:var(--head);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);background:var(--white);border:1px solid rgba(102,10,183,.25);border-radius:999px;padding:3px 11px;box-shadow:var(--shadow-soft);white-space:nowrap}
+/* Walkers: tiny top-view people (shoulders plus head). The rotation baked into
+   each path keeps the shoulders facing the direction of travel. */
+#lf-connect .walker{position:absolute;width:18px;height:18px;z-index:2;color:#D9A013;animation-timing-function:linear;animation-iteration-count:infinite;opacity:0}
+#lf-connect .walker::before{content:"";position:absolute;left:50%;top:58%;width:16px;height:9px;transform:translate(-50%,-50%);border-radius:50%;background:currentColor;opacity:.55}
+#lf-connect .walker::after{content:"";position:absolute;left:50%;top:44%;width:8px;height:8px;transform:translate(-50%,-50%);border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+/* Blurbs stay horizontal (each counter-rotates its walker's heading), read
+   light, and fade away after a couple of seconds */
+#lf-connect .walker .say{position:absolute;left:50%;top:130%;transform:translateX(-50%);white-space:nowrap;font-family:var(--head);font-size:10px;font-weight:500;color:var(--muted);background:rgba(255,255,255,.85);border:1px solid rgba(230,234,242,.9);border-radius:999px;padding:3px 9px;box-shadow:0 2px 8px rgba(36,72,153,.06);opacity:0;animation:inherit;animation-name:cnxSay-lf-connect}
+#lf-connect .w1 .say{transform:translateX(-50%) rotate(-114deg) }
+#lf-connect .w2 .say{transform:translateX(-50%) rotate(105deg)}
+#lf-connect .w5 .say{transform:translateX(-50%) rotate(-74deg)}
+#lf-connect .w7 .say{transform:translateX(-50%) rotate(57deg)}
+#lf-connect .w8 .say{transform:translateX(-50%) rotate(-177deg)}
+@keyframes cnxSay-lf-connect{0%,52%{opacity:0}55%,67%{opacity:1}71%,100%{opacity:0}}
+@keyframes cnxSayStay-lf-connect{0%,36%{opacity:0}39%,53%{opacity:1}57%,100%{opacity:0}}
+/* Arrivals that connect and pass near the center */
+#lf-connect .w1{left:-4%;top:18%;animation-name:cnxW1-lf-connect;animation-duration:13s}
+@keyframes cnxW1-lf-connect{0%{transform:translate(0,0) rotate(114deg);color:#D9A013;opacity:0}5%{opacity:1}50%{color:#D9A013}56%{color:#19B27B}94%{opacity:1}100%{transform:translate(250px,110px) rotate(114deg);color:#19B27B;opacity:0}}
+#lf-connect .w2{left:102%;top:30%;animation-name:cnxW2-lf-connect;animation-duration:15s;animation-delay:-4s}
+@keyframes cnxW2-lf-connect{0%{transform:translate(0,0) rotate(-105deg);color:#E0455A;opacity:0}5%{opacity:1}50%{color:#E0455A}56%{color:#19B27B}94%{opacity:1}100%{transform:translate(-265px,68px) rotate(-105deg);color:#19B27B;opacity:0}}
+/* Passers-by along the bottom and top edges: a brief green blip while the
+   path clips the boundary, then back out of range */
+#lf-connect .w3{left:8%;top:88%;animation-name:cnxW3-lf-connect;animation-duration:16s;animation-delay:-8s}
+#lf-connect .w3 .say{display:none}
+@keyframes cnxW3-lf-connect{0%{transform:translate(0,0) rotate(86deg);color:#D9A013;opacity:0}5%{opacity:1}44%{color:#D9A013}48%{color:#19B27B}62%{color:#19B27B}68%{color:#D9A013}94%{opacity:1}100%{transform:translate(470px,-30px) rotate(86deg);color:#D9A013;opacity:0}}
+#lf-connect .w4{left:-4%;top:9%;animation-name:cnxW4-lf-connect;animation-duration:18s;animation-delay:-11s}
+#lf-connect .w4 .say{display:none}
+@keyframes cnxW4-lf-connect{0%{transform:translate(0,0) rotate(93deg);color:#E0455A;opacity:0}5%{opacity:1}42%{color:#E0455A}46%{color:#19B27B}58%{color:#19B27B}64%{color:#E0455A}94%{opacity:1}100%{transform:translate(600px,36px) rotate(93deg);color:#E0455A;opacity:0}}
+/* Stayers: they arrive, connect, and congregate for a while */
+#lf-connect .w5{left:-4%;top:76%;animation-name:cnxW5-lf-connect;animation-duration:19s;animation-delay:-6s}
+#lf-connect .w5 .say{animation-name:cnxSayStay-lf-connect}
+@keyframes cnxW5-lf-connect{0%{transform:translate(0,0) rotate(74deg);color:#D9A013;opacity:0}5%{opacity:1}26%{color:#D9A013}32%{color:#19B27B}35%{transform:translate(215px,-60px) rotate(74deg)}90%{transform:translate(215px,-60px) rotate(74deg);color:#19B27B;opacity:1}100%{transform:translate(215px,-60px) rotate(74deg);color:#19B27B;opacity:0}}
+#lf-connect .w7{left:96%;top:92%;animation-name:cnxW7-lf-connect;animation-duration:21s;animation-delay:-9s}
+#lf-connect .w7 .say{animation-name:cnxSayStay-lf-connect}
+@keyframes cnxW7-lf-connect{0%{transform:translate(0,0) rotate(-57deg);color:#E0455A;opacity:0}5%{opacity:1}27%{color:#E0455A}33%{color:#19B27B}38%{transform:translate(-235px,-150px) rotate(-57deg)}92%{transform:translate(-235px,-150px) rotate(-57deg);color:#19B27B;opacity:1}100%{transform:translate(-235px,-150px) rotate(-57deg);color:#19B27B;opacity:0}}
+#lf-connect .w8{left:60%;top:-8%;animation-name:cnxW8-lf-connect;animation-duration:20s;animation-delay:-3s}
+#lf-connect .w8 .say{animation-name:cnxSayStay-lf-connect}
+@keyframes cnxW8-lf-connect{0%{transform:translate(0,0) rotate(177deg);color:#D9A013;opacity:0}5%{opacity:1}28%{color:#D9A013}34%{color:#19B27B}40%{transform:translate(-15px,255px) rotate(177deg)}92%{transform:translate(-15px,255px) rotate(177deg);color:#19B27B;opacity:1}100%{transform:translate(-15px,255px) rotate(177deg);color:#19B27B;opacity:0}}
+/* One walker leaves the venue and drops back out of range */
+#lf-connect .w6{left:46%;top:48%;animation-name:cnxW6-lf-connect;animation-duration:15s;animation-delay:-2s}
+#lf-connect .w6 .say{display:none}
+@keyframes cnxW6-lf-connect{0%{transform:translate(0,0) rotate(53deg);color:#19B27B;opacity:0}6%{opacity:1}40%{color:#19B27B}48%{color:#E0455A}90%{opacity:.45}100%{transform:translate(265px,-200px) rotate(53deg);color:#E0455A;opacity:0}}
+@media(max-width:920px){
+  #lf-connect .cnx-stage{height:340px}
+}
+@media(prefers-reduced-motion:reduce){
+  #lf-connect .walker{animation:none;color:#19B27B;opacity:1}
+  #lf-connect .walker .say{animation:none;opacity:1}
+  #lf-connect .w2 .say, #lf-connect .w5 .say, #lf-connect .w7 .say, #lf-connect .w8 .say{opacity:0}
+  #lf-connect .cnx-ring{animation:none;opacity:.3}
+}
+/* ============================================================
+   SNIPPET: lf_scalable_v2  (light, four cards plus closing block)
+   ============================================================ */
+/* Round 8: condensed so headline + 4 cards + closing band + map sit in one
+   viewport. Title is now a single line (One solution. Scalable by design.). */
+#lf-connect .scalable{padding:58px 0}
+#lf-connect .scal-head{max-width:860px;margin-bottom:22px}
+#lf-connect .scal-head h2{margin-bottom:10px;line-height:1.12}
+/* Metro rollout map: a pilot site goes live first, then sites light up across
+   the city. Lives small inside the Rapid repeatable band, on par with the
+   cards, never overtaking the section. Starts only when scrolled into view
+   and loops (each 16s cycle resets to pending and replays). */
+#lf-connect .scal-close-grid{display:grid;grid-template-columns:1fr .95fr;gap:36px;align-items:center}
+@media(max-width:920px){
+  #lf-connect .scal-close-grid{grid-template-columns:1fr;gap:24px}
+}
+#lf-connect .map-viz{position:relative;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:10px 10px 2px;box-shadow:var(--shadow-soft)}
+#lf-connect .map-viz svg{width:100%;height:auto;display:block;border-radius:10px}
+/* City square rollout map (Jackson Square style). Pilot site lights first, then sites turn green in a non-sequential order, then one pulse across the square. JS state machine at the bottom of this snippet. */
+#lf-connect .bld{fill:#D7DEEA;stroke:#B9C3D6;stroke-width:1}
+#lf-connect .row-bld{fill:#E4D3C4;stroke:#CBB49F;stroke-width:1}
+#lf-connect .street{fill:none;stroke:#E1E6EF;stroke-width:7;stroke-linecap:round}
+#lf-connect .promenade{fill:none;stroke:#E7DFCF;stroke-width:5;stroke-linecap:round}
+#lf-connect .square-lawn{fill:#E7F1EA}
+#lf-connect .square-fence{fill:none;stroke:#BFCBB9;stroke-width:1.5}
+#lf-connect .square-path{fill:none;stroke:#DCE7DE;stroke-width:3.5;stroke-linecap:round}
+#lf-connect .statue{fill:#B7BFC9;stroke:#9AA4B2;stroke-width:1}
+#lf-connect .cathedral{fill:#E7EAF1;stroke:#C4CBDA;stroke-width:1}
+#lf-connect .spire{fill:#CBD2E0;stroke:#AAB4C7;stroke-width:1}
+#lf-connect .river{fill:#CFE3EF}
+#lf-connect .river-edge{fill:none;stroke:#B9D5E6;stroke-width:1.5}
+#lf-connect .tree{fill:#9FC2A6}
+#lf-connect .tree-trunk{fill:#B79E7E}
+#lf-connect .pilot-label{font-family:var(--head);font-size:12px;font-weight:700;fill:var(--ink)}
+#lf-connect #lfcMapDots{transition:opacity .5s ease}
+#lf-connect #lfcMapDots.fade{opacity:0}
+#lf-connect .bld-dot{transition:fill .45s ease;transform-box:fill-box;transform-origin:center;stroke:#fff;stroke-width:2}
+#lf-connect .is-pending{fill:#D9A013}
+#lf-connect .is-live{fill:#1FA58E}
+#lf-connect .is-pilot-live{fill:#000}
+#lf-connect .bld-dot.flash{animation:lfcFlash 900ms ease}
+@keyframes lfcFlash{0%{filter:none;transform:scale(1)}35%{filter:drop-shadow(0 0 7px rgba(31,165,142,.75)) drop-shadow(0 0 14px rgba(31,165,142,.4));transform:scale(1.55)}100%{filter:none;transform:scale(1)}}
+#lf-connect .bld-dot.pilot-flash{animation:lfcPilotFlash 900ms ease}
+@keyframes lfcPilotFlash{0%{filter:none;transform:scale(1)}35%{filter:drop-shadow(0 0 8px rgba(255,255,255,.9)) drop-shadow(0 0 16px rgba(36,72,153,.65));transform:scale(1.5)}100%{filter:none;transform:scale(1)}}
+#lf-connect #lfcCityMap.celebrate .bld-dot.is-live{animation:lfcCelebrate 1.4s ease}
+@keyframes lfcCelebrate{0%{filter:none;transform:scale(1)}40%{filter:drop-shadow(0 0 9px rgba(31,165,142,.85));transform:scale(1.35)}100%{filter:none;transform:scale(1)}}
+#lf-connect .square-glow{opacity:0;transition:opacity 1s ease}
+#lf-connect #lfcCityMap.celebrate .square-glow{opacity:1;animation:lfcSquareGlow 2.2s ease}
+@keyframes lfcSquareGlow{0%{opacity:0}35%{opacity:.55}100%{opacity:0}}
+#lf-connect .lfc-restart{position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.85);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.5;transition:opacity .2s ease,background .2s ease;padding:0}
+#lf-connect .lfc-restart:hover{opacity:1;background:#fff}
+#lf-connect .lfc-restart svg{width:13px;height:13px;display:block}
+#lf-connect .lfc-restart path{stroke:var(--muted)}
+#lf-connect .lfc-restart:hover path{stroke:var(--teal)}
+#lf-connect .map-cap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding:8px 6px 6px;font-family:var(--head);font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#lf-connect .map-cap .key{display:flex;gap:12px}
+#lf-connect .map-cap .key span{display:inline-flex;align-items:center;gap:5px;letter-spacing:.05em}
+#lf-connect .map-cap .key i{width:8px;height:8px;border-radius:50%;display:inline-block}
+@media(prefers-reduced-motion:reduce){
+  #lf-connect .bld-dot{transition:none}
+  #lf-connect .bld-dot.flash,#lf-connect .bld-dot.pilot-flash{animation:none}
+  #lf-connect #lfcCityMap.celebrate .bld-dot.is-live{animation:none}
+  #lf-connect #lfcCityMap.celebrate .square-glow{animation:none;opacity:0}
+}
+#lf-connect .scal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:1020px){
+  #lf-connect .scal-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  #lf-connect .scal-grid{grid-template-columns:1fr}
+}
+#lf-connect .scal-card{padding:18px 20px 20px}
+#lf-connect .scal-card .num{font-family:var(--head);font-weight:700;font-size:14px;color:var(--white);background:linear-gradient(135deg,var(--indigo),var(--purple));width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:11px}
+#lf-connect .scal-card h3{font-size:16.5px;font-weight:700;color:var(--ink);margin-bottom:5px}
+#lf-connect .scal-card p{font-size:14px;line-height:1.5;margin:0}
+#lf-connect .scal-close{margin-top:26px;background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--purple);border-radius:16px;padding:22px 26px}
+#lf-connect .scal-close h3{font-family:var(--head);font-size:clamp(20px,2.4vw,28px);font-weight:700;color:var(--ink);margin-bottom:8px}
+#lf-connect .scal-close p{font-size:16px;max-width:680px}
+/* ============================================================
+   SNIPPET: lf_cta_longficonnect_v2  (dark band, form lead-in)
+   ============================================================ */
+#lf-connect .cta-panel{margin-top:48px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:44px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 44px rgba(233,238,246,.08)}
+@media(max-width:920px){
+  #lf-connect .cta-panel{grid-template-columns:1fr;padding:28px 22px;gap:30px}
+}
+#lf-connect .cta-panel h2{font-size:clamp(22px,2.6vw,32px);margin-bottom:12px}
+#lf-connect .cta-panel .lede{font-size:16px}
+#lf-connect .cta-form .fl{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C9D3E4;margin:14px 0 6px}
+#lf-connect .cta-form .fl:first-child{margin-top:0}
+#lf-connect .cta-form .fi{display:block;width:100%;height:46px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body-font);font-size:15px;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-connect .cta-form .fi::placeholder{color:rgba(255,255,255,.45)}
+#lf-connect .cta-form .fi:focus{outline:none;border-color:rgba(47,184,136,.7);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(47,184,136,.18)}
+#lf-connect .cta-form .fi.bad{border-color:rgba(255,120,120,.8);box-shadow:0 0 0 3px rgba(255,120,120,.16)}
+/* Honeypot: kept in the DOM for bots, hidden from people and screen readers. */
+#lf-connect .cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+#lf-connect .cta-form .btn{width:100%;margin-top:20px}
+#lf-connect .cta-form .btn[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-connect .cta-form .note{font-size:12px;color:rgba(255,255,255,.55);margin-top:12px;text-align:center}
+#lf-connect .cta-form .note a{color:#8FE3C2}
+#lf-connect .cta-form .note a:hover{text-decoration:underline}
+#lf-connect .cta-form .lf-err{display:none;font-size:13px;color:#FFC2C2;margin-top:12px;text-align:center}
+#lf-connect .cta-form .lf-err.show{display:block}
+#lf-connect .cta-ok{text-align:center;padding:8px 4px}
+#lf-connect .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
+#lf-connect .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
+#lf-connect .cta-ok .lede{font-size:15px;margin:0 auto}
+</style>
+
+<!-- [3] Page content. One <main> wrapper carries the scope id. Each <section> below
+     is an independent content block (Woody snippet boundary) you can keep together
+     or split into separate Elementor code blocks if you prefer. -->
+<main id="lf-connect">
+  <!-- ============================================================
+       SNIPPET: lf_hero_longficonnect_v2  (dark band hero)
+       ============================================================ -->
+  <div class="dark-band on-dark">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="rv-stagger">
+          <span class="eyebrow">Introducing</span>
+          <h1 class="metal"><span>LongFi</span><span>Connect</span></h1>
+          <p class="hero-sub">The simplest way to improve indoor&nbsp;cell&nbsp;connectivity.</p>
+          <p class="lede">LongFi Connect strengthens indoor cell connectivity using the Wi&#8209;Fi you&nbsp;already&nbsp;have.</p>
+          <p class="lede">It is a no-cost solution with no passwords and no disruption to&nbsp;daily&nbsp;operations.</p>
+          <div class="btn-row">
+            <a class="btn btn-gold" href="#lf-connect-form">Get started</a>
+            <a class="btn btn-ghost-dark" href="#wifi1">Learn More</a>
+          </div>
+        </div>
+        <div class="hero-img rv">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/02/woman-using-phone-at-cafe-longfi-connect.jpg" alt="Woman smiling at smartphone at caf&eacute; bar counter with coffee cup">
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- ============================================================
+       SNIPPET: lf_carrier_grade_v2  (light, three feature cards)
+       ============================================================ -->
+  <section class="cgrade" id="wifi1">
+    <div class="wrap">
+      <div class="cgrade-head rv">
+        <h2 class="h-grad">Your Wi&#8209;Fi,&nbsp;now&nbsp;carrier-grade.</h2>
+        <p class="lede">LongFi Connect updates your Wi&#8209;Fi into a secure access layer for major U.S. carriers. Guests and staff get reliable indoor cell connectivity while your business network stays&nbsp;fully&nbsp;protected.</p>
+      </div>
+      <div class="cgrade-grid rv-stagger">
+        <a class="card fcard" href="https://www.longfisolutions.com/fully-managed-process-longfi-connect-deployment/">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2025/12/longfi-connect-wifi-heatmap-managed-process.png" alt="Laptop showing venue Wi&#8209;Fi coverage heat map with tablet checklist for managed deployment" loading="lazy"></div>
+          <div class="tx">
+            <h3>Fully&nbsp;Managed&nbsp;Process</h3>
+            <p>Our team handles everything from site qualification to activation, keeping your I.T. staff lightly involved. We manage design, configuration, and carrier approval so your venue goes live smoothly.</p>
+            <span class="more">Learn more</span>
+          </div>
+        </a>
+        <a class="card fcard" href="https://www.longfisolutions.com/longfi-connect-security/">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/01/longfi-connect-network-security-design.png" alt="Metallic padlock with embedded circuit chip key and security shield representing network protection" loading="lazy"></div>
+          <div class="tx">
+            <h3>Secure&nbsp;by&nbsp;Design</h3>
+            <p>LongFi Connect uses enterprise-grade security with Passpoint, WPA3 Enterprise, EAP, and 802.1X authentication. Every connection stays private, encrypted, and aligned with modern Wi&#8209;Fi standards.</p>
+            <span class="more">Learn more</span>
+          </div>
+        </a>
+        <a class="card fcard" href="https://www.longfisolutions.com/longfi-connect-leverages-existing-wifi-network/">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/01/enterprise-wifi-access-points-longfi-compatible-2.png" alt="Enterprise Wi&#8209;Fi access points from Ubiquiti Mist and Ruckus compatible with LongFi Connect" loading="lazy"></div>
+          <div class="tx">
+            <h3>Use your&nbsp;Current&nbsp;Network</h3>
+            <p>Our solution is compatible with enterprise systems like Meraki, UniFi, Juniper, and Aruba. Most venues can activate quickly and go live without adding new on-site hardware or changing their existing setup.</p>
+            <span class="more">Learn more</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       SNIPPET: lf_better_experiences_v2  (dark band)
+       ============================================================ -->
+  <div class="dark-band on-dark">
+    <section>
+      <div class="wrap">
+        <div class="bx-head rv">
+          <div class="stack metal"><span>Better Connectivity.</span><span>Better Experiences.</span></div>
+          <div class="bx-img">
+            <img src="https://www.longfisolutions.com/wp-content/uploads/2025/12/225550274a4e88663e56f733bf1807dcc7c6f512-1024x537.png" alt="Hotel receptionist and guest completing mobile payment at front desk counter" loading="lazy">
+          </div>
+        </div>
+        <div class="bx-grid rv-stagger">
+          <div class="bx">
+            <div class="dot"></div>
+            <h3>Happier&nbsp;Guests</h3>
+            <p>A smooth digital experience makes people feel comfortable inside your venue. They can stream, browse, find information, and stay in touch without interruptions, which removes a major source of frustration.</p>
+          </div>
+          <div class="bx">
+            <div class="dot"></div>
+            <h3>Seamless&nbsp;Interactions</h3>
+            <p>Guests can scan QR menus, complete mobile payments, access digital services, and interact with your business smoothly. Every touchpoint works the way it should, creating a clearer and more modern flow.</p>
+          </div>
+          <div class="bx">
+            <div class="dot"></div>
+            <h3>A&nbsp;Stronger&nbsp;Business</h3>
+            <p>When connectivity works, guests tend to stay longer and engage more, and longer visits are associated with higher spend across the venue.</p>
+          </div>
+        </div>
+        <div class="btn-row rv">
+          <a class="btn btn-gold" href="#lf-connect-form">Check if your venue qualifies</a>
+          <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/how-it-works/">See how it works</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- ============================================================
+       SNIPPET: lf_passpoint_v2  (light section. Bird's-eye LongFi Connect range
+       animation: walkers enter the venue, cross the range, and turn green as
+       they connect automatically. One leaves and drops back out of range.)
+       ============================================================ -->
+  <section class="pp">
+    <div class="wrap pp-grid">
+      <div class="rv">
+        <h2 class="h-grad" style="margin-bottom:2px">Goodbye&nbsp;passwords.</h2>
+        <h2 class="h-shine">Hello effortless&nbsp;cell&nbsp;connectivity.</h2>
+        <p class="lede">Powered by <a href="https://www.wi-fi.org/access" target="_blank" rel="noopener">Passpoint&reg;</a> technology, LongFi Connect enables automatic cellphone connectivity for guests who walk into&nbsp;your&nbsp;venue.</p>
+        <div class="pp-stack blurin">
+          <span>No logins.</span>
+          <span>No splash pages.</span>
+          <span>No friction.</span>
+        </div>
+        <p class="pp-line">Guests connect automatically the moment they walk in.</p>
+        <p class="lede">Instant, secure access that keeps guests, customers, and staff connected across&nbsp;your&nbsp;space.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://www.longfisolutions.com/longfi-connect-eliminates-passwords/">Learn more</a>
+          <a class="btn btn-ghost" href="https://www.longfisolutions.com/about-us/#meeting">Talk to our team</a>
+        </div>
+      </div>
+      <div class="cnx-stage rv" aria-hidden="true">
+        <div class="cnx-range"></div>
+        <div class="cnx-ring"></div>
+        <div class="cnx-ring"></div>
+        <div class="cnx-core">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/longfi-solutions-hexagon-logo-symbol.webp" alt="">
+        </div>
+        <span class="cnx-edge">LongFi Connect Coverage</span>
+        <div class="walker w1"><span class="say">Automatically connected. No passwords.</span></div>
+        <div class="walker w2"><span class="say">No splash page.</span></div>
+        <div class="walker w3"></div>
+        <div class="walker w4"></div>
+        <div class="walker w5"><span class="say">No need for the Wi&#8209;Fi password.</span></div>
+        <div class="walker w6"></div>
+        <div class="walker w7"><span class="say">No captive portal, nice.</span></div>
+        <div class="walker w8"><span class="say">No login.</span></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       SNIPPET: lf_scalable_v2  (light, four cards plus closing block)
+       ============================================================ -->
+  <section class="scalable">
+    <div class="wrap">
+      <div class="scal-head rv">
+        <h2><span class="h-grad">One solution.</span> <span class="h-grad2">Scalable&nbsp;by&nbsp;design.</span></h2>
+        <p class="lede">Whether you manage one venue or an entire portfolio, LongFi Connect is designed to scale smoothly across&nbsp;the&nbsp;portfolio.</p>
+      </div>
+      <div class="scal-grid rv-stagger">
+        <div class="card scal-card">
+          <div class="num">1</div>
+          <h3>Consistent&nbsp;Results</h3>
+          <p>Deliver the same reliable indoor connectivity and effortless experience across sizes and layouts.</p>
+        </div>
+        <div class="card scal-card">
+          <div class="num">2</div>
+          <h3>Ready&nbsp;to&nbsp;Grow</h3>
+          <p>From 5 sites to 500, LongFi Connect scales quickly across your portfolio.</p>
+        </div>
+        <div class="card scal-card">
+          <div class="num">3</div>
+          <h3>Low&nbsp;Effort</h3>
+          <p>Our engineers handle setup and carrier coordination, so your team can stay focused on daily operations.</p>
+        </div>
+        <div class="card scal-card">
+          <div class="num">4</div>
+          <h3>Unified&nbsp;Oversight</h3>
+          <p>We monitor all your locations from a single centralized dashboard, giving you clear visibility and simple management.</p>
+        </div>
+      </div>
+      <div class="scal-close rv">
+        <div class="scal-close-grid">
+          <div>
+            <h3>Rapid,&nbsp;repeatable,&nbsp;reliable.</h3>
+            <p>Once your first site is live, adding new locations follows the same proven process with predictable timelines and outcomes.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="#lf-connect-form">Get started</a>
+              <a class="btn btn-ghost" href="https://www.longfisolutions.com/about-us/#meeting">Talk to our team</a>
+            </div>
+          </div>
+        <div class="map-viz rv">
+          <svg id="lfcCityMap" viewBox="0 0 820 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated map of a city square showing LongFi Connect rolling out from one pilot site across the surrounding district">
+            <rect x="0" y="0" width="820" height="350" fill="#F6F8FC"/>
+            <path class="river" d="M0,320 C160,306 340,332 500,318 C650,305 745,328 820,316 L820,350 L0,350 Z"/>
+            <path class="river-edge" d="M0,320 C160,306 340,332 500,318 C650,305 745,328 820,316"/>
+            <path class="promenade" d="M0,302 C160,289 340,314 500,301 C650,289 745,310 820,299"/>
+            <line class="street" x1="20" y1="102" x2="800" y2="102"/>
+            <line class="street" x1="20" y1="238" x2="800" y2="238"/>
+            <line class="street" x1="134" y1="36" x2="134" y2="296"/>
+            <line class="street" x1="262" y1="36" x2="262" y2="238"/>
+            <line class="street" x1="540" y1="36" x2="540" y2="238"/>
+            <line class="street" x1="658" y1="36" x2="658" y2="296"/>
+            <rect class="square-lawn" x="340" y="112" width="120" height="120" rx="10"/>
+            <ellipse class="square-glow" cx="400" cy="172" rx="96" ry="88" fill="rgba(31,165,142,.35)"/>
+            <rect class="square-fence" x="346" y="118" width="108" height="108" rx="8"/>
+            <path class="square-path" d="M346,118 L454,226 M454,118 L346,226 M400,118 L400,226 M346,172 L454,172"/>
+            <circle class="statue" cx="400" cy="172" r="8"/>
+            <rect class="cathedral" x="368" y="60" width="64" height="40" rx="2"/>
+            <polygon class="spire" points="377,60 383,46 389,60"/>
+            <polygon class="spire" points="394,60 400,36 406,60"/>
+            <polygon class="spire" points="411,60 417,46 423,60"/>
+            <rect class="row-bld" x="300" y="114" width="30" height="114" rx="2"/>
+            <rect class="row-bld" x="470" y="114" width="30" height="114" rx="2"/>
+            <rect class="bld" x="40" y="48" width="84" height="44" rx="3"/>
+            <rect class="bld" x="146" y="44" width="70" height="40" rx="3"/>
+            <rect class="bld" x="40" y="150" width="84" height="46" rx="3"/>
+            <rect class="bld" x="150" y="150" width="66" height="46" rx="3"/>
+            <rect class="row-bld" x="55" y="250" width="120" height="42" rx="3"/>
+            <rect class="bld" x="560" y="48" width="86" height="44" rx="3"/>
+            <rect class="bld" x="672" y="52" width="98" height="44" rx="3"/>
+            <rect class="bld" x="560" y="150" width="86" height="46" rx="3"/>
+            <rect class="bld" x="680" y="150" width="90" height="42" rx="3"/>
+            <rect class="row-bld" x="250" y="250" width="112" height="40" rx="3"/>
+            <rect class="row-bld" x="446" y="250" width="114" height="40" rx="3"/>
+            <g>
+              <circle class="tree" cx="290" cy="150" r="6"/><rect class="tree-trunk" x="288.5" y="154" width="3" height="6"/>
+              <circle class="tree" cx="512" cy="150" r="6"/><rect class="tree-trunk" x="510.5" y="154" width="3" height="6"/>
+              <circle class="tree" cx="240" cy="60" r="6"/><rect class="tree-trunk" x="238.5" y="64" width="3" height="6"/>
+              <circle class="tree" cx="500" cy="248" r="6"/><rect class="tree-trunk" x="498.5" y="252" width="3" height="6"/>
+              <circle class="tree" cx="300" cy="248" r="6"/><rect class="tree-trunk" x="298.5" y="252" width="3" height="6"/>
+              <circle class="tree" cx="600" cy="112" r="6"/><rect class="tree-trunk" x="598.5" y="116" width="3" height="6"/>
+            </g>
+            <text class="pilot-label" x="416" y="72">Pilot site</text>
+            <g id="lfcMapDots">
+              <circle class="bld-dot" data-role="pilot" data-name="Pilot Site" cx="400" cy="76" r="13"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site A" cx="315" cy="170" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site B" cx="485" cy="170" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site C" cx="82" cy="70" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site D" cx="181" cy="64" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site E" cx="82" cy="173" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site F" cx="115" cy="271" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site G" cx="603" cy="70" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site H" cx="721" cy="74" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site I" cx="603" cy="173" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site J" cx="306" cy="270" r="9"></circle>
+              <circle class="bld-dot" data-role="other" data-name="Site K" cx="503" cy="270" r="9"></circle>
+            </g>
+          </svg>
+          <button id="lfcRestart" type="button" class="lfc-restart" aria-label="Restart animation" title="Restart animation"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 11A8 8 0 1 0 18.5 16" stroke-width="2" stroke-linecap="round"/><path d="M20 5v6h-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="map-cap">
+            <span>From one pilot site to the whole portfolio.</span>
+            <span class="key">
+              <span><i style="background:#D9A013"></i>Pending</span>
+              <span><i style="background:#1FA58E"></i>Live with LongFi Connect</span>
+            </span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       SNIPPET: lf_cta_longficonnect_v2  (dark band, form lead-in)
+       ============================================================ -->
+  <div class="dark-band on-dark">
+    <section class="cta-final">
+      <div class="wrap">
+        <div class="cta-panel rv">
+          <div>
+            <h2 class="metal">Activate LongFi Connect for stronger indoor cell connectivity using your&nbsp;existing&nbsp;Wi&#8209;Fi</h2>
+            <p class="lede">Share a few details about your venue and our team will confirm compatibility and guide you through the no-cost&nbsp;activation&nbsp;process.</p>
+          </div>
+          <div class="cta-form">
+            <form id="lf-connect-form" novalidate>
+              <label class="fl" for="lf-connect-name">Name</label>
+              <input class="fi" id="lf-connect-name" name="full_name" type="text" autocomplete="name" required>
+              <label class="fl" for="lf-connect-email">Business email</label>
+              <input class="fi" id="lf-connect-email" name="email" type="email" autocomplete="email" required>
+              <label class="fl" for="lf-connect-company">Venue or company</label>
+              <input class="fi" id="lf-connect-company" name="company_name" type="text" autocomplete="organization">
+              <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn-gold" type="submit">Check my venue</button>
+              <div class="lf-err" role="alert"></div>
+              <p class="note">By submitting, you agree to our <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. We use your details only to evaluate your site.</p>
+            </form>
+            <div class="cta-ok" id="lf-connect-ok" hidden>
+              <div class="ok-ic" aria-hidden="true">&#10003;</div>
+              <h2>Thanks. We have&nbsp;your&nbsp;details.</h2>
+              <p class="lede">Our team will review your venue and reach out to confirm compatibility and walk through&nbsp;next&nbsp;steps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- ============================================================
+       SNIPPET: lf_footer_replica  TEMPORARY REPLICA of the live site footer.
+       The production page receives the footer from the theme. Remove before push.
+       ============================================================ -->
+
+  <!-- ===== LongFi Case Studies proof band (portable, self-contained) ===== -->
+  <div id="lfcs">
+    <style>
+    #lfcs{background:linear-gradient(180deg,#FFFFFF 0%,#F1F4FB 100%);border-top:1px solid #E6EAF2;padding:64px 0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    #lfcs *{box-sizing:border-box}
+    #lfcs .lfcs-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    #lfcs .lfcs-head{max-width:720px;margin:0 auto 30px;text-align:center}
+    #lfcs .lfcs-ey{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#244899;margin:0 0 10px !important}
+    #lfcs .lfcs-h{font-family:'Poppins',sans-serif;font-size:clamp(23px,2.7vw,31px) !important;font-weight:700 !important;color:#14172B !important;line-height:1.16 !important;margin:0 0 10px !important;letter-spacing:-.01em}
+    #lfcs .lfcs-sub{font-family:'Nunito',sans-serif;font-size:16px;color:#4A536B;margin:0 !important;line-height:1.55}
+    #lfcs .lfcs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:860px){ #lfcs .lfcs-cards{grid-template-columns:1fr;max-width:520px;margin:0 auto} }
+    #lfcs .lfcs-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E6EAF2;border-left:4px solid #244899;border-radius:14px;padding:22px 22px 20px;text-decoration:none !important;box-shadow:0 4px 16px rgba(36,72,153,.07);transition:transform .26s ease,box-shadow .26s ease}
+    #lfcs .lfcs-card:hover{transform:translateY(-5px);box-shadow:0 16px 42px rgba(36,72,153,.15)}
+    #lfcs .lfcs-card.t{border-left-color:#1FA58E}
+    #lfcs .lfcs-card.c{border-left-color:#FF4E7A}
+    #lfcs .lfcs-card.g{border-left-color:#C9A227}
+    #lfcs .lfcs-tag{font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A8299}
+    #lfcs .lfcs-card.t .lfcs-tag{color:#12876f}#lfcs .lfcs-card.c .lfcs-tag{color:#d63862}#lfcs .lfcs-card.g .lfcs-tag{color:#9a7a15}
+    #lfcs .lfcs-venue{font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#14172B;margin:8px 0 6px;line-height:1.1}
+    #lfcs .lfcs-line{font-family:'Nunito',sans-serif;font-size:14.5px;color:#4A536B;margin:0 0 16px;line-height:1.5}
+    #lfcs .lfcs-more{margin-top:auto;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:#244899 !important;display:inline-flex;align-items:center;gap:7px;transition:gap .2s ease}
+    #lfcs .lfcs-card.t .lfcs-more{color:#12876f !important}#lfcs .lfcs-card.c .lfcs-more{color:#d63862 !important}#lfcs .lfcs-card.g .lfcs-more{color:#9a7a15 !important}
+    #lfcs .lfcs-card:hover .lfcs-more{gap:11px}
+    #lfcs .lfcs-allbtn{text-align:center;margin-top:30px}
+    #lfcs .lfcs-allbtn a{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:600;color:#fff !important;background:linear-gradient(135deg,#244899,#2C2C6E);padding:13px 26px;border-radius:12px;text-decoration:none !important;box-shadow:0 8px 22px rgba(36,72,153,.28);transition:transform .2s ease,box-shadow .2s ease}
+    #lfcs .lfcs-allbtn a:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(36,72,153,.4)}
+    #lfcs .lfcs-reveal{opacity:0;transform:translateY(20px);filter:blur(3px);transition:opacity .7s ease,transform .7s ease,filter .7s ease}
+    #lfcs .lfcs-reveal.in{opacity:1;transform:none;filter:none}
+    #lfcs .lfcs-cards.lfcs-reveal.in .lfcs-card:nth-child(2){transition-delay:.1s}
+    #lfcs .lfcs-cards.lfcs-reveal.in .lfcs-card:nth-child(3){transition-delay:.2s}
+    @media(prefers-reduced-motion:reduce){ #lfcs .lfcs-reveal{opacity:1 !important;transform:none !important;filter:none !important;transition:none} }
+    </style>
+    <div class="lfcs-wrap">
+      <div class="lfcs-head lfcs-reveal">
+        <span class="lfcs-ey">Case&nbsp;Studies</span>
+        <h2 class="lfcs-h">Proof under real&nbsp;pressure.</h2>
+        <p class="lfcs-sub">See how LongFi Connect held up at real venues and&nbsp;big&nbsp;crowds.</p>
+      </div>
+      <div class="lfcs-cards lfcs-reveal">
+        <a class="lfcs-card t" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/">
+          <span class="lfcs-tag">Nightlife &amp;&nbsp;Hospitality</span>
+          <span class="lfcs-venue">SILO &middot;&nbsp;Brooklyn</span>
+          <span class="lfcs-line">Guests stay and settle up without stepping&nbsp;outside.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+        <a class="lfcs-card c" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/">
+          <span class="lfcs-tag">Rooftop Bar &amp;&nbsp;Events</span>
+          <span class="lfcs-venue">Sunset Rooftop &middot;&nbsp;Houston</span>
+          <span class="lfcs-line">A packed rooftop, connected through the&nbsp;busy&nbsp;rush.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+        <a class="lfcs-card g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/">
+          <span class="lfcs-tag">Live&nbsp;Events</span>
+          <span class="lfcs-venue">JazzFest 2026 &middot;&nbsp;New&nbsp;Orleans</span>
+          <span class="lfcs-line">104,080 guests through the gates, staying&nbsp;connected.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+      </div>
+      <div class="lfcs-allbtn lfcs-reveal"><a href="https://www.longfisolutions.com/case-studies/">See all case studies &rarr;</a></div>
+    </div>
+    <script>
+    (function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){r.querySelectorAll('.lfcs-reveal').forEach(function(e){e.classList.add('in');});return;}
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
+      r.querySelectorAll('.lfcs-reveal').forEach(function(e){io.observe(e);});
+      setTimeout(function(){r.querySelectorAll('.lfcs-reveal').forEach(function(e){var c=e.getBoundingClientRect();if(c.top<innerHeight&&c.bottom>0)e.classList.add('in');});},150);
+    })();
+    </script>
+  </div>
+</main>
+
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-connect');
+  if(!r)return;
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(x){ if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);} });
+  },{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  var so=new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      if(!x.isIntersecting)return;
+      var strip=x.target.closest('.strip'); if(strip)strip.classList.add('lines-on');
+      x.target.classList.add('on');
+      var n=x.target.querySelector('.stat-n');
+      if(n&&n.dataset.count){
+        var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;
+        (function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p; n.textContent=Math.round(tgt*p)+sfx; if(p<1)requestAnimationFrame(step); })(performance.now());
+      }
+      so.unobserve(x.target);
+    });
+  },{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  setTimeout(function(){
+    r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){ var rc=el.getBoundingClientRect(); if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view'); });
+    r.querySelectorAll('.stat').forEach(function(el){ var rc=el.getBoundingClientRect(); if(rc.top<window.innerHeight&&rc.bottom>0){ el.classList.add('on'); var s=el.closest('.strip');if(s)s.classList.add('lines-on'); } });
+  },150);
+})();
+</script>
+<!-- [5] JavaScript: Beacon lead intake.
+     Posts the form to the LongFi Beacon intake function. Leads are stored
+     permanently in Supabase and surface in the Beacon review queue, tagged
+     with the page they came from. To reuse on another page, change ONLY the
+     PAGE_KEY and CONTACT_TYPE values below. -->
+<script>
+(function(){
+  var PAGE_KEY='connect';
+  var CONTACT_TYPE='venue_operator';
+  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
+  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
+  var form=document.getElementById('lf-connect-form');
+  if(!form)return;
+  var ok=document.getElementById('lf-connect-ok');
+  var btn=form.querySelector('button[type=submit]');
+  var err=form.querySelector('.lf-err');
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function showErr(m){err.textContent=m;err.classList.add('show');}
+  function clearErr(){err.textContent='';err.classList.remove('show');}
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault(); clearErr();
+    var name=form.full_name.value.trim(); var email=form.email.value.trim();
+    var company=form.company_name.value.trim(); var honeypot=form.company_website.value.trim();
+    form.full_name.classList.remove('bad'); form.email.classList.remove('bad');
+    if(!name){form.full_name.classList.add('bad');showErr('Please enter your name.');return;}
+    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
+    btn.disabled=true; var label=btn.textContent; btn.textContent='Sending...';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':APIKEY},
+      body:JSON.stringify({full_name:name,email:email,company_name:company,company_website:honeypot,page_key:PAGE_KEY,contact_type:CONTACT_TYPE,cta_label:label,page_url:window.location.href,referrer:document.referrer||''})
+    }).then(function(res){return res.json().catch(function(){return {ok:res.ok};});})
+      .then(function(data){
+        if(data&&data.ok){ form.setAttribute('hidden',''); if(ok)ok.removeAttribute('hidden'); }
+        else{ btn.disabled=false;btn.textContent=label; showErr('Something went wrong. Please try again in a moment.'); }
+      }).catch(function(){ btn.disabled=false;btn.textContent=label; showErr('Network issue. Please try again in a moment.'); });
+  });
+})();
+</script>
+
+<!-- City square rollout map: JS state machine (pilot site first, then non-sequential green, then one pulse across the square, loops). -->
+<script>
+(function(){
+  var svg=document.getElementById('lfcCityMap'); if(!svg)return;
+  var mapDots=document.getElementById('lfcMapDots');
+  var dots=Array.prototype.slice.call(svg.querySelectorAll('.bld-dot'));
+  var pilot=dots.filter(function(d){return d.dataset.role==='pilot';})[0];
+  var others=dots.filter(function(d){return d.dataset.role!=='pilot';});
+  var order=['Site D','Site H','Site A','Site J','Site C','Site K','Site G','Site B','Site I','Site E','Site F'];
+  others.sort(function(a,b){return order.indexOf(a.dataset.name)-order.indexOf(b.dataset.name);});
+  var restart=document.getElementById('lfcRestart');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timers=[],started=false;
+  function ct(){timers.forEach(clearTimeout);timers=[];}
+  function ss(d,s){d.classList.remove('is-pending','is-live','is-pilot-live');d.classList.add('is-'+s);}
+  function fl(d,c){if(reduce)return;d.classList.remove(c);void d.getBoundingClientRect();d.classList.add(c);timers.push(setTimeout(function(){d.classList.remove(c);},900));}
+  function up(d){ss(d,'live');fl(d,'flash');}
+  function upP(){ss(pilot,'pilot-live');fl(pilot,'pilot-flash');}
+  function reset(){others.forEach(function(d){ss(d,'pending');d.classList.remove('flash');});ss(pilot,'pending');pilot.classList.remove('pilot-flash');svg.classList.remove('celebrate');}
+  function cycle(){ct();reset();mapDots.classList.remove('fade');
+    if(reduce){ss(pilot,'pilot-live');others.forEach(function(d){ss(d,'live');});return;}
+    timers.push(setTimeout(function(){upP();
+      timers.push(setTimeout(function(){var i=0;(function step(){if(i<others.length){up(others[i]);i++;timers.push(setTimeout(step,780));}else{svg.classList.add('celebrate');timers.push(setTimeout(function(){mapDots.classList.add('fade');timers.push(setTimeout(cycle,650));},2200));}})();},1300));
+    },700));
+  }
+  function startVis(){if(started)return;var t=svg.closest('.map-viz')||svg;if(!('IntersectionObserver' in window)){started=true;cycle();return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!started&&e.isIntersecting&&e.intersectionRatio>=0.55){started=true;io.unobserve(t);cycle();}});},{threshold:[0,.55,1]});io.observe(t);}
+  if(restart)restart.addEventListener('click',function(){started=true;cycle();});
+  startVis();
+})();
+</script>

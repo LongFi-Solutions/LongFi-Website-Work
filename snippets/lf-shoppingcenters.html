@@ -1,0 +1,584 @@
+<!-- LongFi snippet | lf-shoppingcenters.html | v1.11 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- [1] Google Fonts, load once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+<!-- [2] Page styles, scoped under #lf-shoppingcenters (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   Persona hooks tinted for the Shopping Malls persona: orchid magenta-violet.
+   ============================================================ */
+#lf-shoppingcenters{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-shoppingcenters),.e-con-inner:has(#lf-shoppingcenters),.elementor-widget-html:has(#lf-shoppingcenters),.elementor-widget-shortcode:has(#lf-shoppingcenters),.elementor-widget-container:has(#lf-shoppingcenters){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-shoppingcenters *{box-sizing:border-box;margin:0;padding:0}
+#lf-shoppingcenters{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-shoppingcenters{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-shoppingcenters img{max-width:100%;height:auto;display:block}
+#lf-shoppingcenters a{color:var(--skyline);text-decoration:none}
+#lf-shoppingcenters h1,#lf-shoppingcenters h2,#lf-shoppingcenters h3,#lf-shoppingcenters h4,#lf-shoppingcenters .eyebrow,#lf-shoppingcenters .btn,#lf-shoppingcenters .stat-n{font-family:var(--head)}
+#lf-shoppingcenters .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){#lf-shoppingcenters .wrap{padding:0 16px}}
+#lf-shoppingcenters section{padding:64px 0}
+@media(max-width:680px){#lf-shoppingcenters section{padding:48px 0}}
+
+/* Persona accent for light-background eyebrows: deep orchid */
+#lf-shoppingcenters .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#A21A7D;margin-bottom:12px}
+#lf-shoppingcenters .on-dark .eyebrow{color:#F2C2E2}
+#lf-shoppingcenters h1,#lf-shoppingcenters h2,#lf-shoppingcenters h3{text-wrap:balance}
+#lf-shoppingcenters p{text-wrap:pretty}
+#lf-shoppingcenters h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+#lf-shoppingcenters .on-dark h2{color:var(--white)}
+/* Designed section titles: ink to orchid. */
+#lf-shoppingcenters .h-grad{background:linear-gradient(115deg,var(--ink) 6%,#5A1145 44%,#C21E92 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 12px rgba(194,30,146,.24));padding-bottom:.12em;margin-bottom:.1em}
+/* SIGNAL GLEAM. Shopping Malls tint: orchid, mid stop one step below white. Two gleams max. */
+#lf-shoppingcenters .h-shine{background:linear-gradient(115deg,#A21A7D 0%,#D662B0 35%,#F7DAEE 50%,#D662B0 65%,#A21A7D 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-shoppingcenters 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(214,98,176,.2));padding-bottom:.12em}
+#lf-shoppingcenters .lede{font-size:16.5px;line-height:1.6;max-width:680px}
+#lf-shoppingcenters .on-dark .lede{color:rgba(255,255,255,.9)}
+
+#lf-shoppingcenters .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-shoppingcenters 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-shoppingcenters{from{background-position:0% center}to{background-position:100% center}}
+
+#lf-shoppingcenters .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Global, identical across pages. */
+#lf-shoppingcenters .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-shoppingcenters .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: Shopping Malls orchid variant, white text. */
+#lf-shoppingcenters .btn-primary{
+  background:linear-gradient(135deg,#C23E9E 0%,#7A1060 100%);
+  color:var(--white);
+  border-color:rgba(247,200,232,.6);
+  box-shadow:0 0 26px rgba(194,62,158,.5),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.3);
+}
+#lf-shoppingcenters .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(206,84,170,.66),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.35)}
+#lf-shoppingcenters .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-shoppingcenters .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-shoppingcenters .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-shoppingcenters .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-shoppingcenters .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+
+/* Shopping Malls persona dark band: deep plum-indigo into orchid, magenta radial glow. */
+#lf-shoppingcenters .dark-band{background:linear-gradient(140deg,#241038 0%,#2C2C6E 55%,#7A1060 115%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-shoppingcenters .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at 90% 0%, rgba(214,98,176,.16), transparent 55%),radial-gradient(460px circle at 8% 95%, rgba(214,98,176,.1), transparent 55%);pointer-events:none}
+#lf-shoppingcenters .dark-band>.wrap{position:relative;z-index:1}
+
+#lf-shoppingcenters .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-shoppingcenters .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+
+/* Scroll reveal */
+#lf-shoppingcenters .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-shoppingcenters .rv.in-view{opacity:1;transform:none}
+#lf-shoppingcenters .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-shoppingcenters .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-shoppingcenters .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-shoppingcenters .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-shoppingcenters .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-shoppingcenters .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-shoppingcenters .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-shoppingcenters .rv,#lf-shoppingcenters .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-shoppingcenters .metal,#lf-shoppingcenters .h-shine{animation:none}
+  #lf-shoppingcenters{scroll-behavior:auto}
+}
+
+/* ============================================================
+   SNIPPET: lf_nav_replica  (TEMPORARY REPLICA, theme owns the real nav)
+   ============================================================ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:920px){
+  
+  
+}
+
+/* ============================================================
+   SNIPPET: lf_hero_shoppingcenters_v2  (text-forward hero, no live photo)
+   ============================================================ */
+#lf-shoppingcenters .hero{padding:84px 0 56px}
+#lf-shoppingcenters .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:end}
+@media(max-width:920px){#lf-shoppingcenters .hero-grid{grid-template-columns:1fr;gap:34px}#lf-shoppingcenters .hero{padding:60px 0 44px}}
+#lf-shoppingcenters .hero-img{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14)}
+#lf-shoppingcenters .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-shoppingcenters .hero-img:hover img{transform:scale(1.04)}
+#lf-shoppingcenters .hero .eyebrow{color:#F2C2E2;background:rgba(214,98,176,.1);border:1px solid rgba(247,200,232,.35);padding:6px 14px;border-radius:999px}
+#lf-shoppingcenters .hero h1{font-size:clamp(28px,3.4vw,42px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--white);margin-bottom:14px}
+#lf-shoppingcenters .hero .lede{color:rgba(255,255,255,.9);font-size:17px;max-width:580px}
+#lf-shoppingcenters .hero-emph{font-family:var(--head);font-weight:700;font-size:17px;color:var(--white);margin-top:12px}
+
+/* ============================================================
+   SNIPPET: lf_statstrip_shoppingcenters_v2  (slim hairline stat strip)
+   ============================================================ */
+#lf-shoppingcenters .strip-band{padding:0 0 60px}
+#lf-shoppingcenters .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid transparent;border-bottom:1px solid transparent;transition:border-color .6s ease}
+#lf-shoppingcenters .strip.lines-on{border-top-color:rgba(247,200,232,.28);border-bottom-color:rgba(247,200,232,.28)}
+@media(max-width:920px){#lf-shoppingcenters .strip{grid-template-columns:repeat(2,1fr)}}
+#lf-shoppingcenters .stat{padding:18px 14px;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;border-right:1px solid rgba(247,200,232,.18)}
+#lf-shoppingcenters .stat:last-child{border-right:0}
+@media(max-width:920px){#lf-shoppingcenters .stat:nth-child(2){border-right:0}#lf-shoppingcenters .stat:nth-child(-n+2){border-bottom:1px solid rgba(247,200,232,.18)}}
+#lf-shoppingcenters .stat.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){#lf-shoppingcenters .stat{opacity:1;transform:none;transition:none}}
+#lf-shoppingcenters .stat-n{font-size:clamp(21px,2.2vw,29px);font-weight:700;line-height:1.1;filter:drop-shadow(0 0 14px rgba(247,218,238,.35))}
+#lf-shoppingcenters .stat-l{font-size:12px;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.4}
+
+/* ============================================================
+   SNIPPET: lf_pain_shoppingcenters_v2
+   ============================================================ */
+#lf-shoppingcenters .pain{background:var(--white)}
+#lf-shoppingcenters .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+@media(max-width:920px){#lf-shoppingcenters .pain-grid{grid-template-columns:1fr}}
+#lf-shoppingcenters .pain-card{padding:24px 22px;display:flex;flex-direction:column;gap:14px}
+#lf-shoppingcenters .pain-card .ph{width:60px;height:60px;border-radius:14px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:10px}
+#lf-shoppingcenters .pain-card .ph img{width:100%;height:100%;object-fit:contain}
+#lf-shoppingcenters .pain-card p{font-size:15px;margin:0}
+
+/* ============================================================
+   SNIPPET: lf_connect_shoppingcenters_v2  (dark band, the wordmark is the star)
+   ============================================================ */
+#lf-shoppingcenters .connect-head{max-width:840px}
+#lf-shoppingcenters .connect-star{font-size:clamp(30px,4vw,46px);font-weight:800;line-height:1.06;letter-spacing:-.02em;filter:drop-shadow(0 0 24px rgba(247,218,238,.26))}
+#lf-shoppingcenters .connect-sub{font-family:var(--head);font-weight:600;font-size:clamp(15px,1.7vw,18px);color:var(--white);margin:14px 0 0}
+#lf-shoppingcenters .cfeat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+@media(max-width:920px){#lf-shoppingcenters .cfeat-grid{grid-template-columns:1fr}}
+#lf-shoppingcenters .cfeat{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:18px 20px;transition:transform .25s ease,background .25s ease}
+#lf-shoppingcenters .cfeat:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+#lf-shoppingcenters .cfeat .ph{width:58px;height:58px;flex:none;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;padding:8px}
+#lf-shoppingcenters .cfeat .ph img{width:100%;height:100%;object-fit:contain}
+#lf-shoppingcenters .cfeat h3{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
+#lf-shoppingcenters .cfeat p{font-size:14px;color:rgba(255,255,255,.85);margin:0 0 8px}
+#lf-shoppingcenters .cfeat a{font-family:var(--head);font-size:13px;font-weight:600;color:#F2A8D8}
+#lf-shoppingcenters .cfeat a:hover{text-decoration:underline}
+#lf-shoppingcenters .connect-close{font-family:var(--head);font-weight:600;font-size:15.5px;color:rgba(255,255,255,.92);max-width:760px;margin:32px auto 0;text-align:center}
+
+/* ============================================================
+   SNIPPET: lf_compat_monetize_shoppingcenters_v2  (Round 8 merged dual band)
+   ============================================================ */
+#lf-shoppingcenters .dualstrip{background:var(--bg)}
+#lf-shoppingcenters .dual{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+@media(max-width:920px){#lf-shoppingcenters .dual{grid-template-columns:1fr}}
+#lf-shoppingcenters .dcard{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft);padding:28px 30px;display:flex;flex-direction:column;height:100%;transition:transform .25s ease,box-shadow .25s ease}
+#lf-shoppingcenters .dcard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+#lf-shoppingcenters .dcard-head{display:flex;gap:20px;align-items:stretch}
+#lf-shoppingcenters .dcard-head>div{flex:1}
+/* Round 8b: no container behind the icon; icon spans full eyebrow+headline height */
+#lf-shoppingcenters .dcard-ic{flex:none;display:flex;align-items:center;justify-content:center}
+#lf-shoppingcenters .dcard-ic img{height:100%;width:auto;max-width:130px;object-fit:contain}
+#lf-shoppingcenters .dcard h2{font-size:clamp(18px,1.9vw,23px);margin-bottom:0}
+#lf-shoppingcenters .dcard .lede{font-size:14.5px;max-width:none;margin-top:14px}
+#lf-shoppingcenters .dcard .lede + .lede{margin-top:8px}
+/* CTA pinned to the bottom so both cards' buttons sit on the same baseline */
+#lf-shoppingcenters .dcard .btn-row{margin-top:auto;padding-top:18px}
+
+/* ============================================================
+   SNIPPET: lf_recap_cta_shoppingcenters_v2  (one dark band: recap, then the ask)
+   ============================================================ */
+#lf-shoppingcenters .recap .kicker{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#F2C2E2;text-align:center;margin-bottom:26px}
+#lf-shoppingcenters .recap-hero{text-align:center;max-width:880px;margin:0 auto}
+#lf-shoppingcenters .recap-hero h3{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+#lf-shoppingcenters .recap-hero p{font-family:var(--head);font-size:clamp(15px,1.8vw,18px);font-weight:500;color:rgba(255,255,255,.7);margin:12px 0 0}
+#lf-shoppingcenters .cta-panel{margin-top:40px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 44px rgba(247,218,238,.08)}
+@media(max-width:920px){#lf-shoppingcenters .cta-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}}
+#lf-shoppingcenters .cta-panel h2{font-size:clamp(20px,2.2vw,27px);margin-bottom:10px}
+#lf-shoppingcenters .cta-panel .lede{font-size:15px}
+#lf-shoppingcenters .cta-form .fl{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#F2C2E2;margin:14px 0 6px}
+#lf-shoppingcenters .cta-form .fl:first-child{margin-top:0}
+#lf-shoppingcenters .cta-form .fi{height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)}
+#lf-shoppingcenters .cta-form .btn{width:100%;margin-top:20px}
+#lf-shoppingcenters .cta-form .note{font-size:12px;color:rgba(255,255,255,.55);margin-top:12px;text-align:center}
+
+/* ============================================================
+   SNIPPET: lf_footer_replica  (TEMPORARY REPLICA, theme owns the real footer)
+   Footer is global and identical across all pages.
+   ============================================================ */
+
+
+
+
+@media(max-width:920px){}
+
+#lf-shoppingcenters .hook-list{list-style:none;display:grid;gap:10px}
+#lf-shoppingcenters .hook-list li{font-family:var(--head);font-size:17px;font-weight:600;color:rgba(255,255,255,.92);display:flex;gap:12px;align-items:center}
+#lf-shoppingcenters .hook-list li::before{content:"";min-width:8px;height:8px;border-radius:50%;background:var(--gold)}
+#lf-shoppingcenters .hook-list a{color:#FFD577}
+#lf-shoppingcenters .hook-list a:hover{text-decoration:underline}
+#lf-shoppingcenters .proud{margin-top:8px}
+#lf-shoppingcenters .proud h3{font-family:var(--head);font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px}
+#lf-shoppingcenters .proud-logos{display:flex;gap:28px;align-items:center}
+#lf-shoppingcenters .proud-logos img{height:54px;width:auto;object-fit:contain;background:rgba(255,255,255,.92);border-radius:12px;padding:8px 14px}
+
+
+
+
+@media(max-width:1020px){}
+@media(max-width:680px){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Beacon lead form fields */
+#lf-shoppingcenters .cta-form .fi{display:block;width:100%;height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body-font);font-size:15px;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-shoppingcenters .cta-form .fi::placeholder{color:rgba(255,255,255,.45)}
+#lf-shoppingcenters .cta-form .fi:focus{outline:none;border-color:rgba(47,184,136,.7);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(47,184,136,.18)}
+#lf-shoppingcenters .cta-form .fi.bad{border-color:rgba(255,120,120,.8);box-shadow:0 0 0 3px rgba(255,120,120,.16)}
+#lf-shoppingcenters .cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+#lf-shoppingcenters .cta-form .btn[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-shoppingcenters .cta-form .note a{color:#8FE3C2}
+#lf-shoppingcenters .cta-form .note a:hover{text-decoration:underline}
+#lf-shoppingcenters .cta-form .lf-err{display:none;font-size:13px;color:#FFC2C2;margin-top:12px;text-align:center}
+#lf-shoppingcenters .cta-form .lf-err.show{display:block}
+#lf-shoppingcenters .cta-ok{text-align:center;padding:8px 4px}
+#lf-shoppingcenters .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
+#lf-shoppingcenters .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
+#lf-shoppingcenters .cta-ok .lede{font-size:15px;margin:0 auto}
+</style>
+<!-- [3] Page content -->
+<main id="lf-shoppingcenters"><!-- ============================================================
+     SNIPPET: lf_nav_replica  TEMPORARY REPLICA of the live site nav.
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SNIPPET: lf_hero_shoppingcenters_v2 + lf_statstrip_shoppingcenters_v2
+     ============================================================ -->
+<div class="dark-band on-dark">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="rv-stagger">
+        <h1 class="metal">Stronger indoor cell connectivity for <span class="h-shine">shopping&nbsp;malls</span></h1>
+        <p class="lede">Bring excellent indoor cell connectivity across the center using the Wi&#8209;Fi you&nbsp;already&nbsp;have.</p>
+        <p class="hero-emph">All with no capital expense and no disruption to mall operations.</p>
+        <div class="btn-row">
+          <a class="btn btn-gold" href="#Shopping">Assess my mall&rsquo;s connectivity</a>
+          <a class="btn btn-ghost-dark" href="#connect">Learn how it works</a>
+        </div>
+      </div>
+      <div class="hero-img rv">
+        <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/4f97900e6eb1e268bf0c04054b42b49fbc103951-scaled-1.webp" alt="Shopper using a smartphone in a shopping mall common area">
+      </div>
+    </div>
+  </section>
+
+  <section class="strip-band" style="padding-top:0">
+    <div class="wrap">
+      <!-- Approved proof points (CLAUDE.md); mockup-only addition flagged in content_source_v2.md -->
+      <div class="strip">
+        <div class="stat"><div class="stat-n metal" data-count="200" data-suffix="+">&nbsp;</div><div class="stat-l">Active venues across the U.S.</div></div>
+        <div class="stat"><div class="stat-n metal" data-count="130" data-suffix="+ TB">&nbsp;</div><div class="stat-l">Mobile data transferred monthly</div></div>
+        <div class="stat"><div class="stat-n metal" data-count="7" data-suffix="M+">&nbsp;</div><div class="stat-l">Mobile users connected monthly</div></div>
+        <div class="stat"><div class="stat-n metal" data-count="70" data-suffix="%+">&nbsp;</div><div class="stat-l">Mobile subscribers supported on day one</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_pain_shoppingcenters_v2
+     ============================================================ -->
+<section class="pain">
+  <div class="wrap">
+    <div class="rv" style="max-width:760px">
+      <h2 class="h-grad">The hidden operational cost of poor&nbsp;indoor&nbsp;connectivity</h2>
+    </div>
+    <div class="pain-grid rv-stagger">
+      <div class="card pain-card">
+        <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/smartphone-no-signal-indoor-venue-connectivity-582x1024.png" alt="Smartphone illustration showing buffering spinner representing poor indoor cell signal" loading="lazy"></div>
+        <p>Guests struggle to load menus, share moments, or complete mobile payments.</p>
+      </div>
+      <div class="card pain-card">
+        <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/thumbs-down-icon-poor-indoor-connectivity-experience.png" alt="Thumbs-down icon representing negative guest experience from poor wireless connectivity" loading="lazy"></div>
+        <p>Poor indoor connectivity negatively impacts reviews, dwell time, and repeat visits.</p>
+      </div>
+      <div class="card pain-card">
+        <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/wifi-signal-icon-intermittent-indoor-wireless-coverage.png" alt="Wi&#8209;Fi signal icon with broken dotted arcs showing intermittent indoor wireless coverage" loading="lazy"></div>
+        <p>Weak indoor coverage is a common gap shoppers notice, while the Wi&#8209;Fi already in place sits underused.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_connect_shoppingcenters_v2  (dark band)
+     ============================================================ -->
+<div class="dark-band on-dark" id="connect">
+  <section>
+    <div class="wrap">
+      <div class="connect-head rv-stagger">
+        <div class="connect-star h-shine">LongFi Connect</div>
+        <p class="connect-sub">A fully managed solution for delivering reliable indoor cellular connectivity across&nbsp;Shopping&nbsp;Malls.</p>
+      </div>
+      <div class="cfeat-grid rv-stagger">
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/02/full-bars-cell-signal-checkmark-indoor-connectivity-icon-1024x993.png" alt="Full cellular signal bars with green checkmark icon representing excellent indoor connectivity" loading="lazy"></div>
+          <div>
+            <h3>Reliable indoor&nbsp;cellular&nbsp;coverage</h3>
+            <p>Shoppers get reliable cellular service across corridors, food courts, and shared spaces where outdoor cell towers struggle to reach indoors.</p>
+            <a href="https://www.longfisolutions.com/how-it-works/">Learn how it works&rsaquo;</a>
+          </div>
+        </div>
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/managed-security-shield-network-protection-icon-985x1024.png" alt="Pink shield with checkmark inside circular tech emblem representing managed network security" loading="lazy"></div>
+          <div>
+            <h3>Fully managed,&nbsp;without&nbsp;disruption</h3>
+            <p>LongFi handles the initial assessment, implementation, monitoring, and optimization without downtime or changes to daily mall operations.</p>
+            <a href="https://www.longfisolutions.com/how-it-works/#proven">See the 4-step process&rsaquo;</a>
+          </div>
+        </div>
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Full cellular signal bars with a checkmark representing strong indoor connectivity for shoppers" loading="lazy"></div>
+          <div>
+            <h3>Dwell time&nbsp;and&nbsp;spend</h3>
+            <p>Shoppers who stay connected tend to browse longer, and longer visits are associated with higher spend.</p>
+            <a href="https://www.longfisolutions.com/connectivity-value/">Check if your venue qualifies&rsaquo;</a>
+          </div>
+        </div>
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/carrier-grade-security-signal-bars-shield-icon-1007x1024.png" alt="Blue teal signal bars with security shield and lightning bolt icon for carrier-grade connectivity" loading="lazy"></div>
+          <div>
+            <h3>Carrier-Grade&nbsp;Security</h3>
+            <p>Visitor mobile traffic stays securely isolated from tenant systems and mall infrastructure using industry-standard carrier-certified protocols.</p>
+            <a href="https://www.longfisolutions.com/how-it-works/#secure">Explore security details&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+      <p class="connect-close rv">Designed for large retail environments where reliable connectivity improves the shopper experience and supports tenants, using the Wi&#8209;Fi already in place.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_compat_monetize_shoppingcenters_v2  (merged dual band)
+     ============================================================ -->
+  <!-- ===== LongFi Case Studies proof band (portable, self-contained) ===== -->
+  <div id="lfcs">
+    <style>
+    #lfcs{background:linear-gradient(180deg,#FFFFFF 0%,#F1F4FB 100%);border-top:1px solid #E6EAF2;padding:64px 0;font-family:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    #lfcs *{box-sizing:border-box}
+    #lfcs .lfcs-wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    #lfcs .lfcs-head{max-width:720px;margin:0 auto 30px;text-align:center}
+    #lfcs .lfcs-ey{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#244899;margin:0 0 10px !important}
+    #lfcs .lfcs-h{font-family:'Poppins',sans-serif;font-size:clamp(23px,2.7vw,31px) !important;font-weight:700 !important;color:#14172B !important;line-height:1.16 !important;margin:0 0 10px !important;letter-spacing:-.01em}
+    #lfcs .lfcs-sub{font-family:'Nunito',sans-serif;font-size:16px;color:#4A536B;margin:0 !important;line-height:1.55}
+    #lfcs .lfcs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:860px){ #lfcs .lfcs-cards{grid-template-columns:1fr;max-width:520px;margin:0 auto} }
+    #lfcs .lfcs-card{display:flex;flex-direction:column;background:#fff;border:1px solid #E6EAF2;border-left:4px solid #244899;border-radius:14px;padding:22px 22px 20px;text-decoration:none !important;box-shadow:0 4px 16px rgba(36,72,153,.07);transition:transform .26s ease,box-shadow .26s ease}
+    #lfcs .lfcs-card:hover{transform:translateY(-5px);box-shadow:0 16px 42px rgba(36,72,153,.15)}
+    #lfcs .lfcs-card.t{border-left-color:#1FA58E}
+    #lfcs .lfcs-card.c{border-left-color:#FF4E7A}
+    #lfcs .lfcs-card.g{border-left-color:#C9A227}
+    #lfcs .lfcs-tag{font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7A8299}
+    #lfcs .lfcs-card.t .lfcs-tag{color:#12876f}#lfcs .lfcs-card.c .lfcs-tag{color:#d63862}#lfcs .lfcs-card.g .lfcs-tag{color:#9a7a15}
+    #lfcs .lfcs-venue{font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#14172B;margin:8px 0 6px;line-height:1.1}
+    #lfcs .lfcs-line{font-family:'Nunito',sans-serif;font-size:14.5px;color:#4A536B;margin:0 0 16px;line-height:1.5}
+    #lfcs .lfcs-more{margin-top:auto;font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:#244899 !important;display:inline-flex;align-items:center;gap:7px;transition:gap .2s ease}
+    #lfcs .lfcs-card.t .lfcs-more{color:#12876f !important}#lfcs .lfcs-card.c .lfcs-more{color:#d63862 !important}#lfcs .lfcs-card.g .lfcs-more{color:#9a7a15 !important}
+    #lfcs .lfcs-card:hover .lfcs-more{gap:11px}
+    #lfcs .lfcs-allbtn{text-align:center;margin-top:30px}
+    #lfcs .lfcs-allbtn a{display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:600;color:#fff !important;background:linear-gradient(135deg,#244899,#2C2C6E);padding:13px 26px;border-radius:12px;text-decoration:none !important;box-shadow:0 8px 22px rgba(36,72,153,.28);transition:transform .2s ease,box-shadow .2s ease}
+    #lfcs .lfcs-allbtn a:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(36,72,153,.4)}
+    #lfcs .lfcs-reveal{opacity:0;transform:translateY(20px);filter:blur(3px);transition:opacity .7s ease,transform .7s ease,filter .7s ease}
+    #lfcs .lfcs-reveal.in{opacity:1;transform:none;filter:none}
+    #lfcs .lfcs-cards.lfcs-reveal.in .lfcs-card:nth-child(2){transition-delay:.1s}
+    #lfcs .lfcs-cards.lfcs-reveal.in .lfcs-card:nth-child(3){transition-delay:.2s}
+    @media(prefers-reduced-motion:reduce){ #lfcs .lfcs-reveal{opacity:1 !important;transform:none !important;filter:none !important;transition:none} }
+    </style>
+    <div class="lfcs-wrap">
+      <div class="lfcs-head lfcs-reveal">
+        <span class="lfcs-ey">Case&nbsp;Studies</span>
+        <h2 class="lfcs-h">Proof under real&nbsp;pressure.</h2>
+        <p class="lfcs-sub">See how LongFi Connect held up at real venues and&nbsp;big&nbsp;crowds.</p>
+      </div>
+      <div class="lfcs-cards lfcs-reveal">
+        <a class="lfcs-card t" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/">
+          <span class="lfcs-tag">Nightlife &amp;&nbsp;Hospitality</span>
+          <span class="lfcs-venue">SILO &middot;&nbsp;Brooklyn</span>
+          <span class="lfcs-line">Guests stay and settle up without stepping&nbsp;outside.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+        <a class="lfcs-card c" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/">
+          <span class="lfcs-tag">Rooftop Bar &amp;&nbsp;Events</span>
+          <span class="lfcs-venue">Sunset Rooftop &middot;&nbsp;Houston</span>
+          <span class="lfcs-line">A packed rooftop, connected through the&nbsp;busy&nbsp;rush.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+        <a class="lfcs-card g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/">
+          <span class="lfcs-tag">Live&nbsp;Events</span>
+          <span class="lfcs-venue">JazzFest 2026 &middot;&nbsp;New&nbsp;Orleans</span>
+          <span class="lfcs-line">104,080 guests through the gates, staying&nbsp;connected.</span>
+          <span class="lfcs-more">Read the case study &rarr;</span>
+        </a>
+      </div>
+      <div class="lfcs-allbtn lfcs-reveal"><a href="https://www.longfisolutions.com/case-studies/">See all case studies &rarr;</a></div>
+    </div>
+    <script>
+    (function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){r.querySelectorAll('.lfcs-reveal').forEach(function(e){e.classList.add('in');});return;}
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
+      r.querySelectorAll('.lfcs-reveal').forEach(function(e){io.observe(e);});
+      setTimeout(function(){r.querySelectorAll('.lfcs-reveal').forEach(function(e){var c=e.getBoundingClientRect();if(c.top<innerHeight&&c.bottom>0)e.classList.add('in');});},150);
+    })();
+    </script>
+  </div>
+
+  <section class="dualstrip">
+  <div class="wrap">
+    <div class="dual rv-stagger">
+      <div class="dcard">
+        <div class="dcard-head">
+          <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/enterprise-wifi-access-points-ubiquiti-ruckus-mist-compatible-842x1024.png" alt="Enterprise Wi&#8209;Fi access points from Ubiquiti, Ruckus, and Juniper Mist compatible with LongFi Connect" loading="lazy"></div>
+          <div>
+            <h2 class="h-grad">Use your mall&rsquo;s existing enterprise&nbsp;Wi&#8209;Fi&nbsp;infrastructure</h2>
+          </div>
+        </div>
+        <p class="lede">If your shopping mall operates enterprise Wi&#8209;Fi platforms such as Meraki, Aruba, UniFi, Ruckus, Cisco, or Juniper Mist, your environment is likely&nbsp;already&nbsp;Passpoint-ready.</p>
+        <p class="lede">LongFi integrates with your existing network architecture, without requiring new hardware, network redesigns, or changes to current&nbsp;operational&nbsp;workflows.</p>
+        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-head">
+          <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Signal bars rising over a Wi&#8209;Fi symbol representing stronger indoor cell coverage" loading="lazy"></div>
+          <div>
+            <h2 class="h-grad">When connectivity works, the whole center&nbsp;works&nbsp;better</h2>
+          </div>
+        </div>
+        <p class="lede">Major carriers work with LongFi to serve their subscribers indoors, and LongFi Connect carries that traffic securely on the enterprise Wi&#8209;Fi you&nbsp;already&nbsp;operate.</p>
+        <p class="lede">Shoppers stay connected and browse longer, they post and review while still on site, and mobile payments and loyalty apps work on the first try. The benefits start on&nbsp;day&nbsp;one.</p>
+        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">Check if your venue qualifies</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_recap_cta_shoppingcenters_v2
+     ============================================================ -->
+<div class="dark-band on-dark" id="Shopping">
+  <section class="recap">
+    <div class="wrap">
+      <div class="kicker rv">Across the mall</div>
+      <div class="recap-hero rv">
+        <h3 class="metal">Ready to improve your shopping&nbsp;mall&rsquo;s&nbsp;connectivity?</h3>
+        <p>All with no capital expense and no disruption to mall operations.</p>
+      </div>
+      <div class="cta-panel rv">
+        <div>
+          <h2>Excellent indoor cell connectivity for the shopping mall, on the Wi&#8209;Fi already&nbsp;in&nbsp;place.</h2>
+          <p class="lede">Tell us about your shopping mall and we&rsquo;ll confirm compatibility and show how LongFi Connect works at no cost and without disruption to&nbsp;your&nbsp;operations.</p>
+        </div>
+        <div class="cta-form">
+            <form id="lf-shoppingcenters-form" novalidate>
+              <label class="fl" for="lf-shoppingcenters-full_name">Name</label>
+              <input class="fi" id="lf-shoppingcenters-full_name" name="full_name" type="text" autocomplete="name" required>
+              <label class="fl" for="lf-shoppingcenters-email">Business email</label>
+              <input class="fi" id="lf-shoppingcenters-email" name="email" type="email" autocomplete="email" required>
+              <label class="fl" for="lf-shoppingcenters-company_name">Mall or company</label>
+              <input class="fi" id="lf-shoppingcenters-company_name" name="company_name" type="text" autocomplete="organization">
+              <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn-primary" type="submit">Assess my mall&rsquo;s connectivity</button>
+              <div class="lf-err" role="alert"></div>
+              <p class="note">By submitting, you agree to our <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. We use your details only to evaluate your site.</p>
+            </form>
+            <div class="cta-ok" id="lf-shoppingcenters-ok" hidden>
+              <div class="ok-ic" aria-hidden="true">&#10003;</div>
+              <h2>Thanks. We have&nbsp;your&nbsp;details.</h2>
+              <p class="lede">Our team will review your site and reach out with&nbsp;next&nbsp;steps.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_footer_replica  TEMPORARY REPLICA of the live site footer.
+     ============================================================ -->
+</main>
+
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-shoppingcenters');
+  if(!r)return;
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);}});},{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  var so=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var strip=x.target.closest('.strip');if(strip)strip.classList.add('lines-on');x.target.classList.add('on');var n=x.target.querySelector('.stat-n');if(n&&n.dataset.count){var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;(function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p;n.textContent=Math.round(tgt*p)+sfx;if(p<1)requestAnimationFrame(step);})(performance.now());}so.unobserve(x.target);});},{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  setTimeout(function(){r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view');});r.querySelectorAll('.stat').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0){el.classList.add('on');var s=el.closest('.strip');if(s)s.classList.add('lines-on');}});},150);
+})();
+</script>
+<!-- [5] JavaScript: Beacon lead intake. Change only PAGE_KEY and CONTACT_TYPE to reuse on another page. -->
+<script>
+(function(){
+  var PAGE_KEY='shopping_centers';
+  var CONTACT_TYPE='venue_operator';
+  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
+  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
+  var form=document.getElementById('lf-shoppingcenters-form');
+  if(!form)return;
+  var ok=document.getElementById('lf-shoppingcenters-ok');
+  var btn=form.querySelector('button[type=submit]');var err=form.querySelector('.lf-err');var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function showErr(m){err.textContent=m;err.classList.add('show');}function clearErr(){err.textContent='';err.classList.remove('show');}
+  form.addEventListener('submit',function(ev){ev.preventDefault();clearErr();var name=form.full_name.value.trim();var email=form.email.value.trim();var company=form.company_name?form.company_name.value.trim():'';var honeypot=form.company_website.value.trim();form.full_name.classList.remove('bad');form.email.classList.remove('bad');
+    if(!name){form.full_name.classList.add('bad');showErr('Please enter your name.');return;}
+    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
+    btn.disabled=true;var label=btn.textContent;btn.textContent='Sending...';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':APIKEY},body:JSON.stringify({full_name:name,email:email,company_name:company,company_website:honeypot,page_key:PAGE_KEY,contact_type:CONTACT_TYPE,cta_label:label,page_url:window.location.href,referrer:document.referrer||''})}).then(function(res){return res.json().catch(function(){return {ok:res.ok};});}).then(function(data){if(data&&data.ok){form.setAttribute('hidden','');if(ok)ok.removeAttribute('hidden');}else{btn.disabled=false;btn.textContent=label;showErr('Something went wrong. Please try again in a moment.');}}).catch(function(){btn.disabled=false;btn.textContent=label;showErr('Network issue. Please try again in a moment.');});
+  });
+})();
+</script>

@@ -1,0 +1,300 @@
+<!-- LongFi snippet | lf-nav-v3-fixed-sticky.html | v2.2 | updated 2026-07-15 18:00 | REVIEW -->
+<!-- ============================================================
+     LongFi NAVIGATION | lf_nav_v3_fixed
+     v1.5 changes:
+       [NEW] Mobile menu rebuilt as a full screen, scrollable drawer with collapsible
+             accordion sections (Solutions, Industries, Partners, About, Resources).
+             Fixes the broken mobile scroll (panel now has its own overflow) and the
+             cluttered flat list. Body scroll locks while the drawer is open.
+       [NEW] Offset aware smooth scroll for same page hash links. Let's Connect (#footer)
+             now lands just below the fixed bar instead of jumping past the target.
+       [KEEP] Desktop bar, hover dropdowns, fixed pin to body + spacer, scrolled state.
+       Partners menu is MSPs + Portfolio Owners + Hub only (the old Connectors link is gone).
+     Scoped 100% under #lfNav. Install only after /connectivity-value/ exists.
+     ============================================================ -->
+<style>
+#lfNav { --head: 'Inter', 'Segoe UI', system-ui, sans-serif; }
+#lfNav{position:fixed;top:0;left:0;right:0;width:100%;z-index:1000;background:#16182E;border-bottom:0;transition:background .35s ease,border-color .35s ease,box-shadow .35s ease}
+#lfNav.scrolled{background:#0F1122;border-bottom-color:rgba(255,255,255,.09);box-shadow:0 8px 30px rgba(0,0,0,.28)}
+#lfNav *{box-sizing:border-box}
+#lfNav .nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 24px;transition:padding .35s ease}
+#lfNav.scrolled .nav-inner{padding:6px 24px}
+#lfNav .nav-logo{display:flex;align-items:center}
+#lfNav .nav-logo img{height:22px;width:auto;transition:height .35s ease}
+#lfNav.scrolled .nav-logo img{height:20px}
+#lfNav .nav-menu{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+#lfNav .nav-item{position:relative}
+#lfNav .nav-item>a{display:flex;align-items:center;gap:6px;position:relative;font-family:var(--head);font-size:13px;font-weight:500;letter-spacing:.01em;color:rgba(255,255,255,.8);padding:8px 13px;border-radius:8px;transition:color .2s ease;text-decoration:none;cursor:pointer}
+#lfNav .nav-item>a:hover{color:#fff}
+#lfNav .nav-item>a::after{content:"";position:absolute;left:13px;right:13px;bottom:2px;height:1.5px;background:linear-gradient(90deg,#EBBC45,#FFE3A8);border-radius:2px;transform:scaleX(0);transform-origin:center;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+#lfNav .nav-item:hover>a::after,#lfNav .nav-item:focus-within>a::after{transform:scaleX(1)}
+#lfNav .nav-cs>a{background:linear-gradient(110deg,#ffffff 0%,#ffffff 24%,#FFEFB0 40%,#FFD23F 50%,#FFEFB0 60%,#ffffff 76%,#ffffff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:csGleam 3s ease-in-out infinite alternate}
+@keyframes csGleam{from{background-position:0% center}to{background-position:100% center}}
+@media(prefers-reduced-motion:reduce){ #lfNav .nav-cs>a{animation:none;-webkit-text-fill-color:currentColor;color:rgba(255,255,255,.85)} }
+
+#lfNav .nav-item .caret{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-1px);opacity:.7;transition:transform .25s ease}
+#lfNav .nav-item:hover .caret,#lfNav .nav-item:focus-within .caret{transform:rotate(-135deg) translateY(-1px)}
+#lfNav .nav-drop{position:absolute;top:100%;left:0;min-width:230px;background:#16182E;border:0;border-radius:0 0 14px 14px;box-shadow:0 18px 36px rgba(0,0,0,.28);padding:7px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .22s ease,transform .26s cubic-bezier(.4,0,.2,1),visibility .26s}
+#lfNav.scrolled .nav-drop{background:#0F1122}
+#lfNav .nav-item:hover .nav-drop,#lfNav .nav-item:focus-within .nav-drop{opacity:1;visibility:visible;transform:translateY(0)}
+#lfNav .nav-drop a{display:flex;align-items:center;gap:11px;font-size:13.5px;font-weight:500;color:rgba(255,255,255,.82);padding:9px 13px;border-radius:8px;transition:background .15s ease,color .15s ease;text-decoration:none}
+#lfNav .nav-drop a:hover{background:rgba(255,255,255,.08);color:#fff}
+#lfNav .nav-drop a svg{width:17px;height:17px;flex:none;color:rgba(255,255,255,.5);transition:transform .22s cubic-bezier(.34,1.56,.64,1),color .2s ease}
+#lfNav .nav-drop a:hover svg{color:#FFD27A;transform:scale(1.2)}
+#lfNav .nav-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--head);font-size:12.5px;font-weight:600;letter-spacing:.01em;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);padding:7px 15px;border-radius:999px;transition:background .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease;text-decoration:none;white-space:nowrap}
+#lfNav .nav-cta .arr{font-size:14px;line-height:0;transition:transform .25s ease}
+#lfNav .nav-cta:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.42);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.18)}
+#lfNav .nav-cta:hover .arr{transform:translateX(3px)}
+#lfNav .nav-burger{display:none;background:none;border:0;cursor:pointer;padding:6px;width:34px;height:34px}
+#lfNav .nav-burger span{display:block;width:22px;height:2px;background:#fff;margin:5px auto;border-radius:2px;transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .25s ease}
+#lfNav .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#lfNav .nav-burger.open span:nth-child(2){opacity:0}
+#lfNav .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---- Mobile drawer: full screen, scrollable, accordion ---- */
+#lfNav .nav-mobile{position:fixed;inset:0;z-index:1200;background:#0F1122;display:flex;flex-direction:column;transform:translateX(100%);visibility:hidden;transition:transform .34s cubic-bezier(.4,0,.2,1),visibility .34s}
+#lfNav .nav-mobile.open{transform:none;visibility:visible}
+#lfNav .nm-head{flex:none;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+#lfNav .nm-head img{height:24px;width:auto}
+#lfNav .nm-close{background:none;border:0;color:#fff;cursor:pointer;padding:6px;line-height:0}
+#lfNav .nm-close svg{width:26px;height:26px;display:block}
+#lfNav .nm-body{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:6px 0 48px}
+#lfNav .m-group{border-bottom:1px solid rgba(255,255,255,.06)}
+#lfNav .m-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;background:none;border:0;cursor:pointer;color:#fff;font-family:var(--head);font-size:15.5px;font-weight:600;letter-spacing:.01em;padding:15px 22px;text-align:left}
+#lfNav .m-toggle .mchev{width:9px;height:9px;border-right:2px solid rgba(255,255,255,.55);border-bottom:2px solid rgba(255,255,255,.55);transform:rotate(45deg);transition:transform .3s cubic-bezier(.4,0,.2,1);flex:none;margin-top:-3px}
+#lfNav .m-group.open .m-toggle .mchev{transform:rotate(-135deg);margin-top:2px}
+#lfNav .m-toggle.m-solo{text-decoration:none;display:block}
+#lfNav .m-panel{max-height:0;overflow:hidden;transition:max-height .34s cubic-bezier(.4,0,.2,1)}
+#lfNav .m-panel-inner{padding:2px 0 10px}
+#lfNav .m-panel a{display:flex;align-items:center;gap:13px;font-size:15px;color:rgba(255,255,255,.82);padding:12px 22px;text-decoration:none;transition:background .15s ease,color .15s ease}
+#lfNav .m-panel a:hover,#lfNav .m-panel a:active{background:rgba(255,255,255,.06);color:#fff}
+#lfNav .m-panel a svg{width:18px;height:18px;flex:none;color:rgba(255,255,255,.5)}
+#lfNav .nm-cta{padding:20px 22px 8px}
+#lfNav .nm-cta a{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-family:var(--head);font-size:14px;font-weight:600;color:#14172B;background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);border-radius:999px;padding:13px 20px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+body.lf-nav-lock{overflow:hidden!important}
+
+@media(max-width:1000px){
+  #lfNav .nav-menu,#lfNav .nav-cta{display:none}
+  #lfNav .nav-burger{display:block}
+  #lfNav .nav-drop{display:none}
+  #lfNav .nav-inner{padding:9px 18px}
+  #lfNav.scrolled .nav-inner{padding:6px 18px}
+}
+@media(max-width:420px){ #lfNav .nav-inner{padding:9px 14px} #lfNav .nav-logo img{height:20px} }
+@media(prefers-reduced-motion:reduce){
+  #lfNav,#lfNav .nav-inner,#lfNav .nav-logo img,#lfNav .nav-item>a::after,#lfNav .nav-item .caret,
+  #lfNav .nav-drop,#lfNav .nav-drop a svg,#lfNav .nav-cta,#lfNav .nav-cta .arr,#lfNav .nav-burger span,
+  #lfNav .nav-mobile,#lfNav .m-panel,#lfNav .m-toggle .mchev{transition:none}
+}
+</style>
+
+<nav id="lfNav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://www.longfisolutions.com/">
+      <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2022/04/longfi-solutions-white-horizontal-wordmark-1024x181.webp" alt="LongFi Solutions">
+    </a>
+    <!-- Desktop menu -->
+    <ul class="nav-menu">
+      <li class="nav-item has-drop">
+        <a href="#">Solutions<span class="caret"></span></a>
+        <div class="nav-drop">
+          <a href="https://www.longfisolutions.com/longficonnect/"><i data-lucide="wifi"></i>LongFi Connect</a>
+          <a href="https://www.longfisolutions.com/how-it-works/"><i data-lucide="workflow"></i>How It Works</a>
+          <a href="https://www.longfisolutions.com/connectivity-value/"><i data-lucide="signal"></i>The Value of Cell Connectivity</a>
+        </div>
+      </li>
+      <li class="nav-item has-drop">
+        <a href="#">Industries<span class="caret"></span></a>
+        <div class="nav-drop">
+          <a href="https://www.longfisolutions.com/restaurants/"><i data-lucide="utensils"></i>Restaurants</a>
+          <a href="https://www.longfisolutions.com/sports-bars/"><i data-lucide="beer"></i>Sports Bars</a>
+          <a href="https://www.longfisolutions.com/shoppingcenters/"><i data-lucide="shopping-bag"></i>Shopping Malls</a>
+          <a href="https://www.longfisolutions.com/gyms/"><i data-lucide="dumbbell"></i>Gyms and Wellness Centers</a>
+          <a href="https://www.longfisolutions.com/hotels/"><i data-lucide="bed-double"></i>Hotels</a>
+          <a href="https://www.longfisolutions.com/nightclubs/"><i data-lucide="disc-3"></i>Nightclubs</a>
+          <a href="https://www.longfisolutions.com/casinos/"><i data-lucide="dice-5"></i>Casinos</a>
+          <a href="https://www.longfisolutions.com/event-centers/"><i data-lucide="party-popper"></i>Event Centers</a>
+          <a href="https://www.longfisolutions.com/education-campuses/"><i data-lucide="graduation-cap"></i>Education Campuses</a>
+          <a href="https://www.longfisolutions.com/hospital-clinics/"><i data-lucide="heart-pulse"></i>Hospitals and Clinics</a>
+          <a href="https://www.longfisolutions.com/convention-centers/"><i data-lucide="presentation"></i>Convention Centers</a>
+          <a href="https://www.longfisolutions.com/airports/"><i data-lucide="plane"></i>Airports</a>
+        </div>
+      </li>
+      <li class="nav-item nav-cs"><a href="https://www.longfisolutions.com/case-studies/">Case Studies</a></li>
+      <li class="nav-item has-drop">
+        <a href="#">Partners<span class="caret"></span></a>
+        <div class="nav-drop">
+          <a href="https://www.longfisolutions.com/partners-hub/"><i data-lucide="handshake"></i>Partners Hub</a>
+          <a href="https://www.longfisolutions.com/msps/"><i data-lucide="server"></i>Managed Service Providers (MSPs)</a>
+          <a href="https://www.longfisolutions.com/portfolio-owners/"><i data-lucide="building-2"></i>Portfolio Owners</a>
+        </div>
+      </li>
+      <li class="nav-item has-drop">
+        <a href="#">About<span class="caret"></span></a>
+        <div class="nav-drop">
+          <a href="https://www.longfisolutions.com/about-us/"><i data-lucide="info"></i>About LongFi</a>
+          <a href="https://www.longfisolutions.com/about-us/#main"><i data-lucide="users"></i>Our Team</a>
+          <a href="https://www.longfisolutions.com/#Bottom"><i data-lucide="mail"></i>Contact</a>
+        </div>
+      </li>
+      <li class="nav-item has-drop">
+        <a href="#">Resources<span class="caret"></span></a>
+        <div class="nav-drop">
+          <a href="https://www.longfisolutions.com/blog/"><i data-lucide="newspaper"></i>Blogs</a>
+          <a href="https://www.longfisolutions.com/connect-coming-soon/"><i data-lucide="video"></i>Videos</a>
+          <a href="https://www.longfisolutions.com/connect-coming-soon/"><i data-lucide="file-text"></i>Technical Docs</a>
+          <a href="https://www.longfisolutions.com/faq/"><i data-lucide="circle-help"></i>FAQs</a>
+        </div>
+      </li>
+    </ul>
+    <a class="nav-cta" href="#footer">Let&rsquo;s Connect <span class="arr">&rsaquo;</span></a>
+    <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer: own header + scrollable accordion body -->
+  <div class="nav-mobile" id="navMobile" aria-hidden="true">
+    <div class="nm-head">
+      <a class="nav-logo" href="https://www.longfisolutions.com/">
+        <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2022/04/longfi-solutions-white-horizontal-wordmark-1024x181.webp" alt="LongFi Solutions">
+      </a>
+      <button class="nm-close" type="button" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="nm-body">
+      <div class="m-group">
+        <button class="m-toggle" type="button" aria-expanded="false">Solutions<span class="mchev"></span></button>
+        <div class="m-panel"><div class="m-panel-inner">
+          <a href="https://www.longfisolutions.com/longficonnect/"><i data-lucide="wifi"></i>LongFi Connect</a>
+          <a href="https://www.longfisolutions.com/how-it-works/"><i data-lucide="workflow"></i>How It Works</a>
+          <a href="https://www.longfisolutions.com/connectivity-value/"><i data-lucide="signal"></i>The Value of Cell Connectivity</a>
+        </div></div>
+      </div>
+      <div class="m-group">
+        <button class="m-toggle" type="button" aria-expanded="false">Industries<span class="mchev"></span></button>
+        <div class="m-panel"><div class="m-panel-inner">
+          <a href="https://www.longfisolutions.com/restaurants/"><i data-lucide="utensils"></i>Restaurants</a>
+          <a href="https://www.longfisolutions.com/sports-bars/"><i data-lucide="beer"></i>Sports Bars</a>
+          <a href="https://www.longfisolutions.com/shoppingcenters/"><i data-lucide="shopping-bag"></i>Shopping Malls</a>
+          <a href="https://www.longfisolutions.com/gyms/"><i data-lucide="dumbbell"></i>Gyms and Wellness Centers</a>
+          <a href="https://www.longfisolutions.com/hotels/"><i data-lucide="bed-double"></i>Hotels</a>
+          <a href="https://www.longfisolutions.com/nightclubs/"><i data-lucide="disc-3"></i>Nightclubs</a>
+          <a href="https://www.longfisolutions.com/casinos/"><i data-lucide="dice-5"></i>Casinos</a>
+          <a href="https://www.longfisolutions.com/event-centers/"><i data-lucide="party-popper"></i>Event Centers</a>
+          <a href="https://www.longfisolutions.com/education-campuses/"><i data-lucide="graduation-cap"></i>Education Campuses</a>
+          <a href="https://www.longfisolutions.com/hospital-clinics/"><i data-lucide="heart-pulse"></i>Hospitals and Clinics</a>
+          <a href="https://www.longfisolutions.com/convention-centers/"><i data-lucide="presentation"></i>Convention Centers</a>
+          <a href="https://www.longfisolutions.com/airports/"><i data-lucide="plane"></i>Airports</a>
+        </div></div>
+      </div>
+      <div class="m-group"><a class="m-toggle m-solo" href="https://www.longfisolutions.com/case-studies/">Case Studies</a></div>
+      <div class="m-group">
+        <button class="m-toggle" type="button" aria-expanded="false">Partners<span class="mchev"></span></button>
+        <div class="m-panel"><div class="m-panel-inner">
+          <a href="https://www.longfisolutions.com/partners-hub/"><i data-lucide="handshake"></i>Partners Hub</a>
+          <a href="https://www.longfisolutions.com/msps/"><i data-lucide="server"></i>Managed Service Providers (MSPs)</a>
+          <a href="https://www.longfisolutions.com/portfolio-owners/"><i data-lucide="building-2"></i>Portfolio Owners</a>
+        </div></div>
+      </div>
+      <div class="m-group">
+        <button class="m-toggle" type="button" aria-expanded="false">About<span class="mchev"></span></button>
+        <div class="m-panel"><div class="m-panel-inner">
+          <a href="https://www.longfisolutions.com/about-us/"><i data-lucide="info"></i>About LongFi</a>
+          <a href="https://www.longfisolutions.com/about-us/#main"><i data-lucide="users"></i>Our Team</a>
+          <a href="https://www.longfisolutions.com/#Bottom"><i data-lucide="mail"></i>Contact</a>
+        </div></div>
+      </div>
+      <div class="m-group">
+        <button class="m-toggle" type="button" aria-expanded="false">Resources<span class="mchev"></span></button>
+        <div class="m-panel"><div class="m-panel-inner">
+          <a href="https://www.longfisolutions.com/blog/"><i data-lucide="newspaper"></i>Blogs</a>
+          <a href="https://www.longfisolutions.com/connect-coming-soon/"><i data-lucide="video"></i>Videos</a>
+          <a href="https://www.longfisolutions.com/connect-coming-soon/"><i data-lucide="file-text"></i>Technical Docs</a>
+          <a href="https://www.longfisolutions.com/faq/"><i data-lucide="circle-help"></i>FAQs</a>
+        </div></div>
+      </div>
+      <div class="nm-cta">
+        <a href="#footer">Let&rsquo;s Connect</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Pin the bar to <body> (immune to page builder wrappers) + spacer -->
+<script>
+(function(){
+  var nav=document.getElementById('lfNav');
+  if(!nav)return;
+
+  function pin(){
+    if(nav.__lfPinned)return;
+    nav.__lfPinned=1;
+    var spacer=document.createElement('div');
+    spacer.id='lfNavSpacer';
+    spacer.style.background='#16182E';
+    if(nav.parentNode){nav.parentNode.insertBefore(spacer,nav);}
+    document.body.insertBefore(nav,document.body.firstChild);
+    var setSpace=function(){ if(!document.getElementById('navMobile').classList.contains('open')) spacer.style.height=nav.offsetHeight+'px'; };
+    setSpace();
+    window.addEventListener('resize',setSpace,{passive:true});
+    setTimeout(setSpace,400);
+    window.addEventListener('load',setSpace);
+  }
+  if(document.body){pin();}else{document.addEventListener('DOMContentLoaded',pin);}
+
+  var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>12);};
+  onScroll();
+  window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* ---- Mobile drawer ---- */
+  var burger=nav.querySelector('.nav-burger');
+  var drawer=document.getElementById('navMobile');
+  var closeBtn=drawer.querySelector('.nm-close');
+  function openM(){ drawer.classList.add('open'); burger.classList.add('open'); burger.setAttribute('aria-expanded','true'); drawer.setAttribute('aria-hidden','false'); document.body.classList.add('lf-nav-lock'); }
+  function closeM(){ drawer.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded','false'); drawer.setAttribute('aria-hidden','true'); document.body.classList.remove('lf-nav-lock'); }
+  burger.addEventListener('click',function(){ drawer.classList.contains('open')?closeM():openM(); });
+  closeBtn.addEventListener('click',closeM);
+
+  /* Accordion: single open at a time */
+  var groups=Array.prototype.slice.call(drawer.querySelectorAll('.m-group'));
+  groups.forEach(function(g){
+    var btn=g.querySelector('.m-toggle');
+    var panel=g.querySelector('.m-panel');
+    if(!btn||!panel)return;
+    btn.addEventListener('click',function(){
+      var isOpen=g.classList.contains('open');
+      groups.forEach(function(o){ if(o!==g){ o.classList.remove('open'); o.querySelector('.m-panel').style.maxHeight=null; o.querySelector('.m-toggle').setAttribute('aria-expanded','false'); } });
+      if(isOpen){ g.classList.remove('open'); panel.style.maxHeight=null; btn.setAttribute('aria-expanded','false'); }
+      else { g.classList.add('open'); panel.style.maxHeight=panel.scrollHeight+'px'; btn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  /* ---- Offset aware smooth scroll for same page hash links ---- */
+  function scrollToHash(hash){
+    if(!hash || hash.length<2) return false;
+    var el=null;
+    try{ el=document.getElementById(hash.slice(1)) || document.querySelector(hash); }catch(e){ el=document.getElementById(hash.slice(1)); }
+    if(!el) return false;
+    var navH=nav.offsetHeight||64;
+    var y=el.getBoundingClientRect().top+window.pageYOffset-navH-14;
+    window.scrollTo({top:y<0?0:y,behavior:'smooth'});
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest ? e.target.closest('a[href]') : null;
+    if(!a)return;
+    var href=a.getAttribute('href')||'';
+    if(href.charAt(0)!=='#')return;      /* only same page hashes; full URLs navigate */
+    e.preventDefault();                   /* also stops href="#" dropdown parents jumping to top */
+    if(drawer.classList.contains('open')) closeM();
+    if(href.length>1){ setTimeout(function(){ scrollToHash(href); if(history.replaceState) history.replaceState(null,'',href); }, drawer ? 60 : 0); }
+  },false);
+
+  /* Close drawer on Escape and when resizing up to desktop */
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&drawer.classList.contains('open'))closeM(); });
+  window.addEventListener('resize',function(){ if(window.innerWidth>1000&&drawer.classList.contains('open'))closeM(); },{passive:true});
+})();
+</script>
+<script src="https://unpkg.com/lucide@0.383.0" onload="lucide.createIcons()"></script>

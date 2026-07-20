@@ -1,0 +1,709 @@
+<!-- LongFi snippet | lf-videos.html | v1.10 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- [1] Google Fonts, load once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+<!-- [2] Page styles, scoped under #lf-videos (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   Persona hooks (.dark-band, .h-grad, .h-shine, .btn-primary,
+   light eyebrow accent) are tinted for the SKYLINE-BLUE resource persona.
+   ============================================================ */
+#lf-videos{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-videos),.e-con-inner:has(#lf-videos),.elementor-widget-html:has(#lf-videos),.elementor-widget-shortcode:has(#lf-videos),.elementor-widget-container:has(#lf-videos){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-videos *{box-sizing:border-box;margin:0;padding:0}
+#lf-videos{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-videos{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-videos img{max-width:100%;height:auto;display:block}
+#lf-videos a{color:var(--skyline);text-decoration:none}
+#lf-videos h1,#lf-videos h2,#lf-videos h3,#lf-videos h4,#lf-videos .eyebrow,#lf-videos .btn,#lf-videos .stat-n{font-family:var(--head)}
+#lf-videos .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){#lf-videos .wrap{padding:0 16px}}
+/* Compact spec: tighter section rhythm */
+#lf-videos section{padding:64px 0}
+@media(max-width:680px){#lf-videos section{padding:48px 0}}
+
+/* Persona accent for light-background eyebrows: deep skyline blue */
+#lf-videos .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#234C99;margin-bottom:12px}
+#lf-videos .on-dark .eyebrow{color:#BFD2F2}
+#lf-videos h1,#lf-videos h2,#lf-videos h3{text-wrap:balance}
+#lf-videos p{text-wrap:pretty} /* prevents orphaned last lines per the copywriting rule */
+/* Compact spec: section H2s step down. Impact from content and color, never size. */
+#lf-videos h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+#lf-videos .on-dark h2{color:var(--white)}
+/* Designed section titles on light backgrounds: gradient depth, never plain black.
+   Skyline-blue persona: ink to deep skyline blue. */
+#lf-videos .h-grad{background:linear-gradient(115deg,var(--ink) 6%,#1E3C6E 46%,#2E63C8 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 12px rgba(46,99,200,.24));padding-bottom:.12em;margin-bottom:.1em} /* padding protects descenders from gradient clipping */
+/* SIGNAL GLEAM. Core LongFi animation: a slow light sweep across one power
+   word or headline per page. Skyline tint: deep blue, mid stop near-white
+   (#E8F0FB), 12px blue glow at .18. Two gleams max on this page. */
+#lf-videos .h-shine{background:linear-gradient(115deg,#234C99 0%,#5C84E0 35%,#E8F0FB 50%,#5C84E0 65%,#234C99 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-videos 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(46,99,200,.18));padding-bottom:.12em}
+#lf-videos .lede{font-size:16.5px;line-height:1.6;max-width:680px}
+#lf-videos .on-dark .lede{color:rgba(255,255,255,.9)}
+
+#lf-videos .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-videos 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-videos{from{background-position:0% center}to{background-position:100% center}}
+
+#lf-videos .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Low saturation, permanent soft ambient glow. */
+#lf-videos .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-videos .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: resource pages run the skyline-blue variant with white text. */
+#lf-videos .btn-primary{
+  background:linear-gradient(135deg,#2E63C8 0%,#1A3F8F 100%);
+  color:#FFFFFF;
+  border-color:rgba(150,186,244,.65);
+  box-shadow:0 0 26px rgba(46,99,200,.5),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.25);
+}
+#lf-videos .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(92,132,224,.66),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.3)}
+#lf-videos .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-videos .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-videos .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-videos .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-videos .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+
+/* Skyline-blue persona dark band: deep navy into skyline blue, blue radial glow. */
+#lf-videos .dark-band{background:linear-gradient(150deg,#141B33 0%,#22315E 58%,#16203F 118%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-videos .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(560px circle at 88% 4%, rgba(46,99,200,.16), transparent 58%),radial-gradient(480px circle at 6% 96%, rgba(46,99,200,.1), transparent 58%);pointer-events:none}
+#lf-videos .dark-band>.wrap{position:relative;z-index:1}
+
+#lf-videos .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-videos .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+
+/* Scroll reveal */
+#lf-videos .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-videos .rv.in-view{opacity:1;transform:none}
+#lf-videos .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-videos .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-videos .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-videos .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-videos .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-videos .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-videos .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-videos .rv,#lf-videos .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-videos .metal,#lf-videos .h-shine{animation:none}
+  #lf-videos{scroll-behavior:auto}
+}
+
+/* ============================================================
+   SNIPPET: lf_nav_v3  (slim glassmorphism bar, shrink-on-scroll,
+   micro-interactions. TEMPORARY REPLICA; theme owns the real nav.
+   This nav + the footer below will be extracted to their own Woody
+   snippet code once approved, so the whole site can migrate to it.)
+   ============================================================ */
+/* Solid, opaque bar color so the bar and its dropdowns are always identical,
+   never shifted by the light page at the top vs the dark hero below. */
+
+
+
+
+
+
+
+
+
+
+
+/* center-out underline on hover */
+
+
+/* caret that flips when the menu opens */
+
+
+/* Dropdown reads as the bar extending downward: same dark frosted color, no gap,
+   attached to the bar, rounded only at the bottom, light links. */
+
+
+
+
+
+/* dropdown icons: muted by default, brighten to gold and snap-pop on hover */
+
+
+/* Compact refined CTA: small frosted pill with a nudging arrow, not the big silver button */
+
+
+
+
+
+
+
+
+
+
+
+@keyframes navDrop-lf-videos{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+
+@media(max-width:920px){
+  
+  
+}
+@media(prefers-reduced-motion:reduce){
+  
+  
+}
+
+/* ============================================================
+   SNIPPET: lf_hero_videos_v2  (compact resource hero on the persona dark band)
+   ============================================================ */
+#lf-videos .vhero{padding:72px 0 52px}
+@media(max-width:920px){#lf-videos .vhero{padding:54px 0 40px}}
+#lf-videos .vhero .eyebrow{color:#BFD2F2;background:rgba(46,99,200,.14);border:1px solid rgba(150,186,244,.35);padding:6px 14px;border-radius:999px}
+/* Compact spec: resource hero one step smaller than the industry hero */
+#lf-videos .vhero h1{font-size:clamp(26px,3vw,38px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--white);margin-bottom:14px;max-width:760px}
+#lf-videos .vhero .lede{color:rgba(255,255,255,.9);font-size:17px;max-width:640px}
+/* Category jump nav: pill chips that anchor to each category row */
+#lf-videos .vjump{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+#lf-videos .vjump a{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-size:13px;font-weight:600;color:rgba(255,255,255,.88);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);padding:9px 16px;border-radius:999px;transition:background .2s ease,border-color .2s ease,transform .2s ease,color .2s ease}
+#lf-videos .vjump a svg{width:15px;height:15px;color:#9FC0F2;transition:color .2s ease}
+#lf-videos .vjump a:hover{background:rgba(46,99,200,.22);border-color:rgba(150,186,244,.5);transform:translateY(-1px);color:#fff}
+#lf-videos .vjump a:hover svg{color:#fff}
+
+/* ============================================================
+   SNIPPET: lf_videocat_v2  (a titled video category row/grid)
+   ============================================================ */
+#lf-videos .vcat{background:var(--white)}
+#lf-videos .vcat:nth-of-type(even){background:var(--bg)}
+#lf-videos .vcat-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;max-width:880px}
+#lf-videos .vcat-head .eyebrow{margin-bottom:8px}
+#lf-videos .vcat-count{font-family:var(--head);font-size:12.5px;font-weight:600;color:var(--muted)}
+/* 3-up responsive grid of cards */
+#lf-videos .vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+@media(max-width:920px){#lf-videos .vgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){#lf-videos .vgrid{grid-template-columns:1fr}}
+
+/* ============================================================
+   SNIPPET: lf_videocard_v2  (16:9 gradient thumb, play overlay,
+   duration pill, title, one-line description)
+   ============================================================ */
+#lf-videos .vcard{display:flex;flex-direction:column;overflow:hidden;cursor:pointer}
+#lf-videos .vthumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:16px 16px 0 0;background:linear-gradient(135deg,#1E3C6E 0%,#2E63C8 60%,#5C84E0 100%)}
+/* Each card varies its gradient so the placeholder library reads as distinct films */
+#lf-videos .vthumb.g1{background:linear-gradient(135deg,#16203F 0%,#2E63C8 70%,#5C84E0 100%)}
+#lf-videos .vthumb.g2{background:linear-gradient(135deg,#1E3C6E 0%,#3A6FD0 60%,#8FB4F0 100%)}
+#lf-videos .vthumb.g3{background:linear-gradient(135deg,#141B33 0%,#234C99 55%,#4A78D6 100%)}
+#lf-videos .vthumb.g4{background:linear-gradient(135deg,#22315E 0%,#2E63C8 65%,#6E96E6 100%)}
+#lf-videos .vthumb.g5{background:linear-gradient(135deg,#1A2A52 0%,#2C58B4 60%,#5C84E0 100%)}
+#lf-videos .vthumb.g6{background:linear-gradient(135deg,#16203F 0%,#1E3C6E 55%,#3A6FD0 100%)}
+/* subtle signal sheen so the gradient does not read as a flat block */
+#lf-videos .vthumb::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at 78% 18%, rgba(255,255,255,.18), transparent 60%),radial-gradient(360px circle at 12% 92%, rgba(20,27,51,.4), transparent 60%);pointer-events:none}
+#lf-videos .vplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:999px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 26px rgba(20,27,51,.4);transition:transform .25s ease,background .25s ease}
+#lf-videos .vplay svg{width:26px;height:26px;color:#1A3F8F;margin-left:3px}
+#lf-videos .vcard:hover .vplay{transform:translate(-50%,-50%) scale(1.1);background:#fff}
+#lf-videos .vpill{position:absolute;bottom:10px;right:10px;font-family:var(--head);font-size:11.5px;font-weight:600;color:#fff;background:rgba(15,17,34,.78);padding:4px 9px;border-radius:6px;letter-spacing:.02em}
+#lf-videos .vbody{background:var(--paper);border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:16px 18px 18px;flex:1;display:flex;flex-direction:column}
+#lf-videos .vtag{font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#234C99;margin-bottom:8px}
+#lf-videos .vcard h3{font-size:16px;font-weight:700;line-height:1.3;color:var(--ink);margin-bottom:6px}
+#lf-videos .vcard p{font-size:13.5px;color:var(--body);margin:0}
+
+/* Featured large card: spans the full row, thumb on the left */
+#lf-videos .vfeat{display:grid;grid-template-columns:1.25fr .85fr;gap:0;overflow:hidden;border-radius:18px;border:1px solid var(--line);box-shadow:var(--shadow-soft);background:var(--paper);margin-top:30px;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
+#lf-videos .vfeat:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+@media(max-width:780px){#lf-videos .vfeat{grid-template-columns:1fr}}
+#lf-videos .vfeat .vthumb{aspect-ratio:16/9;border-radius:0}
+#lf-videos .vfeat .vplay{width:74px;height:74px}
+#lf-videos .vfeat .vplay svg{width:32px;height:32px}
+#lf-videos .vfeat-body{padding:30px 32px;display:flex;flex-direction:column;justify-content:center}
+@media(max-width:780px){#lf-videos .vfeat-body{padding:24px 22px}}
+#lf-videos .vfeat-body .vtag{margin-bottom:12px}
+#lf-videos .vfeat-body h3{font-size:clamp(19px,2vw,24px);font-weight:700;line-height:1.22;color:var(--ink);margin-bottom:10px}
+#lf-videos .vfeat-body p{font-size:14.5px;color:var(--body);margin:0}
+
+/* "More videos coming soon" placeholder card at the end of each row */
+#lf-videos .vsoon{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:100%;border:1.5px dashed #C5D0E4;border-radius:16px;background:var(--soft);padding:28px 22px;transition:border-color .25s ease,background .25s ease,transform .25s ease}
+#lf-videos .vsoon:hover{border-color:#2E63C8;background:#EDF2FB;transform:translateY(-4px)}
+#lf-videos .vsoon .vsoon-ic{width:52px;height:52px;border-radius:999px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+#lf-videos .vsoon .vsoon-ic svg{width:24px;height:24px;color:#2E63C8}
+#lf-videos .vsoon h4{font-family:var(--head);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
+#lf-videos .vsoon p{font-size:13px;color:var(--muted);margin:0}
+
+/* ============================================================
+   SNIPPET: lf_recap_cta_videos_v2  (one dark band: recap, then the ask)
+   ============================================================ */
+#lf-videos .recap .kicker{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#BFD2F2;text-align:center;margin-bottom:26px}
+#lf-videos .recap-hero{text-align:center;max-width:880px;margin:0 auto}
+/* Compact spec: recap statement sized down, the shout goes */
+#lf-videos .recap-hero h3{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+#lf-videos .recap-hero p{font-family:var(--head);font-size:clamp(15px,1.8vw,18px);font-weight:500;color:rgba(255,255,255,.7);margin:12px 0 0}
+#lf-videos .cta-panel{margin-top:40px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 44px rgba(46,99,200,.1)}
+@media(max-width:920px){#lf-videos .cta-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}}
+#lf-videos .cta-panel h2{font-size:clamp(20px,2.2vw,27px);margin-bottom:10px}
+#lf-videos .cta-panel .lede{font-size:15px}
+#lf-videos .cta-form .fl{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#BFD2F2;margin:14px 0 6px}
+#lf-videos .cta-form .fl:first-child{margin-top:0}
+#lf-videos .cta-form .fi{height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)}
+#lf-videos .cta-form .btn{width:100%;margin-top:20px}
+#lf-videos .cta-form .note{font-size:12px;color:rgba(255,255,255,.55);margin-top:12px;text-align:center}
+
+/* ============================================================
+   SNIPPET: lf_footer_replica  (TEMPORARY REPLICA, theme owns the real footer)
+   ============================================================ */
+
+
+
+
+
+
+
+
+@media(max-width:1020px){}
+@media(max-width:680px){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Beacon lead form fields */
+#lf-videos .cta-form .fi{display:block;width:100%;height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body-font);font-size:15px;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-videos .cta-form .fi::placeholder{color:rgba(255,255,255,.45)}
+#lf-videos .cta-form .fi:focus{outline:none;border-color:rgba(47,184,136,.7);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(47,184,136,.18)}
+#lf-videos .cta-form .fi.bad{border-color:rgba(255,120,120,.8);box-shadow:0 0 0 3px rgba(255,120,120,.16)}
+#lf-videos .cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+#lf-videos .cta-form .btn[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-videos .cta-form .note a{color:#8FE3C2}
+#lf-videos .cta-form .note a:hover{text-decoration:underline}
+#lf-videos .cta-form .lf-err{display:none;font-size:13px;color:#FFC2C2;margin-top:12px;text-align:center}
+#lf-videos .cta-form .lf-err.show{display:block}
+#lf-videos .cta-ok{text-align:center;padding:8px 4px}
+#lf-videos .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
+#lf-videos .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
+#lf-videos .cta-ok .lede{font-size:15px;margin:0 auto}
+</style>
+<!-- [3] Page content -->
+<main id="lf-videos"><!-- ============================================================
+     SNIPPET: lf_nav_replica  TEMPORARY REPLICA of the live site nav.
+     The production page receives nav from the theme. Remove before push.
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SNIPPET: lf_hero_videos_v2  (compact resource hero + category jump nav)
+     ============================================================ -->
+<div class="dark-band on-dark">
+  <section class="vhero">
+    <div class="wrap rv-stagger">
+      <h1><span class="h-shine">LongFi&nbsp;Connect,&nbsp;explained</span></h1>
+      <p class="lede">Short videos on how LongFi uses the Wi&#8209;Fi a venue already has to deliver better indoor cell connectivity. Browse by&nbsp;topic&nbsp;below.</p>
+      <nav class="vjump">
+        <a href="#explained"><i data-lucide="play-circle"></i>LongFi Connect Explained</a>
+        <a href="#how-it-works"><i data-lucide="workflow"></i>How It Works</a>
+        <a href="#deployment"><i data-lucide="settings-2"></i>Deployment &amp; Setup</a>
+        <a href="#customer-stories"><i data-lucide="users"></i>Customer Stories</a>
+        <a href="#webinars"><i data-lucide="calendar"></i>Webinars &amp; Events</a>
+      </nav>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_videocat_v2  (primary category: LongFi Connect Explained)
+     Featured large card + a row of explainer cards. PLACEHOLDER copy.
+     ============================================================ -->
+<section class="vcat" id="explained">
+  <div class="wrap">
+    <div class="vcat-head rv">
+      <div>
+        <h2 class="h-grad">LongFi&nbsp;Connect&nbsp;Explained</h2>
+        <p class="lede">The core idea in a few minutes: better indoor cell service for guests, using the Wi&#8209;Fi the property already has, with its existing security posture kept&nbsp;in&nbsp;place.</p>
+      </div>
+      <span class="vcat-count">Placeholder library</span>
+    </div>
+
+    <!-- Featured large video card (placeholder) -->
+    <article class="vfeat rv">
+      <div class="vthumb g1">
+        <div class="vplay"><i data-lucide="play"></i></div>
+        <span class="vpill">4:12</span>
+      </div>
+      <div class="vfeat-body">
+        <span class="vtag">Featured &middot; Placeholder</span>
+        <h3>[Placeholder title] What LongFi Connect is, in&nbsp;plain&nbsp;language</h3>
+        <p>A short overview of how LongFi uses the Wi&#8209;Fi a venue already has to deliver stronger indoor cell connectivity. Final video and copy to be added.</p>
+      </div>
+    </article>
+
+    <!-- Explainer row (placeholders) -->
+    <div class="vgrid rv-stagger">
+      <article class="vcard card">
+        <div class="vthumb g2">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">2:38</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Better indoor cell&nbsp;service,&nbsp;explained</h3>
+          <p>Why indoor signal struggles, and how LongFi Connect helps carriers reach subscribers inside your building.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g3">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">3:05</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Where better connectivity shows up in&nbsp;the&nbsp;business</h3>
+          <p>How stronger indoor cell connectivity is associated with longer visits, more engagement, and smoother transactions.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g4">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">2:54</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Secure separation,&nbsp;systems&nbsp;untouched</h3>
+          <p>How LongFi Connect traffic stays isolated from your business systems on a dedicated lane.</p>
+        </div>
+      </article>
+      <div class="vsoon">
+        <div class="vsoon-ic"><i data-lucide="clapperboard"></i></div>
+        <h4>More videos&nbsp;coming&nbsp;soon</h4>
+        <p>New explainers are being produced for this category.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_videocat_v2  (How It Works)  PLACEHOLDER copy.
+     ============================================================ -->
+<section class="vcat" id="how-it-works">
+  <div class="wrap">
+    <div class="vcat-head rv">
+      <div>
+        <h2 class="h-grad">How&nbsp;It&nbsp;Works</h2>
+        <p class="lede">A closer look at the LongFi Connect lane, the carriers it works with, and what happens on your network day&nbsp;to&nbsp;day.</p>
+      </div>
+      <span class="vcat-count">Placeholder library</span>
+    </div>
+    <div class="vgrid rv-stagger">
+      <article class="vcard card">
+        <div class="vthumb g5">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">3:20</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] The LongFi Connect lane on&nbsp;your&nbsp;network</h3>
+          <p>How the LongFi Connect carrier offload lane sits beside your business systems, kept securely separate.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g6">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">2:47</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] How phones&nbsp;connect&nbsp;automatically</h3>
+          <p>A walkthrough of how compatible devices join the LongFi Connect lane without any guest action.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g1">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">4:01</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] What LongFi manages&nbsp;for&nbsp;you</h3>
+          <p>Assessment, setup, monitoring, and optimization, handled by LongFi without disruption to operations.</p>
+        </div>
+      </article>
+      <div class="vsoon">
+        <div class="vsoon-ic"><i data-lucide="clapperboard"></i></div>
+        <h4>More videos&nbsp;coming&nbsp;soon</h4>
+        <p>Additional how-it-works walkthroughs are in production.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_videocat_v2  (Deployment & Setup)  PLACEHOLDER copy.
+     ============================================================ -->
+<section class="vcat" id="deployment">
+  <div class="wrap">
+    <div class="vcat-head rv">
+      <div>
+        <h2 class="h-grad">Deployment&nbsp;&amp;&nbsp;Setup</h2>
+        <p class="lede">Practical walkthroughs for I.T. teams and partners: compatibility, configuration patterns, and what a clean rollout&nbsp;looks&nbsp;like.</p>
+      </div>
+      <span class="vcat-count">Placeholder library</span>
+    </div>
+    <div class="vgrid rv-stagger">
+      <article class="vcard card">
+        <div class="vthumb g2">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">5:10</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Checking&nbsp;Wi&#8209;Fi&nbsp;compatibility</h3>
+          <p>What we review during site qualification: platform, controller, firmware, segmentation, and authentication.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g3">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">4:33</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Setting up the guest and&nbsp;Passpoint&nbsp;lane</h3>
+          <p>How a dedicated Guest and Passpoint segment keeps LongFi Connect traffic separate from core systems.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g4">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">3:48</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] A clean rollout, start&nbsp;to&nbsp;finish</h3>
+          <p>What a typical LongFi Connect deployment looks like from first call to live traffic, without downtime.</p>
+        </div>
+      </article>
+      <div class="vsoon">
+        <div class="vsoon-ic"><i data-lucide="clapperboard"></i></div>
+        <h4>More videos&nbsp;coming&nbsp;soon</h4>
+        <p>Vendor-specific setup guides are being filmed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_videocat_v2  (Customer Stories)  PLACEHOLDER copy.
+     ============================================================ -->
+<section class="vcat" id="customer-stories">
+  <div class="wrap">
+    <div class="vcat-head rv">
+      <div>
+        <h2 class="h-grad">Customer&nbsp;Stories</h2>
+        <p class="lede">Venues and partners in their own words: stronger guest connectivity and a deployment that stayed out of&nbsp;the&nbsp;way.</p>
+      </div>
+      <span class="vcat-count">Placeholder library</span>
+    </div>
+    <div class="vgrid rv-stagger">
+      <article class="vcard card">
+        <div class="vthumb g5">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">3:12</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] A venue on the&nbsp;guest&nbsp;experience</h3>
+          <p>A property describes how indoor connectivity changed for guests once LongFi Connect went live.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g6">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">4:24</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] A partner on&nbsp;the&nbsp;rollout</h3>
+          <p>A growth partner shares how stronger indoor connectivity added a new line to their conversations.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g1">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">2:58</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] An I.T. lead on the&nbsp;security&nbsp;posture</h3>
+          <p>An I.T. lead explains why secure separation made LongFi Connect an easy yes for the team.</p>
+        </div>
+      </article>
+      <div class="vsoon">
+        <div class="vsoon-ic"><i data-lucide="clapperboard"></i></div>
+        <h4>More videos&nbsp;coming&nbsp;soon</h4>
+        <p>New customer stories are being recorded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_videocat_v2  (Webinars & Events)  PLACEHOLDER copy.
+     ============================================================ -->
+<section class="vcat" id="webinars">
+  <div class="wrap">
+    <div class="vcat-head rv">
+      <div>
+        <h2 class="h-grad">Webinars&nbsp;&amp;&nbsp;Events</h2>
+        <p class="lede">Longer sessions and event recordings: deep dives, partner briefings, and conversations with the&nbsp;LongFi&nbsp;team.</p>
+      </div>
+      <span class="vcat-count">Placeholder library</span>
+    </div>
+    <div class="vgrid rv-stagger">
+      <article class="vcard card">
+        <div class="vthumb g2">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">38:20</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Webinar: connectivity&nbsp;for&nbsp;venues</h3>
+          <p>A recorded session walking venue owners through better indoor connectivity.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g3">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">45:06</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Partner briefing: the&nbsp;MSP&nbsp;opportunity</h3>
+          <p>A briefing for managed service providers on adding LongFi Connect to their portfolio.</p>
+        </div>
+      </article>
+      <article class="vcard card">
+        <div class="vthumb g4">
+          <div class="vplay"><i data-lucide="play"></i></div>
+          <span class="vpill">28:41</span>
+        </div>
+        <div class="vbody">
+          <span class="vtag">Placeholder</span>
+          <h3>[Placeholder title] Event recording: connectivity&nbsp;that&nbsp;works</h3>
+          <p>A conference session on what changes when indoor connectivity works for everyone in the building.</p>
+        </div>
+      </article>
+      <div class="vsoon">
+        <div class="vsoon-ic"><i data-lucide="clapperboard"></i></div>
+        <h4>More videos&nbsp;coming&nbsp;soon</h4>
+        <p>Upcoming webinars will be posted here after each session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_recap_cta_videos_v2  (recap statement flowing into the ask)
+     ============================================================ -->
+<div class="dark-band on-dark" id="ask">
+  <section class="recap">
+    <div class="wrap">
+      <div class="kicker rv">Watch, then talk</div>
+      <div class="recap-hero rv">
+        <h3 class="metal">Seen enough? Let&rsquo;s&nbsp;talk&nbsp;connectivity.</h3>
+        <p>Better indoor cell service, using the Wi&#8209;Fi already in place, with systems untouched.</p>
+      </div>
+      <div class="cta-panel rv">
+        <div>
+          <h2>Bring better indoor cell service to your venue, using the Wi&#8209;Fi you&nbsp;already&nbsp;have.</h2>
+          <p class="lede">Tell us about your venue or portfolio and we&rsquo;ll review compatibility and walk through how LongFi Connect works, without disruption to&nbsp;your&nbsp;operations.</p>
+        </div>
+        <div class="cta-form">
+            <form id="lf-videos-form" novalidate>
+              <label class="fl" for="lf-videos-full_name">Name</label>
+              <input class="fi" id="lf-videos-full_name" name="full_name" type="text" autocomplete="name" required>
+              <label class="fl" for="lf-videos-email">Business email</label>
+              <input class="fi" id="lf-videos-email" name="email" type="email" autocomplete="email" required>
+              <label class="fl" for="lf-videos-company_name">Venue or company</label>
+              <input class="fi" id="lf-videos-company_name" name="company_name" type="text" autocomplete="organization">
+              <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn-primary" type="submit">Start the conversation</button>
+              <div class="lf-err" role="alert"></div>
+              <p class="note">By submitting, you agree to our <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. We use your details only to evaluate your site.</p>
+            </form>
+            <div class="cta-ok" id="lf-videos-ok" hidden>
+              <div class="ok-ic" aria-hidden="true">&#10003;</div>
+              <h2>Thanks. We have&nbsp;your&nbsp;details.</h2>
+              <p class="lede">Our team will review your site and reach out with&nbsp;next&nbsp;steps.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_footer_replica  TEMPORARY REPLICA of the live site footer.
+     The production page receives the footer from the theme. Remove before push.
+     ============================================================ --></main>
+
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-videos');
+  if(!r)return;
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);}});},{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  var so=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var strip=x.target.closest('.strip');if(strip)strip.classList.add('lines-on');x.target.classList.add('on');var n=x.target.querySelector('.stat-n');if(n&&n.dataset.count){var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;(function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p;n.textContent=Math.round(tgt*p)+sfx;if(p<1)requestAnimationFrame(step);})(performance.now());}so.unobserve(x.target);});},{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  setTimeout(function(){r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view');});r.querySelectorAll('.stat').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0){el.classList.add('on');var s=el.closest('.strip');if(s)s.classList.add('lines-on');}});},150);
+})();
+</script>
+<!-- [5] JavaScript: Beacon lead intake. Change only PAGE_KEY and CONTACT_TYPE to reuse on another page. -->
+<script>
+(function(){
+  var PAGE_KEY='videos';
+  var CONTACT_TYPE='venue_operator';
+  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
+  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
+  var form=document.getElementById('lf-videos-form');
+  if(!form)return;
+  var ok=document.getElementById('lf-videos-ok');
+  var btn=form.querySelector('button[type=submit]');var err=form.querySelector('.lf-err');var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function showErr(m){err.textContent=m;err.classList.add('show');}function clearErr(){err.textContent='';err.classList.remove('show');}
+  form.addEventListener('submit',function(ev){ev.preventDefault();clearErr();var name=form.full_name.value.trim();var email=form.email.value.trim();var company=form.company_name?form.company_name.value.trim():'';var honeypot=form.company_website.value.trim();form.full_name.classList.remove('bad');form.email.classList.remove('bad');
+    if(!name){form.full_name.classList.add('bad');showErr('Please enter your name.');return;}
+    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
+    btn.disabled=true;var label=btn.textContent;btn.textContent='Sending...';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':APIKEY},body:JSON.stringify({full_name:name,email:email,company_name:company,company_website:honeypot,page_key:PAGE_KEY,contact_type:CONTACT_TYPE,cta_label:label,page_url:window.location.href,referrer:document.referrer||''})}).then(function(res){return res.json().catch(function(){return {ok:res.ok};});}).then(function(data){if(data&&data.ok){form.setAttribute('hidden','');if(ok)ok.removeAttribute('hidden');}else{btn.disabled=false;btn.textContent=label;showErr('Something went wrong. Please try again in a moment.');}}).catch(function(){btn.disabled=false;btn.textContent=label;showErr('Network issue. Please try again in a moment.');});
+  });
+})();
+</script>

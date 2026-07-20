@@ -1,0 +1,108 @@
+<!-- LongFi snippet | lf-privacy.html | v1.10 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- [1] Google Fonts, load once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+<!-- [2] Page styles, scoped under #lf-privacy (no global leakage) -->
+<style>
+#lf-privacy{
+  --skyline:#244899; --teal:#1FA58E; --ink:#14172B; --body:#4A536B;
+  --muted:#7A8299; --line:#E6EAF2; --bg:#F6F8FC; --paper:#FFFFFF;
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-privacy),.e-con-inner:has(#lf-privacy),.elementor-widget-html:has(#lf-privacy),.elementor-widget-shortcode:has(#lf-privacy),.elementor-widget-container:has(#lf-privacy){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-privacy *{box-sizing:border-box;margin:0;padding:0}
+#lf-privacy{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.65;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-privacy a{color:var(--skyline);text-decoration:none}
+#lf-privacy a:hover{text-decoration:underline}
+#lf-privacy .wrap{max-width:820px;margin:0 auto;padding:64px 24px}
+@media(max-width:680px){#lf-privacy .wrap{padding:44px 18px}}
+#lf-privacy .eyebrow{display:inline-block;font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0B7A53;margin-bottom:10px}
+#lf-privacy h1{font-family:var(--head);font-size:clamp(28px,3.4vw,40px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--ink);margin-bottom:8px}
+#lf-privacy .meta{font-size:13px;color:var(--muted);margin-bottom:30px}
+#lf-privacy .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 16px rgba(36,72,153,.06);padding:36px 38px}
+@media(max-width:680px){#lf-privacy .card{padding:26px 22px}}
+#lf-privacy h2{font-family:var(--head);font-size:clamp(18px,2vw,22px);font-weight:700;color:var(--ink);line-height:1.2;margin:30px 0 10px}
+#lf-privacy h2:first-of-type{margin-top:0}
+#lf-privacy p{margin-bottom:14px}
+#lf-privacy ul{margin:0 0 14px 20px}
+#lf-privacy li{margin-bottom:8px}
+#lf-privacy .lead{font-size:17px;color:var(--ink)}
+#lf-privacy .divider{height:1px;background:var(--line);border:0;margin:26px 0}
+#lf-privacy .contact{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px 20px;font-size:15px;margin-top:8px}
+#lf-privacy .contact strong{color:var(--ink);font-family:var(--head)}
+</style>
+<!-- [3] Page content -->
+<main id="lf-privacy">
+  <div class="wrap">
+    <h1>Privacy&nbsp;Policy</h1>
+    <p class="meta">Effective June 24, 2026</p>
+
+    <div class="card">
+      <p class="lead">This policy explains what information we collect when you submit a form on our website, why we collect it, and how we use it. We keep this short and clear on purpose. If anything is unclear, contact us using the details at the bottom of this page.</p>
+
+      <h2>Who&nbsp;we&nbsp;are</h2>
+      <p>LongFi Solutions Inc. helps venues and partners use the Wi&#8209;Fi they already have to deliver better indoor cell connectivity. When this policy says "we," "us," or "LongFi," it refers to LongFi Solutions Inc.</p>
+
+      <h2>What&nbsp;we&nbsp;collect</h2>
+      <p>When you fill out a form on our site, we collect the details you choose to give us, which may include:</p>
+      <ul>
+        <li>Your name</li>
+        <li>Your business email</li>
+        <li>Your company or venue name</li>
+        <li>A phone number, if you provide one</li>
+      </ul>
+      <p>We also record which page of our website you submitted the form from, so we can understand your interest and respond in context.</p>
+
+      <h2>Why we&nbsp;collect&nbsp;it</h2>
+      <p>We use your information for a limited set of purposes:</p>
+      <ul>
+        <li>To evaluate your property or venue for compatibility with LongFi Connect</li>
+        <li>To evaluate the connectivity improvement for your site</li>
+        <li>To contact you about your inquiry and next steps</li>
+      </ul>
+
+      <h2>What we do&nbsp;not&nbsp;do</h2>
+      <p>We do not sell or rent your information. We do not share it for advertising, and we do not use it for anything beyond evaluating your site and communicating with you about LongFi. We treat the information you give us with care and only use it for the reasons above.</p>
+
+      <h2>Who can&nbsp;access&nbsp;it</h2>
+      <p>Your information is accessible to the LongFi team and to trusted service providers who help us operate our business, such as our customer relationship and communication tools. These providers are expected to protect your information and use it only to provide their services to us.</p>
+
+      <h2>How long we&nbsp;keep&nbsp;it</h2>
+      <p>We keep your information for as long as needed to evaluate your site, support our conversation with you, and meet our legal and operational requirements. You can ask us to remove your information at any time.</p>
+
+      <h2>Your&nbsp;choices</h2>
+      <p>You can ask us to access, correct, or delete the information you submitted. Just contact us using the details below and we will take care of it.</p>
+
+      <h2>Consent</h2>
+      <p>By submitting a form on our website, you agree to this privacy policy and to our use of your information as described here.</p>
+
+      <h2>Changes to&nbsp;this&nbsp;policy</h2>
+      <p>We may update this policy from time to time. When we do, we will revise the effective date at the top of this page.</p>
+
+      <hr class="divider">
+
+      <h2>Contact&nbsp;us</h2>
+      <p>If you have any questions about this policy or your information, reach out to us:</p>
+      <div class="contact">
+        <p style="margin:0"><strong>LongFi Solutions Inc.</strong><br>
+        5900 Balcones Drive #28666, Austin, TX 78731, United States<br>
+        Email: <a href="mailto:info@longfisolutions.com">info@longfisolutions.com</a></p>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:18px;margin-bottom:0">This policy is governed by the laws of the State of Texas.</p>
+    </div>
+  </div>
+</main>

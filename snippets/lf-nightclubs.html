@@ -1,0 +1,605 @@
+<!-- LongFi snippet | lf-nightclubs.html | v1.11 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- [1] Google Fonts, load once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+<!-- [2] Page styles, scoped under #lf-nightclubs (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   Persona hooks (.dark-band, .h-grad, .h-shine, .btn-primary,
+   light eyebrow accent) are tinted for the Nightclubs persona.
+   ============================================================ */
+#lf-nightclubs{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-nightclubs),.e-con-inner:has(#lf-nightclubs),.elementor-widget-html:has(#lf-nightclubs),.elementor-widget-shortcode:has(#lf-nightclubs),.elementor-widget-container:has(#lf-nightclubs){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-nightclubs *{box-sizing:border-box;margin:0;padding:0}
+#lf-nightclubs{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-nightclubs{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-nightclubs img{max-width:100%;height:auto;display:block}
+#lf-nightclubs a{color:var(--skyline);text-decoration:none}
+#lf-nightclubs h1,#lf-nightclubs h2,#lf-nightclubs h3,#lf-nightclubs h4,#lf-nightclubs .eyebrow,#lf-nightclubs .btn,#lf-nightclubs .stat-n{font-family:var(--head)}
+#lf-nightclubs .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){#lf-nightclubs .wrap{padding:0 16px}}
+/* Compact spec: tighter section rhythm */
+#lf-nightclubs section{padding:64px 0}
+@media(max-width:680px){#lf-nightclubs section{padding:48px 0}}
+
+/* Persona accent for light-background eyebrows: deep nightlife purple-magenta */
+#lf-nightclubs .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#7A1C95;margin-bottom:12px}
+#lf-nightclubs .on-dark .eyebrow{color:#E3B6F0}
+#lf-nightclubs h1,#lf-nightclubs h2,#lf-nightclubs h3{text-wrap:balance}
+#lf-nightclubs p{text-wrap:pretty} /* prevents orphaned last lines per the copywriting rule */
+/* Compact spec: section H2s step down. Impact from content and color, never size. */
+#lf-nightclubs h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+#lf-nightclubs .on-dark h2{color:var(--white)}
+/* Designed section titles on light backgrounds: gradient depth, never plain black.
+   Nightclubs persona: ink to electric purple-magenta. */
+#lf-nightclubs .h-grad{background:linear-gradient(115deg,var(--ink) 6%,#6E1F8A 46%,#A12FC4 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 12px rgba(161,47,196,.24));padding-bottom:.12em;margin-bottom:.1em} /* padding protects descenders from gradient clipping */
+/* SIGNAL GLEAM. Core LongFi animation: a slow light sweep across one power
+   word or headline per page. Nightclubs tint: electric purple-magenta, mid stop
+   one step below white (#F4DBFA), 12px glow at .2. Two gleams max on this page. */
+#lf-nightclubs .h-shine{background:linear-gradient(115deg,#7A1C95 0%,#C055DD 35%,#F4DBFA 50%,#C055DD 65%,#7A1C95 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-nightclubs 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(161,47,196,.2));padding-bottom:.12em}
+#lf-nightclubs .lede{font-size:16.5px;line-height:1.6;max-width:680px}
+#lf-nightclubs .on-dark .lede{color:rgba(255,255,255,.9)}
+
+#lf-nightclubs .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-nightclubs 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-nightclubs{from{background-position:0% center}to{background-position:100% center}}
+
+#lf-nightclubs .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Low saturation, permanent soft ambient glow. */
+#lf-nightclubs .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-nightclubs .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: Nightclubs runs the electric purple-magenta variant with white text. */
+#lf-nightclubs .btn-primary{
+  background:linear-gradient(135deg,#C055DD 0%,#A12FC4 100%);
+  color:#fff;
+  border-color:rgba(224,150,245,.6);
+  box-shadow:0 0 26px rgba(161,47,196,.55),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.25);
+}
+#lf-nightclubs .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(192,85,221,.7),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.3)}
+#lf-nightclubs .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-nightclubs .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-nightclubs .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-nightclubs .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-nightclubs .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+
+/* Nightclubs persona dark band: near-black purple gradient within one hue family,
+   purple-magenta radial glow only. */
+#lf-nightclubs .dark-band{background:linear-gradient(150deg,#160F22 0%,#2A1140 58%,#420E52 118%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-nightclubs .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(560px circle at 88% 4%, rgba(161,47,196,.12), transparent 58%),radial-gradient(480px circle at 6% 96%, rgba(161,47,196,.08), transparent 58%);pointer-events:none}
+#lf-nightclubs .dark-band>.wrap{position:relative;z-index:1}
+
+#lf-nightclubs .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-nightclubs .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+
+/* Scroll reveal */
+#lf-nightclubs .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-nightclubs .rv.in-view{opacity:1;transform:none}
+#lf-nightclubs .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-nightclubs .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-nightclubs .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-nightclubs .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-nightclubs .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-nightclubs .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-nightclubs .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-nightclubs .rv,#lf-nightclubs .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-nightclubs .metal,#lf-nightclubs .h-shine{animation:none}
+  #lf-nightclubs{scroll-behavior:auto}
+}
+
+/* ============================================================
+   SNIPPET: lf_nav_v3  (slim glassmorphism bar, shrink-on-scroll,
+   micro-interactions. TEMPORARY REPLICA; theme owns the real nav.
+   This nav + the footer below will be extracted to their own Woody
+   snippet code once approved, so the whole site can migrate to it.)
+   ============================================================ */
+/* Solid, opaque bar color so the bar and its dropdowns are always identical,
+   never shifted by the light page at the top vs the dark hero below. */
+
+
+
+
+
+
+
+
+
+
+
+/* center-out underline on hover */
+
+
+/* caret that flips when the menu opens */
+
+
+/* Dropdown reads as the bar extending downward: same dark frosted color, no gap,
+   attached to the bar, rounded only at the bottom, light links. */
+
+
+
+
+
+/* dropdown icons: muted by default, brighten to gold and snap-pop on hover */
+
+
+/* Compact refined CTA: small frosted pill with a nudging arrow, not the big silver button */
+
+
+
+
+
+
+
+
+
+
+
+@keyframes navDrop-lf-nightclubs{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+
+
+@media(max-width:920px){
+  
+  
+}
+@media(prefers-reduced-motion:reduce){
+  
+  
+}
+
+/* ============================================================
+   SNIPPET: lf_hero_nightclubs_v2  (split hero on the persona dark band)
+   ============================================================ */
+#lf-nightclubs .hero{padding:84px 0 56px}
+#lf-nightclubs .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:end}
+@media(max-width:920px){#lf-nightclubs .hero-grid{grid-template-columns:1fr;gap:34px}#lf-nightclubs .hero{padding:60px 0 44px}}
+#lf-nightclubs .hero .eyebrow{color:#E3B6F0;background:rgba(161,47,196,.1);border:1px solid rgba(192,85,221,.35);padding:6px 14px;border-radius:999px}
+/* Compact spec: hero one step smaller than the prior industry hero */
+#lf-nightclubs .hero h1{font-size:clamp(28px,3.4vw,42px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--white);margin-bottom:14px}
+#lf-nightclubs .hero .lede{color:rgba(255,255,255,.9);font-size:17px;max-width:540px}
+#lf-nightclubs .hero-emph{font-family:var(--head);font-weight:700;font-size:17px;color:var(--white);margin-top:12px}
+#lf-nightclubs .hero-img{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14)}
+#lf-nightclubs .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-nightclubs .hero-img:hover img{transform:scale(1.04)}
+
+/* ============================================================
+   SNIPPET: lf_statstrip_nightclubs_v2  (industry-page layout variation:
+   slim hairline stat strip instead of the homepage stat cards)
+   ============================================================ */
+#lf-nightclubs .strip-band{padding:0 0 60px}
+#lf-nightclubs .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid transparent;border-bottom:1px solid transparent;transition:border-color .6s ease}
+#lf-nightclubs .strip.lines-on{border-top-color:rgba(192,85,221,.28);border-bottom-color:rgba(192,85,221,.28)}
+@media(max-width:920px){#lf-nightclubs .strip{grid-template-columns:repeat(2,1fr)}}
+#lf-nightclubs .stat{padding:18px 14px;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;border-right:1px solid rgba(192,85,221,.18)}
+#lf-nightclubs .stat:last-child{border-right:0}
+@media(max-width:920px){#lf-nightclubs .stat:nth-child(2){border-right:0}#lf-nightclubs .stat:nth-child(-n+2){border-bottom:1px solid rgba(192,85,221,.18)}}
+#lf-nightclubs .stat.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){#lf-nightclubs .stat{opacity:1;transform:none;transition:none}}
+/* Numbers run smaller with a professional ambient glow; labels sit just below. */
+#lf-nightclubs .stat-n{font-size:clamp(21px,2.2vw,29px);font-weight:700;line-height:1.1;filter:drop-shadow(0 0 14px rgba(227,182,240,.35))}
+#lf-nightclubs .stat-l{font-size:12px;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.4}
+
+/* ============================================================
+   SNIPPET: lf_pain_nightclubs_v2
+   ============================================================ */
+#lf-nightclubs .pain{background:var(--white)}
+#lf-nightclubs .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+@media(max-width:920px){#lf-nightclubs .pain-grid{grid-template-columns:1fr}}
+#lf-nightclubs .pain-card{padding:24px 22px;display:flex;flex-direction:column;gap:14px}
+/* Icon-scale companions, always fully contained, never cropped */
+#lf-nightclubs .pain-card .ph{width:60px;height:60px;border-radius:14px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:10px}
+#lf-nightclubs .pain-card .ph img{width:100%;height:100%;object-fit:contain}
+#lf-nightclubs .pain-card p{font-size:15px;margin:0}
+
+/* ============================================================
+   SNIPPET: lf_connect_nightclubs_v2  (dark band, the wordmark is the star)
+   ============================================================ */
+#lf-nightclubs .connect-head{max-width:820px}
+/* Compact spec: the LongFi Connect star steps down hard from the prior size */
+#lf-nightclubs .connect-star{font-size:clamp(30px,4vw,46px);font-weight:800;line-height:1.06;letter-spacing:-.02em;filter:drop-shadow(0 0 24px rgba(227,182,240,.26))}
+#lf-nightclubs .connect-sub{font-family:var(--head);font-weight:600;font-size:clamp(15px,1.7vw,18px);color:var(--white);margin:14px 0 0}
+#lf-nightclubs .cfeat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+@media(max-width:920px){#lf-nightclubs .cfeat-grid{grid-template-columns:1fr}}
+#lf-nightclubs .cfeat{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:18px 20px;transition:transform .25s ease,background .25s ease}
+#lf-nightclubs .cfeat:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+#lf-nightclubs .cfeat .ph{width:58px;height:58px;flex:none;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;padding:8px}
+/* contain, never cover: product and icon imagery must fit fully inside its container */
+#lf-nightclubs .cfeat .ph img{width:100%;height:100%;object-fit:contain}
+#lf-nightclubs .cfeat h3{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
+#lf-nightclubs .cfeat p{font-size:14px;color:rgba(255,255,255,.85);margin:0 0 8px}
+#lf-nightclubs .cfeat a{font-family:var(--head);font-size:13px;font-weight:600;color:#D98BF0}
+#lf-nightclubs .cfeat a:hover{text-decoration:underline}
+#lf-nightclubs .connect-close{font-family:var(--head);font-weight:600;font-size:15.5px;color:rgba(255,255,255,.92);max-width:760px;margin:32px auto 0;text-align:center}
+
+/* ============================================================
+   SNIPPET: lf_compat_monetize_nightclubs_v2
+   Round 8 merge: Compatibility + Monetization in ONE compact dual band.
+   Images shrink dramatically to icon-scale companions, fully contained.
+   ============================================================ */
+#lf-nightclubs .dualstrip{background:var(--bg)}
+#lf-nightclubs .dual{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+@media(max-width:920px){#lf-nightclubs .dual{grid-template-columns:1fr}}
+#lf-nightclubs .dcard{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft);padding:28px 30px;display:flex;flex-direction:column;height:100%;transition:transform .25s ease,box-shadow .25s ease}
+#lf-nightclubs .dcard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+#lf-nightclubs .dcard-head{display:flex;gap:20px;align-items:stretch}
+#lf-nightclubs .dcard-head>div{flex:1}
+/* Round 8b: no container behind the icon; icon spans full eyebrow+headline height */
+#lf-nightclubs .dcard-ic{flex:none;display:flex;align-items:center;justify-content:center}
+#lf-nightclubs .dcard-ic img{height:100%;width:auto;max-width:130px;object-fit:contain}
+#lf-nightclubs .dcard h2{font-size:clamp(18px,1.9vw,23px);margin-bottom:0}
+#lf-nightclubs .dcard .lede{font-size:14.5px;max-width:none;margin-top:14px}
+#lf-nightclubs .dcard .lede + .lede{margin-top:8px}
+/* CTA pinned to the bottom so both cards' buttons sit on the same baseline */
+#lf-nightclubs .dcard .btn-row{margin-top:auto;padding-top:18px}
+
+/* ============================================================
+   SNIPPET: lf_recap_cta_nightclubs_v2  (one dark band: recap, then the ask)
+   ============================================================ */
+#lf-nightclubs .recap .kicker{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E3B6F0;text-align:center;margin-bottom:26px}
+#lf-nightclubs .recap-hero{text-align:center;max-width:880px;margin:0 auto}
+/* Compact spec: recap statement sized down, the shout goes */
+#lf-nightclubs .recap-hero h3{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+#lf-nightclubs .recap-hero p{font-family:var(--head);font-size:clamp(15px,1.8vw,18px);font-weight:500;color:rgba(255,255,255,.7);margin:12px 0 0}
+#lf-nightclubs .cta-panel{margin-top:40px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 44px rgba(227,182,240,.08)}
+@media(max-width:920px){#lf-nightclubs .cta-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}}
+#lf-nightclubs .cta-panel h2{font-size:clamp(20px,2.2vw,27px);margin-bottom:10px}
+#lf-nightclubs .cta-panel .lede{font-size:15px}
+#lf-nightclubs .cta-form .fl{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#E3B6F0;margin:14px 0 6px}
+#lf-nightclubs .cta-form .fl:first-child{margin-top:0}
+#lf-nightclubs .cta-form .fi{height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16)}
+#lf-nightclubs .cta-form .btn{width:100%;margin-top:20px}
+#lf-nightclubs .cta-form .note{font-size:12px;color:rgba(255,255,255,.55);margin-top:12px;text-align:center}
+
+/* ============================================================
+   SNIPPET: lf_footer_replica  (TEMPORARY REPLICA, theme owns the real footer)
+   ============================================================ */
+
+
+
+
+
+
+
+
+@media(max-width:1020px){}
+@media(max-width:680px){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Beacon lead form fields */
+#lf-nightclubs .cta-form .fi{display:block;width:100%;height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body-font);font-size:15px;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-nightclubs .cta-form .fi::placeholder{color:rgba(255,255,255,.45)}
+#lf-nightclubs .cta-form .fi:focus{outline:none;border-color:rgba(47,184,136,.7);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(47,184,136,.18)}
+#lf-nightclubs .cta-form .fi.bad{border-color:rgba(255,120,120,.8);box-shadow:0 0 0 3px rgba(255,120,120,.16)}
+#lf-nightclubs .cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+#lf-nightclubs .cta-form .btn[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-nightclubs .cta-form .note a{color:#8FE3C2}
+#lf-nightclubs .cta-form .note a:hover{text-decoration:underline}
+#lf-nightclubs .cta-form .lf-err{display:none;font-size:13px;color:#FFC2C2;margin-top:12px;text-align:center}
+#lf-nightclubs .cta-form .lf-err.show{display:block}
+#lf-nightclubs .cta-ok{text-align:center;padding:8px 4px}
+#lf-nightclubs .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
+#lf-nightclubs .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
+#lf-nightclubs .cta-ok .lede{font-size:15px;margin:0 auto}
+</style>
+<!-- [3] Page content -->
+<main id="lf-nightclubs"><!-- ============================================================
+     SNIPPET: lf_nav_replica  TEMPORARY REPLICA of the live site nav.
+     The production page receives nav from the theme. Remove before push.
+     ============================================================ -->
+
+
+<!-- ============================================================
+     SNIPPET: lf_hero_nightclubs_v2 + lf_statstrip_nightclubs_v2
+     (single persona dark surface; the slim hairline stat strip is this
+     page's layout variation versus the restaurants industry pattern)
+     ============================================================ -->
+<div class="dark-band on-dark">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="rv-stagger">
+        <h1 class="metal">Stronger indoor cell connectivity for <span class="h-shine">nightclubs</span></h1>
+        <p class="lede">Bring excellent indoor cell connectivity across the club using the Wi&#8209;Fi you&nbsp;already&nbsp;have.</p>
+        <p class="hero-emph">At no cost and without interruption.</p>
+        <div class="btn-row">
+          <a class="btn btn-gold" href="#Nightclub">Improve my nightclub&rsquo;s connectivity</a>
+          <a class="btn btn-ghost-dark" href="#connect">Learn how it works</a>
+        </div>
+      </div>
+      <div class="hero-img rv">
+        <img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/xp-share.png" alt="Guests connected on their phones inside a busy nightclub with stage lights and a packed dance floor">
+      </div>
+    </div>
+  </section>
+
+  <section class="strip-band" style="padding-top:0">
+    <div class="wrap">
+      <!-- Approved proof points (CLAUDE.md); mockup-only addition flagged in content_source_v2.md -->
+      <div class="strip">
+        <div class="stat"><div class="stat-n metal" data-count="200" data-suffix="+">&nbsp;</div><div class="stat-l">Active venues across the U.S.</div></div>
+        <div class="stat"><div class="stat-n metal" data-count="130" data-suffix="+ TB">&nbsp;</div><div class="stat-l">Mobile data transferred monthly</div></div>
+        <div class="stat"><div class="stat-n metal" data-count="7" data-suffix="M+">&nbsp;</div><div class="stat-l">Mobile users connected monthly</div></div>
+        <div class="stat"><div class="stat-n metal" data-count="70" data-suffix="%+">&nbsp;</div><div class="stat-l">Mobile subscribers supported on day one</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_pain_nightclubs_v2
+     ============================================================ -->
+<section class="pain">
+  <div class="wrap">
+    <div class="rv" style="max-width:760px">
+      <h2 class="h-grad">The hidden cost of<br>poor&nbsp;indoor&nbsp;connectivity</h2>
+    </div>
+    <div class="pain-grid rv-stagger">
+      <div class="card pain-card">
+        <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/smartphone-no-signal-indoor-venue-connectivity-582x1024.png" alt="Smartphone illustration showing buffering spinner representing poor indoor cell signal" loading="lazy"></div>
+        <p>Guests struggle to post stories, send messages, or stay connected reliably across crowded nightlife spaces.</p>
+      </div>
+      <div class="card pain-card">
+        <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/thumbs-down-icon-poor-indoor-connectivity-experience.png" alt="Thumbs-down icon representing negative guest experience from poor wireless connectivity" loading="lazy"></div>
+        <p>Poor indoor connectivity slows service at the bar and affects guest satisfaction and repeat visits.</p>
+      </div>
+      <div class="card pain-card">
+        <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/wifi-signal-icon-intermittent-indoor-wireless-coverage.png" alt="Wi&#8209;Fi signal icon with broken dotted arcs showing intermittent indoor wireless coverage" loading="lazy"></div>
+        <p>Weak indoor coverage is a common gap guests notice, while the Wi&#8209;Fi already in place sits underused.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_connect_nightclubs_v2  (dark band)
+     ============================================================ -->
+<div class="dark-band on-dark" id="connect">
+  <section>
+    <div class="wrap">
+      <div class="connect-head rv-stagger">
+        <div class="connect-star h-shine">LongFi Connect</div>
+        <p class="connect-sub">The simplest way to bring reliable indoor connectivity&nbsp;to&nbsp;nightclubs.</p>
+      </div>
+      <div class="cfeat-grid rv-stagger">
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/02/full-bars-cell-signal-checkmark-indoor-connectivity-icon-1024x993.png" alt="Full cellular signal bars with green checkmark icon representing excellent indoor connectivity" loading="lazy"></div>
+          <div>
+            <h3>Excellent indoor&nbsp;cell&nbsp;connectivity</h3>
+            <p>Guests get reliable cellular service throughout dance floors, VIP areas, and crowded spaces where outdoor cell towers struggle to reach indoors.</p>
+            <a href="https://www.longfisolutions.com/how-it-works/">Learn how it works&rsaquo;</a>
+          </div>
+        </div>
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/managed-security-shield-network-protection-icon-985x1024.png" alt="Pink shield with checkmark inside circular tech emblem representing managed network security" loading="lazy"></div>
+          <div>
+            <h3>Fully managed,&nbsp;without&nbsp;disruption</h3>
+            <p>LongFi handles the initial assessment, implementation, monitoring, and optimization without downtime or changes to your nightclub operations.</p>
+            <a href="https://www.longfisolutions.com/how-it-works/#proven">See the 4-step process&rsaquo;</a>
+          </div>
+        </div>
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Full cellular signal bars with a checkmark representing strong indoor connectivity for guests" loading="lazy"></div>
+          <div>
+            <h3>Bar spend and&nbsp;dwell&nbsp;time</h3>
+            <p>Guests who stay connected tend to stay later, and longer nights are associated with higher bar spend.</p>
+            <a href="https://www.longfisolutions.com/connectivity-value/">Check if your venue qualifies&rsaquo;</a>
+          </div>
+        </div>
+        <div class="cfeat">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/carrier-grade-security-signal-bars-shield-icon-1007x1024.png" alt="Blue teal signal bars with security shield and lightning bolt icon for carrier-grade connectivity" loading="lazy"></div>
+          <div>
+            <h3>Carrier-Grade&nbsp;Security</h3>
+            <p>Guest mobile traffic is securely isolated from your POS and business systems using industry-standard, carrier-certified protocols.</p>
+            <a href="https://www.longfisolutions.com/how-it-works/#secure">Explore security details&rsaquo;</a>
+          </div>
+        </div>
+      </div>
+      <p class="connect-close rv">Designed for high-density nightlife environments where reliable connectivity during peak hours is critical.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_compat_monetize_nightclubs_v2
+     Round 8 merge of Compatibility + Monetization into one compact band.
+     ============================================================ -->
+  <!-- ===== LongFi matched case study feature ===== -->
+  <div id="lfcs">
+    <style>
+#lfcs{background:linear-gradient(180deg,#FFFFFF,#F1F4FB);border-top:1px solid #E6EAF2;padding:60px 0;font-family:'Poppins',sans-serif}
+#lfcs *{box-sizing:border-box}
+#lfcs .lfx-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+#lfcs .lfx-card{display:grid;grid-template-columns:.70fr 1.30fr;gap:0;background:#fff;border:1px solid #E6EAF2;border-radius:18px;overflow:hidden;box-shadow:0 10px 34px rgba(36,72,153,.10)}
+@media(max-width:820px){#lfcs .lfx-card{grid-template-columns:1fr}}
+#lfcs .lfx-img{position:relative;min-height:221px;background:#0F1122;overflow:hidden}
+#lfcs .lfx-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#lfcs .lfx-badge{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.94);border-radius:9px;padding:6px 11px;box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center}
+#lfcs .lfx-badge img{height:20px;width:auto;display:block}
+#lfcs .lfx-badge .jz{font-family:'Poppins';font-weight:800;font-size:13px;color:#9a7a15}
+#lfcs .lfx-c{padding:32px 34px}
+@media(max-width:820px){#lfcs .lfx-c{padding:24px 22px}}
+#lfcs .lfx-ey{display:inline-block;font-family:'Poppins';font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin:0 0 8px !important}
+#lfcs .lfx-h{font-family:'Poppins';font-size:clamp(20px,2.3vw,26px) !important;font-weight:800 !important;color:#14172B !important;line-height:1.14 !important;margin:0 0 14px !important}
+#lfcs .lfx-q{font-family:'Nunito';font-size:16px;font-style:italic;color:#39435C;line-height:1.55;margin:0 0 16px !important}
+#lfcs .lfx-stats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+#lfcs .lfx-chip{font-family:'Poppins';font-size:12px;font-weight:700;color:#14172B;background:#F2F5FB;border:1px solid #E6EAF2;border-radius:999px;padding:6px 13px}
+#lfcs .lfx-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+#lfcs .lfx-p{display:inline-flex;align-items:center;gap:7px;font-family:'Poppins';font-size:13px;font-weight:600;color:#fff !important;padding:12px 22px;border-radius:12px;text-decoration:none !important;box-shadow:0 8px 20px rgba(36,72,153,.26);transition:transform .2s}
+#lfcs .lfx-p:hover{transform:translateY(-2px)}
+#lfcs .lfx-g{font-family:'Poppins';font-size:13px;font-weight:600;color:#244899 !important;text-decoration:none !important}
+#lfcs .lfx-g:hover{text-decoration:underline !important}
+#lfcs .lfx-rev{opacity:0;transform:translateY(20px);filter:blur(3px);transition:opacity .7s,transform .7s,filter .7s}
+#lfcs .lfx-rev.in{opacity:1;transform:none;filter:none}
+@media(prefers-reduced-motion:reduce){#lfcs .lfx-rev{opacity:1 !important;transform:none !important;filter:none !important}}
+</style>
+    <div class="lfx-wrap">
+      <div class="lfx-card lfx-rev" style="border-left:5px solid #1FA58E">
+        <div class="lfx-img"><img src="data:image/jpeg;base64,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" alt="SILO, Brooklyn: guests connect and pay without&nbsp;stepping&nbsp;outside." loading="lazy" decoding="async"><span class="lfx-badge"><img src="data:image/png;base64,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" alt="SILO Brooklyn"></span></div>
+        <div class="lfx-c">
+          <span class="lfx-ey" style="color:#12876f">Case Study</span>
+          <h2 class="lfx-h">SILO, Brooklyn: guests connect and pay without&nbsp;stepping&nbsp;outside.</h2>
+          <p class="lfx-q">&ldquo;Guests would lose signal right when they needed it, sometimes stepping outside just to pay their tab. Since turning on LongFi Connect, that problem&nbsp;is&nbsp;gone.&rdquo;</p>
+          <div class="lfx-btns"><a class="lfx-p" style="background:linear-gradient(135deg,#1FA58E,#1FA58Ecc)" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/">Read the case study &rarr;</a><a class="lfx-g" href="https://www.longfisolutions.com/case-studies/">See all case studies</a></div>
+        </div>
+      </div>
+    </div>
+    <script>
+(function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){r.querySelectorAll('.lfx-rev').forEach(function(e){e.classList.add('in');});return;}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -10% 0px'});
+ r.querySelectorAll('.lfx-rev').forEach(function(e){io.observe(e);});
+ setTimeout(function(){r.querySelectorAll('.lfx-rev').forEach(function(e){var c=e.getBoundingClientRect();if(c.top<innerHeight&&c.bottom>0)e.classList.add('in');});},150);})();
+</script>
+  </div>
+
+  <section class="dualstrip">
+  <div class="wrap">
+    <div class="dual rv-stagger">
+      <div class="dcard">
+        <div class="dcard-head">
+          <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/enterprise-wifi-access-points-ubiquiti-ruckus-mist-compatible-842x1024.png" alt="Enterprise Wi&#8209;Fi access points from Ubiquiti, Ruckus, and Juniper Mist compatible with LongFi Connect" loading="lazy"></div>
+          <div>
+            <h2 class="h-grad">Use your nightclub&rsquo;s current&nbsp;Wi&#8209;Fi&nbsp;network</h2>
+          </div>
+        </div>
+        <p class="lede">If your nightclub uses enterprise-grade Wi&#8209;Fi systems such as UniFi, Meraki, Aruba, Ruckus, Cisco, Juniper Mist, or other Passpoint-compatible systems already supporting POS systems, guest Wi&#8209;Fi, and high-density crowds, your venue is likely ready&nbsp;to&nbsp;start.</p>
+        <p class="lede">No hardware additions, and no changes to how your network is&nbsp;used&nbsp;today.</p>
+        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
+      </div>
+      <div class="dcard">
+        <div class="dcard-head">
+          <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Signal bars rising over a Wi&#8209;Fi symbol representing stronger indoor cell coverage" loading="lazy"></div>
+          <div>
+            <h2 class="h-grad">When connectivity works, the whole club&nbsp;works&nbsp;better</h2>
+          </div>
+        </div>
+        <p class="lede">Major carriers work with LongFi to serve their subscribers indoors, and LongFi Connect carries that traffic securely on the Wi&#8209;Fi you already have during busy nights and&nbsp;peak&nbsp;events.</p>
+        <p class="lede">Guests stay connected and stay later, they post and tag while still on site, and tabs and mobile payments clear on the first try. The benefits start on&nbsp;day&nbsp;one.</p>
+        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">Check if your venue qualifies</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SNIPPET: lf_recap_cta_nightclubs_v2  (recap statement flowing into the ask)
+     ============================================================ -->
+<div class="dark-band on-dark" id="Nightclub">
+  <section class="recap">
+    <div class="wrap">
+      <div class="kicker rv">Last call</div>
+      <div class="recap-hero rv">
+        <h3 class="metal">Ready to improve your nightclub&rsquo;s&nbsp;cell&nbsp;connectivity?</h3>
+        <p>At no cost and without interruption.</p>
+      </div>
+      <div class="cta-panel rv">
+        <div>
+          <h2>Excellent indoor cell connectivity for the nightclub, on the Wi&#8209;Fi already&nbsp;in&nbsp;place.</h2>
+          <p class="lede">Tell us about your nightclub and we&rsquo;ll confirm compatibility and show how LongFi Connect works at no cost and without disruption to&nbsp;your&nbsp;operations.</p>
+        </div>
+        <div class="cta-form">
+            <form id="lf-nightclubs-form" novalidate>
+              <label class="fl" for="lf-nightclubs-full_name">Name</label>
+              <input class="fi" id="lf-nightclubs-full_name" name="full_name" type="text" autocomplete="name" required>
+              <label class="fl" for="lf-nightclubs-email">Business email</label>
+              <input class="fi" id="lf-nightclubs-email" name="email" type="email" autocomplete="email" required>
+              <label class="fl" for="lf-nightclubs-company_name">Venue or company</label>
+              <input class="fi" id="lf-nightclubs-company_name" name="company_name" type="text" autocomplete="organization">
+              <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn-primary" type="submit">Improve my nightclub&rsquo;s connectivity</button>
+              <div class="lf-err" role="alert"></div>
+              <p class="note">By submitting, you agree to our <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. We use your details only to evaluate your site.</p>
+            </form>
+            <div class="cta-ok" id="lf-nightclubs-ok" hidden>
+              <div class="ok-ic" aria-hidden="true">&#10003;</div>
+              <h2>Thanks. We have&nbsp;your&nbsp;details.</h2>
+              <p class="lede">Our team will review your site and reach out with&nbsp;next&nbsp;steps.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================================================
+     SNIPPET: lf_footer_replica  TEMPORARY REPLICA of the live site footer.
+     The production page receives the footer from the theme. Remove before push.
+     ============================================================ -->
+
+</main>
+
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-nightclubs');
+  if(!r)return;
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);}});},{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  var so=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var strip=x.target.closest('.strip');if(strip)strip.classList.add('lines-on');x.target.classList.add('on');var n=x.target.querySelector('.stat-n');if(n&&n.dataset.count){var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;(function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p;n.textContent=Math.round(tgt*p)+sfx;if(p<1)requestAnimationFrame(step);})(performance.now());}so.unobserve(x.target);});},{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  setTimeout(function(){r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view');});r.querySelectorAll('.stat').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0){el.classList.add('on');var s=el.closest('.strip');if(s)s.classList.add('lines-on');}});},150);
+})();
+</script>
+<!-- [5] JavaScript: Beacon lead intake. Change only PAGE_KEY and CONTACT_TYPE to reuse on another page. -->
+<script>
+(function(){
+  var PAGE_KEY='nightclubs';
+  var CONTACT_TYPE='venue_operator';
+  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
+  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
+  var form=document.getElementById('lf-nightclubs-form');
+  if(!form)return;
+  var ok=document.getElementById('lf-nightclubs-ok');
+  var btn=form.querySelector('button[type=submit]');var err=form.querySelector('.lf-err');var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function showErr(m){err.textContent=m;err.classList.add('show');}function clearErr(){err.textContent='';err.classList.remove('show');}
+  form.addEventListener('submit',function(ev){ev.preventDefault();clearErr();var name=form.full_name.value.trim();var email=form.email.value.trim();var company=form.company_name?form.company_name.value.trim():'';var honeypot=form.company_website.value.trim();form.full_name.classList.remove('bad');form.email.classList.remove('bad');
+    if(!name){form.full_name.classList.add('bad');showErr('Please enter your name.');return;}
+    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
+    btn.disabled=true;var label=btn.textContent;btn.textContent='Sending...';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':APIKEY},body:JSON.stringify({full_name:name,email:email,company_name:company,company_website:honeypot,page_key:PAGE_KEY,contact_type:CONTACT_TYPE,cta_label:label,page_url:window.location.href,referrer:document.referrer||''})}).then(function(res){return res.json().catch(function(){return {ok:res.ok};});}).then(function(data){if(data&&data.ok){form.setAttribute('hidden','');if(ok)ok.removeAttribute('hidden');}else{btn.disabled=false;btn.textContent=label;showErr('Something went wrong. Please try again in a moment.');}}).catch(function(){btn.disabled=false;btn.textContent=label;showErr('Network issue. Please try again in a moment.');});
+  });
+})();
+</script>

@@ -31,6 +31,7 @@
 #lfNav .nav-cs>a{background:linear-gradient(110deg,#ffffff 0%,#ffffff 24%,#FFEFB0 40%,#FFD23F 50%,#FFEFB0 60%,#ffffff 76%,#ffffff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:csGleam 3s ease-in-out infinite alternate}
 @keyframes csGleam{from{background-position:0% center}to{background-position:100% center}}
 @media(prefers-reduced-motion:reduce){ #lfNav .nav-cs>a{animation:none;-webkit-text-fill-color:currentColor;color:rgba(255,255,255,.85)} }
+#lfNav .nav-cs .caret{border-right-color:#FFD27A;border-bottom-color:#FFD27A;opacity:.85}
 
 #lfNav .nav-item .caret{width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-1px);opacity:.7;transition:transform .25s ease}
 #lfNav .nav-item:hover .caret,#lfNav .nav-item:focus-within .caret{transform:rotate(-135deg) translateY(-1px)}
@@ -112,7 +113,7 @@ body.lf-nav-lock{overflow:hidden!important}
           <a href="https://www.longfisolutions.com/gyms/"><i data-lucide="dumbbell"></i>Gyms and Wellness Centers</a>
           <a href="https://www.longfisolutions.com/hotels/"><i data-lucide="bed-double"></i>Hotels</a>
           <a href="https://www.longfisolutions.com/nightclubs/"><i data-lucide="disc-3"></i>Nightclubs</a>
-          <a href="https://www.longfisolutions.com/casinos/"><i data-lucide="dice-5"></i>Casinos</a><a href="https://www.longfisolutions.com/offices/"><i data-lucide="building-2"></i>Offices</a>
+          <a href="https://www.longfisolutions.com/casinos/"><i data-lucide="dice-5"></i>Casinos</a><a href="https://www.longfisolutions.com/corporate-offices/"><i data-lucide="building-2"></i>Corporate Offices</a>
           <a href="https://www.longfisolutions.com/event-centers/"><i data-lucide="party-popper"></i>Event Centers</a>
           <a href="https://www.longfisolutions.com/education-campuses/"><i data-lucide="graduation-cap"></i>Education Campuses</a>
           <a href="https://www.longfisolutions.com/hospital-clinics/"><i data-lucide="heart-pulse"></i>Hospitals and Clinics</a>
@@ -120,7 +121,18 @@ body.lf-nav-lock{overflow:hidden!important}
           <a href="https://www.longfisolutions.com/airports/"><i data-lucide="plane"></i>Airports</a>
         </div>
       </li>
-      <li class="nav-item nav-cs"><a href="https://www.longfisolutions.com/case-studies/">Case Studies</a></li>
+      <li class="nav-item nav-cs has-drop">
+        <a href="https://www.longfisolutions.com/case-studies/">Case Studies<span class="caret"></span></a>
+        <div class="nav-drop">
+          <a href="https://www.longfisolutions.com/case-studies/"><i data-lucide="layout-grid"></i>All Case Studies</a>
+          <a href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><i data-lucide="martini"></i>SILO, Brooklyn</a>
+          <a href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><i data-lucide="sunset"></i>Sunset Rooftop, Houston</a>
+          <a href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><i data-lucide="music"></i>JazzFest 2026, New Orleans</a>
+          <a href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><i data-lucide="disc-3"></i>Bauhaus, Houston</a>
+          <a href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><i data-lucide="party-popper"></i>Mardi Gras 2026, New Orleans</a>
+          <a href="https://www.longfisolutions.com/case-studies/corporate-offices/"><i data-lucide="building-2"></i>Corporate Offices</a>
+        </div>
+      </li>
       <li class="nav-item has-drop">
         <a href="#">Partners<span class="caret"></span></a>
         <div class="nav-drop">
@@ -181,7 +193,7 @@ body.lf-nav-lock{overflow:hidden!important}
           <a href="https://www.longfisolutions.com/gyms/"><i data-lucide="dumbbell"></i>Gyms and Wellness Centers</a>
           <a href="https://www.longfisolutions.com/hotels/"><i data-lucide="bed-double"></i>Hotels</a>
           <a href="https://www.longfisolutions.com/nightclubs/"><i data-lucide="disc-3"></i>Nightclubs</a>
-          <a href="https://www.longfisolutions.com/casinos/"><i data-lucide="dice-5"></i>Casinos</a><a href="https://www.longfisolutions.com/offices/"><i data-lucide="building-2"></i>Offices</a>
+          <a href="https://www.longfisolutions.com/casinos/"><i data-lucide="dice-5"></i>Casinos</a><a href="https://www.longfisolutions.com/corporate-offices/"><i data-lucide="building-2"></i>Corporate Offices</a>
           <a href="https://www.longfisolutions.com/event-centers/"><i data-lucide="party-popper"></i>Event Centers</a>
           <a href="https://www.longfisolutions.com/education-campuses/"><i data-lucide="graduation-cap"></i>Education Campuses</a>
           <a href="https://www.longfisolutions.com/hospital-clinics/"><i data-lucide="heart-pulse"></i>Hospitals and Clinics</a>
@@ -189,7 +201,18 @@ body.lf-nav-lock{overflow:hidden!important}
           <a href="https://www.longfisolutions.com/airports/"><i data-lucide="plane"></i>Airports</a>
         </div></div>
       </div>
-      <div class="m-group"><a class="m-toggle m-solo" href="https://www.longfisolutions.com/case-studies/">Case Studies</a></div>
+      <div class="m-group">
+        <button class="m-toggle" type="button" aria-expanded="false">Case Studies<span class="mchev"></span></button>
+        <div class="m-panel"><div class="m-panel-inner">
+          <a href="https://www.longfisolutions.com/case-studies/"><i data-lucide="layout-grid"></i>All Case Studies</a>
+          <a href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><i data-lucide="martini"></i>SILO, Brooklyn</a>
+          <a href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><i data-lucide="sunset"></i>Sunset Rooftop, Houston</a>
+          <a href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><i data-lucide="music"></i>JazzFest 2026, New Orleans</a>
+          <a href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><i data-lucide="disc-3"></i>Bauhaus, Houston</a>
+          <a href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><i data-lucide="party-popper"></i>Mardi Gras 2026, New Orleans</a>
+          <a href="https://www.longfisolutions.com/case-studies/corporate-offices/"><i data-lucide="building-2"></i>Corporate Offices</a>
+        </div></div>
+      </div>
       <div class="m-group">
         <button class="m-toggle" type="button" aria-expanded="false">Partners<span class="mchev"></span></button>
         <div class="m-panel"><div class="m-panel-inner">

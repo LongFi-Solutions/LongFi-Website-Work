@@ -1,0 +1,548 @@
+<!-- LongFi snippet | lf-corporateoffices.html | v1.0 | 2026-07-20 | REVIEW | industry page, scoped #lf-corporateoffices -->
+<!-- [1] Google Fonts, load-once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+
+<!-- [2] Page styles, all scoped under #lf-corporateoffices (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   Persona hooks tinted for the Corporate Offices persona: enterprise emerald-green.
+   ============================================================ */
+#lf-corporateoffices{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-corporateoffices),.e-con-inner:has(#lf-corporateoffices),.elementor-widget-html:has(#lf-corporateoffices),.elementor-widget-shortcode:has(#lf-corporateoffices),.elementor-widget-container:has(#lf-corporateoffices){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-corporateoffices *{box-sizing:border-box;margin:0;padding:0}
+#lf-corporateoffices{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-corporateoffices{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-corporateoffices img{max-width:100%;height:auto;display:block}
+#lf-corporateoffices a{color:var(--skyline);text-decoration:none}
+#lf-corporateoffices h1, #lf-corporateoffices h2, #lf-corporateoffices h3, #lf-corporateoffices h4, #lf-corporateoffices .eyebrow, #lf-corporateoffices .btn, #lf-corporateoffices .stat-n{font-family:var(--head)}
+#lf-corporateoffices .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){
+  #lf-corporateoffices .wrap{padding:0 16px}
+}
+#lf-corporateoffices section{padding:64px 0}
+@media(max-width:680px){
+  #lf-corporateoffices section{padding:48px 0}
+}
+/* Persona accent for light-background eyebrows: deep emerald */
+#lf-corporateoffices .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0B7A53;margin-bottom:12px}
+#lf-corporateoffices .on-dark .eyebrow{color:#B9EBD7}
+#lf-corporateoffices h1, #lf-corporateoffices h2, #lf-corporateoffices h3{text-wrap:balance}
+#lf-corporateoffices p{text-wrap:pretty}
+#lf-corporateoffices h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+#lf-corporateoffices .on-dark h2{color:var(--white)}
+/* Designed section titles: ink to emerald. */
+#lf-corporateoffices .h-grad{background:linear-gradient(115deg,var(--ink) 6%,#0B4F3B 44%,#0E9163 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 12px rgba(14,145,99,.24));padding-bottom:.12em;margin-bottom:.1em}
+/* SIGNAL GLEAM. Corporate Offices tint: emerald-green, mid stop one step below white. Two gleams max. */
+#lf-corporateoffices .h-shine{background:linear-gradient(115deg,#0B7A53 0%,#2FB888 35%,#D6F6E8 50%,#2FB888 65%,#0B7A53 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-corporateoffices 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(47,184,136,.2));padding-bottom:.12em}
+#lf-corporateoffices .lede{font-size:16.5px;line-height:1.6;max-width:680px}
+#lf-corporateoffices .on-dark .lede{color:rgba(255,255,255,.9)}
+#lf-corporateoffices .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-corporateoffices 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-corporateoffices{from{background-position:0% center}to{background-position:100% center}}
+#lf-corporateoffices .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Global, identical across pages. */
+#lf-corporateoffices .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-corporateoffices .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: Corporate Offices emerald variant, white text. */
+#lf-corporateoffices .btn-primary{
+  background:linear-gradient(135deg,#23A877 0%,#0B6043 100%);
+  color:var(--white);
+  border-color:rgba(185,235,215,.6);
+  box-shadow:0 0 26px rgba(35,168,119,.5),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.3);
+}
+#lf-corporateoffices .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(52,188,138,.66),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.35)}
+#lf-corporateoffices .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-corporateoffices .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-corporateoffices .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-corporateoffices .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-corporateoffices .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+/* Corporate Offices persona dark band: deep teal-ink into emerald, emerald radial glow. */
+#lf-corporateoffices .dark-band{background:linear-gradient(140deg,#0E2A2A 0%,#163F4E 55%,#0B6043 115%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-corporateoffices .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at 90% 0%, rgba(47,184,136,.16), transparent 55%),radial-gradient(460px circle at 8% 95%, rgba(47,184,136,.1), transparent 55%);pointer-events:none}
+#lf-corporateoffices .dark-band>.wrap{position:relative;z-index:1}
+#lf-corporateoffices .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-corporateoffices .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+/* Scroll reveal */
+#lf-corporateoffices .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-corporateoffices .rv.in-view{opacity:1;transform:none}
+#lf-corporateoffices .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-corporateoffices .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-corporateoffices .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-corporateoffices .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-corporateoffices .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-corporateoffices .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-corporateoffices .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-corporateoffices .rv, #lf-corporateoffices .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-corporateoffices .metal, #lf-corporateoffices .h-shine{animation:none}
+  #lf-corporateoffices{scroll-behavior:auto}
+}
+/* ============================================================
+   SNIPPET: lf_hero_corporateoffices_v2  (split hero, image RIGHT)
+   ============================================================ */
+#lf-corporateoffices .hero{padding:84px 0 56px}
+#lf-corporateoffices .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:end}
+@media(max-width:920px){
+  #lf-corporateoffices .hero-grid{grid-template-columns:1fr;gap:34px}
+  #lf-corporateoffices .hero{padding:60px 0 44px}
+}
+#lf-corporateoffices .hero .eyebrow{color:#B9EBD7;background:rgba(47,184,136,.1);border:1px solid rgba(185,235,215,.35);padding:6px 14px;border-radius:999px}
+#lf-corporateoffices .hero h1{font-size:clamp(28px,3.4vw,42px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--white);margin-bottom:14px}
+#lf-corporateoffices .hero .lede{color:rgba(255,255,255,.9);font-size:17px;max-width:540px}
+#lf-corporateoffices .hero-emph{font-family:var(--head);font-weight:700;font-size:17px;color:var(--white);margin-top:12px}
+#lf-corporateoffices .hero-img{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14)}
+#lf-corporateoffices .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-corporateoffices .hero-img:hover img{transform:scale(1.04)}
+/* ============================================================
+   SNIPPET: lf_statstrip_corporateoffices_v2  (slim hairline stat strip)
+   ============================================================ */
+#lf-corporateoffices .strip-band{padding:0 0 60px}
+#lf-corporateoffices .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid transparent;border-bottom:1px solid transparent;transition:border-color .6s ease}
+#lf-corporateoffices .strip.lines-on{border-top-color:rgba(185,235,215,.28);border-bottom-color:rgba(185,235,215,.28)}
+@media(max-width:920px){
+  #lf-corporateoffices .strip{grid-template-columns:repeat(2,1fr)}
+}
+#lf-corporateoffices .stat{padding:18px 14px;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;border-right:1px solid rgba(185,235,215,.18)}
+#lf-corporateoffices .stat:last-child{border-right:0}
+@media(max-width:920px){
+  #lf-corporateoffices .stat:nth-child(2){border-right:0}
+  #lf-corporateoffices .stat:nth-child(-n+2){border-bottom:1px solid rgba(185,235,215,.18)}
+}
+#lf-corporateoffices .stat.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  #lf-corporateoffices .stat{opacity:1;transform:none;transition:none}
+}
+#lf-corporateoffices .stat-n{font-size:clamp(21px,2.2vw,29px);font-weight:700;line-height:1.1;filter:drop-shadow(0 0 14px rgba(214,246,232,.35))}
+#lf-corporateoffices .stat-l{font-size:12px;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.4}
+/* ============================================================
+   SNIPPET: lf_pain_corporateoffices_v2
+   ============================================================ */
+#lf-corporateoffices .pain{background:var(--white)}
+#lf-corporateoffices .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+@media(max-width:920px){
+  #lf-corporateoffices .pain-grid{grid-template-columns:1fr}
+}
+#lf-corporateoffices .pain-card{padding:24px 22px;display:flex;flex-direction:column;gap:14px}
+#lf-corporateoffices .pain-card .ph{width:60px;height:60px;border-radius:14px;background:var(--soft);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:10px}
+#lf-corporateoffices .pain-card .ph img{width:100%;height:100%;object-fit:contain}
+#lf-corporateoffices .pain-card p{font-size:15px;margin:0}
+/* ============================================================
+   SNIPPET: lf_connect_corporateoffices_v2  (dark band, the wordmark is the star)
+   ============================================================ */
+#lf-corporateoffices .connect-head{max-width:820px}
+#lf-corporateoffices .connect-star{font-size:clamp(30px,4vw,46px);font-weight:800;line-height:1.06;letter-spacing:-.02em;filter:drop-shadow(0 0 24px rgba(214,246,232,.26))}
+#lf-corporateoffices .connect-sub{font-family:var(--head);font-weight:600;font-size:clamp(15px,1.7vw,18px);color:var(--white);margin:14px 0 0}
+#lf-corporateoffices .cfeat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+@media(max-width:920px){
+  #lf-corporateoffices .cfeat-grid{grid-template-columns:1fr}
+}
+#lf-corporateoffices .cfeat{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:18px 20px;transition:transform .25s ease,background .25s ease}
+#lf-corporateoffices .cfeat:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+#lf-corporateoffices .cfeat .ph{width:58px;height:58px;flex:none;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;padding:8px}
+#lf-corporateoffices .cfeat .ph img{width:100%;height:100%;object-fit:contain}
+#lf-corporateoffices .cfeat h3{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
+#lf-corporateoffices .cfeat p{font-size:14px;color:rgba(255,255,255,.85);margin:0 0 8px}
+#lf-corporateoffices .cfeat a{font-family:var(--head);font-size:13px;font-weight:600;color:#8FE3C2}
+#lf-corporateoffices .cfeat a:hover{text-decoration:underline}
+#lf-corporateoffices .connect-close{font-family:var(--head);font-weight:600;font-size:15.5px;color:rgba(255,255,255,.92);max-width:760px;margin:32px auto 0;text-align:center}
+/* ============================================================
+   SNIPPET: lf_compat_monetize_corporateoffices_v2  (Round 8 merged band, STACKED variation)
+   ============================================================ */
+#lf-corporateoffices .dualstrip{background:var(--bg)}
+#lf-corporateoffices .dual{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+@media(max-width:920px){
+  #lf-corporateoffices .dual{grid-template-columns:1fr}
+}
+#lf-corporateoffices .dcard{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft);padding:28px 30px;display:flex;flex-direction:column;height:100%;transition:transform .25s ease,box-shadow .25s ease}
+#lf-corporateoffices .dcard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+#lf-corporateoffices .dcard-head{display:flex;gap:20px;align-items:stretch}
+#lf-corporateoffices .dcard-head>div{flex:1}
+/* Round 8b: no container behind the icon; icon spans full eyebrow+headline height */
+#lf-corporateoffices .dcard-ic{flex:none;display:flex;align-items:center;justify-content:center}
+#lf-corporateoffices .dcard-ic img{height:100%;width:auto;max-width:130px;object-fit:contain}
+#lf-corporateoffices .dcard h2{font-size:clamp(14px,1.45vw,17px);margin-bottom:0}
+#lf-corporateoffices .dcard .lede{font-size:14.5px;max-width:none;margin-top:14px}
+#lf-corporateoffices .dcard .lede + .lede{margin-top:8px}
+/* CTA pinned to the bottom so both cards' buttons sit on the same baseline */
+#lf-corporateoffices .dcard .btn-row{margin-top:auto;padding-top:18px}
+/* ============================================================
+   SNIPPET: lf_recap_cta_corporateoffices_v2  (one dark band: recap, then the ask)
+   ============================================================ */
+#lf-corporateoffices .recap .kicker{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#B9EBD7;text-align:center;margin-bottom:26px}
+#lf-corporateoffices .recap-hero{text-align:center;max-width:880px;margin:0 auto}
+#lf-corporateoffices .recap-hero h3{font-size:clamp(26px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1}
+#lf-corporateoffices .recap-hero p{font-family:var(--head);font-size:clamp(15px,1.8vw,18px);font-weight:500;color:rgba(255,255,255,.7);margin:12px 0 0}
+#lf-corporateoffices .cta-panel{margin-top:40px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:40px;display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 44px rgba(214,246,232,.08)}
+@media(max-width:920px){
+  #lf-corporateoffices .cta-panel{grid-template-columns:1fr;padding:26px 22px;gap:28px}
+}
+#lf-corporateoffices .cta-panel h2{font-size:clamp(20px,2.2vw,27px);margin-bottom:10px}
+#lf-corporateoffices .cta-panel .lede{font-size:15px}
+#lf-corporateoffices .cta-form .fl{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#B9EBD7;margin:14px 0 6px}
+#lf-corporateoffices .cta-form .fl:first-child{margin-top:0}
+#lf-corporateoffices .cta-form .fi{display:block;width:100%;height:44px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body-font);font-size:15px;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-corporateoffices .cta-form .fi::placeholder{color:rgba(255,255,255,.45)}
+#lf-corporateoffices .cta-form .fi:focus{outline:none;border-color:rgba(47,184,136,.7);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(47,184,136,.18)}
+#lf-corporateoffices .cta-form .fi.bad{border-color:rgba(255,120,120,.8);box-shadow:0 0 0 3px rgba(255,120,120,.16)}
+/* Honeypot: kept in the DOM for bots, hidden from people and screen readers. */
+#lf-corporateoffices .cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+#lf-corporateoffices .cta-form .btn{width:100%;margin-top:20px}
+#lf-corporateoffices .cta-form .btn[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-corporateoffices .cta-form .note{font-size:12px;color:rgba(255,255,255,.55);margin-top:12px;text-align:center}
+#lf-corporateoffices .cta-form .note a{color:#8FE3C2}
+#lf-corporateoffices .cta-form .note a:hover{text-decoration:underline}
+#lf-corporateoffices .cta-form .lf-err{display:none;font-size:13px;color:#FFC2C2;margin-top:12px;text-align:center}
+#lf-corporateoffices .cta-form .lf-err.show{display:block}
+#lf-corporateoffices .cta-ok{text-align:center;padding:8px 4px}
+#lf-corporateoffices .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
+#lf-corporateoffices .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
+#lf-corporateoffices .cta-ok .lede{font-size:15px;margin:0 auto}
+#lf-corporateoffices .dcard-ic img{max-width:117px!important;height:auto!important}
+</style>
+
+<!-- [3] Page content. One <main> wrapper carries the scope id. Each <section> below
+     is an independent content block (Woody snippet boundary) you can keep together
+     or split into separate Elementor code blocks if you prefer. -->
+<main id="lf-corporateoffices">
+  <!-- ============================================================
+       SNIPPET: lf_hero_corporateoffices_v2 + lf_statstrip_corporateoffices_v2
+       ============================================================ -->
+  <div class="dark-band on-dark">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="rv-stagger">
+          <h1 class="metal">Stronger indoor cell connectivity for <span class="h-shine">offices</span></h1>
+          <p class="lede">Bring reliable indoor cell connectivity across the building using the Wi&#8209;Fi the business&nbsp;already&nbsp;has.</p>
+          <p class="hero-emph">At no cost and with no new hardware.</p>
+          <div class="btn-row">
+            <a class="btn btn-gold" href="#office">Improve office connectivity</a>
+            <a class="btn btn-ghost-dark" href="#connect">Learn how it works</a>
+          </div>
+        </div>
+        <div class="hero-img rv">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mccarthy-03-image.jpg" alt="Employees working in a modern open-plan corporate office">
+        </div>
+      </div>
+    </section>
+
+    <section class="strip-band" style="padding-top:0">
+      <div class="wrap">
+        <!-- Approved proof points from the corporate-offices case study -->
+        <div class="strip">
+          <div class="stat"><div class="stat-n metal">1.6+&nbsp;TB</div><div class="stat-l">Mobile data carried monthly on the Wi&#8209;Fi already in place</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="2860" data-suffix="+">&nbsp;</div><div class="stat-l">Mobile users connected each month across sites</div></div>
+          <div class="stat"><div class="stat-n metal">No new&nbsp;hardware</div><div class="stat-l">Configured on existing business-grade networks</div></div>
+          <div class="stat"><div class="stat-n metal">Secure&nbsp;VLAN</div><div class="stat-l">Carrier traffic isolated from business systems</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================
+       SNIPPET: lf_pain_corporateoffices_v2
+       ============================================================ -->
+  <section class="pain">
+    <div class="wrap">
+      <div class="rv" style="max-width:760px">
+        <h2 class="h-grad">The hidden cost of<br>poor indoor connectivity&nbsp;in&nbsp;offices</h2>
+      </div>
+      <div class="pain-grid rv-stagger">
+        <div class="card pain-card">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/smartphone-no-signal-indoor-venue-connectivity-582x1024.png" alt="Smartphone illustration showing buffering spinner representing poor indoor cell signal" loading="lazy"></div>
+          <p>Employees drop calls, struggle to join mobile meetings, or lose signal in conference rooms and lower floors.</p>
+        </div>
+        <div class="card pain-card">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/thumbs-down-icon-poor-indoor-connectivity-experience.png" alt="Thumbs-down icon representing negative experience from poor wireless connectivity" loading="lazy"></div>
+          <p>Weak indoor cell signal frustrates employees, visitors, and contractors, and it reflects on the workplace.</p>
+        </div>
+        <div class="card pain-card">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/wifi-signal-icon-intermittent-indoor-wireless-coverage.png" alt="Wi&#8209;Fi signal icon with broken dotted arcs showing intermittent indoor wireless coverage" loading="lazy"></div>
+          <p>Dead zones are common inside office buildings, while the business-grade Wi&#8209;Fi already in place sits underused.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_connect_corporateoffices_v2  (dark band)
+       ============================================================ -->
+  <div class="dark-band on-dark" id="connect">
+    <section>
+      <div class="wrap">
+        <div class="connect-head rv-stagger">
+          <div class="connect-star h-shine">LongFi Connect</div>
+          <p class="connect-sub">The simplest way to bring reliable indoor connectivity&nbsp;to&nbsp;offices.</p>
+        </div>
+        <div class="cfeat-grid rv-stagger">
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/02/full-bars-cell-signal-checkmark-indoor-connectivity-icon-1024x993.png" alt="Full cellular signal bars with green checkmark icon representing excellent indoor connectivity" loading="lazy"></div>
+            <div>
+              <h3>Reliable indoor&nbsp;cell&nbsp;connectivity</h3>
+              <p>Employees, visitors, and contractors get reliable cellular service across floors, conference rooms, and common areas, where outdoor cell towers struggle to reach indoors.</p>
+              <a href="https://www.longfisolutions.com/how-it-works/">Learn how it works&rsaquo;</a>
+            </div>
+          </div>
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/managed-security-shield-network-protection-icon-985x1024.png" alt="Pink shield with checkmark inside circular tech emblem representing managed network security" loading="lazy"></div>
+            <div>
+              <h3>Fully managed,&nbsp;without&nbsp;disruption</h3>
+              <p>LongFi handles the assessment, implementation, monitoring, and optimization with no downtime or disruption to business operations.</p>
+              <a href="https://www.longfisolutions.com/how-it-works/#proven">See the 4-step process&rsaquo;</a>
+            </div>
+          </div>
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Full cellular signal bars with a checkmark representing strong indoor connectivity for employees" loading="lazy"></div>
+            <div>
+              <h3>Connectivity that follows&nbsp;people</h3>
+              <p>Coverage scales office to office and follows people through the building, so a smoother experience stays consistent across sites.</p>
+              <a href="https://www.longfisolutions.com/connectivity-value/">See if the office qualifies&rsaquo;</a>
+            </div>
+          </div>
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/carrier-grade-security-signal-bars-shield-icon-1007x1024.png" alt="Blue teal signal bars with security shield and lightning bolt icon for carrier-grade connectivity" loading="lazy"></div>
+            <div>
+              <h3>Carrier-Grade&nbsp;Security</h3>
+              <p>Mobile traffic is securely isolated from business systems on a dedicated VLAN, using carrier SIM authentication and encryption, with no personal data collected. It passes I.T. security review.</p>
+              <a href="https://www.longfisolutions.com/how-it-works/#secure">Explore security details&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+        <p class="connect-close rv">Designed for corporate offices and multi-site workplaces where reliable connectivity supports employees, visitors, and contractors, using the Wi&#8209;Fi already in place.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================
+       SNIPPET: lf_compat_monetize_corporateoffices_v2  (merged band, stacked variation)
+       ============================================================ -->
+    <!-- ===== LongFi Case Studies proof band (portable, self-contained) ===== -->
+  <div id="lfcs"><style>#lfcs{background:linear-gradient(180deg,#FFFFFF,#F1F4FB);border-top:1px solid #E6EAF2;padding:54px 0;font-family:'Poppins',sans-serif}#lfcs *{box-sizing:border-box}#lfcs .lfx-wrap{max-width:1080px;margin:0 auto;padding:0 24px}#lfcs .lfx-head{text-align:center;margin-bottom:26px}#lfcs .lfx-ttl{font-family:'Poppins';font-weight:800;font-size:clamp(20px,2.2vw,26px);color:#14172B;line-height:1.15;margin:0 0 6px}#lfcs .lfx-sub{font-family:'Nunito';font-size:14.5px;color:#4A536B;margin:0}#lfcs .hcards{display:grid;gap:16px;align-items:stretch;margin:0 auto}@media(max-width:920px){#lfcs .hcards{grid-template-columns:1fr !important;max-width:560px !important}}#lfcs .hcard{display:grid;grid-template-columns:138px 1fr;background:#fff;border:1px solid #E6EAF2;border-radius:14px;overflow:hidden;text-decoration:none;box-shadow:0 4px 16px rgba(36,72,153,.07);transition:transform .26s ease,box-shadow .26s ease}#lfcs .hcard:hover{transform:translateY(-5px);box-shadow:0 14px 46px rgba(36,72,153,.12)}#lfcs .hcard .im{position:relative;overflow:hidden;background:#0F1122;min-height:150px}#lfcs .hcard .im::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;z-index:1}#lfcs .hcard .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}#lfcs .hcard:hover .im img{transform:scale(1.06)}#lfcs .hcard .cc{padding:16px 18px;display:flex;flex-direction:column}#lfcs .hcard .tg{font-family:'Poppins';font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7A8299;min-height:13px}#lfcs .hcard .vn{font-family:'Poppins';font-size:16px;font-weight:800;color:#14172B;margin:5px 0 8px;line-height:1.1}#lfcs .hcard .qq{font-family:'Nunito';font-size:13.5px;font-style:italic;color:#4A536B;line-height:1.45;margin-bottom:12px;min-height:3.8em}#lfcs .hcard .mm{margin-top:auto;font-family:'Poppins';font-size:12.5px;font-weight:700;color:#244899;display:inline-flex;align-items:center;gap:6px;transition:gap .2s ease}#lfcs .hcard:hover .mm{gap:10px}#lfcs .hcard.t .im::after{background:#1FA58E}#lfcs .hcard.t .tg{color:#12876f}#lfcs .hcard.t .mm{color:#12876f}#lfcs .hcard.c .im::after{background:#FF4E7A}#lfcs .hcard.c .tg{color:#d63862}#lfcs .hcard.c .mm{color:#d63862}#lfcs .hcard.g .im::after{background:#C9A227}#lfcs .hcard.g .tg{color:#9a7a15}#lfcs .hcard.g .mm{color:#9a7a15}#lfcs .hcard.p .im::after{background:#C13AF0}#lfcs .hcard.p .tg{color:#9b1fce}#lfcs .hcard.p .mm{color:#9b1fce}#lfcs .hcard.gr .im::after{background:#2E9E7E}#lfcs .hcard.gr .tg{color:#1f7d62}#lfcs .hcard.gr .mm{color:#1f7d62}#lfcs .hcard.b .im::after{background:#244899}#lfcs .hcard.b .tg{color:#1d3b80}#lfcs .hcard.b .mm{color:#1d3b80}#lfcs .lfx-all{display:block;text-align:center;margin-top:22px;font-family:'Poppins';font-weight:700;font-size:13px;color:#244899;text-decoration:none}#lfcs .lfx-all:hover{text-decoration:underline}#lfcs .lfx-rev{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity .6s ease,transform .6s ease,filter .6s ease}#lfcs .lfx-rev.in{opacity:1;transform:none;filter:none}@media(prefers-reduced-motion:reduce){#lfcs .lfx-rev{opacity:1;transform:none;filter:none;transition:none}}</style><div class="lfx-wrap"><div class="lfx-head lfx-rev"><h2 class="lfx-ttl">Proven in a real workplace, across&nbsp;sites</h2><p class="lfx-sub">See how LongFi Connect performs inside a multi-site&nbsp;operation.</p></div><div class="hcards lfx-rev" style="grid-template-columns:1fr;max-width:560px"><a class="hcard b" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mccarthy-04-image.jpg" alt="Corporate office interior" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Corporate Offices &middot;&nbsp;U.S.</span><span class="vn">National Construction Firm</span><span class="qq">&ldquo;It has been working flawlessly. No complaints, and connections&nbsp;improved.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a></div><a class="lfx-all" href="https://www.longfisolutions.com/case-studies/">See all case studies &rarr;</a></div><script>(function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;var els=r.querySelectorAll('.lfx-rev');if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in')});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)})})();</script></div>
+
+  <section class="dualstrip">
+    <div class="wrap">
+      <div class="dual rv-stagger">
+        <div class="dcard">
+          <div class="dcard-head">
+            <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/enterprise-wifi-access-points-ubiquiti-ruckus-mist-compatible-842x1024.png" alt="Enterprise Wi&#8209;Fi access points compatible with LongFi Connect" loading="lazy"></div>
+            <div>
+              <h2 class="h-grad">Use the office's existing&nbsp;Wi&#8209;Fi&nbsp;network</h2>
+            </div>
+          </div>
+          <p class="lede">If the office runs business-grade Wi&#8209;Fi such as Cisco, Meraki, Aruba, or comparable Passpoint-compatible systems, the building is likely&nbsp;already&nbsp;compatible.</p>
+          <p class="lede">No new hardware, and no changes to how the network is&nbsp;used&nbsp;today. LongFi Connect adds indoor cellular as a Passpoint configuration on a dedicated secure VLAN, separate from business&nbsp;systems.</p>
+          <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-head">
+            <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Signal bars rising over a Wi&#8209;Fi symbol representing stronger indoor cell coverage" loading="lazy"></div>
+            <div>
+              <h2 class="h-grad">When connectivity works, the whole workplace&nbsp;works&nbsp;better</h2>
+            </div>
+          </div>
+          <p class="lede">Major carriers work with LongFi to serve their subscribers indoors, and LongFi Connect carries that traffic securely on the Wi&#8209;Fi the business&nbsp;already&nbsp;has.</p>
+          <p class="lede">Employees, visitors, and contractors connect on their SIM the moment they walk in, with no portal and no app. It can also return a new monthly revenue opportunity from carrier traffic. The benefits start on&nbsp;day&nbsp;one.</p>
+          <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">See if the office qualifies</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_recap_cta_corporateoffices_v2
+       ============================================================ -->
+  <div class="dark-band on-dark" id="office">
+    <section class="recap">
+      <div class="wrap">
+        <div class="kicker rv">Office to office</div>
+        <div class="recap-hero rv">
+          <h3 class="metal">Ready to improve the&nbsp;office's&nbsp;connectivity?</h3>
+          <p>At no cost and with no new hardware.</p>
+        </div>
+        <div class="cta-panel rv">
+          <div>
+            <h2>Excellent indoor cell connectivity for the office, on the Wi&#8209;Fi already&nbsp;in&nbsp;place.</h2>
+            <p class="lede">Share a few details about the offices and LongFi will confirm compatibility and show how LongFi Connect works at no cost and with no disruption to business&nbsp;operations.</p>
+          </div>
+          <div class="cta-form">
+            <!-- Submits to the LongFi Beacon intake function. Leads land in the
+                 Beacon review queue tagged with the originating page (page_key). -->
+            <form id="lf-office-form" novalidate>
+              <label class="fl" for="lf-office-name">Name</label>
+              <input class="fi" id="lf-office-name" name="full_name" type="text" autocomplete="name" required>
+              <label class="fl" for="lf-office-email">Business email</label>
+              <input class="fi" id="lf-office-email" name="email" type="email" autocomplete="email" required>
+              <label class="fl" for="lf-office-company">Company</label>
+              <input class="fi" id="lf-office-company" name="company_name" type="text" autocomplete="organization">
+              <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="btn btn-primary" type="submit">Improve office connectivity</button>
+              <div class="lf-err" role="alert"></div>
+              <p class="note">By submitting, this agrees to the LongFi <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. Details are used only to evaluate the site.</p>
+            </form>
+            <div class="cta-ok" id="lf-office-ok" hidden>
+              <div class="ok-ic" aria-hidden="true">&#10003;</div>
+              <h2>Thanks. LongFi has&nbsp;the&nbsp;details.</h2>
+              <p class="lede">The team will review the offices and reach out to confirm compatibility and walk through&nbsp;next&nbsp;steps.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================
+       SNIPPET: lf_footer_replica  TEMPORARY REPLICA of the live site footer.
+       ============================================================ -->
+
+</main>
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-corporateoffices');
+  if(!r)return;
+  /* Scroll reveal for .rv and .rv-stagger */
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);}
+    });
+  },{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  /* Stats: reveal then count up */
+  var so=new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      if(!x.isIntersecting)return;
+      var strip=x.target.closest('.strip');
+      if(strip)strip.classList.add('lines-on');
+      x.target.classList.add('on');
+      var n=x.target.querySelector('.stat-n');
+      if(n&&n.dataset.count){
+        var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;
+        (function step(ts){
+          if(!t0)t0=ts;
+          var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p;
+          n.textContent=Math.round(tgt*p)+sfx;
+          if(p<1)requestAnimationFrame(step);
+        })(performance.now());
+      }
+      so.unobserve(x.target);
+    });
+  },{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  /* Catch anything already in the viewport at load with no scroll */
+  setTimeout(function(){
+    r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){
+      var rc=el.getBoundingClientRect();
+      if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view');
+    });
+    r.querySelectorAll('.stat').forEach(function(el){
+      var rc=el.getBoundingClientRect();
+      if(rc.top<window.innerHeight&&rc.bottom>0){
+        el.classList.add('on');
+        var s=el.closest('.strip');if(s)s.classList.add('lines-on');
+      }
+    });
+  },150);
+})();
+</script>
+<!-- [5] JavaScript: Beacon lead intake.
+     Posts the form to the LongFi Beacon intake function. Leads are stored
+     permanently in Supabase and surface in the Beacon review queue, tagged
+     with the page they came from. To reuse this block on another page, change
+     ONLY the PAGE_KEY and CONTACT_TYPE values below. Everything else is shared. -->
+<script>
+(function(){
+  var PAGE_KEY='corporate-offices';    /* identifies which page the lead came from */
+  var CONTACT_TYPE='venue_operator';   /* default Beacon contact type for this page */
+  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
+  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
+
+  var form=document.getElementById('lf-office-form');
+  if(!form)return;
+  var ok=document.getElementById('lf-office-ok');
+  var btn=form.querySelector('button[type=submit]');
+  var err=form.querySelector('.lf-err');
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function showErr(msg){err.textContent=msg;err.classList.add('show');}
+  function clearErr(){err.textContent='';err.classList.remove('show');}
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    clearErr();
+    var name=form.full_name.value.trim();
+    var email=form.email.value.trim();
+    var company=form.company_name.value.trim();
+    var honeypot=form.company_website.value.trim();
+
+    form.full_name.classList.remove('bad');
+    form.email.classList.remove('bad');
+    if(!name){form.full_name.classList.add('bad');showErr('Please enter a name.');return;}
+    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
+
+    btn.disabled=true;
+    var label=btn.textContent;
+    btn.textContent='Sending...';
+
+    fetch(ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':APIKEY},
+      body:JSON.stringify({
+        full_name:name,
+        email:email,
+        company_name:company,
+        company_website:honeypot,
+        page_key:PAGE_KEY,
+        contact_type:CONTACT_TYPE,
+        cta_label:label,
+        page_url:window.location.href,
+        referrer:document.referrer||''
+      })
+    }).then(function(res){return res.json().catch(function(){return {ok:res.ok};});})
+      .then(function(data){
+        if(data&&data.ok){
+          form.setAttribute('hidden','');
+          if(ok)ok.removeAttribute('hidden');
+        }else{
+          btn.disabled=false;btn.textContent=label;
+          showErr('Something went wrong. Please try again in a moment.');
+        }
+      }).catch(function(){
+        btn.disabled=false;btn.textContent=label;
+        showErr('Network issue. Please try again in a moment.');
+      });
+  });
+})();
+</script>

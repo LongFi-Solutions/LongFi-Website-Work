@@ -42,9 +42,9 @@
 #lfNav .nav-drop a:hover{background:rgba(255,255,255,.08);color:#fff}
 #lfNav .nav-drop a svg{width:17px;height:17px;flex:none;color:rgba(255,255,255,.5);transition:transform .22s cubic-bezier(.34,1.56,.64,1),color .2s ease}
 #lfNav .nav-drop a:hover svg{color:#FFD27A;transform:scale(1.2)}
-#lfNav .nav-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--head);font-size:12.5px;font-weight:600;letter-spacing:.01em;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);padding:7px 15px;border-radius:999px;transition:background .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease;text-decoration:none;white-space:nowrap}
+#lfNav .nav-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--head);font-size:12.5px;font-weight:600;letter-spacing:.01em;color:#fff;background:#244899;border:1px solid #244899;padding:8px 18px;border-radius:999px;animation:lf-cta-gleam 3.6s ease-in-out infinite;transition:background .22s ease,border-color .22s ease,transform .22s ease;text-decoration:none;white-space:nowrap}
 #lfNav .nav-cta .arr{font-size:14px;line-height:0;transition:transform .25s ease}
-#lfNav .nav-cta:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.42);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.18)}
+#lfNav .nav-cta:hover{background:#1d3b80;border-color:#1d3b80;transform:translateY(-1px)}
 #lfNav .nav-cta:hover .arr{transform:translateX(3px)}
 #lfNav .nav-burger{display:none;background:none;border:0;cursor:pointer;padding:6px;width:34px;height:34px}
 #lfNav .nav-burger span{display:block;width:22px;height:2px;background:#fff;margin:5px auto;border-radius:2px;transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .25s ease}
@@ -71,7 +71,7 @@
 #lfNav .m-panel a:hover,#lfNav .m-panel a:active{background:rgba(255,255,255,.06);color:#fff}
 #lfNav .m-panel a svg{width:18px;height:18px;flex:none;color:rgba(255,255,255,.5)}
 #lfNav .nm-cta{padding:20px 22px 8px}
-#lfNav .nm-cta a{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-family:var(--head);font-size:14px;font-weight:600;color:#14172B;background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);border-radius:999px;padding:13px 20px;text-decoration:none;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+#lfNav .nm-cta a{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-family:var(--head);font-size:15px;font-weight:600;color:#fff;background:#244899;border-radius:999px;padding:14px 20px;text-decoration:none;animation:lf-cta-gleam 3.6s ease-in-out infinite}
 body.lf-nav-lock{overflow:hidden!important}
 
 @media(max-width:1000px){
@@ -87,6 +87,14 @@ body.lf-nav-lock{overflow:hidden!important}
   #lfNav .nav-drop,#lfNav .nav-drop a svg,#lfNav .nav-cta,#lfNav .nav-cta .arr,#lfNav .nav-burger span,
   #lfNav .nav-mobile,#lfNav .m-panel,#lfNav .m-toggle .mchev{transition:none}
 }
+</style>
+<style>
+/* Global LongFi CTA standard, loaded on every page via the header snippet (GP-04, 2026-07-26) */
+@keyframes lf-cta-gleam{0%,100%{box-shadow:0 0 3px 0 rgba(90,140,238,.40)}50%{box-shadow:0 0 14px 2px rgba(90,140,238,.72)}}
+.lf-book-cta{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Poppins','Inter',system-ui,sans-serif;font-weight:600;font-size:14px;line-height:1;color:#fff;background:#244899;border:0;border-radius:10px;padding:14px 26px;text-decoration:none;cursor:pointer;animation:lf-cta-gleam 3.6s ease-in-out infinite;transition:background .2s ease,transform .2s ease}
+.lf-book-cta:hover{background:#1d3b80;transform:translateY(-1px)}
+.lf-gleam{animation:lf-cta-gleam 3.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.lf-book-cta,.lf-gleam,#lfNav .nav-cta,#lfNav .nm-cta a{animation:none;box-shadow:0 0 10px 0 rgba(90,140,238,.55)}}
 </style>
 
 <nav id="lfNav">
@@ -159,7 +167,7 @@ body.lf-nav-lock{overflow:hidden!important}
         </div>
       </li>
     </ul>
-    <a class="nav-cta" href="#footer">Let&rsquo;s Connect <span class="arr">&rsaquo;</span></a>
+    <a class="nav-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
     <button class="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobile">
       <span></span><span></span><span></span>
     </button>
@@ -239,7 +247,7 @@ body.lf-nav-lock{overflow:hidden!important}
         </div></div>
       </div>
       <div class="nm-cta">
-        <a href="#footer">Let&rsquo;s Connect</a>
+        <a href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
       </div>
     </div>
   </div>

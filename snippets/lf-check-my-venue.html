@@ -1,0 +1,298 @@
+<!-- LongFi snippet | lf-check-my-venue.html | v1.0 | 2026-07-28 | REVIEW | Check My Venue qualifier landing page, scoped #lf-check-my-venue -->
+<!-- [1] Google Fonts, load-once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+
+<!-- [2] Page styles, all scoped under #lf-check-my-venue (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_cmv_globals  (tokens, type, buttons, utilities)
+   ============================================================ */
+#lf-check-my-venue{
+  --skyline:#244899; --indigo:#2C2C6E; --teal:#1FA58E;
+  --white:#FFFFFF; --bg:#F6F8FC; --paper:#FAFBFD; --ink:#14172B;
+  --body:#4A536B; --muted:#7A8299; --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-check-my-venue),.e-con-inner:has(#lf-check-my-venue),.elementor-widget-html:has(#lf-check-my-venue),.elementor-widget-shortcode:has(#lf-check-my-venue),.elementor-widget-container:has(#lf-check-my-venue){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+#lf-check-my-venue *{box-sizing:border-box;margin:0;padding:0}
+#lf-check-my-venue{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%}
+#lf-check-my-venue img{max-width:100%;height:auto;display:block}
+#lf-check-my-venue a{color:var(--skyline);text-decoration:none}
+#lf-check-my-venue h1, #lf-check-my-venue h2, #lf-check-my-venue h3, #lf-check-my-venue .eyebrow, #lf-check-my-venue .btn{font-family:var(--head)}
+#lf-check-my-venue h1, #lf-check-my-venue h2, #lf-check-my-venue h3{text-wrap:balance}
+#lf-check-my-venue p{text-wrap:pretty}
+#lf-check-my-venue .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){
+  #lf-check-my-venue .wrap{padding:0 16px}
+}
+/* ============================================================
+   SNIPPET: lf_cmv_hero  (dark band, two columns: copy left, form right)
+   ============================================================ */
+#lf-check-my-venue .dark-band{background:linear-gradient(140deg,#1B1F3D 0%,var(--indigo) 60%,#243A6B 118%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-check-my-venue .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(560px circle at 88% 4%, rgba(47,184,136,.14), transparent 55%),radial-gradient(500px circle at 6% 96%, rgba(36,72,153,.35), transparent 55%);pointer-events:none}
+#lf-check-my-venue .dark-band>.wrap{position:relative;z-index:1}
+#lf-check-my-venue .hero{padding:72px 0 64px}
+@media(max-width:920px){
+  #lf-check-my-venue .hero{padding:44px 0 48px}
+}
+#lf-check-my-venue .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:start}
+@media(max-width:920px){
+  #lf-check-my-venue .hero-grid{grid-template-columns:1fr;gap:30px}
+}
+#lf-check-my-venue .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#8FE3C2;margin-bottom:16px}
+#lf-check-my-venue .hero h1{font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-.015em;font-weight:800;color:var(--white);margin-bottom:18px}
+#lf-check-my-venue .hero h1 .glint{background:linear-gradient(115deg,#8FE3C2 0%,#E9EEF6 40%,#FFFFFF 55%,#9FE0C6 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+#lf-check-my-venue .hero .lede{color:rgba(255,255,255,.9);font-size:17px;line-height:1.6;max-width:480px}
+@media(max-width:920px){
+  #lf-check-my-venue .hero .lede{max-width:none}
+}
+/* Trust strip: plain, no fabricated logos */
+#lf-check-my-venue .trust{margin-top:28px;display:flex;flex-direction:column;gap:12px}
+#lf-check-my-venue .trust .t-row{display:flex;gap:12px;align-items:flex-start}
+#lf-check-my-venue .trust .t-ic{min-width:26px;width:26px;height:26px;border-radius:8px;background:rgba(143,227,194,.14);border:1px solid rgba(143,227,194,.4);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:14px;font-weight:700}
+#lf-check-my-venue .trust .t-tx{font-family:var(--body-font);font-size:14.5px;color:rgba(255,255,255,.86);line-height:1.5}
+#lf-check-my-venue .trust .t-tx strong{color:var(--white);font-weight:700}
+/* ============================================================
+   SNIPPET: lf_cmv_form  (white card, qualifier form)
+   ============================================================ */
+#lf-check-my-venue .form-card{background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:0 22px 60px rgba(0,0,0,.28);padding:32px 30px 28px}
+@media(max-width:520px){
+  #lf-check-my-venue .form-card{padding:24px 20px 22px}
+}
+#lf-check-my-venue .form-card .fc-head{margin-bottom:18px}
+#lf-check-my-venue .form-card .fc-head h2{font-family:var(--head);font-size:clamp(19px,2vw,23px);font-weight:700;color:var(--ink);line-height:1.18;margin-bottom:6px}
+#lf-check-my-venue .form-card .fc-head p{font-size:14px;color:var(--body)}
+#lf-check-my-venue .cmv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+@media(max-width:640px){
+  #lf-check-my-venue .cmv-grid{grid-template-columns:1fr}
+}
+#lf-check-my-venue .fld{display:flex;flex-direction:column}
+#lf-check-my-venue .fld.full{grid-column:1 / -1}
+#lf-check-my-venue .fl{font-family:var(--head);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+#lf-check-my-venue .fl .req{color:#D64545;margin-left:2px}
+#lf-check-my-venue .fi{display:block;width:100%;height:44px;border-radius:10px;background:var(--white);border:1px solid #D3DAE8;color:var(--ink);font-family:var(--body-font);font-size:15px;padding:0 13px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-check-my-venue select.fi{appearance:none;-webkit-appearance:none;-moz-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%237A8299' d='M6 8.5 1.5 4h9z'/></svg>");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;cursor:pointer}
+#lf-check-my-venue .fi::placeholder{color:#9AA3B8}
+#lf-check-my-venue .fi:focus{outline:none;border-color:var(--skyline);background:#FCFDFF;box-shadow:0 0 0 3px rgba(36,72,153,.16)}
+#lf-check-my-venue .fi.bad{border-color:#D64545;box-shadow:0 0 0 3px rgba(214,69,69,.14)}
+/* Honeypot: kept in the DOM for bots, hidden from people and screen readers. */
+#lf-check-my-venue .hp{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+#lf-check-my-venue .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;font-weight:600;font-size:14px;line-height:1;cursor:pointer;border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Primary action: brushed silver, dark ink, no pulsing glow on a form submit. */
+#lf-check-my-venue .btn-primary{
+  width:100%;margin-top:20px;
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:#14172B;
+  border-color:rgba(120,130,150,.35);
+  box-shadow:0 4px 14px rgba(20,23,43,.14),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-check-my-venue .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+#lf-check-my-venue .btn-primary[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-check-my-venue .cmv-next{display:flex;gap:10px;align-items:center;margin-top:16px;padding:11px 14px;background:var(--soft);border:1px solid var(--line);border-radius:11px}
+#lf-check-my-venue .cmv-next .n-ic{min-width:22px;width:22px;height:22px;border-radius:7px;background:rgba(36,72,153,.1);border:1px solid rgba(36,72,153,.24);display:flex;align-items:center;justify-content:center;color:var(--skyline);font-size:13px;font-weight:700}
+#lf-check-my-venue .cmv-next p{font-size:13px;color:var(--body);line-height:1.45;margin:0}
+#lf-check-my-venue .lf-err{display:none;font-size:13px;color:#C0392B;margin-top:12px;text-align:center}
+#lf-check-my-venue .lf-err.show{display:block}
+#lf-check-my-venue .note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+/* Success panel */
+#lf-check-my-venue .cmv-ok{text-align:center;padding:22px 6px}
+#lf-check-my-venue .cmv-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.14);border:1px solid rgba(31,165,142,.45);display:flex;align-items:center;justify-content:center;color:#12876f;font-size:26px;font-weight:700}
+#lf-check-my-venue .cmv-ok h2{font-family:var(--head);font-size:clamp(19px,2vw,23px);font-weight:700;color:var(--ink);margin-bottom:8px}
+#lf-check-my-venue .cmv-ok p{font-size:15px;color:var(--body);max-width:360px;margin:0 auto}
+</style>
+
+<!-- [3] Page content. One wrapper carries the scope id. Single goal: the qualifier form. -->
+<main id="lf-check-my-venue">
+  <div class="dark-band">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <!-- Left: value copy -->
+        <div>
+          <span class="eyebrow">Venue qualifier</span>
+          <h1>See if a venue can run <span class="glint">LongFi&nbsp;Connect.</span></h1>
+          <p class="lede">LongFi Connect adds reliable indoor cell coverage on the Wi&#8209;Fi a venue already has. A few quick questions is all it takes to see if the venue is a&nbsp;fit.</p>
+          <div class="trust">
+            <div class="t-row">
+              <div class="t-ic" aria-hidden="true">&#10003;</div>
+              <p class="t-tx"><strong>Live across 200+ venues</strong> and high density environments nationwide.</p>
+            </div>
+            <div class="t-row">
+              <div class="t-ic" aria-hidden="true">&#10003;</div>
+              <p class="t-tx">Runs on business grade Wi&#8209;Fi, no new hardware.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Right: the form card (single primary action) -->
+        <div class="form-card">
+          <div class="fc-head">
+            <h2>Check if a venue&nbsp;qualifies</h2>
+            <p>Answer a few quick questions below.</p>
+          </div>
+          <form id="lf-cmv-form" novalidate>
+            <div class="cmv-grid">
+              <div class="fld">
+                <label class="fl" for="lf-cmv-name">Your name<span class="req">*</span></label>
+                <input class="fi" id="lf-cmv-name" name="full_name" type="text" autocomplete="name" required>
+              </div>
+              <div class="fld">
+                <label class="fl" for="lf-cmv-email">Work email<span class="req">*</span></label>
+                <input class="fi" id="lf-cmv-email" name="email" type="email" autocomplete="email" required>
+              </div>
+              <div class="fld full">
+                <label class="fl" for="lf-cmv-company">Venue or business name<span class="req">*</span></label>
+                <input class="fi" id="lf-cmv-company" name="company_name" type="text" autocomplete="organization" required>
+              </div>
+              <div class="fld">
+                <label class="fl" for="lf-cmv-location">City and state</label>
+                <input class="fi" id="lf-cmv-location" name="location" type="text" autocomplete="address-level2">
+              </div>
+              <div class="fld">
+                <label class="fl" for="lf-cmv-venue">Venue type<span class="req">*</span></label>
+                <select class="fi" id="lf-cmv-venue" name="venue_type" required>
+                  <option value="">Select one</option>
+                  <option>Restaurant</option>
+                  <option>Bar or nightclub</option>
+                  <option>Hotel</option>
+                  <option>Event or convention center</option>
+                  <option>Retail or mall</option>
+                  <option>Gym</option>
+                  <option>Healthcare</option>
+                  <option>Campus</option>
+                  <option>Casino</option>
+                  <option>Offices</option>
+                  <option>City or downtown</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="fld">
+                <label class="fl" for="lf-cmv-wifi">Wi&#8209;Fi system at the venue<span class="req">*</span></label>
+                <select class="fi" id="lf-cmv-wifi" name="wifi_platform" required>
+                  <option value="">Select one</option>
+                  <option>Ubiquiti / UniFi</option>
+                  <option>Ruckus</option>
+                  <option>Aruba</option>
+                  <option>Cisco Meraki</option>
+                  <option>Cisco Catalyst</option>
+                  <option>Cambium</option>
+                  <option>Juniper Mist</option>
+                  <option>Fortinet</option>
+                  <option>TP-Link Omada</option>
+                  <option>Extreme Networks</option>
+                  <option>Alta Labs</option>
+                  <option>Grandstream</option>
+                  <option>Eero</option>
+                  <option>Netgear</option>
+                  <option>Unknown</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="fld">
+                <label class="fl" for="lf-cmv-locations">Number of locations</label>
+                <select class="fi" id="lf-cmv-locations" name="num_locations">
+                  <option value="">Select one</option>
+                  <option>1</option>
+                  <option>2 to 5</option>
+                  <option>6 to 10</option>
+                  <option>11 to 20</option>
+                  <option>21 or more</option>
+                </select>
+              </div>
+              <div class="fld">
+                <label class="fl" for="lf-cmv-aps">Access points per site</label>
+                <select class="fi" id="lf-cmv-aps" name="aps_per_site">
+                  <option value="">Select one</option>
+                  <option>1 to 5</option>
+                  <option>6 to 20</option>
+                  <option>21 to 50</option>
+                  <option>51 to 100</option>
+                  <option>100 or more</option>
+                </select>
+              </div>
+            </div>
+            <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="btn btn-primary" type="submit">Check my venue</button>
+            <div class="lf-err" role="alert"></div>
+            <p class="note">No spam. Used only to see if the venue is a fit.</p>
+          </form>
+          <div class="cmv-next" id="lf-cmv-next">
+            <div class="n-ic" aria-hidden="true">&#8250;</div>
+            <p>Takes under a minute, and the team follows up if it is a fit.</p>
+          </div>
+          <div class="cmv-ok" id="lf-cmv-ok" hidden>
+            <div class="ok-ic" aria-hidden="true">&#10003;</div>
+            <h2>Thanks. That is&nbsp;all&nbsp;we&nbsp;need.</h2>
+            <p>We will review the venue and follow up if it is&nbsp;a&nbsp;fit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- [4] JavaScript: Beacon lead intake.
+     Posts the form to the LongFi Beacon intake function. Leads are stored
+     permanently in Supabase and surface in the Beacon review queue, tagged
+     with the page they came from. To reuse on another page, change ONLY the
+     PAGE_KEY and CONTACT_TYPE values below. -->
+<script>
+(function(){
+  var PAGE_KEY='check_my_venue';
+  var CONTACT_TYPE='venue_operator';
+  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
+  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
+  var form=document.getElementById('lf-cmv-form');
+  if(!form)return;
+  var ok=document.getElementById('lf-cmv-ok');
+  var next=document.getElementById('lf-cmv-next');
+  var btn=form.querySelector('button[type=submit]');
+  var err=form.querySelector('.lf-err');
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function showErr(m){err.textContent=m;err.classList.add('show');}
+  function clearErr(){err.textContent='';err.classList.remove('show');}
+  function clearBad(){
+    form.full_name.classList.remove('bad');
+    form.email.classList.remove('bad');
+    form.company_name.classList.remove('bad');
+    form.venue_type.classList.remove('bad');
+    form.wifi_platform.classList.remove('bad');
+  }
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault(); clearErr(); clearBad();
+    var name=form.full_name.value.trim();
+    var email=form.email.value.trim();
+    var company=form.company_name.value.trim();
+    var location=form.location.value.trim();
+    var venue_type=form.venue_type.value.trim();
+    var wifi_platform=form.wifi_platform.value.trim();
+    var num_locations=form.num_locations.value.trim();
+    var aps_per_site=form.aps_per_site.value.trim();
+    var honeypot=form.company_website.value.trim();
+    if(!name){form.full_name.classList.add('bad');showErr('Please enter your name.');return;}
+    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
+    if(venue_type===''){form.venue_type.classList.add('bad');showErr('Please choose a venue type.');return;}
+    if(wifi_platform===''){form.wifi_platform.classList.add('bad');showErr('Please choose the Wi-Fi system.');return;}
+    btn.disabled=true; var label=btn.textContent; btn.textContent='Sending...';
+    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':APIKEY},
+      body:JSON.stringify({full_name:name,email:email,company_name:company,company_website:honeypot,page_key:PAGE_KEY,contact_type:CONTACT_TYPE,cta_label:'Check if your venue qualifies',page_url:window.location.href,referrer:document.referrer,venue_type:venue_type,wifi_platform:wifi_platform,num_locations:num_locations,aps_per_site:aps_per_site,location:location})
+    }).then(function(r){return r.json();})
+      .then(function(d){
+        if(d&&d.ok){ form.setAttribute('hidden',''); if(next)next.setAttribute('hidden',''); if(ok)ok.removeAttribute('hidden'); }
+        else{ showErr('Something went wrong. Please try again.'); btn.disabled=false;btn.textContent=label; }
+      }).catch(function(){ showErr('Something went wrong. Please try again.'); btn.disabled=false;btn.textContent=label; });
+  });
+})();
+</script>

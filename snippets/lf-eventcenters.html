@@ -487,42 +487,21 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 <!-- ============================================================
      SNIPPET: lf_recap_cta_event_centers_v2  (recap statement flowing into the ask)
      ============================================================ -->
-<div class="dark-band on-dark" id="event">
-  <section class="recap">
-    <div class="wrap">
-      <div class="kicker rv">Event ready</div>
-      <div class="recap-hero rv">
-        <h3 class="metal">Ready to improve cellular connectivity across your&nbsp;event&nbsp;center?</h3>
-        <p>At no cost and without interruption to your events.</p>
-      </div>
-      <div class="cta-panel rv">
-        <div>
-          <h2>Bring smoother guest experiences and more shareable moments to your events, using the Wi&#8209;Fi you&nbsp;already&nbsp;have.</h2>
-          <p class="lede">Tell us about your venue and we&rsquo;ll confirm compatibility and show how LongFi Connect works without disruption to&nbsp;your&nbsp;events.</p>
-        </div>
-        <div class="cta-form">
-            <form id="lf-eventcenters-form" novalidate>
-              <label class="fl" for="lf-eventcenters-full_name">Name</label>
-              <input class="fi" id="lf-eventcenters-full_name" name="full_name" type="text" autocomplete="name" required>
-              <label class="fl" for="lf-eventcenters-email">Business email</label>
-              <input class="fi" id="lf-eventcenters-email" name="email" type="email" autocomplete="email" required>
-              <label class="fl" for="lf-eventcenters-company_name">Venue or company</label>
-              <input class="fi" id="lf-eventcenters-company_name" name="company_name" type="text" autocomplete="organization">
-              <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
-              <button class="btn btn-primary" type="submit">Improve my venue&rsquo;s connectivity</button>
-              <div class="lf-err" role="alert"></div>
-              <p class="note">By submitting, you agree to our <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>. We use your details only to evaluate your site.</p>
-            </form>
-            <div class="cta-ok" id="lf-eventcenters-ok" hidden>
-              <div class="ok-ic" aria-hidden="true">&#10003;</div>
-              <h2>Thanks. We have&nbsp;your&nbsp;details.</h2>
-              <p class="lede">Our team will review your site and reach out with&nbsp;next&nbsp;steps.</p>
-            </div>
+  <div class="dark-band on-dark" id="event">
+    <section class="cta-final">
+      <div class="wrap" style="text-align:center">
+        <div class="rv" style="max-width:760px;margin:0 auto">
+          <h2 class="metal">Keep the venue connected when it fills up.</h2>
+          <p class="lede" style="margin:0 auto 6px">Reliable indoor cell coverage on the Wi&#8209;Fi already in place. A short call or quick venue check shows the fit.</p>
+          <div class="btn-row" style="justify-content:center">
+            <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+            <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
           </div>
+          <p style="font-size:13px;opacity:.62;margin-top:16px">Works with business grade Wi&#8209;Fi such as Cisco, Meraki, Aruba, or comparable, and supports major mobile carriers.</p>
+        </div>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
 
 <!-- ============================================================
      SNIPPET: lf_footer_replica  TEMPORARY REPLICA of the live site footer.
@@ -541,25 +520,5 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
   var so=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var strip=x.target.closest('.strip');if(strip)strip.classList.add('lines-on');x.target.classList.add('on');var n=x.target.querySelector('.stat-n');if(n&&n.dataset.count){var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;(function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p;n.textContent=Math.round(tgt*p)+sfx;if(p<1)requestAnimationFrame(step);})(performance.now());}so.unobserve(x.target);});},{threshold:0.25});
   r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
   setTimeout(function(){r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view');});r.querySelectorAll('.stat').forEach(function(el){var rc=el.getBoundingClientRect();if(rc.top<window.innerHeight&&rc.bottom>0){el.classList.add('on');var s=el.closest('.strip');if(s)s.classList.add('lines-on');}});},150);
-})();
-</script>
-<!-- [5] JavaScript: Beacon lead intake. Change only PAGE_KEY and CONTACT_TYPE to reuse on another page. -->
-<script>
-(function(){
-  var PAGE_KEY='event_centers';
-  var CONTACT_TYPE='venue_operator';
-  var ENDPOINT='https://wmxrnxvvyzyjiwbvvskb.supabase.co/functions/v1/website-lead-intake';
-  var APIKEY='sb_publishable_McmK4tZ7qHsuwMWoFgQPaw_IJE741k2';
-  var form=document.getElementById('lf-eventcenters-form');
-  if(!form)return;
-  var ok=document.getElementById('lf-eventcenters-ok');
-  var btn=form.querySelector('button[type=submit]');var err=form.querySelector('.lf-err');var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  function showErr(m){err.textContent=m;err.classList.add('show');}function clearErr(){err.textContent='';err.classList.remove('show');}
-  form.addEventListener('submit',function(ev){ev.preventDefault();clearErr();var name=form.full_name.value.trim();var email=form.email.value.trim();var company=form.company_name?form.company_name.value.trim():'';var honeypot=form.company_website.value.trim();form.full_name.classList.remove('bad');form.email.classList.remove('bad');
-    if(!name){form.full_name.classList.add('bad');showErr('Please enter your name.');return;}
-    if(!emailRe.test(email)){form.email.classList.add('bad');showErr('Please enter a valid business email.');return;}
-    btn.disabled=true;var label=btn.textContent;btn.textContent='Sending...';
-    fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','apikey':APIKEY},body:JSON.stringify({full_name:name,email:email,company_name:company,company_website:honeypot,page_key:PAGE_KEY,contact_type:CONTACT_TYPE,cta_label:label,page_url:window.location.href,referrer:document.referrer||''})}).then(function(res){return res.json().catch(function(){return {ok:res.ok};});}).then(function(data){if(data&&data.ok){form.setAttribute('hidden','');if(ok)ok.removeAttribute('hidden');}else{btn.disabled=false;btn.textContent=label;showErr('Something went wrong. Please try again in a moment.');}}).catch(function(){btn.disabled=false;btn.textContent=label;showErr('Network issue. Please try again in a moment.');});
-  });
 })();
 </script>

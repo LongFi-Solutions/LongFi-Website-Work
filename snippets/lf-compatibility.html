@@ -1,0 +1,368 @@
+<!-- LongFi snippet | lf-compatibility.html | v1.0 | 2026-07-29 | LOCAL DRAFT, REVIEW ONLY -->
+<!-- [1] Google Fonts, load-once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+
+<!-- [2] Page styles, all scoped under #lf-compatibility (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   ============================================================ */
+#lf-compatibility{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix: neutralize the boxed .e-con wrapper padding so full-color sections reach the edges. Harmless outside Elementor. */
+.e-con:has(#lf-compatibility),.e-con-inner:has(#lf-compatibility),.elementor-widget-html:has(#lf-compatibility),.elementor-widget-shortcode:has(#lf-compatibility),.elementor-widget-container:has(#lf-compatibility){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+#lf-compatibility *{box-sizing:border-box;margin:0;padding:0}
+#lf-compatibility{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-compatibility{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-compatibility img{max-width:100%;height:auto;display:block}
+#lf-compatibility a{color:var(--skyline);text-decoration:none}
+#lf-compatibility h1, #lf-compatibility h2, #lf-compatibility h3, #lf-compatibility h4, #lf-compatibility .eyebrow, #lf-compatibility .btn{font-family:var(--head)}
+#lf-compatibility h1, #lf-compatibility h2, #lf-compatibility h3{text-wrap:balance}
+#lf-compatibility p{text-wrap:pretty}/* prevents orphaned last lines per the copywriting rule */
+#lf-compatibility .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){#lf-compatibility .wrap{padding:0 16px}}
+#lf-compatibility section{padding:84px 0}
+@media(max-width:680px){#lf-compatibility section{padding:56px 0}}
+#lf-compatibility .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#1d3b80;margin-bottom:14px}
+#lf-compatibility .on-dark .eyebrow{color:#AFC4F2}
+#lf-compatibility h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:14px}
+#lf-compatibility .on-dark h2{color:var(--white)}
+#lf-compatibility .lede{font-size:17.5px;line-height:1.65;max-width:720px}
+#lf-compatibility .on-dark .lede{color:rgba(255,255,255,.9)}
+/* Designed section titles on light backgrounds. Never plain black on white. */
+#lf-compatibility .h-grad{background:linear-gradient(120deg,var(--ink) 22%,#20356F 58%,var(--skyline) 105%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 10px rgba(36,72,153,.16));padding-bottom:.12em;margin-bottom:.1em}
+#lf-compatibility .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-compatibility 8s ease-in-out infinite alternate;
+  padding-bottom:.12em;margin-bottom:.1em;
+}
+/* SIGNAL GLEAM, one slow light sweep on a single headline. Skyline persona tint. */
+#lf-compatibility .h-shine{background:linear-gradient(115deg,#173163 0%,#3E6BC4 35%,#B7CCF2 50%,#3E6BC4 65%,#173163 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-compatibility 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(62,107,196,.16));padding-bottom:.12em;margin-bottom:.1em}
+@keyframes shimmer-lf-compatibility{from{background-position:0% center}to{background-position:100% center}}
+#lf-compatibility .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Page persona CTA: Compatibility runs the skyline blue variant. */
+#lf-compatibility .btn-primary{background:linear-gradient(135deg,#3560B4 0%,#1B2E63 100%);color:#FFFFFF;border-color:rgba(160,190,246,.6);box-shadow:0 0 26px rgba(53,96,180,.45),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.4)}
+#lf-compatibility .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(70,110,200,.6),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.45)}
+#lf-compatibility .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-compatibility .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-compatibility .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-compatibility .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-compatibility .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+#lf-compatibility .dark-band{background:linear-gradient(140deg,#1B1F3D 0%,var(--indigo) 52%,#20356F 115%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-compatibility .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at 90% 0%, rgba(62,107,196,.22), transparent 55%),radial-gradient(460px circle at 8% 95%, rgba(233,238,246,.13), transparent 55%);pointer-events:none}
+#lf-compatibility .dark-band>.wrap{position:relative;z-index:1}
+#lf-compatibility .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-compatibility .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+/* Scroll reveal */
+#lf-compatibility .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-compatibility .rv.in-view{opacity:1;transform:none}
+#lf-compatibility .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-compatibility .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-compatibility .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-compatibility .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-compatibility .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){
+  #lf-compatibility .rv, #lf-compatibility .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-compatibility .metal, #lf-compatibility .h-shine{animation:none}
+  #lf-compatibility{scroll-behavior:auto}
+}
+/* ============================================================
+   SNIPPET: lf_hero_compatibility  (light, clean two-column, no photo)
+   ============================================================ */
+#lf-compatibility .hero{padding:76px 0 64px;background:linear-gradient(170deg,#FFFFFF 0%,#EEF2FB 60%,#E7EDFA 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+#lf-compatibility .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(680px circle at 92% 6%, rgba(62,107,196,.10), transparent 58%);pointer-events:none}
+#lf-compatibility .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+@media(max-width:920px){#lf-compatibility .hero-grid{grid-template-columns:1fr;gap:34px}#lf-compatibility .hero{padding:60px 0 52px}}
+#lf-compatibility .hero h1{font-family:var(--head);font-size:clamp(29px,3.6vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:16px}
+#lf-compatibility .hero h1 .accent{color:var(--skyline)}
+#lf-compatibility .hero .lede{color:var(--body);max-width:520px}
+/* lightweight three-pillar graphic, pure CSS/SVG, no photo */
+#lf-compatibility .hero-art{position:relative}
+#lf-compatibility .pill-stack{display:flex;flex-direction:column;gap:14px;max-width:420px;margin-left:auto}
+#lf-compatibility .pill-row{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-soft)}
+#lf-compatibility .pill-row .pi{flex:0 0 auto;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(150deg,#eaf0fb,#dde7fa);color:var(--skyline)}
+#lf-compatibility .pill-row .pi svg{width:24px;height:24px}
+#lf-compatibility .pill-row .pt{font-family:var(--head);font-weight:700;font-size:15px;color:var(--ink)}
+#lf-compatibility .pill-row .ps{font-size:13px;color:var(--muted);margin-top:2px}
+#lf-compatibility .pill-row .chk{margin-left:auto;flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:rgba(31,165,142,.13);color:var(--teal);display:grid;place-items:center}
+/* ============================================================
+   SNIPPET: lf_pillars_overview  (three appealing cards)
+   ============================================================ */
+#lf-compatibility .pillars{background:var(--white)}
+#lf-compatibility .pillars-head{max-width:760px}
+#lf-compatibility .pcard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media(max-width:920px){#lf-compatibility .pcard-grid{grid-template-columns:1fr}}
+#lf-compatibility .pcard{padding:28px 26px 24px;display:flex;flex-direction:column}
+#lf-compatibility .pcard .pico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(150deg,#eaf0fb,#dde7fa);color:var(--skyline);margin-bottom:16px}
+#lf-compatibility .pcard .pico svg{width:27px;height:27px}
+#lf-compatibility .pcard h3{font-size:18.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
+#lf-compatibility .pcard p{font-size:15px;flex:1}
+#lf-compatibility .pcard .more{font-family:var(--head);font-size:14px;font-weight:600;color:var(--skyline);margin-top:16px;display:inline-flex;align-items:center;gap:6px}
+#lf-compatibility .pcard .more::after{content:"\2193";transition:transform .2s ease}
+#lf-compatibility .pcard:hover .more::after{transform:translateY(3px)}
+/* ============================================================
+   SNIPPET: lf_detail_sections  (one per pillar)
+   ============================================================ */
+#lf-compatibility .detail{background:var(--bg)}
+#lf-compatibility .detail.alt{background:var(--white)}
+#lf-compatibility .detail-head{max-width:760px}
+#lf-compatibility .detail-head .eyebrow{color:#1d3b80}
+#lf-compatibility .blist{list-style:none;margin-top:26px;max-width:720px}
+#lf-compatibility .blist li{position:relative;padding:12px 0 12px 40px;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--body)}
+#lf-compatibility .blist li:last-child{border-bottom:0}
+#lf-compatibility .blist li .bk{position:absolute;left:0;top:12px;width:26px;height:26px;border-radius:8px;background:rgba(31,165,142,.13);color:var(--teal);display:grid;place-items:center}
+#lf-compatibility .blist li .bk svg{width:15px;height:15px}
+#lf-compatibility .blist li strong{color:var(--ink);font-weight:700}
+#lf-compatibility .figure-note{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 18px;box-shadow:var(--shadow-soft);font-size:14.5px;color:var(--body)}
+#lf-compatibility .detail.alt .figure-note{background:var(--soft)}
+#lf-compatibility .figure-note .fn-n{font-family:var(--head);font-weight:800;font-size:19px;color:var(--skyline);white-space:nowrap}
+/* ── Vendor carousel: finite, horizontally scrollable track (no auto-scroll) ── */
+#lf-compatibility .vcar{position:relative;margin-top:34px}
+#lf-compatibility .vtrack{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 20px;-webkit-overflow-scrolling:touch;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%)}
+#lf-compatibility .vtrack::-webkit-scrollbar{height:8px}
+#lf-compatibility .vtrack::-webkit-scrollbar-track{background:var(--soft);border-radius:99px}
+#lf-compatibility .vtrack::-webkit-scrollbar-thumb{background:#c7d0e2;border-radius:99px}
+#lf-compatibility .vtrack::-webkit-scrollbar-thumb:hover{background:#a9b5c9}
+#lf-compatibility .vcard{scroll-snap-align:start;min-width:210px;max-width:210px;background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
+#lf-compatibility .detail.alt .vcard{background:#fff}
+#lf-compatibility .vcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+#lf-compatibility .vcard .vic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(150deg,#eaf0fb,#dde7fa);color:var(--skyline);margin-bottom:14px}
+#lf-compatibility .vcard .vic svg{width:22px;height:22px}
+#lf-compatibility .vcard h4{font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
+#lf-compatibility .vcard p{font-size:13px;color:var(--muted)}
+#lf-compatibility .vnav{display:flex;gap:10px;margin-top:6px}
+#lf-compatibility .vbtn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--skyline);display:grid;place-items:center;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+#lf-compatibility .vbtn:hover{background:var(--soft);border-color:#c7d0e2}
+#lf-compatibility .vbtn:active{transform:scale(.94)}
+#lf-compatibility .vbtn svg{width:20px;height:20px}
+#lf-compatibility .vbtn[disabled]{opacity:.4;cursor:default}
+/* ============================================================
+   SNIPPET: lf_cta_compatibility  (dark band, standard CTA)
+   ============================================================ */
+#lf-compatibility .cta-final .lede{margin-top:6px}
+</style>
+
+<!-- [3] Page content. One <main> wrapper carries the scope id. -->
+<main id="lf-compatibility">
+
+  <!-- ============================================================
+       SNIPPET: lf_hero_compatibility  (no eyebrow, plain headline)
+       ============================================================ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="rv-stagger">
+        <h1>What makes a venue ready for <span class="accent">LongFi&nbsp;Connect</span></h1>
+        <p class="lede">It comes down to three simple things: a little room on the internet, business grade Wi&#8209;Fi, and access to the network so the setup can be applied.</p>
+        <div class="btn-row">
+          <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+          <a class="btn btn-ghost" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
+        </div>
+      </div>
+      <div class="hero-art rv">
+        <div class="pill-stack">
+          <div class="pill-row">
+            <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20a8 8 0 100-16 8 8 0 000 16zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10S9.5 4.7 12 2z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pt">Room on your internet</div><div class="ps">A little spare bandwidth</div></div>
+            <div class="chk"><svg viewBox="0 0 24 24" fill="none" width="15" height="15"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="pill-row">
+            <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8 12a4 4 0 018 0M12 12v8M10 20h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pt">Business grade Wi&#8209;Fi</div><div class="ps">Managed access points</div></div>
+            <div class="chk"><svg viewBox="0 0 24 24" fill="none" width="15" height="15"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="pill-row">
+            <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4zM4 10h16M8 6v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="pt">Access to your dashboard</div><div class="ps">Admin control of the network</div></div>
+            <div class="chk"><svg viewBox="0 0 24 24" fill="none" width="15" height="15"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_pillars_overview  (three cards, anchor down)
+       ============================================================ -->
+  <section class="pillars">
+    <div class="wrap">
+      <div class="pillars-head rv">
+        <h2 class="h-grad">What makes a venue&nbsp;compatible</h2>
+        <p class="lede">Most sites already have what they need. Here are the three things LongFi Connect looks for, in plain&nbsp;terms.</p>
+      </div>
+      <div class="pcard-grid rv-stagger">
+
+        <div class="card pcard">
+          <div class="pico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20a8 8 0 100-16 8 8 0 000 16zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10S9.5 4.7 12 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Room on your&nbsp;internet</h3>
+          <p>The venue has a bit of spare internet bandwidth to work with, not a connection that is already stretched thin.</p>
+          <a class="more" href="#pillar-internet">Learn more</a>
+        </div>
+
+        <div class="card pcard">
+          <div class="pico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8 12a4 4 0 018 0M12 12v8M10 20h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Business grade&nbsp;Wi&#8209;Fi</h3>
+          <p>An enterprise Wi&#8209;Fi setup, meaning a controller and managed access points from a known business vendor.</p>
+          <a class="more" href="#pillar-wifi">Learn more</a>
+        </div>
+
+        <div class="card pcard">
+          <div class="pico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4zM4 10h16M8 6v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Access to your&nbsp;dashboard</h3>
+          <p>Admin access to the Wi&#8209;Fi controller or dashboard, so the LongFi Connect setup can be applied.</p>
+          <a class="more" href="#pillar-access">Learn more</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_detail_internet  (pillar 1)
+       ============================================================ -->
+  <section class="detail" id="pillar-internet">
+    <div class="wrap">
+      <div class="detail-head rv">
+        <span class="eyebrow">Pillar one</span>
+        <h2 class="h-grad">Room on your&nbsp;internet</h2>
+        <p class="lede">The venue needs some spare capacity on its internet connection. LongFi Connect rides on a small share of what is already there, so day to day traffic keeps&nbsp;priority.</p>
+      </div>
+      <ul class="blist rv">
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A business broadband connection that is not already maxed out during busy hours.</li>
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>As a starting point, about <strong>25 Mbps of spare download</strong> and <strong>10 Mbps of spare upload</strong>.</li>
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>The LongFi Connect lane typically uses only a small share of the available bandwidth.</li>
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Steady, low latency internet works best. A fast, stable line matters more than a very large one.</li>
+      </ul>
+      <div class="figure-note rv">
+        <span class="fn-n">25 / 10 Mbps</span>
+        <span>A practical starting point for spare download and upload. Final fit is confirmed during a short site check. See the <a href="https://longfi-solutions.github.io/best-practices/" target="_blank" rel="noopener">technical best practices</a>.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_detail_wifi  (pillar 2, vendor carousel)
+       ============================================================ -->
+  <section class="detail alt" id="pillar-wifi">
+    <div class="wrap">
+      <div class="detail-head rv">
+        <span class="eyebrow">Pillar two</span>
+        <h2 class="h-grad">Business grade&nbsp;Wi&#8209;Fi</h2>
+        <p class="lede">LongFi Connect runs on enterprise Wi&#8209;Fi, meaning access points managed by a controller or cloud dashboard, not home or consumer gear. Many business vendors are a good&nbsp;fit.</p>
+      </div>
+      <div class="vcar rv">
+        <div class="vtrack" id="vtrack">
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Ubiquiti / UniFi</h4><p>UniFi controller managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Ruckus</h4><p>Enterprise Wi&#8209;Fi lines</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Aruba</h4><p>Aruba Central managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Cisco Meraki</h4><p>Cloud dashboard managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Cisco Catalyst</h4><p>Controller managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Cambium</h4><p>cnMaestro managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Juniper Mist</h4><p>Mist cloud managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Fortinet</h4><p>FortiGate managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>TP-Link Omada</h4><p>Omada SDN, business line</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Extreme Networks</h4><p>ExtremeCloud IQ managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Alta Labs</h4><p>Cloud managed</p></div>
+          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Grandstream</h4><p>GWN cloud managed</p></div>
+        </div>
+        <div class="vnav">
+          <button class="vbtn" id="vprev" type="button" aria-label="Previous vendors"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="vbtn" id="vnext" type="button" aria-label="More vendors"><svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+      <p class="lede rv" style="font-size:14.5px;color:var(--muted);margin-top:12px;max-width:760px">Other business grade platforms qualify too. Final compatibility for a specific setup is confirmed during a short site check.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_detail_access  (pillar 3)
+       ============================================================ -->
+  <section class="detail" id="pillar-access">
+    <div class="wrap">
+      <div class="detail-head rv">
+        <span class="eyebrow">Pillar three</span>
+        <h2 class="h-grad">Access to your&nbsp;dashboard</h2>
+        <p class="lede">LongFi needs admin access to the Wi&#8209;Fi controller or dashboard so the carrier approved setup can be applied to the network. Nothing else on the network is&nbsp;changed.</p>
+      </div>
+      <ul class="blist rv">
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Admin access to the controller or dashboard that runs the venue Wi&#8209;Fi.</li>
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Different vendors name it differently. Some call it a controller, others a dashboard or a control center.</li>
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>An I.T. contact or managed service provider can grant this access on the venue behalf.</li>
+        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>The LongFi team applies the setup and keeps the existing systems on the network untouched.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_cta_compatibility  (dark band, standard CTA, last block)
+       ============================================================ -->
+  <div class="dark-band on-dark">
+    <section class="cta-final">
+      <div class="wrap" style="text-align:center">
+        <div class="rv" style="max-width:760px;margin:0 auto">
+          <h2 class="metal">See if your venue is a fit for LongFi Connect.</h2>
+          <p class="lede" style="margin:0 auto 6px">A short call or quick venue check confirms all three in a few minutes, with no cost and no&nbsp;commitment.</p>
+          <div class="btn-row" style="justify-content:center">
+            <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+            <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
+          </div>
+          <p style="font-size:13px;opacity:.62;margin-top:16px">Works with business grade Wi&#8209;Fi such as Cisco, Meraki, Aruba, or comparable, and supports major mobile carriers.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- [4] JavaScript: scroll reveal + finite vendor carousel controls -->
+<script>
+(function(){
+  var r=document.getElementById('lf-compatibility');
+  if(!r)return;
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(x){ if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);} });
+  },{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  setTimeout(function(){
+    r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){ var rc=el.getBoundingClientRect(); if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view'); });
+  },150);
+
+  // Finite vendor carousel: buttons scroll the track by roughly one page. No auto-scroll, no loop.
+  var track=document.getElementById('vtrack');
+  var prev=document.getElementById('vprev');
+  var next=document.getElementById('vnext');
+  if(track&&prev&&next){
+    function step(){ return Math.max(track.clientWidth*0.8, 226); }
+    function sync(){
+      var max=track.scrollWidth-track.clientWidth-2;
+      prev.disabled = track.scrollLeft<=2;
+      next.disabled = track.scrollLeft>=max;
+    }
+    prev.addEventListener('click',function(){ track.scrollBy({left:-step(),behavior:'smooth'}); });
+    next.addEventListener('click',function(){ track.scrollBy({left:step(),behavior:'smooth'}); });
+    track.addEventListener('scroll',sync,{passive:true});
+    window.addEventListener('resize',sync);
+    sync();
+  }
+})();
+</script>

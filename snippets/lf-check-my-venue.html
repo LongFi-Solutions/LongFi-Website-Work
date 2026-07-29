@@ -108,6 +108,7 @@
 #lf-check-my-venue .lf-err{display:none;font-size:13px;color:#C0392B;margin-top:12px;text-align:center}
 #lf-check-my-venue .lf-err.show{display:block}
 #lf-check-my-venue .note{font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+.note a{color:#46598C;text-decoration:underline;font-weight:600}
 /* Success panel */
 #lf-check-my-venue .cmv-ok{text-align:center;padding:22px 6px}
 #lf-check-my-venue .cmv-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.14);border:1px solid rgba(31,165,142,.45);display:flex;align-items:center;justify-content:center;color:#12876f;font-size:26px;font-weight:700}
@@ -123,7 +124,7 @@
         <!-- Left: value copy -->
         <div>
           <span class="eyebrow">Venue qualifier</span>
-          <h1>See if a venue can run <span class="glint">LongFi&nbsp;Connect.</span></h1>
+          <h1>See if your venue or portfolio can run <span class="glint">LongFi&nbsp;Connect.</span></h1>
           <p class="lede">LongFi Connect adds reliable indoor cell coverage on the Wi&#8209;Fi a venue already has. A few quick questions is all it takes to see if the venue is a&nbsp;fit.</p>
           <div class="trust">
             <div class="t-row">
@@ -132,7 +133,19 @@
             </div>
             <div class="t-row">
               <div class="t-ic" aria-hidden="true">&#10003;</div>
-              <p class="t-tx">Runs on business grade Wi&#8209;Fi, no new hardware.</p>
+              <p class="t-tx">Runs on the <strong>business grade Wi&#8209;Fi already in place</strong>, with no new hardware.</p>
+            </div>
+            <div class="t-row">
+              <div class="t-ic" aria-hidden="true">&#10003;</div>
+              <p class="t-tx">Supports <strong>major mobile carriers</strong> and platforms such as Cisco, Meraki, and Aruba.</p>
+            </div>
+            <div class="t-row">
+              <div class="t-ic" aria-hidden="true">&#10003;</div>
+              <p class="t-tx"><strong>No cost to the venue</strong> and no disruption to the existing network.</p>
+            </div>
+            <div class="t-row">
+              <div class="t-ic" aria-hidden="true">&#10003;</div>
+              <p class="t-tx">Scales from <strong>one site to a whole portfolio</strong> with the same light touch.</p>
             </div>
           </div>
         </div>
@@ -226,7 +239,7 @@
             <input class="hp" name="company_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
             <button class="btn btn-primary" type="submit">Check my venue</button>
             <div class="lf-err" role="alert"></div>
-            <p class="note">No spam. Used only to see if the venue is a fit.</p>
+            <p class="note">By submitting, you agree to our <a href="https://www.longfisolutions.com/privacypolicy/" target="_blank" rel="noopener">Privacy Policy</a>. We use your details only to evaluate the venue, and never sell&nbsp;them.</p>
           </form>
           <div class="cmv-next" id="lf-cmv-next">
             <div class="n-ic" aria-hidden="true">&#8250;</div>

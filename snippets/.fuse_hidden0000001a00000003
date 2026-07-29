@@ -466,7 +466,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">If your nightclub uses enterprise-grade Wi&#8209;Fi systems such as UniFi, Meraki, Aruba, Ruckus, Cisco, Juniper Mist, or other Passpoint-compatible systems already supporting POS systems, guest Wi&#8209;Fi, and high-density crowds, your venue is likely ready&nbsp;to&nbsp;start.</p>
         <p class="lede">No hardware additions, and no changes to how your network is&nbsp;used&nbsp;today.</p>
-        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/compatibility/">Check compatibility</a></div>
+        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
       </div>
       <div class="dcard">
         <div class="dcard-head">
@@ -477,7 +477,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">Major carriers work with LongFi to serve their subscribers indoors, and LongFi Connect carries that traffic securely on the Wi&#8209;Fi you already have during busy nights and&nbsp;peak&nbsp;events.</p>
         <p class="lede">Guests stay connected and stay later, they post and tag while still on site, and tabs and mobile payments clear on the first try. The benefits start on&nbsp;day&nbsp;one.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a></div>
+        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">Check if your venue qualifies</a></div>
       </div>
     </div>
   </div>

@@ -368,7 +368,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
           </div>
           <p class="lede">If the office runs business-grade Wi&#8209;Fi such as Cisco, Meraki, Aruba, or comparable Passpoint-compatible systems, the building is likely&nbsp;already&nbsp;compatible.</p>
           <p class="lede">No new hardware, and no changes to how the network is&nbsp;used&nbsp;today. LongFi Connect adds indoor cellular as a Passpoint configuration on a dedicated secure VLAN, separate from business&nbsp;systems.</p>
-          <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/compatibility/">Check compatibility</a></div>
+          <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
         </div>
         <div class="dcard">
           <div class="dcard-head">
@@ -379,7 +379,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
           </div>
           <p class="lede">Major carriers work with LongFi to serve their subscribers indoors, and LongFi Connect carries that traffic securely on the Wi&#8209;Fi the business&nbsp;already&nbsp;has.</p>
           <p class="lede">Employees, visitors, and contractors connect on their SIM the moment they walk in, with no portal and no app. It can also return a new monthly revenue opportunity from carrier traffic. The benefits start on&nbsp;day&nbsp;one.</p>
-          <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/check-my-venue/">See if the office qualifies</a></div>
+          <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">See if the office qualifies</a></div>
         </div>
       </div>
     </div>

@@ -466,7 +466,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">If your facility uses systems such as Meraki, Aruba, UniFi, Ruckus, Cisco, Juniper Mist, or other Passpoint-compatible Wi&#8209;Fi, your venue is likely&nbsp;already&nbsp;compatible.</p>
         <p class="lede">No hardware additions, and no changes to how your network&nbsp;operates&nbsp;today.</p>
-        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/compatibility/">Check compatibility</a></div>
+        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
       </div>
       <div class="dcard">
         <div class="dcard-head">
@@ -478,7 +478,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">LongFi Connect uses part of your available Wi&#8209;Fi capacity to carry carrier-authenticated cellular connectivity, so patients and visitors get strong indoor cell service on the network already&nbsp;in&nbsp;place.</p>
         <p class="lede">Indoor connectivity improves for patients and visitors, at no cost to implement and without changing how your&nbsp;facility&nbsp;operates.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/check-my-venue/">Check my facility</a></div>
+        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">Check my facility</a></div>
       </div>
     </div>
   </div>

@@ -1,4 +1,5 @@
-<!-- LongFi snippet | lf-compatibility.html | v1.0 | 2026-07-29 | LOCAL DRAFT, REVIEW ONLY -->
+<!-- LongFi snippet | lf-compatibility.html | v2.0 | rebuilt 2026-07-29 | LOCAL DRAFT, REVIEW ONLY -->
+<!-- Rebuilt to match the live longfisolutions.com industry pattern: two-column photo hero (lf-hotels pattern), scoped styles, .dark-band final CTA, standardized lf-book-cta primary. -->
 <!-- [1] Google Fonts, load-once (per DigitalHypePro guide) -->
 <script>
 (function(){
@@ -38,8 +39,8 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 #lf-compatibility p{text-wrap:pretty}/* prevents orphaned last lines per the copywriting rule */
 #lf-compatibility .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 @media(max-width:680px){#lf-compatibility .wrap{padding:0 16px}}
-#lf-compatibility section{padding:84px 0}
-@media(max-width:680px){#lf-compatibility section{padding:56px 0}}
+#lf-compatibility section{padding:72px 0}
+@media(max-width:680px){#lf-compatibility section{padding:52px 0}}
 #lf-compatibility .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#1d3b80;margin-bottom:14px}
 #lf-compatibility .on-dark .eyebrow{color:#AFC4F2}
 #lf-compatibility h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:14px}
@@ -56,11 +57,11 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
   animation:shimmer-lf-compatibility 8s ease-in-out infinite alternate;
   padding-bottom:.12em;margin-bottom:.1em;
 }
-/* SIGNAL GLEAM, one slow light sweep on a single headline. Skyline persona tint. */
+/* SIGNAL GLEAM, one slow light sweep on a single power word. Skyline persona tint. */
 #lf-compatibility .h-shine{background:linear-gradient(115deg,#173163 0%,#3E6BC4 35%,#B7CCF2 50%,#3E6BC4 65%,#173163 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-compatibility 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(62,107,196,.16));padding-bottom:.12em;margin-bottom:.1em}
 @keyframes shimmer-lf-compatibility{from{background-position:0% center}to{background-position:100% center}}
 #lf-compatibility .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
-/* Page persona CTA: Compatibility runs the skyline blue variant. */
+/* Page persona CTA: Compatibility runs the skyline blue variant (used only for transitional secondary asks). */
 #lf-compatibility .btn-primary{background:linear-gradient(135deg,#3560B4 0%,#1B2E63 100%);color:#FFFFFF;border-color:rgba(160,190,246,.6);box-shadow:0 0 26px rgba(53,96,180,.45),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.4)}
 #lf-compatibility .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(70,110,200,.6),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.45)}
 #lf-compatibility .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
@@ -68,11 +69,15 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 #lf-compatibility .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
 #lf-compatibility .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
 #lf-compatibility .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+/* Scoped copy of the global header .lf-book-cta so the primary CTA renders styled even when this snippet is viewed in isolation. Declarations kept identical to the global rule. */
+#lf-compatibility .lf-book-cta{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Poppins','Inter',system-ui,sans-serif;font-weight:600;font-size:13.5px;line-height:1.1!important;color:#14172B!important;background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%)!important;border:1px solid rgba(120,130,150,.35)!important;border-radius:10px!important;padding:14px 32px!important;text-decoration:none;cursor:pointer;box-shadow:0 3px 10px rgba(20,23,43,.18);animation:lf-cta-gleam 3.6s ease-in-out infinite;transition:transform .2s ease}
+#lf-compatibility .lf-book-cta:hover{transform:translateY(-2px)}
+@keyframes lf-cta-gleam{0%,100%{box-shadow:0 3px 10px rgba(20,23,43,.18),0 0 3px 0 rgba(150,175,225,.28)}50%{box-shadow:0 3px 10px rgba(20,23,43,.18),0 0 11px 1px rgba(150,175,225,.55)}}
 #lf-compatibility .dark-band{background:linear-gradient(140deg,#1B1F3D 0%,var(--indigo) 52%,#20356F 115%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 #lf-compatibility .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at 90% 0%, rgba(62,107,196,.22), transparent 55%),radial-gradient(460px circle at 8% 95%, rgba(233,238,246,.13), transparent 55%);pointer-events:none}
 #lf-compatibility .dark-band>.wrap{position:relative;z-index:1}
-#lf-compatibility .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
-#lf-compatibility .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+#lf-compatibility .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+#lf-compatibility .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(36,72,153,.16)}
 /* Scroll reveal */
 #lf-compatibility .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
 #lf-compatibility .rv.in-view{opacity:1;transform:none}
@@ -81,32 +86,36 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 #lf-compatibility .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
 #lf-compatibility .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
 #lf-compatibility .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+/* Hero entrance sequence (GP 2026-07-14): headline (with image) first, then sub-headline, then CTAs. Slow, staged. */
+#lf-compatibility .hero .rv-stagger>*{transition:opacity .85s ease,transform .85s ease}
+#lf-compatibility .hero .rv-stagger.in-view>*:nth-child(1){transition-delay:0s}
+#lf-compatibility .hero .rv-stagger.in-view>*:nth-child(2){transition-delay:.4s}
+#lf-compatibility .hero .rv-stagger.in-view>*:nth-child(3){transition-delay:.8s}
+#lf-compatibility .hero-img.rv{transition:opacity .85s ease,transform .85s ease}
 @media(prefers-reduced-motion:reduce){
   #lf-compatibility .rv, #lf-compatibility .rv-stagger>*{opacity:1;transform:none;transition:none}
   #lf-compatibility .metal, #lf-compatibility .h-shine{animation:none}
   #lf-compatibility{scroll-behavior:auto}
 }
 /* ============================================================
-   SNIPPET: lf_hero_compatibility  (light, clean two-column, no photo)
+   SNIPPET: lf_hero_compatibility  (two-column, text left, rounded photo right)
+   Follows the live industry-page hero pattern (see lf-hotels): headline + subhead
+   + CTAs on the left, a rounded photo on the right matching the text-block height.
    ============================================================ */
 #lf-compatibility .hero{padding:76px 0 64px;background:linear-gradient(170deg,#FFFFFF 0%,#EEF2FB 60%,#E7EDFA 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
 #lf-compatibility .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(680px circle at 92% 6%, rgba(62,107,196,.10), transparent 58%);pointer-events:none}
 #lf-compatibility .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
-@media(max-width:920px){#lf-compatibility .hero-grid{grid-template-columns:1fr;gap:34px}#lf-compatibility .hero{padding:60px 0 52px}}
+@media(max-width:920px){#lf-compatibility .hero-grid{grid-template-columns:1fr;gap:34px}#lf-compatibility .hero{padding:56px 0 48px}}
 #lf-compatibility .hero h1{font-family:var(--head);font-size:clamp(29px,3.6vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--ink);margin-bottom:16px}
 #lf-compatibility .hero h1 .accent{color:var(--skyline)}
-#lf-compatibility .hero .lede{color:var(--body);max-width:520px}
-/* lightweight three-pillar graphic, pure CSS/SVG, no photo */
-#lf-compatibility .hero-art{position:relative}
-#lf-compatibility .pill-stack{display:flex;flex-direction:column;gap:14px;max-width:420px;margin-left:auto}
-#lf-compatibility .pill-row{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-soft)}
-#lf-compatibility .pill-row .pi{flex:0 0 auto;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(150deg,#eaf0fb,#dde7fa);color:var(--skyline)}
-#lf-compatibility .pill-row .pi svg{width:24px;height:24px}
-#lf-compatibility .pill-row .pt{font-family:var(--head);font-weight:700;font-size:15px;color:var(--ink)}
-#lf-compatibility .pill-row .ps{font-size:13px;color:var(--muted);margin-top:2px}
-#lf-compatibility .pill-row .chk{margin-left:auto;flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:rgba(31,165,142,.13);color:var(--teal);display:grid;place-items:center}
+#lf-compatibility .hero .lede{color:var(--body);max-width:540px}
+/* rounded photo, cover, matched height (GP-04 hero default) */
+#lf-compatibility .hero-img{border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line);height:400px}
+#lf-compatibility .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-compatibility .hero-img:hover img{transform:scale(1.04)}
+@media(max-width:920px){#lf-compatibility .hero-img{height:290px}}
 /* ============================================================
-   SNIPPET: lf_pillars_overview  (three appealing cards)
+   SNIPPET: lf_pillars_overview  (three appealing cards, anchor down)
    ============================================================ */
 #lf-compatibility .pillars{background:var(--white)}
 #lf-compatibility .pillars-head{max-width:760px}
@@ -116,7 +125,7 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 #lf-compatibility .pcard .pico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(150deg,#eaf0fb,#dde7fa);color:var(--skyline);margin-bottom:16px}
 #lf-compatibility .pcard .pico svg{width:27px;height:27px}
 #lf-compatibility .pcard h3{font-size:18.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
-#lf-compatibility .pcard p{font-size:15px;flex:1}
+#lf-compatibility .pcard p{font-size:15px;flex:1;min-height:4.6em}
 #lf-compatibility .pcard .more{font-family:var(--head);font-size:14px;font-weight:600;color:var(--skyline);margin-top:16px;display:inline-flex;align-items:center;gap:6px}
 #lf-compatibility .pcard .more::after{content:"\2193";transition:transform .2s ease}
 #lf-compatibility .pcard:hover .more::after{transform:translateY(3px)}
@@ -126,7 +135,6 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 #lf-compatibility .detail{background:var(--bg)}
 #lf-compatibility .detail.alt{background:var(--white)}
 #lf-compatibility .detail-head{max-width:760px}
-#lf-compatibility .detail-head .eyebrow{color:#1d3b80}
 #lf-compatibility .blist{list-style:none;margin-top:26px;max-width:720px}
 #lf-compatibility .blist li{position:relative;padding:12px 0 12px 40px;border-bottom:1px solid var(--line);font-size:15.5px;color:var(--body)}
 #lf-compatibility .blist li:last-child{border-bottom:0}
@@ -136,28 +144,52 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 #lf-compatibility .figure-note{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 18px;box-shadow:var(--shadow-soft);font-size:14.5px;color:var(--body)}
 #lf-compatibility .detail.alt .figure-note{background:var(--soft)}
 #lf-compatibility .figure-note .fn-n{font-family:var(--head);font-weight:800;font-size:19px;color:var(--skyline);white-space:nowrap}
-/* ── Vendor carousel: finite, horizontally scrollable track (no auto-scroll) ── */
-#lf-compatibility .vcar{position:relative;margin-top:34px}
-#lf-compatibility .vtrack{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 20px;-webkit-overflow-scrolling:touch;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%);
-  mask-image:linear-gradient(90deg,transparent 0,#000 3%,#000 97%,transparent 100%)}
-#lf-compatibility .vtrack::-webkit-scrollbar{height:8px}
-#lf-compatibility .vtrack::-webkit-scrollbar-track{background:var(--soft);border-radius:99px}
-#lf-compatibility .vtrack::-webkit-scrollbar-thumb{background:#c7d0e2;border-radius:99px}
-#lf-compatibility .vtrack::-webkit-scrollbar-thumb:hover{background:#a9b5c9}
-#lf-compatibility .vcard{scroll-snap-align:start;min-width:210px;max-width:210px;background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease}
+/* Two-column detail layout: supporting text on one side, a contextual visual on the other. Stacks on mobile. */
+#lf-compatibility .detail-split{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;margin-top:8px}
+#lf-compatibility .detail-split.rev{grid-template-columns:.95fr 1.05fr}
+/* Wi-Fi intro: image sits modest and top-aligned so the vendor grid follows tightly, not after a tall void. */
+#lf-compatibility .detail-split.btm{align-items:end}
+@media(max-width:920px){#lf-compatibility .detail-split,#lf-compatibility .detail-split.rev{grid-template-columns:1fr;gap:30px}#lf-compatibility .detail-split.btm{align-items:center}}
+#lf-compatibility .detail-split .blist{margin-top:0}
+/* Transparent product and graphic imagery: floats directly on the section background,
+   soft drop-shadow only. No box, no border, no colored fill, no dead white space. */
+#lf-compatibility .detail-figure{display:flex;align-items:center;justify-content:center}
+#lf-compatibility .detail-figure img{width:100%;height:auto;display:block;margin:0 auto;filter:drop-shadow(0 18px 38px rgba(20,23,43,.16))}
+#lf-compatibility .fig-internet img{max-width:360px}
+#lf-compatibility .fig-ap img{max-width:200px}
+#lf-compatibility .fig-dash img{max-width:460px}
+@media(max-width:920px){
+  #lf-compatibility .fig-internet img{max-width:320px}
+  #lf-compatibility .fig-ap img{max-width:170px}
+  #lf-compatibility .fig-dash img{max-width:400px}
+}
+/* ============================================================
+   SNIPPET: lf_vendor_grid  (static, responsive grid of vendor product
+   cards. Logos sit in an identical fixed-height zone, product info is
+   always visible. No auto scroll, no dropdown.)
+   ============================================================ */
+#lf-compatibility .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:14px;margin-top:34px}
+@media(max-width:560px){#lf-compatibility .vgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+#lf-compatibility .vcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-soft);padding:15px 15px 14px;display:flex;flex-direction:column;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
 #lf-compatibility .detail.alt .vcard{background:#fff}
-#lf-compatibility .vcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-#lf-compatibility .vcard .vic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(150deg,#eaf0fb,#dde7fa);color:var(--skyline);margin-bottom:14px}
-#lf-compatibility .vcard .vic svg{width:22px;height:22px}
-#lf-compatibility .vcard h4{font-size:15.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
-#lf-compatibility .vcard p{font-size:13px;color:var(--muted)}
-#lf-compatibility .vnav{display:flex;gap:10px;margin-top:6px}
-#lf-compatibility .vbtn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--skyline);display:grid;place-items:center;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
-#lf-compatibility .vbtn:hover{background:var(--soft);border-color:#c7d0e2}
-#lf-compatibility .vbtn:active{transform:scale(.94)}
-#lf-compatibility .vbtn svg{width:20px;height:20px}
-#lf-compatibility .vbtn[disabled]{opacity:.4;cursor:default}
+#lf-compatibility .vcard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(36,72,153,.16)}
+/* Compact header row: logo left, vendor name beside it. Every logo normalized to the same 24px height. */
+#lf-compatibility .vtop{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;min-height:26px;margin-bottom:12px}
+#lf-compatibility .vlogo{height:24px;width:auto;max-width:98px;object-fit:contain;display:block;flex:none}
+#lf-compatibility .vname{font-family:var(--head);font-weight:700;font-size:14px;color:var(--ink);letter-spacing:-.01em;line-height:1.15;min-width:0;overflow-wrap:anywhere}
+#lf-compatibility .vwordmark{font-family:var(--head);font-weight:800;font-size:15px;color:var(--ink);letter-spacing:-.01em;line-height:1.2;white-space:nowrap}
+#lf-compatibility .vchips{margin-top:auto;display:flex;flex-direction:column;gap:7px}
+#lf-compatibility .vchip{background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:8px 11px}
+#lf-compatibility .detail.alt .vchip{background:var(--bg)}
+#lf-compatibility .vchip .ck{display:block;font-family:var(--head);font-weight:600;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+#lf-compatibility .vchip .cv{font-family:var(--head);font-weight:700;font-size:12.5px;color:var(--skyline)}
+#lf-compatibility .vnote{font-size:13.5px;color:var(--muted);margin-top:24px;max-width:760px}
+/* ============================================================
+   SNIPPET: lf_dashboard_access  (two-column: checklist + controller graphic)
+   ============================================================ */
+#lf-compatibility .access-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;margin-top:8px}
+@media(max-width:920px){#lf-compatibility .access-grid{grid-template-columns:1fr;gap:30px}}
+#lf-compatibility .dash-cap{font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px}
 /* ============================================================
    SNIPPET: lf_cta_compatibility  (dark band, standard CTA)
    ============================================================ */
@@ -168,69 +200,53 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 <main id="lf-compatibility">
 
   <!-- ============================================================
-       SNIPPET: lf_hero_compatibility  (no eyebrow, plain headline)
+       SNIPPET: lf_hero_compatibility  (no eyebrow, headline left, photo right)
        ============================================================ -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="rv-stagger">
         <h1>What makes a venue ready for <span class="accent">LongFi&nbsp;Connect</span></h1>
-        <p class="lede">It comes down to three simple things: a little room on the internet, business grade Wi&#8209;Fi, and access to the network so the setup can be applied.</p>
+        <p class="lede">It comes down to three simple things: a little room on the internet, business grade Wi&#8209;Fi, and access to the network so the setup can&nbsp;be&nbsp;applied.</p>
         <div class="btn-row">
           <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
           <a class="btn btn-ghost" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
         </div>
       </div>
-      <div class="hero-art rv">
-        <div class="pill-stack">
-          <div class="pill-row">
-            <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20a8 8 0 100-16 8 8 0 000 16zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10S9.5 4.7 12 2z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><div class="pt">Room on your internet</div><div class="ps">A little spare bandwidth</div></div>
-            <div class="chk"><svg viewBox="0 0 24 24" fill="none" width="15" height="15"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          </div>
-          <div class="pill-row">
-            <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8 12a4 4 0 018 0M12 12v8M10 20h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><div class="pt">Business grade Wi&#8209;Fi</div><div class="ps">Managed access points</div></div>
-            <div class="chk"><svg viewBox="0 0 24 24" fill="none" width="15" height="15"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          </div>
-          <div class="pill-row">
-            <div class="pi"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4zM4 10h16M8 6v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div><div class="pt">Access to your dashboard</div><div class="ps">Admin control of the network</div></div>
-            <div class="chk"><svg viewBox="0 0 24 24" fill="none" width="15" height="15"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          </div>
-        </div>
+      <div class="hero-img rv">
+        <img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/event-venue-technology-review-v1-copy.png" alt="Reviewing venue technology">
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       SNIPPET: lf_pillars_overview  (three cards, anchor down)
+       SNIPPET: lf_pillars_overview  (three cards, anchor down to detail sections)
        ============================================================ -->
   <section class="pillars">
     <div class="wrap">
       <div class="pillars-head rv">
         <h2 class="h-grad">What makes a venue&nbsp;compatible</h2>
-        <p class="lede">Most sites already have what they need. Here are the three things LongFi Connect looks for, in plain&nbsp;terms.</p>
+        <p class="lede">Most sites already have what they need. Here are the three things LongFi Connect looks for, in&nbsp;plain&nbsp;terms.</p>
       </div>
       <div class="pcard-grid rv-stagger">
 
         <div class="card pcard">
           <div class="pico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20a8 8 0 100-16 8 8 0 000 16zM2 12h20M12 2c2.5 2.7 4 6.2 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.2-4-10S9.5 4.7 12 2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>Room on your&nbsp;internet</h3>
-          <p>The venue has a bit of spare internet bandwidth to work with, not a connection that is already stretched thin.</p>
+          <p>The venue has a bit of spare internet bandwidth to work with, not a connection that is already stretched&nbsp;thin.</p>
           <a class="more" href="#pillar-internet">Learn more</a>
         </div>
 
         <div class="card pcard">
           <div class="pico"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8 12a4 4 0 018 0M12 12v8M10 20h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>Business grade&nbsp;Wi&#8209;Fi</h3>
-          <p>An enterprise Wi&#8209;Fi setup, meaning a controller and managed access points from a known business vendor.</p>
+          <p>An enterprise Wi&#8209;Fi setup, meaning a controller and managed access points from a known business&nbsp;vendor.</p>
           <a class="more" href="#pillar-wifi">Learn more</a>
         </div>
 
         <div class="card pcard">
           <div class="pico"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4zM4 10h16M8 6v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>Access to your&nbsp;dashboard</h3>
-          <p>Admin access to the Wi&#8209;Fi controller or dashboard, so the LongFi Connect setup can be applied.</p>
+          <p>Admin access to the Wi&#8209;Fi controller or dashboard, so the LongFi Connect setup can&nbsp;be&nbsp;applied.</p>
           <a class="more" href="#pillar-access">Learn more</a>
         </div>
 
@@ -239,78 +255,168 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
   </section>
 
   <!-- ============================================================
-       SNIPPET: lf_detail_internet  (pillar 1)
+       SNIPPET: lf_detail_internet  (section 1)
        ============================================================ -->
   <section class="detail" id="pillar-internet">
     <div class="wrap">
       <div class="detail-head rv">
-        <span class="eyebrow">Pillar one</span>
         <h2 class="h-grad">Room on your&nbsp;internet</h2>
-        <p class="lede">The venue needs some spare capacity on its internet connection. LongFi Connect rides on a small share of what is already there, so day to day traffic keeps&nbsp;priority.</p>
+        <p class="lede">The venue needs some spare capacity on its internet connection. LongFi Connect rides on a small share of what is already there, so day to day traffic keeps&nbsp;its&nbsp;priority.</p>
       </div>
-      <ul class="blist rv">
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A business broadband connection that is not already maxed out during busy hours.</li>
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>As a starting point, about <strong>25 Mbps of spare download</strong> and <strong>10 Mbps of spare upload</strong>.</li>
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>The LongFi Connect lane typically uses only a small share of the available bandwidth.</li>
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Steady, low latency internet works best. A fast, stable line matters more than a very large one.</li>
-      </ul>
-      <div class="figure-note rv">
-        <span class="fn-n">25 / 10 Mbps</span>
-        <span>A practical starting point for spare download and upload. Final fit is confirmed during a short site check. See the <a href="https://longfi-solutions.github.io/best-practices/" target="_blank" rel="noopener">technical best practices</a>.</span>
+      <div class="detail-split rv">
+        <div>
+          <ul class="blist">
+            <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A business broadband connection that is not already maxed out during&nbsp;busy&nbsp;hours.</li>
+            <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>As a starting point, about <strong>25 Mbps of spare download</strong> and <strong>10 Mbps of&nbsp;spare&nbsp;upload</strong>.</li>
+            <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>The LongFi Connect lane typically uses only a small share of the&nbsp;available&nbsp;bandwidth.</li>
+            <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Steady, low latency internet works best. A fast, stable line matters more than a&nbsp;very&nbsp;large&nbsp;one.</li>
+          </ul>
+          <div class="figure-note">
+            <span class="fn-n">25&#8595; / 10&#8593; Mbps</span>
+            <span>About 25 Mbps of spare download and 10 Mbps of spare upload, as a practical starting point. Final fit is confirmed during a short site check. See the <a href="https://longfi-solutions.github.io/best-practices/" target="_blank" rel="noopener">technical best practices</a>.</span>
+          </div>
+        </div>
+        <div class="detail-figure fig-internet">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Icon-MSP-Rack-and-APs-01.png" alt="A managed service provider rack and access points that make room for LongFi Connect" loading="lazy">
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       SNIPPET: lf_detail_wifi  (pillar 2, vendor carousel)
+       SNIPPET: lf_detail_wifi  (section 2, static vendor product grid)
        ============================================================ -->
   <section class="detail alt" id="pillar-wifi">
     <div class="wrap">
-      <div class="detail-head rv">
-        <span class="eyebrow">Pillar two</span>
-        <h2 class="h-grad">Business grade&nbsp;Wi&#8209;Fi</h2>
-        <p class="lede">LongFi Connect runs on enterprise Wi&#8209;Fi, meaning access points managed by a controller or cloud dashboard, not home or consumer gear. Many business vendors are a good&nbsp;fit.</p>
-      </div>
-      <div class="vcar rv">
-        <div class="vtrack" id="vtrack">
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Ubiquiti / UniFi</h4><p>UniFi controller managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Ruckus</h4><p>Enterprise Wi&#8209;Fi lines</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Aruba</h4><p>Aruba Central managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Cisco Meraki</h4><p>Cloud dashboard managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Cisco Catalyst</h4><p>Controller managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Cambium</h4><p>cnMaestro managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Juniper Mist</h4><p>Mist cloud managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Fortinet</h4><p>FortiGate managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>TP-Link Omada</h4><p>Omada SDN, business line</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Extreme Networks</h4><p>ExtremeCloud IQ managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Alta Labs</h4><p>Cloud managed</p></div>
-          <div class="vcard"><div class="vic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12a7 7 0 0114 0M8.5 12a3.5 3.5 0 017 0M12 12v6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg></div><h4>Grandstream</h4><p>GWN cloud managed</p></div>
+      <div class="detail-split rev btm rv">
+        <div class="detail-head" style="max-width:none">
+          <h2 class="h-grad">Business grade&nbsp;Wi&#8209;Fi</h2>
+          <p class="lede">LongFi Connect runs on enterprise Wi&#8209;Fi: access points managed by a controller or cloud dashboard, not home or consumer gear. Many business platforms are a&nbsp;good&nbsp;fit.</p>
         </div>
-        <div class="vnav">
-          <button class="vbtn" id="vprev" type="button" aria-label="Previous vendors"><svg viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-          <button class="vbtn" id="vnext" type="button" aria-label="More vendors"><svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="detail-figure fig-ap">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/enterprise-wifi-access-points-longfi-compatible.webp" alt="Enterprise Wi&#8209;Fi access points that are compatible with LongFi Connect" loading="lazy">
         </div>
       </div>
-      <p class="lede rv" style="font-size:14.5px;color:var(--muted);margin-top:12px;max-width:760px">Other business grade platforms qualify too. Final compatibility for a specific setup is confirmed during a short site check.</p>
+      <!-- Static, responsive grid of vendor product cards. Logo left, vendor name beside it, an indoor and an outdoor model shown as chips. Model data is taken from the compatibility source brief. -->
+      <div class="vgrid rv-stagger">
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/ubiquiti-unifi-compatible-wifi-logo.png" alt="Ubiquiti UniFi logo" loading="lazy"><span class="vname">Ubiquiti UniFi</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">U7 Pro</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 outdoor</span><span class="cv">U7 Outdoor</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/ruckus-compatible-wifi-logo.png" alt="Ruckus logo" loading="lazy"><span class="vname">Ruckus</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">R770</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 outdoor</span><span class="cv">T670</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cisco-meraki-compatible-wifi-logo.png" alt="Cisco Meraki logo" loading="lazy"><span class="vname">Cisco Meraki</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6E indoor</span><span class="cv">CW9166</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6 outdoor</span><span class="cv">MR86</span></div>
+          </div>
+        </div>
+
+        <!-- Cisco Catalyst: no standalone logo asset available locally or a clean Cisco-only logo in media, rendered as a styled wordmark. -->
+        <div class="card vcard">
+          <div class="vtop"><span class="vwordmark">Cisco Catalyst</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">Catalyst 9176</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6 outdoor</span><span class="cv">Catalyst 9124AX</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/aruba-hpe-compatible-wifi-logo.png" alt="Aruba HPE logo" loading="lazy"><span class="vname">Aruba (HPE)</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">730 Series</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6 outdoor</span><span class="cv">580 Series</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/juniper-mist-compatible-wifi-logo.png" alt="Juniper Mist logo" loading="lazy"><span class="vname">Juniper Mist</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">AP47</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6 outdoor</span><span class="cv">AP63</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/fortinet-compatible-wifi-logo.png" alt="Fortinet logo" loading="lazy"><span class="vname">Fortinet</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">FortiAP 441K</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 outdoor</span><span class="cv">FortiAP 443K</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cambium-compatible-wifi-logo.png" alt="Cambium Networks logo" loading="lazy"><span class="vname">Cambium Networks</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">X7&#8209;35X</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6 outdoor</span><span class="cv">XV2&#8209;2T</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/extreme-networks-compatible-wifi-logo.png" alt="Extreme Networks logo" loading="lazy"><span class="vname">Extreme Networks</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">AP5020</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6E outdoor</span><span class="cv">AP5050U</span></div>
+          </div>
+        </div>
+
+        <div class="card vcard">
+          <div class="vtop"><img class="vlogo" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/grandstream-compatible-wifi-logo.png" alt="Grandstream logo" loading="lazy"><span class="vname">Grandstream</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6 indoor</span><span class="cv">GWN7660</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 6 outdoor</span><span class="cv">GWN7664LR</span></div>
+          </div>
+        </div>
+
+        <!-- Omada by TP-Link: no standalone logo asset available locally or in media, rendered as a styled wordmark. -->
+        <div class="card vcard">
+          <div class="vtop"><span class="vwordmark">Omada by TP&#8209;Link</span></div>
+          <div class="vchips">
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 indoor</span><span class="cv">EAP772</span></div>
+            <div class="vchip"><span class="ck">Wi&#8209;Fi 7 outdoor</span><span class="cv">EAP772 Outdoor</span></div>
+          </div>
+        </div>
+
+      </div>
+      <p class="vnote rv">Other business grade platforms qualify too, and final compatibility for a specific setup is confirmed during a&nbsp;short&nbsp;site&nbsp;check.</p>
     </div>
   </section>
 
   <!-- ============================================================
-       SNIPPET: lf_detail_access  (pillar 3)
+       SNIPPET: lf_detail_access  (section 3, dashboard placeholder)
        ============================================================ -->
   <section class="detail" id="pillar-access">
     <div class="wrap">
       <div class="detail-head rv">
-        <span class="eyebrow">Pillar three</span>
         <h2 class="h-grad">Access to your&nbsp;dashboard</h2>
-        <p class="lede">LongFi needs admin access to the Wi&#8209;Fi controller or dashboard so the carrier approved setup can be applied to the network. Nothing else on the network is&nbsp;changed.</p>
+        <p class="lede">LongFi needs admin access to the Wi&#8209;Fi controller or dashboard so the carrier approved setup can be applied to the network. The systems already running on the network&nbsp;stay&nbsp;untouched.</p>
       </div>
-      <ul class="blist rv">
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Admin access to the controller or dashboard that runs the venue Wi&#8209;Fi.</li>
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Different vendors name it differently. Some call it a controller, others a dashboard or a control center.</li>
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>An I.T. contact or managed service provider can grant this access on the venue behalf.</li>
-        <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>The LongFi team applies the setup and keeps the existing systems on the network untouched.</li>
-      </ul>
+      <div class="access-grid">
+        <ul class="blist rv" style="margin-top:0">
+          <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Admin access to the controller or dashboard that runs the&nbsp;venue&nbsp;Wi&#8209;Fi.</li>
+          <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Different vendors name it differently. Some call it a controller, others a dashboard or a&nbsp;control&nbsp;center.</li>
+          <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>An I.T. contact or managed service provider can grant this access on the&nbsp;venue&nbsp;behalf.</li>
+          <li><span class="bk"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>The LongFi team applies the setup and keeps the existing systems&nbsp;on&nbsp;the&nbsp;network.</li>
+        </ul>
+        <div class="rv fig-dash-col">
+          <div class="detail-figure fig-dash">
+            <img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Icon-UniFi-Controller-01.png" alt="A Wi&#8209;Fi controller, the dashboard where the LongFi Connect setup is applied" loading="lazy">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -322,19 +428,19 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
       <div class="wrap" style="text-align:center">
         <div class="rv" style="max-width:760px;margin:0 auto">
           <h2 class="metal">See if your venue is a fit for LongFi Connect.</h2>
-          <p class="lede" style="margin:0 auto 6px">A short call or quick venue check confirms all three in a few minutes, with no cost and no&nbsp;commitment.</p>
+          <p class="lede" style="margin:0 auto 6px">A short call or quick venue check confirms all three in a few minutes, with no cost and&nbsp;no&nbsp;commitment.</p>
           <div class="btn-row" style="justify-content:center">
             <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
             <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
           </div>
-          <p style="font-size:13px;opacity:.62;margin-top:16px">Works with business grade Wi&#8209;Fi such as Cisco, Meraki, Aruba, or comparable, and supports major mobile carriers.</p>
+          <p style="font-size:13px;opacity:.62;margin-top:16px">Works with business grade Wi&#8209;Fi such as Cisco, Meraki, Aruba, or comparable, and supports major&nbsp;mobile&nbsp;carriers.</p>
         </div>
       </div>
     </section>
   </div>
 </main>
 
-<!-- [4] JavaScript: scroll reveal + finite vendor carousel controls -->
+<!-- [4] JavaScript: scroll reveal only (the vendor section is now a static grid) -->
 <script>
 (function(){
   var r=document.getElementById('lf-compatibility');
@@ -346,23 +452,5 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
   setTimeout(function(){
     r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){ var rc=el.getBoundingClientRect(); if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view'); });
   },150);
-
-  // Finite vendor carousel: buttons scroll the track by roughly one page. No auto-scroll, no loop.
-  var track=document.getElementById('vtrack');
-  var prev=document.getElementById('vprev');
-  var next=document.getElementById('vnext');
-  if(track&&prev&&next){
-    function step(){ return Math.max(track.clientWidth*0.8, 226); }
-    function sync(){
-      var max=track.scrollWidth-track.clientWidth-2;
-      prev.disabled = track.scrollLeft<=2;
-      next.disabled = track.scrollLeft>=max;
-    }
-    prev.addEventListener('click',function(){ track.scrollBy({left:-step(),behavior:'smooth'}); });
-    next.addEventListener('click',function(){ track.scrollBy({left:step(),behavior:'smooth'}); });
-    track.addEventListener('scroll',sync,{passive:true});
-    window.addEventListener('resize',sync);
-    sync();
-  }
 })();
 </script>

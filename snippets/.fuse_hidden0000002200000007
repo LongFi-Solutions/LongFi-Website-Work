@@ -425,7 +425,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">If your shopping mall operates enterprise Wi&#8209;Fi platforms such as Meraki, Aruba, UniFi, Ruckus, Cisco, or Juniper Mist, your environment is likely&nbsp;already&nbsp;Passpoint-ready.</p>
         <p class="lede">LongFi integrates with your existing network architecture, without requiring new hardware, network redesigns, or changes to current&nbsp;operational&nbsp;workflows.</p>
-        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/compatibility/">Check compatibility</a></div>
+        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
       </div>
       <div class="dcard">
         <div class="dcard-head">
@@ -436,7 +436,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">Major carriers work with LongFi to serve their subscribers indoors, and LongFi Connect carries that traffic securely on the enterprise Wi&#8209;Fi you&nbsp;already&nbsp;operate.</p>
         <p class="lede">Shoppers stay connected and browse longer, they post and review while still on site, and mobile payments and loyalty apps work on the first try. The benefits start on&nbsp;day&nbsp;one.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a></div>
+        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">Check if your venue qualifies</a></div>
       </div>
     </div>
   </div>

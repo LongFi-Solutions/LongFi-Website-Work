@@ -466,7 +466,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">If your airport operates enterprise Wi&#8209;Fi platforms such as Meraki, Aruba, UniFi, Ruckus, Cisco, or Juniper Mist, your environment is likely&nbsp;already&nbsp;Passpoint-ready.</p>
         <p class="lede">LongFi integrates with your existing network architecture, without requiring new hardware, network redesigns, or changes to current&nbsp;operational&nbsp;workflows.</p>
-        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/compatibility/">Check compatibility</a></div>
+        <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/longficonnect/#footerL">Check compatibility</a></div>
       </div>
       <div class="dcard">
         <div class="dcard-head">
@@ -478,7 +478,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         </div>
         <p class="lede">LongFi Connect uses part of your available Wi&#8209;Fi capacity to carry carrier-authenticated cellular connectivity, so passengers get strong indoor cell service on the network already&nbsp;in&nbsp;place.</p>
         <p class="lede">The experience improves for passengers and tenants alike, at no cost to implement and without changing how the&nbsp;airport&nbsp;operates.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/check-my-venue/">Check my venue</a></div>
+        <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/connectivity-value/">Check my venue</a></div>
       </div>
     </div>
   </div>

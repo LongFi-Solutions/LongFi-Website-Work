@@ -102,7 +102,7 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
    Follows the live industry-page hero pattern (see lf-hotels): headline + subhead
    + CTAs on the left, a rounded photo on the right matching the text-block height.
    ============================================================ */
-#lf-compatibility .hero{padding:76px 0 64px;background:linear-gradient(170deg,#FFFFFF 0%,#EEF2FB 60%,#E7EDFA 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+#lf-compatibility .hero{padding:76px 0 64px;background:linear-gradient(170deg,#FFFFFF 0%,#EEF2FB 60%,#E7EDFA 100%);border-bottom:1px solid var(--line);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 #lf-compatibility .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(680px circle at 92% 6%, rgba(62,107,196,.10), transparent 58%);pointer-events:none}
 #lf-compatibility .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
 @media(max-width:920px){#lf-compatibility .hero-grid{grid-template-columns:1fr;gap:34px}#lf-compatibility .hero{padding:56px 0 48px}}
@@ -132,7 +132,7 @@ html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the ta
 /* ============================================================
    SNIPPET: lf_detail_sections  (one per pillar)
    ============================================================ */
-#lf-compatibility .detail{background:var(--bg)}
+#lf-compatibility .detail{background:var(--bg);width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 #lf-compatibility .detail.alt{background:var(--white)}
 #lf-compatibility .detail-head{max-width:760px}
 #lf-compatibility .blist{list-style:none;margin-top:26px;max-width:720px}

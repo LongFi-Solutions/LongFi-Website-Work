@@ -246,8 +246,8 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
    SNIPPET: lf_team_about_v2  (leadership team grid)
    ============================================================ */
 #lf-aboutus .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
-@media(max-width:920px){#lf-aboutus .team-grid{grid-template-columns:1fr}}
-#lf-aboutus .tcard{padding:0;overflow:hidden;display:flex;flex-direction:column}
+@media(max-width:920px){#lf-aboutus .team-grid{grid-template-columns:1fr}#lf-aboutus .tcard{width:100%}}
+#lf-aboutus .tcard{padding:0;overflow:hidden;display:flex;flex-direction:column;width:70%;margin-inline:auto}
 #lf-aboutus .tcard-photo{aspect-ratio:1/1;overflow:hidden;background:var(--soft)}
 #lf-aboutus .tcard-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 #lf-aboutus .tcard:hover .tcard-photo img{transform:scale(1.04)}
@@ -476,7 +476,8 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
       <div class="card tcard">
         <div class="tcard-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/josh-longfi-solutions-cmo-cofounder-headshot-1024x1024.jpg" alt="Jose CMO and Co-Founder of LongFi Solutions professional headshot" loading="lazy"></div>
         <div class="tcard-body">
-          <h3>Jose</h3>\1<div class="role">CMO | Co-Founder</div>
+          <h3>Jose</h3>
+          <div class="role">CMO | Co-Founder</div>
           <a href="https://www.linkedin.com/in/joselongfi/" target="_blank" rel="noopener"><i data-lucide="linkedin"></i>Linkedin</a>
         </div>
       </div>

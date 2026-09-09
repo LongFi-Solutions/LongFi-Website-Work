@@ -104,3 +104,5 @@ NOTE: live had pre-existing divergence from repo (e.g. index ~491 chars); edits 
 ## PENDING: new home heading (Jose wants alternatives without "venues" and without "under pressure").
 
 ### Entry 13 — Home (30861): heading updated to "LongFi Connect: / Real places, proven results. Nationwide." (was "Proven at real venues, under pressure.", Jose 2026-09-09). Live-verified. Repo lf-home.html updated.
+
+### Entry 14 — 2026-09-09 — Home (30861): REVERTED top hcards from carousel back to static 3-col GRID (Jose: show all 10 case studies at once in the top section; carousel/auto-scroll is only for the bottom logo strip). Removed lf-hcaro-css style block, .hcaro wrapper + prev button, next button + script. All 10 hcards retained. Bottom .case-track still auto-scrolls and has all 10 case studies tagged + 4 customer logos. Live-verified (cache-buster): top display=grid, 10 cards, no carousel. NOTE: 10 cards in 3-col grid => last row has 1 card (National Construction Firm); offered Jose to center it. Repo lf-home.html reverted (PREEDIT-revertgrid backup saved).

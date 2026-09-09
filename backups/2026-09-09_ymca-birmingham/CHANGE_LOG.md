@@ -93,3 +93,14 @@ NOTE: live had pre-existing divergence from repo (e.g. index ~491 chars); edits 
 - Media 03b + 10 WEBP never uploaded (not on briefs server) — add manually from the WEBP folder if you want all 11 in the library.
 
 ## DONE — all 6 surfaces live: case-study page, index, nav, footer, gyms band, home card+carousel.
+
+## ROUND 2 feedback (2026-09-09) — Home enhancements
+### Entry 11 — Home (30861): Bauhaus added to top carousel -> all 10 case studies (order: YMCA, Wanitta, SILO, JazzFest, World Cup, Sunset, Bauhaus, City of Easton, Mardi Gras, National Construction Firm). Bauhaus hcard uses cs-bauhaus-houston-01-image.jpg.
+### Entry 12 — Home (30861): Logo strip (.case-track) now tags all 10 case studies as "Case Study" cslink cards. Converted YMCA logo card to a tagged case-study link; added Mardi Gras, City of Easton, National Construction Firm text cards. Applied to BOTH the visible set and the aria-hidden duplicate set (symmetry for infinite scroll). Kept the 4 customer-logo cards (Creole House, Village Market, East End, Cafe Beignet) as extra social proof. Verified live (cache-buster): 10 hcards, 10 unique tagged case studies, all badges present.
+- Cleanup: Woody backup clone 31643 TRASHED (reversible). Media 31646 left (permanent media delete not done automatically; Jose to remove if wanted).
+- Repo lf-home.html updated (round-2 PREEDIT backup saved).
+
+## OPEN: Cloudflare edge cache serves stale HTML on canonical URLs (no WP cache plugin installed). Normal visitors see old pages until Preston purges Cloudflare cache (Purge Everything, or /, /case-studies/, /gyms/). All changes are correct at origin (verified via ?v= cache-buster).
+## PENDING: new home heading (Jose wants alternatives without "venues" and without "under pressure").
+
+### Entry 13 — Home (30861): heading updated to "LongFi Connect: / Real places, proven results. Nationwide." (was "Proven at real venues, under pressure.", Jose 2026-09-09). Live-verified. Repo lf-home.html updated.

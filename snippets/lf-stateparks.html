@@ -1,0 +1,530 @@
+<!-- LongFi snippet | lf-stateparks.html | v1.0 | created 2026-09-23 | REVIEW -->
+<!-- Cloned from lf-gyms.html (v1.11) so the live industry-page architecture carries over intact.
+     Persona hooks retinted for the Parks persona: forest green.
+     Connectivity-first per the 2026-07-14 website rule: no revenue, payout, or fee language. -->
+<!-- [1] Google Fonts, load-once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  document.head.appendChild(l);
+})();
+</script>
+
+<!-- [2] Page styles, all scoped under #lf-stateparks (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   Persona hooks tinted for the Parks persona: forest green.
+   ============================================================ */
+#lf-stateparks{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#141A2B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix: the boxed .e-con container that wraps this pasted block ships a 10px
+   default padding and a boxed max-width, which appears as a white frame on the full-color
+   sections. Neutralize that exact wrapping container. Harmless outside Elementor. */
+.e-con:has(#lf-stateparks),.e-con-inner:has(#lf-stateparks),.elementor-widget-html:has(#lf-stateparks),.elementor-widget-shortcode:has(#lf-stateparks),.elementor-widget-container:has(#lf-stateparks){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+#lf-stateparks *{box-sizing:border-box;margin:0;padding:0}
+#lf-stateparks{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-stateparks{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-stateparks img{max-width:100%;height:auto;display:block}
+#lf-stateparks a{color:var(--skyline);text-decoration:none}
+#lf-stateparks h1, #lf-stateparks h2, #lf-stateparks h3, #lf-stateparks h4, #lf-stateparks .eyebrow, #lf-stateparks .btn, #lf-stateparks .stat-n{font-family:var(--head)}
+#lf-stateparks .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){
+  #lf-stateparks .wrap{padding:0 16px}
+}
+#lf-stateparks section{padding:64px 0}
+@media(max-width:680px){
+  #lf-stateparks section{padding:48px 0}
+}
+/* Persona accent for light-background eyebrows: deep forest */
+#lf-stateparks .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#0C4A30;margin-bottom:12px}
+#lf-stateparks .on-dark .eyebrow{color:#B4E3C8}
+#lf-stateparks h1, #lf-stateparks h2, #lf-stateparks h3{text-wrap:balance}
+#lf-stateparks p, #lf-stateparks li{text-wrap:pretty}
+#lf-stateparks h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.16;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+#lf-stateparks .on-dark h2{color:var(--white)}
+/* Designed section titles: Almost Black into forest green. */
+#lf-stateparks .h-grad{background:linear-gradient(115deg,var(--ink) 6%,#0C4A30 44%,#1F7A4D 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 12px rgba(31,122,77,.24));padding-bottom:.12em;margin-bottom:.1em}
+/* SIGNAL GLEAM. Parks tint: forest green, mid stop one step below white. Two gleams max. */
+#lf-stateparks .h-shine{background:linear-gradient(115deg,#0C4A30 0%,#2A9463 35%,#D2F2DF 50%,#2A9463 65%,#0C4A30 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-stateparks 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(42,148,99,.2));padding-bottom:.12em}
+#lf-stateparks .lede{font-size:16.5px;line-height:1.6;max-width:680px}
+#lf-stateparks .on-dark .lede{color:rgba(255,255,255,.9)}
+#lf-stateparks .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-stateparks 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-stateparks{from{background-position:0% center}to{background-position:100% center}}
+#lf-stateparks .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Global, identical across pages. */
+#lf-stateparks .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-stateparks .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: Parks forest variant, white text. */
+#lf-stateparks .btn-primary{
+  background:linear-gradient(135deg,#1F8C58 0%,#0A4A2F 100%);
+  color:var(--white);
+  border-color:rgba(180,227,200,.6);
+  box-shadow:0 0 26px rgba(31,140,88,.5),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.3);
+}
+#lf-stateparks .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(47,163,105,.66),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.35)}
+#lf-stateparks .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-stateparks .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-stateparks .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-stateparks .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-stateparks .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+/* Parks persona dark band: deep forest-ink into pine, green radial glow. */
+#lf-stateparks .dark-band{background:linear-gradient(140deg,#10251C 0%,#153B2C 55%,#1F6B45 115%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-stateparks .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at 90% 0%, rgba(42,148,99,.16), transparent 55%),radial-gradient(460px circle at 8% 95%, rgba(42,148,99,.1), transparent 55%);pointer-events:none}
+#lf-stateparks .dark-band>.wrap{position:relative;z-index:1}
+#lf-stateparks .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-stateparks .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+/* Scroll reveal */
+#lf-stateparks .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-stateparks .rv.in-view{opacity:1;transform:none}
+#lf-stateparks .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-stateparks .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-stateparks .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-stateparks .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-stateparks .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-stateparks .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-stateparks .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-stateparks .rv, #lf-stateparks .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-stateparks .metal, #lf-stateparks .h-shine{animation:none}
+  #lf-stateparks{scroll-behavior:auto}
+}
+/* ============================================================
+   SNIPPET: lf_hero_stateparks_v1  (split hero, image RIGHT)
+   ============================================================ */
+#lf-stateparks .hero{padding:84px 0 56px}
+#lf-stateparks .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:end}
+@media(max-width:920px){
+  #lf-stateparks .hero-grid{grid-template-columns:1fr;gap:34px}
+  #lf-stateparks .hero{padding:60px 0 44px}
+}
+#lf-stateparks .hero .eyebrow{color:#B4E3C8;background:rgba(42,148,99,.1);border:1px solid rgba(180,227,200,.35);padding:6px 14px;border-radius:999px}
+#lf-stateparks .hero h1{font-size:clamp(28px,3.4vw,42px);font-weight:700;line-height:1.14;letter-spacing:-.015em;color:var(--white);margin-bottom:14px}
+#lf-stateparks .hero .lede{color:rgba(255,255,255,.9);font-size:17px;max-width:540px}
+#lf-stateparks .hero-emph{font-family:var(--head);font-weight:700;font-size:17px;color:var(--white);margin-top:12px}
+#lf-stateparks .hero-img{border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14)}
+#lf-stateparks .hero-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-stateparks .hero-img:hover img{transform:scale(1.04)}
+/* ============================================================
+   SNIPPET: lf_statstrip_stateparks_v1  (slim hairline stat strip)
+   ============================================================ */
+#lf-stateparks .strip-band{padding:0 0 60px}
+#lf-stateparks .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid transparent;border-bottom:1px solid transparent;transition:border-color .6s ease}
+#lf-stateparks .strip.lines-on{border-top-color:rgba(180,227,200,.28);border-bottom-color:rgba(180,227,200,.28)}
+@media(max-width:920px){
+  #lf-stateparks .strip{grid-template-columns:repeat(2,1fr)}
+}
+#lf-stateparks .stat{padding:18px 14px;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;border-right:1px solid rgba(180,227,200,.18)}
+#lf-stateparks .stat:last-child{border-right:0}
+@media(max-width:920px){
+  #lf-stateparks .stat:nth-child(2){border-right:0}
+  #lf-stateparks .stat:nth-child(-n+2){border-bottom:1px solid rgba(180,227,200,.18)}
+}
+#lf-stateparks .stat.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  #lf-stateparks .stat{opacity:1;transform:none;transition:none}
+}
+#lf-stateparks .stat-n{font-size:clamp(21px,2.2vw,29px);font-weight:700;line-height:1.1;filter:drop-shadow(0 0 14px rgba(210,242,223,.35))}
+#lf-stateparks .stat-l{font-size:12px;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.4}
+/* ============================================================
+   SNIPPET: lf_pain_stateparks_v1
+   Parks variation: the three cards carry real park-building photography rather than
+   the generic icon set, because a parks reader needs to picture the building the
+   claim is about. Same .card / .pain-card classes and same grid as every other
+   industry page, only the .ph treatment changes from a 60px icon tile to a photo.
+   ============================================================ */
+#lf-stateparks .pain{background:var(--white)}
+#lf-stateparks .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+@media(max-width:920px){
+  #lf-stateparks .pain-grid{grid-template-columns:1fr}
+}
+#lf-stateparks .pain-card{padding:0;display:flex;flex-direction:column;overflow:hidden}
+#lf-stateparks .pain-card .ph{width:100%;aspect-ratio:16/10;background:var(--soft);border:0;border-bottom:1px solid var(--line);overflow:hidden}
+#lf-stateparks .pain-card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-stateparks .pain-card:hover .ph img{transform:scale(1.04)}
+#lf-stateparks .pain-card .pc{padding:20px 22px 24px}
+#lf-stateparks .pain-card h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:7px;line-height:1.2}
+#lf-stateparks .pain-card p{font-size:14.5px;margin:0}
+/* Footnoted evidence paragraph under the pain grid */
+#lf-stateparks .evid{margin-top:34px;max-width:900px}
+#lf-stateparks .evid p{font-size:15px}
+#lf-stateparks .fn{font-size:12px;color:var(--muted);line-height:1.55;margin-top:14px;max-width:900px}
+#lf-stateparks sup{font-size:.62em;vertical-align:super;line-height:0;font-weight:700;color:#1F7A4D}
+/* ============================================================
+   SNIPPET: lf_connect_stateparks_v1  (dark band, the wordmark is the star)
+   ============================================================ */
+#lf-stateparks .connect-head{max-width:820px}
+#lf-stateparks .connect-star{font-size:clamp(30px,4vw,46px);font-weight:800;line-height:1.06;letter-spacing:-.02em;filter:drop-shadow(0 0 24px rgba(210,242,223,.26))}
+#lf-stateparks .connect-sub{font-family:var(--head);font-weight:600;font-size:clamp(15px,1.7vw,18px);color:var(--white);margin:14px 0 0}
+#lf-stateparks .cfeat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+@media(max-width:920px){
+  #lf-stateparks .cfeat-grid{grid-template-columns:1fr}
+}
+#lf-stateparks .cfeat{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:18px 20px;transition:transform .25s ease,background .25s ease}
+#lf-stateparks .cfeat:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+#lf-stateparks .cfeat .ph{width:58px;height:58px;flex:none;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;padding:8px}
+#lf-stateparks .cfeat .ph img{width:100%;height:100%;object-fit:contain}
+#lf-stateparks .cfeat h3{font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px}
+#lf-stateparks .cfeat p{font-size:14px;color:rgba(255,255,255,.85);margin:0 0 8px}
+#lf-stateparks .cfeat a{font-family:var(--head);font-size:13px;font-weight:600;color:#8CDCAF}
+#lf-stateparks .cfeat a:hover{text-decoration:underline}
+#lf-stateparks .connect-close{font-family:var(--head);font-weight:600;font-size:15.5px;color:rgba(255,255,255,.92);max-width:760px;margin:32px auto 0;text-align:center}
+/* ============================================================
+   SNIPPET: lf_reach_stateparks_v1  (split row: where coverage reaches)
+   Text left, image right, equal heights, per the standing hero/split-row rule.
+   ============================================================ */
+#lf-stateparks .reach{background:var(--white)}
+#lf-stateparks .reach-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:stretch}
+@media(max-width:920px){
+  #lf-stateparks .reach-grid{grid-template-columns:1fr;gap:28px}
+}
+#lf-stateparks .reach-copy{display:flex;flex-direction:column;justify-content:center}
+#lf-stateparks .reach-copy .lede + .lede{margin-top:12px}
+#lf-stateparks .reach-img{border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-soft);min-height:100%}
+#lf-stateparks .reach-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-stateparks .reach-img:hover img{transform:scale(1.04)}
+/* ============================================================
+   SNIPPET: lf_compat_stateparks_v1  (merged band, stacked variation)
+   ============================================================ */
+#lf-stateparks .dualstrip{background:var(--bg)}
+#lf-stateparks .dual{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+@media(max-width:920px){
+  #lf-stateparks .dual{grid-template-columns:1fr}
+}
+#lf-stateparks .dcard{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-soft);padding:28px 30px;display:flex;flex-direction:column;height:100%;transition:transform .25s ease,box-shadow .25s ease}
+#lf-stateparks .dcard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+#lf-stateparks .dcard-head{display:flex;gap:20px;align-items:stretch}
+#lf-stateparks .dcard-head>div{flex:1}
+#lf-stateparks .dcard-ic{flex:none;display:flex;align-items:center;justify-content:center}
+#lf-stateparks .dcard-ic img{height:100%;width:auto;max-width:117px!important;object-fit:contain}
+#lf-stateparks .dcard h2{font-size:clamp(14px,1.45vw,17px);margin-bottom:0}
+#lf-stateparks .dcard .lede{font-size:14.5px;max-width:none;margin-top:14px}
+#lf-stateparks .dcard .lede + .lede{margin-top:8px}
+#lf-stateparks .dcard .btn-row{margin-top:auto;padding-top:18px}
+#lf-stateparks .dualstrip .h-grad{font-size:clamp(16px,1.85vw,21px)!important;line-height:1.14}
+#lf-stateparks .dualstrip .dcard p{font-size:13.5px}
+/* ------------------------------------------------------------
+   Compatible Wi-Fi platforms strip (self-hosted OEM logos).
+   Sits inside the compatibility band, full width beneath the two cards so the
+   nine wordmarks stay legible. Never hotlink Wikimedia or brandlogos.net here:
+   those files get renamed or removed and the strip breaks silently.
+   Omada renders as a styled text chip, matching the home page, because
+   TP-Link Omada has no transparent logo asset in the library.
+   ------------------------------------------------------------ */
+#lf-stateparks .oem-strip{margin-top:20px;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:24px 22px;box-shadow:var(--shadow-soft)}
+#lf-stateparks .oem-strip-label{font-family:var(--head);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:20px}
+#lf-stateparks .oem-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+#lf-stateparks .oem-item{background:var(--white);border:1px solid var(--line);border-radius:12px;height:62px;padding:0 20px;display:flex;align-items:center;justify-content:center;transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease}
+#lf-stateparks .oem-item:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(20,26,43,.09);border-color:#D7DEEC}
+#lf-stateparks .oem-item img{height:26px;width:auto;display:block;filter:grayscale(100%) opacity(.72);transition:filter .24s ease}
+#lf-stateparks .oem-item:hover img{filter:grayscale(0%) opacity(1)}
+#lf-stateparks .oem-item img.tall{height:30px}
+#lf-stateparks .oem-item .omada{font-family:var(--head);color:var(--ink);text-align:center;line-height:1.05;filter:grayscale(100%) opacity(.72);transition:filter .24s ease}
+#lf-stateparks .oem-item:hover .omada{filter:grayscale(0%) opacity(1)}
+#lf-stateparks .oem-item .omada b{display:block;font-size:15px;font-weight:700;letter-spacing:.01em}
+#lf-stateparks .oem-item .omada small{display:block;font-size:8.5px;font-weight:500;color:var(--muted);letter-spacing:.04em}
+#lf-stateparks .oem-note{font-size:12.5px;color:var(--muted);text-align:center;margin:16px auto 0;max-width:640px;line-height:1.5}
+@media(max-width:640px){
+  #lf-stateparks .oem-item{height:54px;padding:0 14px}
+  #lf-stateparks .oem-item img{height:21px}
+  #lf-stateparks .oem-item img.tall{height:24px}
+  #lf-stateparks .oem-item .omada b{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  #lf-stateparks .oem-item, #lf-stateparks .oem-item img{transition:none}
+}
+/* ============================================================
+   SNIPPET: lf_recap_cta_stateparks_v1
+   ============================================================ */
+#lf-stateparks .cta-final .lede{margin-left:auto;margin-right:auto}
+</style>
+
+<!-- [3] Page content. One <main> wrapper carries the scope id. Each <section> below
+     is an independent content block (Woody snippet boundary). -->
+<main id="lf-stateparks">
+  <!-- ============================================================
+       SNIPPET: lf_hero_stateparks_v1
+       ============================================================ -->
+  <div class="dark-band on-dark">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="rv-stagger">
+          <h1 class="metal">Stronger indoor cell connectivity for <span class="h-shine">state and national&nbsp;parks</span></h1>
+          <p class="lede">Bring reliable indoor cell service to visitor centers, lodges, and camp stores using the Wi&#8209;Fi your park already&nbsp;operates.</p>
+          <p class="hero-emph">At no cost and without interruption.</p>
+          <div class="btn-row">
+            <a class="btn btn-gold" href="#parks">Improve my park&rsquo;s connectivity</a>
+            <a class="btn btn-ghost-dark" href="#connect">Learn how it works</a>
+          </div>
+        </div>
+        <div class="hero-img rv">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-01-hero-lodge-lobby-arrival.webp" alt="A guest checking a phone in a state park lodge lobby at arrival, where indoor cell signal is often weakest">
+        </div>
+      </div>
+    </section>
+
+    <section class="strip-band" style="padding-top:0">
+      <div class="wrap">
+        <div class="strip">
+          <div class="stat"><div class="stat-n metal" data-count="200" data-suffix="+">&nbsp;</div><div class="stat-l">Active venues across the U.S.</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="130" data-suffix="+ TB">&nbsp;</div><div class="stat-l">Mobile data transferred monthly</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="7" data-suffix="M+">&nbsp;</div><div class="stat-l">Mobile users connected monthly</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="70" data-suffix="%+">&nbsp;</div><div class="stat-l">Mobile subscribers supported on day one</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================
+       SNIPPET: lf_pain_stateparks_v1
+       ============================================================ -->
+  <section class="pain">
+    <div class="wrap">
+      <div class="rv" style="max-width:760px">
+        <h2 class="h-grad">Parks went digital.<br>Indoor coverage did&nbsp;not&nbsp;follow.</h2>
+        <p class="lede">Entry passes, camping reservations, and parking fees now run through a visitor&rsquo;s phone. Inside many park buildings, that phone has little or no carrier&nbsp;coverage.</p>
+      </div>
+      <div class="pain-grid rv-stagger">
+        <div class="card pain-card">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-03-entrance-station-contactless-payment.webp" alt="A visitor paying by phone at a state park entrance station, a transaction that depends on indoor cell signal" loading="lazy"></div>
+          <div class="pc">
+            <h3>The entrance&nbsp;station</h3>
+            <p>Passes and parking are paid by phone at the gate. Where cell phone signal is weak, the scan stalls and the queue behind it&nbsp;backs&nbsp;up.</p>
+          </div>
+        </div>
+        <div class="card pain-card">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-04-camp-store-checkout-counter.webp" alt="A camp store checkout counter inside a state park, where payment relies on a working cellular connection" loading="lazy"></div>
+          <div class="pc">
+            <h3>The camp store&nbsp;counter</h3>
+            <p>The highest frequency transaction in the park runs across a payment path that depends on a working cellular&nbsp;connection.</p>
+          </div>
+        </div>
+        <div class="card pain-card">
+          <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-06-nature-center-exhibit-hall.webp" alt="Visitors using phones in a state park nature center exhibit hall where interpretive programming has moved online" loading="lazy"></div>
+          <div class="pc">
+            <h3>The nature&nbsp;center</h3>
+            <p>Interpretive programming has moved to codes and applications that assume a visitor&rsquo;s phone can reach&nbsp;the&nbsp;network.</p>
+          </div>
+        </div>
+      </div>
+      <div class="evid rv">
+        <p>Park agencies are describing this themselves. One state system, publishing guidance on scan based payment in February 2026, tells visitors to join a Wi&#8209;Fi network before scanning the code.<sup>1</sup> Another publishes a live list of the park buildings where it has installed Wi&#8209;Fi, down to the coverage area inside each one.<sup>2</sup> A third moved parking payment system wide to a mobile application.<sup>3</sup> Federal America the Beautiful passes went fully digital on January 1, 2026.<sup>4</sup></p>
+        <p class="fn"><sup>1</sup> Oregon State Parks, published guidance on scan based payment, February 20, 2026. &nbsp;<sup>2</sup> Washington State Parks, &ldquo;Wi&#8209;Fi in the Parks,&rdquo; accessed September 2026. &nbsp;<sup>3</sup> Massachusetts Department of Conservation and Recreation, mobile parking payment rollout, May 13, 2022. &nbsp;<sup>4</sup> U.S. Department of the Interior, digital pass announcement, effective January 1,&nbsp;2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_connect_stateparks_v1  (dark band)
+       ============================================================ -->
+  <div class="dark-band on-dark" id="connect">
+    <section>
+      <div class="wrap">
+        <div class="connect-head rv-stagger">
+          <div class="connect-star h-shine">LongFi Connect</div>
+          <p class="connect-sub">The simplest way to bring reliable indoor connectivity to park&nbsp;buildings.</p>
+        </div>
+        <div class="cfeat-grid rv-stagger">
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/02/full-bars-cell-signal-checkmark-indoor-connectivity-icon-1024x993.png" alt="Full cellular signal bars with green checkmark icon representing excellent indoor connectivity" loading="lazy"></div>
+            <div>
+              <h3>Reliable indoor&nbsp;cell&nbsp;connectivity</h3>
+              <p>Visitors and staff get reliable cellular service inside visitor centers, lodges, restaurants, camp stores, and registration buildings, where outdoor cell towers struggle to reach indoors.</p>
+              <a href="https://www.longfisolutions.com/how-it-works/">Learn how it works&rsaquo;</a>
+            </div>
+          </div>
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/managed-security-shield-network-protection-icon-985x1024.png" alt="Pink shield with checkmark inside circular tech emblem representing managed network security" loading="lazy"></div>
+            <div>
+              <h3>Fully managed,&nbsp;without&nbsp;disruption</h3>
+              <p>LongFi handles the initial assessment, implementation, monitoring, and optimization with no downtime or disruption to park operations.</p>
+              <a href="https://www.longfisolutions.com/how-it-works/#proven">See the 4-step process&rsaquo;</a>
+            </div>
+          </div>
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Cellular signal bars rising over a Wi&#8209;Fi symbol representing stronger indoor cell coverage" loading="lazy"></div>
+            <div>
+              <h3>Payments and&nbsp;passes&nbsp;go&nbsp;through</h3>
+              <p>Entry scans, camp store checkouts, and reservation lookups run on a connection that is there when a visitor reaches the counter.</p>
+              <a href="https://www.longfisolutions.com/connectivity-value/">See the value of connectivity&rsaquo;</a>
+            </div>
+          </div>
+          <div class="cfeat">
+            <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/carrier-grade-security-signal-bars-shield-icon-1007x1024.png" alt="Blue teal cellular signal bars with security shield and lightning bolt icon for carrier-grade connectivity" loading="lazy"></div>
+            <div>
+              <h3>Carrier-Grade&nbsp;Security</h3>
+              <p>Visitor mobile traffic is securely isolated from your park&rsquo;s business network using industry-standard, carrier-certified protocols.</p>
+              <a href="https://www.longfisolutions.com/how-it-works/#secure">Explore security details&rsaquo;</a>
+            </div>
+          </div>
+        </div>
+        <p class="connect-close rv">Designed for high-traffic public buildings where reliable connectivity supports payments, reservations, and staff systems, using the unused Wi&#8209;Fi capacity already in place.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== LongFi Case Studies proof band (portable, self-contained) ===== -->
+  <div id="lfcs"><style>#lfcs{background:linear-gradient(180deg,#FFFFFF,#F1F4FB);border-top:1px solid #E6EAF2;padding:54px 0;font-family:'Poppins',sans-serif}#lfcs *{box-sizing:border-box}#lfcs .lfx-wrap{max-width:1080px;margin:0 auto;padding:0 24px}#lfcs .lfx-head{text-align:center;margin-bottom:26px}#lfcs .lfx-ttl{font-family:'Poppins';font-weight:800;font-size:clamp(20px,2.2vw,26px);color:#141A2B;line-height:1.15;margin:0 0 6px}#lfcs .lfx-sub{font-family:'Nunito';font-size:14.5px;color:#4A536B;margin:0}#lfcs .hcards{display:grid;gap:16px;align-items:stretch;margin:0 auto}@media(max-width:920px){#lfcs .hcards{grid-template-columns:1fr !important;max-width:560px !important}}#lfcs .hcard{display:grid;grid-template-columns:138px 1fr;background:#fff;border:1px solid #E6EAF2;border-radius:14px;overflow:hidden;text-decoration:none;box-shadow:0 4px 16px rgba(36,72,153,.07);transition:transform .26s ease,box-shadow .26s ease}#lfcs .hcard:hover{transform:translateY(-5px);box-shadow:0 14px 46px rgba(36,72,153,.12)}#lfcs .hcard .im{position:relative;overflow:hidden;background:#0F1122;min-height:150px}#lfcs .hcard .im::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;z-index:1}#lfcs .hcard .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}#lfcs .hcard:hover .im img{transform:scale(1.06)}#lfcs .hcard .cc{padding:16px 18px;display:flex;flex-direction:column}#lfcs .hcard .tg{font-family:'Poppins';font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#7A8299;min-height:13px}#lfcs .hcard .vn{font-family:'Poppins';font-size:16px;font-weight:800;color:#141A2B;margin:5px 0 8px;line-height:1.1}#lfcs .hcard .qq{font-family:'Nunito';font-size:13.5px;font-style:italic;color:#4A536B;line-height:1.45;margin-bottom:12px;min-height:3.8em}#lfcs .hcard .mm{margin-top:auto;font-family:'Poppins';font-size:12.5px;font-weight:700;color:#244899;display:inline-flex;align-items:center;gap:6px;transition:gap .2s ease}#lfcs .hcard:hover .mm{gap:10px}#lfcs .hcard.t .im::after{background:#1FA58E}#lfcs .hcard.t .tg{color:#12876f}#lfcs .hcard.t .mm{color:#12876f}#lfcs .hcard.c .im::after{background:#FF4E7A}#lfcs .hcard.c .tg{color:#d63862}#lfcs .hcard.c .mm{color:#d63862}#lfcs .hcard.g .im::after{background:#C9A227}#lfcs .hcard.g .tg{color:#9a7a15}#lfcs .hcard.g .mm{color:#9a7a15}#lfcs .hcard.p .im::after{background:#C13AF0}#lfcs .hcard.p .tg{color:#9b1fce}#lfcs .hcard.p .mm{color:#9b1fce}#lfcs .hcard.gr .im::after{background:#2E9E7E}#lfcs .hcard.gr .tg{color:#1f7d62}#lfcs .hcard.gr .mm{color:#1f7d62}#lfcs .hcard.b .im::after{background:#244899}#lfcs .hcard.b .tg{color:#1d3b80}#lfcs .hcard.b .mm{color:#1d3b80}#lfcs .lfx-all{display:block;text-align:center;margin-top:22px;font-family:'Poppins';font-weight:700;font-size:13px;color:#244899;text-decoration:none}#lfcs .lfx-all:hover{text-decoration:underline}#lfcs .lfx-rev{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity .6s ease,transform .6s ease,filter .6s ease}#lfcs .lfx-rev.in{opacity:1;transform:none;filter:none}@media(prefers-reduced-motion:reduce){#lfcs .lfx-rev{opacity:1;transform:none;filter:none;transition:none}}</style><div class="lfx-wrap"><div class="lfx-head lfx-rev"><h2 class="lfx-ttl">Proven at real venues, under&nbsp;pressure</h2><p class="lfx-sub">See how LongFi Connect performs in public buildings and where the crowds are&nbsp;biggest.</p></div><div class="hcards lfx-rev" style="grid-template-columns:repeat(3,1fr);max-width:1080px"><a class="hcard p" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-city-of-easton-01.jpg" alt="City of Easton" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">City of Easton &middot;&nbsp;PA</span><span class="vn">City of&nbsp;Easton</span><span class="qq">&ldquo;Phones work better when LongFi Connect is&nbsp;live.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a><a class="hcard gr" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mardi-gras-2026-01-image.jpg" alt="Mardi Gras 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Mardi Gras 2026 &middot;&nbsp;New Orleans</span><span class="vn">Mardi Gras 2026</span><span class="qq">&ldquo;In past Mardi Gras weekends we heard complaints about cell signal. This year we&nbsp;did&nbsp;not.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a><a class="hcard g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-jazzfest-2026-01-a-packed-daytime-crowd-at-a-jazzfest-stage.jpg" alt="JazzFest 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">JazzFest 2026 &middot;&nbsp;New Orleans</span><span class="vn">JazzFest 2026</span><span class="qq">&ldquo;Guests picked up the network as they walked up and moved through the line&nbsp;faster.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a></div><a class="lfx-all" href="https://www.longfisolutions.com/case-studies/">See all case studies &rarr;</a></div><script>(function(){var r=document.getElementById('lfcs');if(!r||r.__i)return;r.__i=1;var els=r.querySelectorAll('.lfx-rev');if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in')});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)})})();</script></div>
+
+  <!-- ============================================================
+       SNIPPET: lf_reach_stateparks_v1  (coverage boundary, stated plainly)
+       ============================================================ -->
+  <section class="reach">
+    <div class="wrap">
+      <div class="reach-grid rv-stagger">
+        <div class="reach-copy">
+          <h2 class="h-grad">Where the coverage reaches,<br>and where it&nbsp;does&nbsp;not</h2>
+          <p class="lede">LongFi Connect works indoors. The coverage reaches the park buildings visitors actually use: visitor centers, lodges and inns, restaurants, camp stores, and registration&nbsp;buildings.</p>
+          <p class="lede">Where a property already runs outdoor rated access points, coverage extends to the serviced areas those access points reach, such as a cabin porch, a lodge terrace, a picnic shelter, or a campground loop beside its registration&nbsp;building.</p>
+          <p class="lede">Coverage does not extend across open acreage, onto trails, or into backcountry. That boundary is confirmed at qualification so expectations match what gets&nbsp;delivered.</p>
+        </div>
+        <div class="reach-img">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-12-cabin-porch-cluster.webp" alt="Cabin porches at a state park served by outdoor rated access points on the building nearby" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_compat_stateparks_v1  (merged band, stacked variation)
+       ============================================================ -->
+  <section class="dualstrip">
+    <div class="wrap">
+      <div class="dual rv-stagger">
+        <div class="dcard">
+          <div class="dcard-head">
+            <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/03/enterprise-wifi-access-points-ubiquiti-ruckus-mist-compatible-842x1024.png" alt="Enterprise Wi&#8209;Fi access points from Ubiquiti, Ruckus, and Juniper Mist compatible with LongFi Connect" loading="lazy"></div>
+            <div>
+              <h2 class="h-grad">Use the Wi&#8209;Fi your park already&nbsp;operates</h2>
+            </div>
+          </div>
+          <p class="lede">If your park uses systems such as Meraki, Aruba, UniFi, Ruckus, Cisco, Juniper Mist, or other Passpoint-compatible Wi&#8209;Fi, your buildings are likely&nbsp;already&nbsp;compatible.</p>
+          <p class="lede">No hardware additions, and no changes to how your network is&nbsp;used&nbsp;today.</p>
+          <div class="btn-row"><a class="btn btn-ghost" href="https://www.longfisolutions.com/compatibility/">Check compatibility</a></div>
+        </div>
+        <div class="dcard">
+          <div class="dcard-head">
+            <div class="dcard-ic"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/Dollar-Signal-Icon-04-copy.png" alt="Cellular signal bars rising over a Wi&#8209;Fi symbol representing stronger indoor cell coverage" loading="lazy"></div>
+            <div>
+              <h2 class="h-grad">When connectivity works, the whole park&nbsp;works&nbsp;better</h2>
+            </div>
+          </div>
+          <p class="lede">Major carriers work with LongFi to serve their subscribers indoors, and LongFi Connect carries that traffic securely on the unused Wi&#8209;Fi capacity you&nbsp;already&nbsp;have.</p>
+          <p class="lede">Visitors complete payments on the first try, staff systems stay reachable, and reservations resolve at the counter rather than at the next stop with&nbsp;coverage.</p>
+          <div class="btn-row"><a class="btn btn-primary" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a></div>
+        </div>
+      </div>
+
+      <!-- Compatible Wi-Fi platforms strip: self-hosted logos, full width beneath the
+           compatibility card so the nine wordmarks stay legible at every breakpoint. -->
+      <div class="oem-strip rv">
+        <div class="oem-strip-label">Compatible enterprise Wi&#8209;Fi platforms</div>
+        <div class="oem-grid">
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-cisco-meraki.webp" alt="Cisco Meraki" loading="lazy"></div>
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-aruba.webp" alt="HPE Aruba Networking" loading="lazy"></div>
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-ubiquiti-unifi.webp" alt="Ubiquiti UniFi" loading="lazy"></div>
+          <div class="oem-item"><img class="tall" src="https://www.longfisolutions.com/wp-content/uploads/oem-juniper-mist.webp" alt="Juniper Mist" loading="lazy"></div>
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-ruckus.webp" alt="Ruckus Networks" loading="lazy"></div>
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-extreme-networks.webp" alt="Extreme Networks" loading="lazy"></div>
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-cambium-networks.webp" alt="Cambium Networks" loading="lazy"></div>
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-fortinet.webp" alt="Fortinet" loading="lazy"></div>
+          <div class="oem-item"><img src="https://www.longfisolutions.com/wp-content/uploads/oem-grandstream.webp" alt="Grandstream" loading="lazy"></div>
+          <div class="oem-item"><span class="omada"><b>Omada</b><small>BY TP-LINK</small></span></div>
+        </div>
+        <div class="oem-note">Platform support is confirmed per property during qualification. A platform not shown here is worth asking about rather than&nbsp;assuming.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SNIPPET: lf_recap_cta_stateparks_v1
+       ============================================================ -->
+  <div class="dark-band on-dark" id="parks">
+    <section class="cta-final">
+      <div class="wrap" style="text-align:center">
+        <div class="rv" style="max-width:760px;margin:0 auto">
+          <h2 class="metal">Keep visitors connected inside the park.</h2>
+          <p class="lede" style="margin:0 auto 6px">Reliable indoor cell coverage on the Wi&#8209;Fi already in place. A short call or quick venue check shows&nbsp;the&nbsp;fit.</p>
+          <div class="btn-row" style="justify-content:center">
+            <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+            <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
+          </div>
+          <p style="font-size:13px;opacity:.62;margin-top:16px">Works with business grade Wi&#8209;Fi such as Cisco, Meraki, Aruba, or comparable, and supports major mobile&nbsp;carriers.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-stateparks');
+  if(!r)return;
+  /* Scroll reveal for .rv and .rv-stagger */
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);}
+    });
+  },{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  /* Stats: reveal then count up */
+  var so=new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      if(!x.isIntersecting)return;
+      var strip=x.target.closest('.strip');
+      if(strip)strip.classList.add('lines-on');
+      x.target.classList.add('on');
+      var n=x.target.querySelector('.stat-n');
+      if(n&&n.dataset.count){
+        var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;
+        (function step(ts){
+          if(!t0)t0=ts;
+          var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p;
+          n.textContent=Math.round(tgt*p)+sfx;
+          if(p<1)requestAnimationFrame(step);
+        })(performance.now());
+      }
+      so.unobserve(x.target);
+    });
+  },{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  /* Catch anything already in the viewport at load with no scroll */
+  setTimeout(function(){
+    r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){
+      var rc=el.getBoundingClientRect();
+      if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view');
+    });
+    r.querySelectorAll('.stat').forEach(function(el){
+      var rc=el.getBoundingClientRect();
+      if(rc.top<window.innerHeight&&rc.bottom>0){
+        el.classList.add('on');
+        var s=el.closest('.strip');if(s)s.classList.add('lines-on');
+      }
+    });
+  },150);
+})();
+</script>

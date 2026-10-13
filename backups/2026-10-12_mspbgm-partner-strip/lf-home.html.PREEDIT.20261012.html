@@ -1,0 +1,805 @@
+<!-- LongFi snippet | lf-home.html | v1.14 | updated 2026-07-15 16:00 | REVIEW -->
+<!-- [1] Google Fonts, load-once (per DigitalHypePro guide) -->
+<script>
+(function(){
+  if(document.getElementById('lf-fonts'))return;
+  var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
+  l.href='/dhp-fonts/css/g-2ad06aa5e3.css';
+  document.head.appendChild(l);
+})();
+</script>
+
+<!-- [2] Page styles, all scoped under #lf-home (no global leakage) -->
+<style>
+/* ============================================================
+   SNIPPET: lf_globals_v2  (tokens, type, buttons, utilities)
+   ============================================================ */
+#lf-home{
+  --skyline:#244899; --indigo:#2C2C6E; --gold:#FFB80F; --teal:#1FA58E;
+  --magenta:#FF0078; --purple:#660AB7; --white:#FFFFFF; --bg:#F6F8FC;
+  --paper:#FAFBFD; --ink:#14172B; --body:#4A536B; --muted:#7A8299;
+  --line:#E6EAF2; --soft:#F2F5FB;
+  --shadow:0 14px 46px rgba(36,72,153,.12);
+  --shadow-soft:0 4px 16px rgba(36,72,153,.07);
+  --head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below the sticky nav so the target is fully visible */
+/* Elementor full-width fix (2026-07-14): the boxed .e-con container that wraps this pasted block
+   ships a 10px default padding and a boxed max-width, which appears as a white frame on the
+   full-color sections. Neutralize that exact wrapping container so the page reaches the browser
+   edges, matching the other live pages. Harmless outside Elementor (no .e-con present). */
+.e-con:has(#lf-home),.e-con-inner:has(#lf-home),.elementor-widget-html:has(#lf-home),.elementor-widget-shortcode:has(#lf-home),.elementor-widget-container:has(#lf-home){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+/* root: kill any default body/html margin so full color sections reach the viewport edge */
+#lf-home *{box-sizing:border-box;margin:0;padding:0}
+#lf-home{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+#lf-home{font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-home img{max-width:100%;height:auto;display:block}
+#lf-home a{color:var(--skyline);text-decoration:none}
+#lf-home h1, #lf-home h2, #lf-home h3, #lf-home h4, #lf-home .eyebrow, #lf-home .btn, #lf-home .stat-n{font-family:var(--head)}
+#lf-home .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){
+  #lf-home .wrap{padding:0 16px}
+}
+#lf-home section{padding:84px 0}
+@media(max-width:680px){
+  #lf-home section{padding:56px 0}
+}
+#lf-home .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--skyline);margin-bottom:14px}
+#lf-home .on-dark .eyebrow{color:#C9D3E4}
+#lf-home h1, #lf-home h2, #lf-home h3{text-wrap:balance}
+#lf-home p{text-wrap:pretty}
+/* prevents orphaned last lines per the copywriting rule */
+#lf-home h2{font-size:clamp(23px,2.7vw,31px)!important;font-weight:700;line-height:1.14;letter-spacing:-.01em;color:var(--ink);margin-bottom:14px}
+#lf-home .on-dark h2{color:var(--white)}
+/* Designed section titles on light backgrounds: gradient depth, never plain black.
+   Homepage persona: skyline blue. */
+#lf-home .h-grad{background:linear-gradient(120deg,var(--ink) 25%,#1E3A75 60%,var(--skyline) 105%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 10px rgba(36,72,153,.14));padding-bottom:.12em;margin-bottom:.1em}
+/* padding protects descenders from gradient clipping */
+/* SIGNAL GLEAM. Core LongFi animation: a slow light sweep across one power
+   word or headline per page. Use sparingly; tint follows the page persona. */
+#lf-home .h-shine{background:linear-gradient(115deg,#244899 0%,#4F7BD9 35%,#9FC0F2 50%,#4F7BD9 65%,#244899 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:shimmer-lf-home 5.5s ease-in-out infinite alternate;filter:drop-shadow(0 0 12px rgba(91,141,239,.2));padding-bottom:.12em}
+#lf-home .lede{font-size:17.5px;line-height:1.65;max-width:720px}
+#lf-home .on-dark .lede{color:rgba(255,255,255,.9)}
+#lf-home .metal{
+  background:linear-gradient(115deg,#AEB9CC 0%,#E9EEF6 28%,#FFFFFF 50%,#D5DCE9 72%,#9FACC4 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:shimmer-lf-home 8s ease-in-out infinite alternate;
+}
+@keyframes shimmer-lf-home{from{background-position:0% center}to{background-position:100% center}}
+#lf-home .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;white-space:nowrap}
+/* Enterprise silver button system. Low saturation, permanent soft ambient glow. */
+#lf-home .btn-gold{
+  background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);
+  color:var(--ink);
+  border-color:rgba(255,255,255,.65);
+  box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85);
+}
+#lf-home .btn-gold:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(233,238,246,.5),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.9)}
+/* Page persona CTA: homepage runs the bold skyline blue variant.
+   Every page tints .btn-primary with its own persona gradient. */
+#lf-home .btn-primary{
+  background:linear-gradient(135deg,#638AE8 0%,#3450A8 100%);
+  color:#FFFFFF;
+  border-color:rgba(178,205,255,.65);
+  box-shadow:0 0 26px rgba(99,138,232,.55),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.4);
+}
+#lf-home .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(120,160,250,.7),0 8px 20px rgba(20,23,43,.2),inset 0 1px 0 rgba(255,255,255,.45)}
+#lf-home .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6;box-shadow:0 0 12px rgba(213,220,233,.14)}
+#lf-home .btn-ghost-dark:hover{background:rgba(233,238,246,.12);box-shadow:0 0 18px rgba(213,220,233,.24)}
+#lf-home .btn-ghost{background:transparent;border-color:#B8C2D4;color:#46598C;box-shadow:0 0 10px rgba(174,185,204,.18)}
+#lf-home .btn-ghost:hover{background:#EDF1F7;color:var(--ink);box-shadow:0 0 16px rgba(174,185,204,.3)}
+#lf-home .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+#lf-home .dark-band{background:linear-gradient(135deg,var(--skyline) 0%,var(--indigo) 100%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-home .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at 90% 0%, rgba(233,238,246,.16), transparent 55%),radial-gradient(460px circle at 8% 95%, rgba(255,184,15,.12), transparent 55%);pointer-events:none}
+#lf-home .dark-band>.wrap{position:relative;z-index:1}
+#lf-home .card{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-home .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+/* Scroll reveal */
+#lf-home .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-home .rv.in-view{opacity:1;transform:none}
+#lf-home .rv-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+#lf-home .rv-stagger.in-view>*{opacity:1;transform:none}
+#lf-home .rv-stagger.in-view>*:nth-child(2){transition-delay:.08s}
+#lf-home .rv-stagger.in-view>*:nth-child(3){transition-delay:.16s}
+#lf-home .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
+#lf-home .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
+#lf-home .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+@media(prefers-reduced-motion:reduce){
+  #lf-home .rv, #lf-home .rv-stagger>*{opacity:1;transform:none;transition:none}
+  #lf-home .metal{animation:none}
+  #lf-home{scroll-behavior:auto}
+}
+/* ============================================================
+   SNIPPET: lf_hero_home_v2
+   ============================================================ */
+#lf-home .hero{padding:100px 0 90px}
+/* Narrower text column, larger image column (revision round 8). */
+#lf-home .hero-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:48px;align-items:center}
+@media(max-width:920px){
+  #lf-home .hero-grid{grid-template-columns:1fr;gap:32px}
+  #lf-home .hero{padding:56px 0 48px}
+}
+#lf-home .hero .eyebrow{color:#C9D3E4;background:rgba(233,238,246,.08);border:1px solid rgba(213,220,233,.35);padding:6px 14px;border-radius:999px}
+#lf-home .hero h1{font-size:clamp(27px,3.4vw,43px);font-weight:700;line-height:1.13;letter-spacing:-.015em;color:var(--white);margin-bottom:14px}
+#lf-home .hero-sub{font-family:var(--head);font-weight:600;font-size:clamp(17px,1.8vw,21px);color:var(--white);margin-bottom:14px}
+#lf-home .hero .lede{color:rgba(255,255,255,.9);font-size:16.5px;max-width:480px;text-wrap:balance}
+/* balance kills lone last-word orphans in the short hero block */
+@media(max-width:920px){
+  #lf-home .hero .lede{max-width:none}
+}
+#lf-home .hero-img{border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.14)}
+#lf-home .hero-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform .6s ease}
+#lf-home .hero-img:hover img{transform:scale(1.2)}
+/* ============================================================
+   SNIPPET: lf_stats_home_v2
+   ============================================================ */
+#lf-home .stats-band{padding:0 0 90px}
+#lf-home .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:920px){
+  #lf-home .stats{grid-template-columns:repeat(2,1fr)}
+}
+/* Cards are invisible until JS stages them in, one by one, numbers counting as each lands. */
+#lf-home .stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:16px 14px;text-align:center;backdrop-filter:blur(4px);opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+#lf-home .stat.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  #lf-home .stat{opacity:1;transform:none;transition:none}
+}
+/* Numbers run smaller with a professional ambient glow; labels sit just below. */
+#lf-home .stat-n{font-size:clamp(21px,2.2vw,29px);font-weight:700;line-height:1.1;filter:drop-shadow(0 0 14px rgba(233,238,246,.4))}
+#lf-home .stat-l{font-size:12px;color:rgba(255,255,255,.82);margin-top:5px;line-height:1.4}
+/* ============================================================
+   SNIPPET: lf_partners_band_v2
+   ============================================================ */
+/* Quiet trust band. Secondary stage: small muted label, slim logo row, no heavy cards. */
+#lf-home .trust{padding:46px 0}
+#lf-home .trust-label{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:22px}
+#lf-home .partner-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+#lf-home .partner-card{padding:10px 18px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:transparent;border:1px solid var(--line);border-radius:12px;box-shadow:none}
+#lf-home .partner-card:hover{transform:none;box-shadow:var(--shadow-soft)}
+#lf-home .partner-card img{max-height:22px;max-width:96px;width:auto;object-fit:contain;opacity:.8;transition:opacity .2s}
+#lf-home .partner-card:hover img{opacity:1}
+#lf-home .partner-cap{font-family:var(--head);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* Compatible-with logo wall: two slow sliding rows of full-color vendor logos.
+   Logos materialize out of a blur at each end (backdrop blur overlays plus an
+   opacity mask). Quiet weight, built for many vendors without clutter.
+   Logo sources: working_drafts/_assets/compat_logos_manifest.md. At Woody build
+   time these hotlinks become WordPress media library assets. */
+#lf-home .compat-label{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:center;margin:34px 0 18px}
+#lf-home .compat-wall{position:relative;max-width:980px;margin:0 auto}
+/* matches the trusted row width above */
+#lf-home .compat-wall::before, #lf-home .compat-wall::after{content:"";position:absolute;top:0;bottom:0;width:110px;z-index:2;pointer-events:none;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+#lf-home .compat-wall::before{left:0;-webkit-mask-image:linear-gradient(90deg,#000 25%,transparent);mask-image:linear-gradient(90deg,#000 25%,transparent)}
+#lf-home .compat-wall::after{right:0;-webkit-mask-image:linear-gradient(270deg,#000 25%,transparent);mask-image:linear-gradient(270deg,#000 25%,transparent)}
+#lf-home .compat-row{overflow:hidden;position:relative;padding:5px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+/* Tracks carry 3 copies of the set and loop one third, so both rows are
+   completely full from the first frame with no leading or trailing gap */
+#lf-home .compat-track{display:flex;align-items:center;gap:12px;width:max-content;animation:compatL-lf-home 40s linear infinite}
+#lf-home .compat-row.rev .compat-track{animation-name:compatR-lf-home;animation-duration:46s}
+#lf-home .compat-row:hover .compat-track{animation-play-state:paused}
+@keyframes compatL-lf-home{from{transform:translateX(0)}to{transform:translateX(-33.3333%)}}
+@keyframes compatR-lf-home{from{transform:translateX(-33.3333%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){
+  #lf-home .compat-track{animation:none}
+  #lf-home .compat-wall::before, #lf-home .compat-wall::after{display:none}
+}
+#lf-home .compat-chip{display:flex;align-items:center;justify-content:center;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:12px 22px;min-height:48px;flex:none;box-shadow:var(--shadow-soft)}
+/* Balanced logo sizing: fixed height with a width clamp so wide wordmarks
+   (Fortinet, Grandstream) never outweigh compact marks */
+#lf-home .compat-chip img{height:18px;max-width:104px;width:auto;object-fit:contain}
+/* Round 8: UniFi and Omada now sit on the SAME white chips as every other
+   vendor so no single mark grabs attention. Their white-source artwork is
+   flattened to black; the Omada wordmark renders in ink. */
+#lf-home .compat-chip.chip-dark{background:var(--white);border-color:var(--line)}
+#lf-home .compat-chip.chip-dark img{filter:brightness(0);opacity:.78}
+#lf-home .compat-chip .omada{font-family:var(--head);color:var(--ink);text-align:center;line-height:1.05}
+#lf-home .compat-chip .omada b{display:block;font-size:15px;font-weight:700;letter-spacing:.01em}
+#lf-home .compat-chip .omada small{display:block;font-size:8.5px;font-weight:500;color:var(--muted);letter-spacing:.04em}
+/* ============================================================
+   SNIPPET: lf_industries_grid_v2  (two slow auto-scroll rows, built for volume)
+   ============================================================ */
+#lf-home .ind{background:var(--bg)}
+#lf-home .ind-rows{margin-top:38px;display:grid;gap:16px}
+#lf-home .ind-row{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+#lf-home .ind-track{display:flex;gap:14px;width:max-content;animation:indLeft-lf-home 70s linear infinite}
+#lf-home .ind-row.rev .ind-track{animation-name:indRight-lf-home}
+#lf-home .ind-row:hover .ind-track{animation-play-state:paused}
+@keyframes indLeft-lf-home{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes indRight-lf-home{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){
+  #lf-home .ind-track{animation:none}
+}
+#lf-home .ind-card{position:relative;border-radius:14px;overflow:hidden;width:230px;aspect-ratio:4/3;flex:none;display:block;background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow-soft);transition:transform .25s ease,box-shadow .25s ease}
+#lf-home .ind-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+/* Full image always visible inside the frame; never zoom-cropped */
+#lf-home .ind-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:4px 4px 14px;transition:transform .6s ease}
+#lf-home .ind-card:hover img{transform:scale(1.04)}
+#lf-home .ind-card .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,23,43,0) 48%,rgba(20,23,43,.55) 72%,rgba(20,23,43,.92) 100%)}
+#lf-home .ind-card .label{position:absolute;left:14px;right:14px;bottom:9px;color:var(--white)}
+#lf-home .ind-card .label h3{font-size:15px;font-weight:700;color:var(--white);margin-bottom:2px}
+#lf-home .ind-card .label span{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#FFD577;opacity:0;transform:translateY(6px);transition:opacity .25s,transform .25s;display:inline-block}
+#lf-home .ind-card:hover .label span{opacity:1;transform:none}
+/* ============================================================
+   SNIPPET: lf_connect_feature_v2  (dark band, the wordmark is the star)
+   ============================================================ */
+#lf-home .connect-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+@media(max-width:920px){
+  #lf-home .connect-grid{grid-template-columns:1fr;gap:36px}
+}
+#lf-home .connect-star{font-size:clamp(48px,6.2vw,80px);font-weight:800;line-height:1.02;letter-spacing:-.02em;filter:drop-shadow(0 0 28px rgba(233,238,246,.3))}
+#lf-home .connect-star .small{display:block;font-size:.3em;font-weight:600;color:#C9D3E4;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+#lf-home .connect-sub{font-family:var(--head);font-weight:600;font-size:clamp(17px,1.9vw,21px);color:var(--white);margin:18px 0 10px}
+#lf-home .feat-list{display:grid;gap:14px}
+#lf-home .feat{display:flex;gap:18px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:18px 20px;transition:transform .25s ease,background .25s ease}
+#lf-home .feat:hover{transform:translateY(-3px);background:rgba(255,255,255,.1)}
+#lf-home .feat .ph{width:72px;height:72px;flex:none;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;padding:6px}
+/* contain, never cover: product and icon imagery must fit fully inside its container */
+#lf-home .feat .ph img{width:100%;height:100%;object-fit:contain}
+#lf-home .feat h3{font-size:16.5px;font-weight:700;color:var(--white);margin-bottom:4px}
+#lf-home .feat p{font-size:14.5px;color:rgba(255,255,255,.85);margin:0}
+/* ============================================================
+   SNIPPET: lf_monetized_v2
+   ============================================================ */
+#lf-home .mon{background:var(--white)}
+#lf-home .mon-title{font-size:clamp(23px,2.7vw,31px)!important;line-height:1.14}
+#lf-home .mon-title .h-grad,#lf-home .mon-title .h-shine{white-space:nowrap}
+@media(max-width:768px){#lf-home .mon-title .h-grad,#lf-home .mon-title .h-shine{white-space:normal}}
+#lf-home .mon-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+#lf-home .mon-factors-lead{font-family:var(--head);font-weight:600;color:var(--ink);font-size:17.5px;margin:28px 0 4px}
+@media(max-width:920px){
+  #lf-home .mon-grid{grid-template-columns:1fr;gap:32px}
+}
+#lf-home .mon-high{font-family:var(--head);font-size:17px;font-weight:600;color:var(--skyline);background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:16px 20px;margin:22px 0}
+#lf-home .factor{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;margin-top:12px}
+#lf-home .factor .num{font-family:var(--head);font-weight:700;font-size:15px;color:var(--white);background:var(--skyline);min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px}
+#lf-home .factor h3{font-size:16.5px;font-weight:700;color:var(--ink);margin-bottom:4px}
+#lf-home .factor p{font-size:15px;margin:0}
+/* ============================================================
+   SNIPPET: lf_case_logos_v2  (slow rotating showcase, supports badges)
+   ============================================================ */
+#lf-home .cases{background:var(--bg)}
+#lf-home .case-row{overflow:hidden;position:relative;margin-top:38px;padding:8px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+#lf-home .case-track{display:flex;gap:16px;width:max-content;animation:caseFlow-lf-home 55s linear infinite}
+#lf-home .case-row:hover .case-track{animation-play-state:paused}
+@keyframes caseFlow-lf-home{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+  #lf-home .case-track{animation:none}
+}
+#lf-home .case-card{position:relative;width:250px;flex:none;padding:30px 22px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+#lf-home .case-card img{max-height:44px;width:auto;object-fit:contain}
+#lf-home .case-card h3{font-size:16px;font-weight:700;color:var(--ink)}
+#lf-home .case-card .loc{font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#lf-home .case-badge{position:absolute;top:10px;right:10px;font-family:var(--head);font-size:6.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);background:linear-gradient(115deg,#C2CBDA,#EDF1F7,#D5DCE9);border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:2px 5px;box-shadow:0 2px 8px rgba(20,23,43,.12)}
+/* ============================================================
+   SNIPPET: lf_recap_cta_home_v2  (one dark band: one strong summary, then the ask)
+   ============================================================ */
+#lf-home .recap .kicker{font-family:var(--head);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#C9D3E4;text-align:center;margin-bottom:30px}
+#lf-home .recap-hero{text-align:center;max-width:920px;margin:0 auto}
+#lf-home .recap-hero h3{font-size:clamp(30px,4.4vw,54px);font-weight:800;letter-spacing:-.02em;line-height:1.08}
+#lf-home .recap-hero p{font-family:var(--head);font-size:clamp(16px,2vw,21px);font-weight:500;color:rgba(255,255,255,.7);margin:14px 0 0}
+#lf-home .recap-points{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+@media(max-width:680px){
+  #lf-home .recap-points{grid-template-columns:1fr}
+}
+#lf-home .recap-point{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:22px 26px}
+#lf-home .recap-point h4{font-family:var(--head);font-size:17.5px;font-weight:700;color:var(--white);margin-bottom:6px}
+#lf-home .recap-point p{font-size:15px;color:rgba(255,255,255,.72);margin:0}
+#lf-home .cta-panel{margin-top:48px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:44px;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 44px rgba(233,238,246,.08)}
+@media(max-width:920px){
+  #lf-home .cta-panel{grid-template-columns:1fr;padding:28px 22px;gap:30px}
+}
+#lf-home .cta-panel h2{font-size:clamp(22px,2.6vw,32px);margin-bottom:12px}
+#lf-home .cta-panel .lede{font-size:16px}
+#lf-home .cta-form .fl{font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C9D3E4;margin:14px 0 6px}
+#lf-home .cta-form .fl:first-child{margin-top:0}
+#lf-home .cta-form .fi{display:block;width:100%;height:46px;border-radius:10px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);color:#fff;font-family:var(--body-font);font-size:15px;padding:0 14px;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+#lf-home .cta-form .fi::placeholder{color:rgba(255,255,255,.45)}
+#lf-home .cta-form .fi:focus{outline:none;border-color:rgba(47,184,136,.7);background:rgba(255,255,255,.13);box-shadow:0 0 0 3px rgba(47,184,136,.18)}
+#lf-home .cta-form .fi.bad{border-color:rgba(255,120,120,.8);box-shadow:0 0 0 3px rgba(255,120,120,.16)}
+/* Honeypot: kept in the DOM for bots, hidden from people and screen readers. */
+#lf-home .cta-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}
+#lf-home .cta-form .btn{width:100%;margin-top:20px}
+#lf-home .cta-form .btn[disabled]{opacity:.6;cursor:default;transform:none}
+#lf-home .cta-form .note{font-size:12px;color:rgba(255,255,255,.55);margin-top:12px;text-align:center}
+#lf-home .cta-form .note a{color:#8FE3C2}
+#lf-home .cta-form .note a:hover{text-decoration:underline}
+#lf-home .cta-form .lf-err{display:none;font-size:13px;color:#FFC2C2;margin-top:12px;text-align:center}
+#lf-home .cta-form .lf-err.show{display:block}
+#lf-home .cta-ok{text-align:center;padding:8px 4px}
+#lf-home .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
+#lf-home .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
+#lf-home .cta-ok .lede{font-size:15px;margin:0 auto}
+/* Case studies hero cards (image-left) + shrunk venue carousel */
+#lf-home .hcards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch;margin-top:30px}
+@media(max-width:980px){ #lf-home .hcards{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto} }
+#lf-home .hcard{display:grid;grid-template-columns:138px 1fr;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;box-shadow:var(--shadow-soft);transition:transform .26s ease,box-shadow .26s ease}
+#lf-home .hcard:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+#lf-home .hcard .im{position:relative;overflow:hidden;background:#0F1122;min-height:150px}
+#lf-home .hcard .im::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;z-index:1}
+#lf-home .hcard.t .im::after{background:#1FA58E}#lf-home .hcard.c .im::after{background:#FF4E7A}#lf-home .hcard.g .im::after{background:#C9A227}
+#lf-home .hcard .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-home .hcard:hover .im img{transform:scale(1.06)}
+#lf-home .hcard .cc{padding:16px 18px;display:flex;flex-direction:column}
+#lf-home .hcard .tg{font-family:var(--head);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);min-height:13px}
+#lf-home .hcard.t .tg{color:#12876f}#lf-home .hcard.c .tg{color:#d63862}#lf-home .hcard.g .tg{color:#9a7a15}
+#lf-home .hcard .vn{font-family:var(--head);font-size:16px;font-weight:800;color:var(--ink);margin:5px 0 8px;line-height:1.1}
+#lf-home .hcard .qq{font-family:var(--body-font);font-size:13.5px;font-style:italic;color:var(--body);line-height:1.45;margin-bottom:12px;min-height:3.8em}
+#lf-home .hcard .mm{margin-top:auto;font-family:var(--head);font-size:12.5px;font-weight:700;color:var(--skyline);display:inline-flex;align-items:center;gap:6px;transition:gap .2s ease}
+#lf-home .hcard.t .mm{color:#12876f}#lf-home .hcard.c .mm{color:#d63862}#lf-home .hcard.g .mm{color:#9a7a15}#lf-home .hcard.p .im::after{background:#C13AF0}#lf-home .hcard.p .tg{color:#9b1fce}#lf-home .hcard.p .mm{color:#9b1fce}#lf-home .hcard.gr .im::after{background:#2E9E7E}#lf-home .hcard.gr .tg{color:#1f7d62}#lf-home .hcard.gr .mm{color:#1f7d62}#lf-home .hcard.b .im::after{background:#244899}#lf-home .hcard.b .tg{color:#1d3b80}#lf-home .hcard.b .mm{color:#1d3b80}
+#lf-home .hcard:hover .mm{gap:10px}
+#lf-home .cases-sub{text-align:center;font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:40px}
+/* carousel shrunk ~30% */
+#lf-home .cases .case-card{width:176px !important;padding:20px 15px 17px !important;gap:8px !important}
+#lf-home .cases .case-card img{max-height:31px !important}
+#lf-home .cases .case-card h3{font-size:13px !important}
+#lf-home .cases .case-row{margin-top:16px !important}
+#lf-home .cases .cslink{text-decoration:none;position:relative;transition:transform .25s ease,box-shadow .25s ease}
+#lf-home .cases .cslink:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+#lf-home .cases .case-card .jzwm{font-family:var(--head);font-weight:800;font-size:15px;color:#9a7a15}
+#lf-home .cases .case-badge{cursor:pointer}
+#lf-home .cases .case-row{overflow-x:auto;overflow-y:hidden;cursor:grab;user-select:none;-webkit-user-select:none;-ms-overflow-style:none;scrollbar-width:none;-webkit-mask-image:none;mask-image:none}
+#lf-home .cases .case-row::-webkit-scrollbar{display:none}
+#lf-home .cases .case-row.grabbing{cursor:grabbing}
+#lf-home .cases .case-track{animation:none !important}
+</style>
+
+<!-- [3] Page content. One <main> wrapper carries the scope id. Each <section> below
+     is an independent content block (Woody snippet boundary) you can keep together
+     or split into separate Elementor code blocks if you prefer. -->
+<main id="lf-home">
+  <!-- ============================================================
+       SNIPPET: lf_hero_home_v2 + lf_stats_home_v2  (single dark surface)
+       ============================================================ -->
+  <div class="dark-band">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="rv-stagger">
+          <h1 class="metal">Excellent indoor<br>cellular connectivity.</h1>
+          <p class="hero-sub">Using the Wi‑Fi you already have.</p>
+          <p class="lede">LongFi Solutions helps venues, portfolio owners, and infrastructure partners use existing enterprise-grade Wi‑Fi to deliver strong indoor cell connectivity, so guests stay connected and the whole venue works better.</p>
+          <div class="btn-row">
+            <a class="btn btn-gold" href="#HomeLongFiConnect">Explore LongFi Connect</a>
+            <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/how-it-works/">See How It Works</a>
+          </div>
+        </div>
+        <div class="hero-img rv">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/restaurant-guests-mobile-payment-longfi-venue.webp" alt="Restaurant guests completing a mobile payment in a LongFi venue">
+        </div>
+      </div>
+    </section>
+  
+    <section class="stats-band" style="padding-top:0">
+      <div class="wrap">
+        <div class="stats">
+          <div class="stat"><div class="stat-n metal" data-count="200" data-suffix="+"> </div><div class="stat-l">Active venues<br>across the U.S.</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="130" data-suffix="+ TB"> </div><div class="stat-l">Mobile data<br>transferred monthly</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="7" data-suffix="M+"> </div><div class="stat-l">Mobile users<br>connected monthly</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="70" data-suffix="%"> </div><div class="stat-l">Mobile subscribers<br>supported on day 1</div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- ============================================================
+       SNIPPET: lf_partners_band_v2
+       ============================================================ -->
+  <section class="trust" style="background:var(--white)">
+    <div class="wrap">
+      <div class="trust-label rv">Trusted by leading industry partners</div>
+      <div class="partner-grid rv-stagger">
+        <!-- Capital Factory hidden 2026-10-06 (Jose); restore by uncommenting:
+        <a class="card partner-card" href="https://capitalfactory.com/" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/capital-factory-partner-logo.webp" alt="Capital Factory">
+          <span class="partner-cap">Portfolio Company</span>
+        </a>
+        -->
+        <a class="card partner-card" href="https://wballiance.com/join-us/current-members/" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2025/12/91a5dc2f0f5f5594561702531d23c6a8f496d69a-1024x390.webp" alt="Wireless Broadband Alliance industry organization logo">
+          <span class="partner-cap">Member Company</span>
+        </a>
+        <a class="card partner-card" href="https://www.hpe.com/us/en/networking/partner-programs.html" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/hpe-aruba-networking-compatible-wifi-logo.webp" alt="HPE Aruba Networking">
+          <span class="partner-cap">Networking Partner</span>
+        </a>
+        <a class="card partner-card" href="https://www.ruckusnetworks.com/partners/networking-partners/" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2025/12/944e6b1df5bde57d4bc6dbbe9f423151a9db4f03-1024x406.webp" alt="Ruckus Networks enterprise Wi‑Fi infrastructure partner logo">
+          <span class="partner-cap">Big Dog Partner</span>
+        </a>
+        <a class="card partner-card" href="https://www.fortinet.com/partners/partnerships/alliance-partners" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/fortinet-logo-color.png" alt="Fortinet">
+          <span class="partner-cap">Technology Partner</span>
+        </a>
+        <a class="card partner-card" href="https://www.extremenetworks.com/partners/" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/extreme-networks-partner-logo.png" alt="Extreme Networks">
+          <span class="partner-cap">Network Partner</span>
+        </a>
+        <a class="card partner-card" href="https://www.cambiumnetworks.com/cambium-partner-program/" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cambium-networks-compatible-wifi-partner-logo.webp" alt="Cambium Networks">
+          <span class="partner-cap">Connected Partner</span>
+        </a>
+      </div>
+      <div class="compat-label rv">Compatible with:</div>
+      <div class="compat-wall rv">
+        <!-- 5 logos per row, 3 copies per track for a gapless loop.
+             Standalone Cisco chip removed for balance; the Cisco brand is
+             carried by the Cisco Meraki mark (see manifest note). -->
+        <div class="compat-row">
+          <div class="compat-track">
+            <div class="compat-chip chip-dark"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ubiquiti-unifi-compatible-wifi-partner-logo-1024x316.webp" alt="Ubiquiti UniFi"></div>
+            <div class="compat-chip"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Meraki_Logo_2016_transparent.svg?width=400" alt="Cisco Meraki"></div>
+            <div class="compat-chip"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/CS-Ruckus-logo.png" alt="Ruckus Networks"></div>
+            <div class="compat-chip"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hpe-aruba-networking-logo.svg?width=400" alt="HPE Aruba Networking"></div>
+            <div class="compat-chip"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Juniper_Networks_logo.svg?width=400" alt="Juniper Networks"></div>
+            <div class="compat-chip chip-dark" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ubiquiti-unifi-compatible-wifi-partner-logo-1024x316.webp" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Meraki_Logo_2016_transparent.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/CS-Ruckus-logo.png" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hpe-aruba-networking-logo.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Juniper_Networks_logo.svg?width=400" alt=""></div>
+            <div class="compat-chip chip-dark" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ubiquiti-unifi-compatible-wifi-partner-logo-1024x316.webp" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Meraki_Logo_2016_transparent.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/CS-Ruckus-logo.png" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hpe-aruba-networking-logo.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Juniper_Networks_logo.svg?width=400" alt=""></div>
+          </div>
+        </div>
+        <div class="compat-row rev">
+          <div class="compat-track">
+            <div class="compat-chip"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fortinet_logo.svg?width=400" alt="Fortinet"></div>
+            <div class="compat-chip"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cambium_Networks_logo.svg?width=400" alt="Cambium Networks"></div>
+            <div class="compat-chip"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_Networks_logo_-_new.png" alt="Extreme Networks"></div>
+            <div class="compat-chip"><img src="https://brandlogos.net/wp-content/uploads/2025/12/grandstream_networks-logo_brandlogos.net_ctawz-scaled.png" alt="Grandstream Networks"></div>
+            <div class="compat-chip chip-dark"><span class="omada" role="img" aria-label="Omada by TP-Link"><b>Omada</b><small>by tp-link</small></span></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fortinet_logo.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cambium_Networks_logo.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_Networks_logo_-_new.png" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://brandlogos.net/wp-content/uploads/2025/12/grandstream_networks-logo_brandlogos.net_ctawz-scaled.png" alt=""></div>
+            <div class="compat-chip chip-dark" aria-hidden="true"><span class="omada"><b>Omada</b><small>by tp-link</small></span></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fortinet_logo.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cambium_Networks_logo.svg?width=400" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_Networks_logo_-_new.png" alt=""></div>
+            <div class="compat-chip" aria-hidden="true"><img src="https://brandlogos.net/wp-content/uploads/2025/12/grandstream_networks-logo_brandlogos.net_ctawz-scaled.png" alt=""></div>
+            <div class="compat-chip chip-dark" aria-hidden="true"><span class="omada"><b>Omada</b><small>by tp-link</small></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ARCHIVED 2026-06-11: lf_audience_rotator_v2 (rotating audience block) removed per
+       revision brief round 1. Markup preserved in review_notes and git history. -->
+  
+  
+  
+  <!-- ============================================================
+       SNIPPET: lf_connect_feature_v2  (dark band)
+       ============================================================ -->
+  <div class="dark-band on-dark" id="HomeLongFiConnect">
+    <section>
+      <div class="wrap">
+        <div class="connect-grid">
+          <div class="rv-stagger">
+            <div class="connect-star metal"><span class="small">Powered by</span>LongFi<br>Connect</div>
+            <p class="connect-sub">The simplest way to improve indoor cell connectivity.</p>
+            <p class="lede">We implement carrier-grade technology on your existing Wi‑Fi network to deliver strong, reliable indoor cellphone connectivity.</p>
+            <p class="lede" style="font-family:var(--head);font-weight:700;color:var(--white);margin-top:10px">At no cost and without interruptions.</p>
+            <div class="btn-row">
+              <a class="btn btn-gold" href="https://www.longfisolutions.com/longfi-connect/">Learn More</a>
+              <a class="btn btn-ghost-dark" href="https://www.youtube.com/watch?v=wAYaduUw77s&list=PLIU9-1BYkPrMFl9682ULRNe6a_FatU61J" target="_blank" rel="noopener">Watch the series</a>
+            </div>
+          </div>
+          <div class="feat-list rv-stagger">
+            <div class="feat">
+              <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/enterprise-wifi-access-points-longfi-compatible-842x1024.webp" alt="Enterprise Wi‑Fi access points compatible with LongFi" loading="lazy"></div>
+              <div><h3>Use what you have</h3><p>Build on the Wi‑Fi network already in place. No new hardware, cables, or downtime required.</p></div>
+            </div>
+            <div class="feat">
+              <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/multi-carrier-sim-cards-att-tmobile-connectivity-746x1024.webp" alt="Multi-carrier SIM cards for indoor connectivity" loading="lazy"></div>
+              <div><h3>Works with Major Carriers</h3><p>We work with leading U.S. carriers to ensure the majority of your customers stay connected indoors.</p></div>
+            </div>
+            <div class="feat">
+              <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/network-security-vlan-isolation-longfi-connect.webp" alt="Network security and VLAN isolation with LongFi Connect" loading="lazy"></div>
+              <div><h3>Secure & Private</h3><p>Carrier-authenticated connectivity. More secure than captive portals or open guest networks.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- ============================================================
+       SNIPPET: lf_monetized_v2
+       ============================================================ -->
+  <section class="mon">
+    <div class="wrap mon-grid">
+      <div class="rv">
+        <h2 class="mon-title"><span class="h-grad">When connectivity works,</span><br><span class="h-shine">everything else works better.</span></h2>
+        <p class="lede">Mobile carriers often struggle to deliver strong indoor coverage.</p>
+        <p class="lede">LongFi Connect uses part of the venue’s available Wi‑Fi capacity to carry carrier-authenticated cellular connectivity, so guests get excellent indoor cell service on the network already in place.</p>
+        <div class="btn-row">
+          <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+          <a class="btn btn-ghost" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
+        </div>
+      </div>
+      <div class="rv-stagger">
+        <p class="mon-factors-lead">Strong indoor connectivity tends to show up across the business in a few clear ways:</p>
+        <div class="card factor"><div class="num">1</div><div><h3>Dwell time and spend</h3><p>Guests who stay connected tend to stay longer, and longer visits are associated with higher spend.</p></div></div>
+        <div class="card factor"><div class="num">2</div><div><h3>Organic reach</h3><p>Connected guests post, tag, and review while they are still on site.</p></div></div>
+        <div class="card factor"><div class="num">3</div><div><h3>Portfolio consistency</h3><p>The experience scales across properties with the same light touch as the first site.</p></div></div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ============================================================
+       SNIPPET: lf_industries_grid_v2
+       ============================================================ -->
+  
+<!-- LongFi Relay module | lfrl-home | 2026-09-30 | links to /relay/ (the showcase step before sign in) -->
+<style>
+#lfrl-home.lfrl{--r-ink:#141A2B;--r-body:#4A536B;--r-muted:#6B7390;--r-line:#E3E8F2;--r-brand:#244899;--r-indigo:#2C2C6E;--r-teal:#1FA58E;background:linear-gradient(180deg,#FFFFFF 0%,#F4F6FB 100%);border-top:1px solid var(--r-line);border-bottom:1px solid var(--r-line);padding:72px 0;font-family:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--r-body)}
+#lfrl-home.lfrl *{box-sizing:border-box}
+#lfrl-home.lfrl .lfrl-wrap{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+#lfrl-home.lfrl .lfrl-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:0 0 14px;font-family:'Poppins',sans-serif}
+#lfrl-home.lfrl .lfrl-name b{font-size:15px;font-weight:700;color:var(--r-brand);letter-spacing:.01em}
+#lfrl-home.lfrl .lfrl-name span{font-size:13px;font-weight:500;color:var(--r-muted)}
+#lfrl-home.lfrl.lfrl h2{font-family:'Poppins',sans-serif;font-size:clamp(26px,3vw,36px)!important;font-weight:700;line-height:1.14;letter-spacing:-.012em;color:var(--r-ink);margin:0 0 14px;text-wrap:balance}
+#lfrl-home.lfrl.lfrl h2 .g{display:block;color:var(--r-brand)}
+#lfrl-home.lfrl .lfrl-lede{font-size:17px;line-height:1.6;color:var(--r-body);margin:0 0 20px;max-width:540px;text-wrap:pretty}
+#lfrl-home.lfrl .lfrl-pts{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px}
+#lfrl-home.lfrl .lfrl-pts li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--r-body);margin:0;padding:0}
+#lfrl-home.lfrl .lfrl-pts li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:rgba(31,165,142,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231FA58E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l4 4 10-10'/%3E%3C/svg%3E") center/11px no-repeat}
+#lfrl-home.lfrl .lfrl-pts b{color:var(--r-ink);font-weight:700}
+#lfrl-home.lfrl .lfrl-ctas{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#lfrl-home.lfrl a.lfrl-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 13.5px/1 'Poppins',sans-serif;border-radius:13px;padding:13px 22px;text-decoration:none;border:1px solid transparent;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+#lfrl-home.lfrl a.lfrl-btn:hover{transform:translateY(-1px)}
+#lfrl-home.lfrl a.lfrl-pri{background:linear-gradient(120deg,#244899,#2C2C6E);color:#FFFFFF;box-shadow:0 6px 18px rgba(36,72,153,.24)}
+#lfrl-home.lfrl a.lfrl-pri:hover{box-shadow:0 8px 24px rgba(36,72,153,.34);color:#FFFFFF}
+#lfrl-home.lfrl a.lfrl-ghost{background:#FFFFFF;color:var(--r-ink);border-color:var(--r-line)}
+#lfrl-home.lfrl a.lfrl-ghost:hover{border-color:var(--r-brand);color:var(--r-ink)}
+#lfrl-home.lfrl a.lfrl-shot{display:block;border-radius:14px;text-decoration:none}
+#lfrl-home.lfrl a.lfrl-shot img{display:block;width:100%;height:auto;mix-blend-mode:multiply;transition:transform .5s ease}
+#lfrl-home.lfrl a.lfrl-shot:hover img{transform:translateY(-4px)}
+#lfrl-home.lfrl a.lfrl-shot.duo{position:relative;padding-bottom:12%}
+#lfrl-home.lfrl a.lfrl-shot.duo img.lfrl-main{width:88%;margin-left:auto}
+#lfrl-home.lfrl a.lfrl-shot.duo img.lfrl-float{position:absolute;left:0;bottom:0;width:56%;mix-blend-mode:normal;border-radius:10px;border:1px solid rgba(20,26,43,.12);box-shadow:0 22px 50px rgba(20,26,43,.30)}
+#lfrl-home.lfrl a.lfrl-shot.duo:hover img.lfrl-float{transform:translateY(-6px)}
+#lfrl-home.lfrl .lfrl-steps{list-style:none;margin:0 0 26px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;counter-reset:rs}
+#lfrl-home.lfrl .lfrl-steps li{counter-increment:rs;background:#FFFFFF;border:1px solid var(--r-line);border-radius:14px;padding:16px;margin:0;font-size:14.5px;line-height:1.45;color:var(--r-body)}
+#lfrl-home.lfrl .lfrl-steps li::before{content:counter(rs);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--r-line);font:600 13px 'Poppins',sans-serif;color:var(--r-brand);margin-bottom:10px}
+#lfrl-home.lfrl .lfrl-steps b{display:block;font-family:'Poppins',sans-serif;font-size:14.5px;color:var(--r-ink);margin-bottom:2px}
+#lfrl-home.lfrl.lfrl-slim{padding:36px 0}
+#lfrl-home.lfrl.lfrl-slim .lfrl-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
+#lfrl-home.lfrl.lfrl-slim .lfrl-slim-t{font:700 clamp(18px,2vw,22px)/1.25 'Poppins',sans-serif;color:var(--r-ink);margin:0}
+#lfrl-home.lfrl.lfrl-slim .lfrl-slim-t .g{color:var(--r-brand)}
+#lfrl-home.lfrl.lfrl-slim .lfrl-slim-s{font-size:15px;color:var(--r-body);margin:4px 0 0}
+#lfrl-home.lfrl .lfrl-rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+#lfrl-home.lfrl .lfrl-rv.in{opacity:1;transform:none}
+@media (max-width:900px){#lfrl-home.lfrl .lfrl-wrap{grid-template-columns:1fr;gap:28px}#lfrl-home.lfrl .lfrl-steps{grid-template-columns:1fr}#lfrl-home.lfrl{padding:52px 0}}
+@media (max-width:640px){#lfrl-home.lfrl .lfrl-wrap{padding:0 16px}}
+@media (prefers-reduced-motion:reduce){#lfrl-home.lfrl .lfrl-rv{opacity:1;transform:none;transition:none}#lfrl-home.lfrl a.lfrl-shot img{transition:none}}
+</style>
+<div class="lfrl" id="lfrl-home">
+  <div class="lfrl-wrap">
+    <div class="lfrl-copy lfrl-rv">
+      <p class="lfrl-name"><b>Relay</b><span>The LongFi Connect client portal</span></p>
+      <h2>Monitor your sites. <span class="g">Grow your portfolio.</span></h2>
+      <p class="lfrl-lede">Relay is the LongFi Connect client portal, included at no extra cost. One sign‑in shows the whole portfolio: how many sites are active, how many people connected, and how much mobile data moved onto the venue Wi‑Fi this week.</p>
+      <ul class="lfrl-pts"><li><span><b>Fleet summary</b> for the whole portfolio</span></li><li><span><b>Daily people connected and data carried</b>, by carrier</span></li><li><span><b>7 day, 30 day or custom</b> ranges</span></li></ul>
+      <div class="lfrl-ctas"><a class="lfrl-btn lfrl-pri" href="https://www.longfisolutions.com/relay/">Explore Relay</a><a class="lfrl-btn lfrl-ghost" href="https://www.longfisolutions.com/relay/#signin">Sign in to Relay</a></div>
+    </div>
+    <a class="lfrl-shot lfrl-rv" href="https://www.longfisolutions.com/relay/#sample" aria-label="Try the Relay demo"><img src="https://www.longfisolutions.com/wp-content/uploads/relay-dashboard-laptop-sample-data.webp" alt="Relay dashboard on a laptop showing a sample portfolio: data transferred, people connected, and daily data offload by carrier" width="1072" height="730" loading="lazy" decoding="async"></a>
+  </div>
+</div>
+<script>(function(){var r=document.getElementById('lfrl-home');if(!r||r.__i)return;r.__i=1;var els=r.querySelectorAll('.lfrl-rv');if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in')});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)})})();</script>
+
+<section class="ind" id="learn">
+    <div class="wrap">
+      <div class="rv" style="max-width:760px">
+        <h2 class="h-grad">Designed for <span class="h-shine">high-traffic</span> indoor environments.</h2>
+        <p class="lede">LongFi Connect works across hospitality, healthcare, entertainment, retail, and transportation environments where strong indoor cellular connectivity matters most.</p>
+      </div>
+      <div class="ind-rows rv">
+        <div class="ind-row">
+          <div class="ind-track">
+            <a class="ind-card" href="https://www.longfisolutions.com/restaurants/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s2-1.webp" alt="Restaurants" loading="lazy"><div class="veil"></div><div class="label"><h3>Restaurants</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/shoppingcenters/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4s.webp" alt="Shopping Malls" loading="lazy"><div class="veil"></div><div class="label"><h3>Shopping Malls</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/gyms/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/b50ec9e110d39a2dc399b41f3d08ebbe3b04f4f0-1.webp" alt="Gyms" loading="lazy"><div class="veil"></div><div class="label"><h3>Gyms</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/convention-centers/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s3.webp" alt="Convention Centers" loading="lazy"><div class="veil"></div><div class="label"><h3>Convention Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/sports-bars/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/283b5e842e9620fda559c22922dea6b292b69fa9.webp" alt="Sports Bars" loading="lazy"><div class="veil"></div><div class="label"><h3>Sports Bars</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/airports/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4b569ba1ce71b58cf32332e40e67a778697b2f87-2.webp" alt="Airports" loading="lazy"><div class="veil"></div><div class="label"><h3>Airports</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/restaurants/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s2-1.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Restaurants</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/shoppingcenters/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4s.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Shopping Malls</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/gyms/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/b50ec9e110d39a2dc399b41f3d08ebbe3b04f4f0-1.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Gyms</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/convention-centers/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s3.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Convention Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/sports-bars/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/283b5e842e9620fda559c22922dea6b292b69fa9.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Sports Bars</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/airports/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4b569ba1ce71b58cf32332e40e67a778697b2f87-2.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Airports</h3><span>Explore</span></div></a>
+          </div>
+        </div>
+        <div class="ind-row rev">
+          <div class="ind-track">
+            <a class="ind-card" href="https://www.longfisolutions.com/nightclubs/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/newnn.webp" alt="Nightclubs" loading="lazy"><div class="veil"></div><div class="label"><h3>Nightclubs</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hotels/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/28fda275712682d60bb6aab192df19486ac416a2.webp" alt="Hotels" loading="lazy"><div class="veil"></div><div class="label"><h3>Hotels</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hospital-clinics/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/932e96b5d7149ebfb64f0f68c9b807a0f90049f8.webp" alt="Clinics" loading="lazy"><div class="veil"></div><div class="label"><h3>Clinics</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/event-centers/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/116ff62268096b1817a7cc1043847f42f9552bed.webp" alt="Event Centers" loading="lazy"><div class="veil"></div><div class="label"><h3>Event Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/education-campuses/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/03/66c89bd9e1cb5fddebdfe9f67c6f04d2991a2180.webp" alt="Education Campuses" loading="lazy"><div class="veil"></div><div class="label"><h3>Education Campuses</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/state-parks/"><img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-tile-campground-registration-building.webp" alt="State and National Parks" loading="lazy"><div class="veil"></div><div class="label"><h3>State Parks</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/nightclubs/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/newnn.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Nightclubs</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hotels/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/28fda275712682d60bb6aab192df19486ac416a2.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Hotels</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hospital-clinics/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/932e96b5d7149ebfb64f0f68c9b807a0f90049f8.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Clinics</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/event-centers/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/116ff62268096b1817a7cc1043847f42f9552bed.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Event Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/education-campuses/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/03/66c89bd9e1cb5fddebdfe9f67c6f04d2991a2180.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Education Campuses</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/state-parks/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-tile-campground-registration-building.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>State Parks</h3><span>Explore</span></div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================================================
+       SNIPPET: lf_case_logos_v2
+       ============================================================ -->
+    <section class="cases">
+    <div class="wrap">
+      <div class="rv" style="max-width:840px;margin:0 auto;text-align:center">
+        <h2><span class="h-grad">LongFi Connect:</span><br><span class="h-shine">Real places, proven results. Nationwide.</span></h2>
+        <p class="lede" style="max-width:660px;margin:0 auto">See how LongFi Connect held up where the crowds were biggest, and where it is live today.</p>
+      </div>
+      <style id="lf-hcards-rail">#lf-home .cases .hcaro2{position:relative;margin-top:30px}#lf-home .cases .hcards{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;grid-template-rows:auto auto;grid-auto-columns:340px;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;padding:6px 2px 14px;margin:0!important;max-width:none!important;scroll-behavior:smooth;-ms-overflow-style:none;scrollbar-width:none}#lf-home .cases .hcards::-webkit-scrollbar{display:none}#lf-home .cases .hcards .hcard{scroll-snap-align:start;max-width:none;height:100%}@media(max-width:980px){#lf-home .cases .hcards{grid-auto-columns:300px}}@media(max-width:640px){#lf-home .cases .hcards{grid-auto-columns:82vw}}#lf-home .cases .hcaro2-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;box-shadow:0 6px 20px rgba(36,72,153,.16);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:6;color:var(--ink);transition:transform .18s ease,box-shadow .18s ease,opacity .2s ease}#lf-home .cases .hcaro2-btn:hover{transform:translateY(-50%) scale(1.07);box-shadow:0 12px 30px rgba(36,72,153,.24)}#lf-home .cases .hcaro2-btn:active{transform:translateY(-50%) scale(.96)}#lf-home .cases .hcaro2-btn.prev{left:-16px}#lf-home .cases .hcaro2-btn.next{right:-16px}#lf-home .cases .hcaro2-btn[hidden]{opacity:0;pointer-events:none}#lf-home .cases .hcaro2-btn svg{width:22px;height:22px}@media(max-width:1180px){#lf-home .cases .hcaro2-btn.prev{left:2px}#lf-home .cases .hcaro2-btn.next{right:2px}}@media(max-width:560px){#lf-home .cases .hcaro2-btn{width:40px;height:40px}}</style><div class="hcaro2"><button class="hcaro2-btn prev" type="button" aria-label="Previous case studies" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><div class="hcards rv-stagger">
+        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/ymca-birmingham-01-hero-lobby-arrival.webp" alt="YMCA of Greater Birmingham" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">YMCA · Birmingham</span><span class="vn">YMCA Birmingham</span><span class="qq">“Members stay connected inside the Y, at no cost to the association.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard c" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/wanitta-wynwood-hero.jpg" alt="Wanitta Wynwood" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Wanitta · Wynwood</span><span class="vn">Wanitta</span><span class="qq">“650,000+ shopper connections, browse to buy, no password to share.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img01.jpg" alt="SILO" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">SILO · Brooklyn</span><span class="vn">SILO</span><span class="qq">“Guests used to step outside just to pay their tab. That problem is gone.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img02.jpg" alt="JazzFest 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">JazzFest 2026 · New Orleans</span><span class="vn">JazzFest 2026</span><span class="qq">“104,080 guests moved through the gates, connected.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/world-cup-houston-hero.jpg" alt="World Cup, Houston" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">World Cup · Houston</span><span class="vn">World Cup</span><span class="qq">“400,000+ automatic connections across Houston during the World Cup.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard c" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img03.jpg" alt="Sunset Rooftop" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Sunset Rooftop · Houston</span><span class="vn">Sunset Rooftop</span><span class="qq">“Through a packed tournament crowd, guests stayed connected.”</span><span class="mm">Read the case study →</span></div></a>
+      <a class="hcard g" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-bauhaus-houston-01-image.jpg" alt="Bauhaus Houston" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Bauhaus · Houston</span><span class="vn">Bauhaus</span><span class="qq">“Cell signal used to drop when we packed the room. Now it holds.”</span><span class="mm">Read the case study →</span></div></a>
+      <a class="hcard p" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-city-of-easton-01.jpg" alt="City of Easton" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">City of Easton · PA</span><span class="vn">City of Easton</span><span class="qq">“Phones work better when LongFi Connect is live.”</span><span class="mm">Read the case study →</span></div></a><a class="hcard gr" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mardi-gras-2026-01-image.jpg" alt="Mardi Gras 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Mardi Gras 2026 · New Orleans</span><span class="vn">Mardi Gras 2026</span><span class="qq">“In past Mardi Gras weekends we heard complaints about cell signal. This year we did not.”</span><span class="mm">Read the case study →</span></div></a><a class="hcard b" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mccarthy-03-image.jpg" alt="National Construction Firm" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Offices & Enterprise</span><span class="vn">National Construction Firm</span><span class="qq">“It has been working flawlessly. No complaints, and connections improved.”</span><span class="mm">Read the case study →</span></div></a></div><button class="hcaro2-btn next" type="button" aria-label="Next case studies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div><script>(function(){var root=document.getElementById("lf-home");if(!root)return;var caro=root.querySelector(".hcaro2");if(!caro||caro.__i)return;caro.__i=1;var track=caro.querySelector(".hcards");var prev=caro.querySelector(".hcaro2-btn.prev"),next=caro.querySelector(".hcaro2-btn.next");function page(){return Math.max(260,Math.round(track.clientWidth*0.9));}function upd(){prev.hidden=track.scrollLeft<=6;next.hidden=track.scrollLeft+track.clientWidth>=track.scrollWidth-6;}function maxs(){return track.scrollWidth-track.clientWidth;}next.addEventListener("click",function(){track.scrollLeft=Math.min(maxs(),track.scrollLeft+page());});prev.addEventListener("click",function(){track.scrollLeft=Math.max(0,track.scrollLeft-page());});track.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);setTimeout(upd,60);})();</script>
+      <div class="cases-sub rv">Live across 200+ venues and high-density environments nationwide</div>
+      <style id="lf-casetrack-fix">#lf-home .cases .case-card:not(:has(img)){justify-content:center}#lf-home .cases .case-card:not(:has(img)) h3{font-size:17px;line-height:1.25}#lf-home .cases .case-card h3{max-width:100%;overflow-wrap:break-word}#lf-home .cases .case-track:hover{animation-play-state:paused}#lf-home .cases .case-card:not(.cslink){cursor:default}</style><div class="case-row rv">
+        <div class="case-track"><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><span class="case-badge">Case Study</span><img src="https://wanitta.com.co/cdn/shop/files/LOGO.svg?v=1774212018" alt="Wanitta logo" loading="lazy"><div><h3>Wanitta</h3><div class="loc">Wynwood, Miami</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><span class="case-badge">Case Study</span><div><h3>World Cup</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/silo-venue-longfi-connect-case-study-logo-1024x175.webp" alt="SILO logo" loading="lazy"><div><h3>SILO</h3><div class="loc">Brooklyn, NY</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><span class="case-badge">Case Study</span><div><h3>JazzFest 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img04.png" alt="Sunset Rooftop logo" loading="lazy"><div><h3>Sunset Rooftop</h3><div class="loc">Houston, TX</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/creole-house-restaurant-longfi-case-study-logo-1024x227.webp" alt="Creole House logo" loading="lazy"><div><h3>Creole House</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><span class="case-badge">Case Study</span><div><h3>Mardi Gras 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><span class="case-badge">Case Study</span><img src="https://bauhaushouston.com/wp-content/uploads/2024/03/Logo-Hori-Black.svg" alt="Bauhaus logo" loading="lazy"><div><h3>Bauhaus</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><span class="case-badge">Case Study</span><div><h3>City of Easton</h3><div class="loc">Easton, PA</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/village-market-retail-longfi-case-study-logo-1024x363.webp" alt="The Village Market logo" loading="lazy"><div><h3>The Village Market</h3><div class="loc">Miami, FL</div></div></div><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ymca-fitness-center-longfi-case-study-logo-1024x777.webp" alt="YMCA logo" loading="lazy"><div><h3>YMCA</h3><div class="loc">Birmingham, AL</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><span class="case-badge">Case Study</span><div><h3>National Construction Firm</h3><div class="loc">Corporate Offices</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/east-end-residences-longfi-case-study-logo-1024x993.webp" alt="East End Residences logo" loading="lazy"><div><h3>East End Residences</h3><div class="loc">Akron, OH</div></div></div><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cafe-beignet-restaurant-longfi-case-study-logo-1024x780.webp" alt="Café Beignet logo" loading="lazy"><div><h3>Café Beignet</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><span class="case-badge">Case Study</span><img src="https://wanitta.com.co/cdn/shop/files/LOGO.svg?v=1774212018" alt="Wanitta logo" loading="lazy"><div><h3>Wanitta</h3><div class="loc">Wynwood, Miami</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><span class="case-badge">Case Study</span><div><h3>World Cup</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/silo-venue-longfi-connect-case-study-logo-1024x175.webp" alt="SILO logo" loading="lazy"><div><h3>SILO</h3><div class="loc">Brooklyn, NY</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><span class="case-badge">Case Study</span><div><h3>JazzFest 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img04.png" alt="Sunset Rooftop logo" loading="lazy"><div><h3>Sunset Rooftop</h3><div class="loc">Houston, TX</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/creole-house-restaurant-longfi-case-study-logo-1024x227.webp" alt="Creole House logo" loading="lazy"><div><h3>Creole House</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><span class="case-badge">Case Study</span><div><h3>Mardi Gras 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><span class="case-badge">Case Study</span><img src="https://bauhaushouston.com/wp-content/uploads/2024/03/Logo-Hori-Black.svg" alt="Bauhaus logo" loading="lazy"><div><h3>Bauhaus</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><span class="case-badge">Case Study</span><div><h3>City of Easton</h3><div class="loc">Easton, PA</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/village-market-retail-longfi-case-study-logo-1024x363.webp" alt="The Village Market logo" loading="lazy"><div><h3>The Village Market</h3><div class="loc">Miami, FL</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ymca-fitness-center-longfi-case-study-logo-1024x777.webp" alt="YMCA logo" loading="lazy"><div><h3>YMCA</h3><div class="loc">Birmingham, AL</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><span class="case-badge">Case Study</span><div><h3>National Construction Firm</h3><div class="loc">Corporate Offices</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/east-end-residences-longfi-case-study-logo-1024x993.webp" alt="East End Residences logo" loading="lazy"><div><h3>East End Residences</h3><div class="loc">Akron, OH</div></div></div><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cafe-beignet-restaurant-longfi-case-study-logo-1024x780.webp" alt="Café Beignet logo" loading="lazy"><div><h3>Café Beignet</h3><div class="loc">New Orleans, LA</div></div></div></div>
+      </div>
+      <div class="btn-row rv" style="justify-content:center">
+        <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+        <a class="btn btn-ghost" href="https://www.longfisolutions.com/case-studies/">See all case studies</a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ARCHIVED 2026-06-11: lf_video_series_v2 moved off the homepage per revision brief
+       round 1. Destination: Resources. A "Watch the series" CTA now lives inside
+       lf_connect_feature_v2. -->
+  
+  <!-- ============================================================
+       SNIPPET: lf_recap_cta_home_v2  (Apple-style recap flowing into the final CTA)
+       ============================================================ -->
+  <div class="dark-band on-dark">
+    <section class="recap">
+      <div class="wrap">
+        <div class="cta-panel rv" style="display:block;text-align:center">
+          <h2>Use the Wi‑Fi already in place to bring excellent indoor cell connectivity to the venue.</h2>
+          <p class="lede" style="max-width:660px;margin:0 auto">Book a short call, or run a quick venue check to see if the venue is a fit. Our team confirms compatibility at no cost and without disruption.</p>
+          <div class="btn-row" style="justify-content:center;margin-top:26px">
+            <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+            <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
+          </div>
+          <p class="lede" style="max-width:660px;margin:22px auto 0;font-size:14px;opacity:.72">Works with <a href="https://www.longfisolutions.com/compatibility/">business grade Wi‑Fi</a> such as Cisco, Meraki, Aruba, or comparable, and supports major mobile carriers.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+  <!-- ============================================================
+       SNIPPET: lf_footer_replica  TEMPORARY REPLICA of the live site footer.
+       The production page receives the footer from the theme. Remove before push.
+       ============================================================ -->
+
+  <script>
+  (function () {
+  var root = document.getElementById('lf-home');
+  if (!root) return;
+  var row = root.querySelector('.cases .case-row');
+  if (!row || row.__d) return;
+  row.__d = 1;
+
+  /* Vertical scrolling stays with the browser, horizontal is ours. */
+  row.style.touchAction = 'pan-y';
+
+  var THRESHOLD = 8;
+  var down = false, moved = false, captured = false;
+  var pid = null, sx = 0, sy = 0, sl = 0;
+
+  function releaseCapture() {
+    if (!captured || pid === null) return;
+    try { if (row.hasPointerCapture(pid)) row.releasePointerCapture(pid); } catch (_) {}
+    captured = false;
+  }
+
+  row.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    down = true; moved = false; pid = e.pointerId;
+    sx = e.clientX; sy = e.clientY; sl = row.scrollLeft;
+    row.classList.add('grabbing');
+    /* Deliberately no pointer capture here. Capturing before the gesture is
+       known to be a drag makes the browser dispatch the click at the rail
+       instead of at the card, so the card links never open. Capture happens
+       below, only once the pointer has actually travelled. */
+  });
+
+  row.addEventListener('pointermove', function (e) {
+    if (!down || e.pointerId !== pid) return;
+    var dx = e.clientX - sx, dy = e.clientY - sy;
+    if (!moved) {
+      if (Math.abs(dx) <= THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
+      moved = true;
+      try { row.setPointerCapture(pid); captured = true; } catch (_) {}
+    }
+    row.scrollLeft = sl - dx;
+    e.preventDefault();
+  });
+
+  function end() {
+    releaseCapture();
+    down = false; pid = null;
+    row.classList.remove('grabbing');
+  }
+  row.addEventListener('pointerup', end);
+  row.addEventListener('pointercancel', end);
+  row.addEventListener('lostpointercapture', function () { captured = false; });
+
+  /* Swallow the click only when the gesture really was a drag, then clear the
+     flag so the next plain click is never affected. */
+  row.addEventListener('click', function (e) {
+    if (moved) { e.preventDefault(); e.stopPropagation(); }
+    moved = false;
+  }, true);
+
+  /* Native image dragging on the card logos can also cancel the click. */
+  row.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function half() { return row.scrollWidth / 2; }
+  function step() {
+    if (!reduce && !down && !row.matches(':hover') && !row.contains(document.activeElement)) {
+      row.scrollLeft += 0.4;
+      if (row.scrollLeft >= half()) row.scrollLeft -= half();
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+})();
+  </script>
+</main>
+
+<!-- [4] JavaScript: scroll reveal + animated stat counters -->
+<script>
+(function(){
+  var r=document.getElementById('lf-home');
+  if(!r)return;
+  var io=new IntersectionObserver(function(e){
+    e.forEach(function(x){ if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);} });
+  },{threshold:0.15,rootMargin:'0px 0px -12% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){io.observe(el);});
+  var so=new IntersectionObserver(function(e){
+    e.forEach(function(x){
+      if(!x.isIntersecting)return;
+      var strip=x.target.closest('.strip'); if(strip)strip.classList.add('lines-on');
+      x.target.classList.add('on');
+      var n=x.target.querySelector('.stat-n');
+      if(n&&n.dataset.count){
+        var tgt=parseInt(n.dataset.count),sfx=n.dataset.suffix||'',t0=null,d=1400;
+        (function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/d,1);p=p<.5?2*p*p:-1+(4-2*p)*p; n.textContent=Math.round(tgt*p)+sfx; if(p<1)requestAnimationFrame(step); })(performance.now());
+      }
+      so.unobserve(x.target);
+    });
+  },{threshold:0.25});
+  r.querySelectorAll('.stat').forEach(function(el){so.observe(el);});
+  setTimeout(function(){
+    r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){ var rc=el.getBoundingClientRect(); if(rc.top<window.innerHeight&&rc.bottom>0)el.classList.add('in-view'); });
+    r.querySelectorAll('.stat').forEach(function(el){ var rc=el.getBoundingClientRect(); if(rc.top<window.innerHeight&&rc.bottom>0){ el.classList.add('on'); var s=el.closest('.strip');if(s)s.classList.add('lines-on'); } });
+  },150);
+})();
+</script>
+
+<!-- Accent bars removed (GP-04, 2026-09-30): colored edge stripes on cards and callouts become the standard hairline -->
+<style>#lf-home .mon-high{border-left:1px solid #E6EAF2!important}#lf-home .hcard .im::after,#lfcs .hcard .im::after{display:none!important}</style>

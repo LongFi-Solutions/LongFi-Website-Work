@@ -4,7 +4,7 @@
 (function(){
   if(document.getElementById('lf-fonts'))return;
   var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';
-  l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';
+  l.href='/dhp-fonts/css/g-2ad06aa5e3.css';
   document.head.appendChild(l);
 })();
 </script>
@@ -108,6 +108,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 #lf-home .rv-stagger.in-view>*:nth-child(4){transition-delay:.24s}
 #lf-home .rv-stagger.in-view>*:nth-child(5){transition-delay:.32s}
 #lf-home .rv-stagger.in-view>*:nth-child(6){transition-delay:.4s}
+#lf-home .rv-stagger.in-view>*:nth-child(7){transition-delay:.48s}
 @media(prefers-reduced-motion:reduce){
   #lf-home .rv, #lf-home .rv-stagger>*{opacity:1;transform:none;transition:none}
   #lf-home .metal{animation:none}
@@ -163,6 +164,31 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 #lf-home .partner-card img{max-height:22px;max-width:96px;width:auto;object-fit:contain;opacity:.8;transition:opacity .2s}
 #lf-home .partner-card:hover img{opacity:1}
 #lf-home .partner-cap{font-family:var(--head);font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+/* Marketplace Partner badge card, added 2026-10-12. The badge carries its own text, so it renders
+   taller than the wordmarks (up to 30px, about 104px wide) and at full opacity. Padding and the small
+   negative margin keep the card the same height as the others and the caption in line. */
+#lf-home .trust .partner-card.partner-card--badge{padding:8px 14px}
+#lf-home .trust .partner-card.partner-card--badge img{height:auto;max-height:30px;width:auto;max-width:100%;margin-top:-4px;opacity:1}
+/* Seven partner cards on ONE row from tablet width up (Jose, 2026-10-12): equal columns that shrink
+   with the screen; long captions wrap to two lines on narrower screens instead of the row wrapping.
+   Phones keep the wrapped two per row layout. */
+@media(min-width:768px){
+  #lf-home .trust .partner-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+  #lf-home .trust .partner-card,#lf-home .trust .partner-card.partner-card--badge{min-width:0;padding-left:8px;padding-right:8px}
+  #lf-home .trust .partner-card img{max-width:min(96px,100%)}
+  #lf-home .trust .partner-card.partner-card--badge img{max-width:100%}
+  #lf-home .trust .partner-cap{text-align:center;line-height:1.35}
+}
+/* Every caption takes the same number of lines at every width (Jose, 2026-10-12):
+   980px and up, one line each (tighter spacing below 1200px, smaller type on the longest
+   caption, Marketplace Partner); 768 to 979px, two lines each; phones, one line each. */
+@media(min-width:980px){#lf-home .trust .partner-cap{white-space:nowrap}}
+@media(min-width:768px) and (max-width:1199px){
+  #lf-home .trust .partner-card,#lf-home .trust .partner-card.partner-card--badge{padding-left:4px;padding-right:4px}
+  #lf-home .trust .partner-cap{letter-spacing:.04em}
+  #lf-home .trust .partner-card--badge .partner-cap{font-size:8px}
+}
+@media(min-width:768px) and (max-width:979px){#lf-home .trust .partner-cap{width:min-content;margin:0 auto}}
 /* Compatible-with logo wall: two slow sliding rows of full-color vendor logos.
    Logos materialize out of a blur at each end (backdrop blur overlays plus an
    opacity mask). Quiet weight, built for many vendors without clutter.
@@ -357,9 +383,9 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="rv-stagger">
-          <h1 class="metal">Excellent indoor&nbsp;cellular&nbsp;connectivity.</h1>
-          <p class="hero-sub">Using the Wi&#8209;Fi you&nbsp;already&nbsp;have.</p>
-          <p class="lede">LongFi Solutions helps venues, portfolio owners, and infrastructure partners use existing enterprise-grade Wi&#8209;Fi to deliver strong indoor cell connectivity, so guests stay connected and the whole venue&nbsp;works&nbsp;better.</p>
+          <h1 class="metal">Excellent indoor<br>cellular connectivity.</h1>
+          <p class="hero-sub">Using the Wi‑Fi you already have.</p>
+          <p class="lede">LongFi Solutions helps venues, portfolio owners, and infrastructure partners use existing enterprise-grade Wi‑Fi to deliver strong indoor cell connectivity, so guests stay connected and the whole venue works better.</p>
           <div class="btn-row">
             <a class="btn btn-gold" href="#HomeLongFiConnect">Explore LongFi Connect</a>
             <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/how-it-works/">See How It Works</a>
@@ -374,10 +400,10 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
     <section class="stats-band" style="padding-top:0">
       <div class="wrap">
         <div class="stats">
-          <div class="stat"><div class="stat-n metal" data-count="200" data-suffix="+">&nbsp;</div><div class="stat-l">Active venues<br>across the U.S.</div></div>
-          <div class="stat"><div class="stat-n metal" data-count="130" data-suffix="+ TB">&nbsp;</div><div class="stat-l">Mobile data<br>transferred monthly</div></div>
-          <div class="stat"><div class="stat-n metal" data-count="7" data-suffix="M+">&nbsp;</div><div class="stat-l">Mobile users<br>connected monthly</div></div>
-          <div class="stat"><div class="stat-n metal" data-count="70" data-suffix="%">&nbsp;</div><div class="stat-l">Mobile subscribers<br>supported on day 1</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="200" data-suffix="+"> </div><div class="stat-l">Active venues<br>across the U.S.</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="130" data-suffix="+ TB"> </div><div class="stat-l">Mobile data<br>transferred monthly</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="7" data-suffix="M+"> </div><div class="stat-l">Mobile users<br>connected monthly</div></div>
+          <div class="stat"><div class="stat-n metal" data-count="70" data-suffix="%"> </div><div class="stat-l">Mobile subscribers<br>supported on day 1</div></div>
         </div>
       </div>
     </section>
@@ -390,29 +416,41 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
     <div class="wrap">
       <div class="trust-label rv">Trusted by leading industry partners</div>
       <div class="partner-grid rv-stagger">
+        <!-- Capital Factory hidden 2026-10-06 (Jose); restore by uncommenting:
         <a class="card partner-card" href="https://capitalfactory.com/" target="_blank" rel="noopener">
           <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/capital-factory-partner-logo.webp" alt="Capital Factory">
           <span class="partner-cap">Portfolio Company</span>
         </a>
+        -->
         <a class="card partner-card" href="https://wballiance.com/join-us/current-members/" target="_blank" rel="noopener">
           <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2025/12/91a5dc2f0f5f5594561702531d23c6a8f496d69a-1024x390.webp" alt="Wireless Broadband Alliance industry organization logo">
           <span class="partner-cap">Member Company</span>
-        </a>
-        <a class="card partner-card" href="https://www.ruckusnetworks.com/partners/networking-partners/" target="_blank" rel="noopener">
-          <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2025/12/944e6b1df5bde57d4bc6dbbe9f423151a9db4f03-1024x406.webp" alt="Ruckus Networks enterprise Wi&#8209;Fi infrastructure partner logo">
-          <span class="partner-cap">Big Dog Partner</span>
-        </a>
-        <a class="card partner-card" href="https://www.cambiumnetworks.com/cambium-partner-program/" target="_blank" rel="noopener">
-          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cambium-networks-compatible-wifi-partner-logo.webp" alt="Cambium Networks">
-          <span class="partner-cap">Connected Partner</span>
         </a>
         <a class="card partner-card" href="https://www.hpe.com/us/en/networking/partner-programs.html" target="_blank" rel="noopener">
           <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/hpe-aruba-networking-compatible-wifi-logo.webp" alt="HPE Aruba Networking">
           <span class="partner-cap">Networking Partner</span>
         </a>
+        <a class="card partner-card" href="https://www.ruckusnetworks.com/partners/networking-partners/" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/webp/2025/12/944e6b1df5bde57d4bc6dbbe9f423151a9db4f03-1024x406.webp" alt="Ruckus Networks enterprise Wi‑Fi infrastructure partner logo">
+          <span class="partner-cap">Big Dog Partner</span>
+        </a>
+        <a class="card partner-card" href="https://www.fortinet.com/partners/partnerships/alliance-partners" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/fortinet-logo-color.png" alt="Fortinet">
+          <span class="partner-cap">Technology Partner</span>
+        </a>
         <a class="card partner-card" href="https://www.extremenetworks.com/partners/" target="_blank" rel="noopener">
           <img src="https://www.longfisolutions.com/wp-content/uploads/extreme-networks-partner-logo.png" alt="Extreme Networks">
           <span class="partner-cap">Network Partner</span>
+        </a>
+        <a class="card partner-card" href="https://www.cambiumnetworks.com/cambium-partner-program/" target="_blank" rel="noopener">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cambium-networks-compatible-wifi-partner-logo.webp" alt="Cambium Networks">
+          <span class="partner-cap">Connected Partner</span>
+        </a>
+        <!-- MSP Business Growth Marketplace, Partner tier badge and backlink, added 2026-10-12.
+             Required by the Marketplace partner agreement: keep href, rel, title and alt exactly as written. -->
+        <a class="card partner-card partner-card--badge" href="https://mspbusinessgrowthmarketplace.com/?utm_source=longfi_solutions&utm_medium=referral&utm_campaign=mspbgm&utm_content=standard_website" target="_blank" rel="noopener noreferrer" title="Visit the MSP Business Growth Marketplace">
+          <img src="https://www.longfisolutions.com/wp-content/uploads/mspbgm-marketplace-partner-badge.png" alt="Marketplace Partner badge from the MSP Business Growth Marketplace" width="560" height="162" loading="lazy">
+          <span class="partner-cap">Marketplace Partner</span>
         </a>
       </div>
       <div class="compat-label rv">Compatible with:</div>
@@ -465,49 +503,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
   <!-- ARCHIVED 2026-06-11: lf_audience_rotator_v2 (rotating audience block) removed per
        revision brief round 1. Markup preserved in review_notes and git history. -->
   
-  <!-- ============================================================
-       SNIPPET: lf_industries_grid_v2
-       ============================================================ -->
-  <section class="ind" id="learn">
-    <div class="wrap">
-      <div class="rv" style="max-width:760px">
-        <h2 class="h-grad">Designed for <span class="h-shine">high-traffic</span> indoor&nbsp;environments.</h2>
-        <p class="lede">LongFi Connect works across hospitality, healthcare, entertainment, retail, and transportation environments where strong indoor cellular connectivity&nbsp;matters&nbsp;most.</p>
-      </div>
-      <div class="ind-rows rv">
-        <div class="ind-row">
-          <div class="ind-track">
-            <a class="ind-card" href="https://www.longfisolutions.com/restaurants/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s2-1.webp" alt="Restaurants" loading="lazy"><div class="veil"></div><div class="label"><h3>Restaurants</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/shoppingcenters/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4s.webp" alt="Shopping Malls" loading="lazy"><div class="veil"></div><div class="label"><h3>Shopping&nbsp;Malls</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/gyms/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/b50ec9e110d39a2dc399b41f3d08ebbe3b04f4f0-1.webp" alt="Gyms" loading="lazy"><div class="veil"></div><div class="label"><h3>Gyms</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/convention-centers/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s3.webp" alt="Convention Centers" loading="lazy"><div class="veil"></div><div class="label"><h3>Convention&nbsp;Centers</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/sports-bars/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/283b5e842e9620fda559c22922dea6b292b69fa9.webp" alt="Sports Bars" loading="lazy"><div class="veil"></div><div class="label"><h3>Sports&nbsp;Bars</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/airports/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4b569ba1ce71b58cf32332e40e67a778697b2f87-2.webp" alt="Airports" loading="lazy"><div class="veil"></div><div class="label"><h3>Airports</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/restaurants/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s2-1.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Restaurants</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/shoppingcenters/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4s.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Shopping&nbsp;Malls</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/gyms/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/b50ec9e110d39a2dc399b41f3d08ebbe3b04f4f0-1.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Gyms</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/convention-centers/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s3.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Convention&nbsp;Centers</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/sports-bars/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/283b5e842e9620fda559c22922dea6b292b69fa9.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Sports&nbsp;Bars</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/airports/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4b569ba1ce71b58cf32332e40e67a778697b2f87-2.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Airports</h3><span>Explore</span></div></a>
-          </div>
-        </div>
-        <div class="ind-row rev">
-          <div class="ind-track">
-            <a class="ind-card" href="https://www.longfisolutions.com/nightclubs/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/newnn.webp" alt="Nightclubs" loading="lazy"><div class="veil"></div><div class="label"><h3>Nightclubs</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/hotels/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/28fda275712682d60bb6aab192df19486ac416a2.webp" alt="Hotels" loading="lazy"><div class="veil"></div><div class="label"><h3>Hotels</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/hospital-clinics/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/932e96b5d7149ebfb64f0f68c9b807a0f90049f8.webp" alt="Clinics" loading="lazy"><div class="veil"></div><div class="label"><h3>Clinics</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/event-centers/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/116ff62268096b1817a7cc1043847f42f9552bed.webp" alt="Event Centers" loading="lazy"><div class="veil"></div><div class="label"><h3>Event&nbsp;Centers</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/education-campuses/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/03/66c89bd9e1cb5fddebdfe9f67c6f04d2991a2180.webp" alt="Education Campuses" loading="lazy"><div class="veil"></div><div class="label"><h3>Education&nbsp;Campuses</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/nightclubs/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/newnn.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Nightclubs</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/hotels/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/28fda275712682d60bb6aab192df19486ac416a2.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Hotels</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/hospital-clinics/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/932e96b5d7149ebfb64f0f68c9b807a0f90049f8.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Clinics</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/event-centers/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/116ff62268096b1817a7cc1043847f42f9552bed.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Event&nbsp;Centers</h3><span>Explore</span></div></a>
-            <a class="ind-card" href="https://www.longfisolutions.com/education-campuses/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/03/66c89bd9e1cb5fddebdfe9f67c6f04d2991a2180.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Education&nbsp;Campuses</h3><span>Explore</span></div></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
   
   <!-- ============================================================
        SNIPPET: lf_connect_feature_v2  (dark band)
@@ -518,26 +514,26 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
         <div class="connect-grid">
           <div class="rv-stagger">
             <div class="connect-star metal"><span class="small">Powered by</span>LongFi<br>Connect</div>
-            <p class="connect-sub">The simplest way to improve indoor&nbsp;cell&nbsp;connectivity.</p>
-            <p class="lede">We implement carrier-grade technology on your existing Wi&#8209;Fi network to deliver strong, reliable indoor&nbsp;cellphone&nbsp;connectivity.</p>
-            <p class="lede" style="font-family:var(--head);font-weight:700;color:var(--white);margin-top:10px">At no cost and&nbsp;without&nbsp;interruptions.</p>
+            <p class="connect-sub">The simplest way to improve indoor cell connectivity.</p>
+            <p class="lede">We implement carrier-grade technology on your existing Wi‑Fi network to deliver strong, reliable indoor cellphone connectivity.</p>
+            <p class="lede" style="font-family:var(--head);font-weight:700;color:var(--white);margin-top:10px">At no cost and without interruptions.</p>
             <div class="btn-row">
-              <a class="btn btn-gold" href="https://www.longfisolutions.com/longficonnect/">Learn More</a>
+              <a class="btn btn-gold" href="https://www.longfisolutions.com/longfi-connect/">Learn More</a>
               <a class="btn btn-ghost-dark" href="https://www.youtube.com/watch?v=wAYaduUw77s&list=PLIU9-1BYkPrMFl9682ULRNe6a_FatU61J" target="_blank" rel="noopener">Watch the series</a>
             </div>
           </div>
           <div class="feat-list rv-stagger">
             <div class="feat">
-              <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/enterprise-wifi-access-points-longfi-compatible-842x1024.webp" alt="Enterprise Wi&#8209;Fi access points compatible with LongFi" loading="lazy"></div>
-              <div><h3>Use what&nbsp;you&nbsp;have</h3><p>Build on the Wi&#8209;Fi network already in place. No new hardware, cables, or downtime required.</p></div>
+              <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/enterprise-wifi-access-points-longfi-compatible-842x1024.webp" alt="Enterprise Wi‑Fi access points compatible with LongFi" loading="lazy"></div>
+              <div><h3>Use what you have</h3><p>Build on the Wi‑Fi network already in place. No new hardware, cables, or downtime required.</p></div>
             </div>
             <div class="feat">
               <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/multi-carrier-sim-cards-att-tmobile-connectivity-746x1024.webp" alt="Multi-carrier SIM cards for indoor connectivity" loading="lazy"></div>
-              <div><h3>Works with&nbsp;Major&nbsp;Carriers</h3><p>We work with leading U.S. carriers to ensure the majority of your customers stay connected indoors.</p></div>
+              <div><h3>Works with Major Carriers</h3><p>We work with leading U.S. carriers to ensure the majority of your customers stay connected indoors.</p></div>
             </div>
             <div class="feat">
               <div class="ph"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/network-security-vlan-isolation-longfi-connect.webp" alt="Network security and VLAN isolation with LongFi Connect" loading="lazy"></div>
-              <div><h3>Secure&nbsp;&amp;&nbsp;Private</h3><p>Carrier-authenticated connectivity. More secure than captive portals or open guest networks.</p></div>
+              <div><h3>Secure & Private</h3><p>Carrier-authenticated connectivity. More secure than captive portals or open guest networks.</p></div>
             </div>
           </div>
         </div>
@@ -551,9 +547,9 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
   <section class="mon">
     <div class="wrap mon-grid">
       <div class="rv">
-        <h2 class="mon-title"><span class="h-grad">When&nbsp;connectivity&nbsp;works,</span><br><span class="h-shine">everything else&nbsp;works&nbsp;better.</span></h2>
-        <p class="lede">Mobile carriers often struggle to deliver strong&nbsp;indoor&nbsp;coverage.</p>
-        <p class="lede">LongFi Connect uses part of the venue&rsquo;s available Wi&#8209;Fi capacity to carry carrier-authenticated cellular connectivity, so guests get excellent indoor cell service on the network already&nbsp;in&nbsp;place.</p>
+        <h2 class="mon-title"><span class="h-grad">When connectivity works,</span><br><span class="h-shine">everything else works better.</span></h2>
+        <p class="lede">Mobile carriers often struggle to deliver strong indoor coverage.</p>
+        <p class="lede">LongFi Connect uses part of the venue’s available Wi‑Fi capacity to carry carrier-authenticated cellular connectivity, so guests get excellent indoor cell service on the network already in place.</p>
         <div class="btn-row">
           <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
           <a class="btn btn-ghost" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
@@ -561,34 +557,139 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
       </div>
       <div class="rv-stagger">
         <p class="mon-factors-lead">Strong indoor connectivity tends to show up across the business in a few clear ways:</p>
-        <div class="card factor"><div class="num">1</div><div><h3>Dwell time&nbsp;and&nbsp;spend</h3><p>Guests who stay connected tend to stay longer, and longer visits are associated with higher spend.</p></div></div>
-        <div class="card factor"><div class="num">2</div><div><h3>Organic&nbsp;reach</h3><p>Connected guests post, tag, and review while they are still on site.</p></div></div>
-        <div class="card factor"><div class="num">3</div><div><h3>Portfolio&nbsp;consistency</h3><p>The experience scales across properties with the same light touch as the first site.</p></div></div>
+        <div class="card factor"><div class="num">1</div><div><h3>Dwell time and spend</h3><p>Guests who stay connected tend to stay longer, and longer visits are associated with higher spend.</p></div></div>
+        <div class="card factor"><div class="num">2</div><div><h3>Organic reach</h3><p>Connected guests post, tag, and review while they are still on site.</p></div></div>
+        <div class="card factor"><div class="num">3</div><div><h3>Portfolio consistency</h3><p>The experience scales across properties with the same light touch as the first site.</p></div></div>
       </div>
     </div>
   </section>
   
   <!-- ============================================================
+       SNIPPET: lf_industries_grid_v2
+       ============================================================ -->
+  
+<!-- LongFi Relay module | lfrl-home | 2026-09-30 | links to /relay/ (the showcase step before sign in) -->
+<style>
+#lfrl-home.lfrl{--r-ink:#141A2B;--r-body:#4A536B;--r-muted:#6B7390;--r-line:#E3E8F2;--r-brand:#244899;--r-indigo:#2C2C6E;--r-teal:#1FA58E;background:linear-gradient(180deg,#FFFFFF 0%,#F4F6FB 100%);border-top:1px solid var(--r-line);border-bottom:1px solid var(--r-line);padding:72px 0;font-family:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--r-body)}
+#lfrl-home.lfrl *{box-sizing:border-box}
+#lfrl-home.lfrl .lfrl-wrap{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+#lfrl-home.lfrl .lfrl-name{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;margin:0 0 14px;font-family:'Poppins',sans-serif}
+#lfrl-home.lfrl .lfrl-name b{font-size:15px;font-weight:700;color:var(--r-brand);letter-spacing:.01em}
+#lfrl-home.lfrl .lfrl-name span{font-size:13px;font-weight:500;color:var(--r-muted)}
+#lfrl-home.lfrl.lfrl h2{font-family:'Poppins',sans-serif;font-size:clamp(26px,3vw,36px)!important;font-weight:700;line-height:1.14;letter-spacing:-.012em;color:var(--r-ink);margin:0 0 14px;text-wrap:balance}
+#lfrl-home.lfrl.lfrl h2 .g{display:block;color:var(--r-brand)}
+#lfrl-home.lfrl .lfrl-lede{font-size:17px;line-height:1.6;color:var(--r-body);margin:0 0 20px;max-width:540px;text-wrap:pretty}
+#lfrl-home.lfrl .lfrl-pts{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:10px}
+#lfrl-home.lfrl .lfrl-pts li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--r-body);margin:0;padding:0}
+#lfrl-home.lfrl .lfrl-pts li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:rgba(31,165,142,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231FA58E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l4 4 10-10'/%3E%3C/svg%3E") center/11px no-repeat}
+#lfrl-home.lfrl .lfrl-pts b{color:var(--r-ink);font-weight:700}
+#lfrl-home.lfrl .lfrl-ctas{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#lfrl-home.lfrl a.lfrl-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 13.5px/1 'Poppins',sans-serif;border-radius:13px;padding:13px 22px;text-decoration:none;border:1px solid transparent;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease}
+#lfrl-home.lfrl a.lfrl-btn:hover{transform:translateY(-1px)}
+#lfrl-home.lfrl a.lfrl-pri{background:linear-gradient(120deg,#244899,#2C2C6E);color:#FFFFFF;box-shadow:0 6px 18px rgba(36,72,153,.24)}
+#lfrl-home.lfrl a.lfrl-pri:hover{box-shadow:0 8px 24px rgba(36,72,153,.34);color:#FFFFFF}
+#lfrl-home.lfrl a.lfrl-ghost{background:#FFFFFF;color:var(--r-ink);border-color:var(--r-line)}
+#lfrl-home.lfrl a.lfrl-ghost:hover{border-color:var(--r-brand);color:var(--r-ink)}
+#lfrl-home.lfrl a.lfrl-shot{display:block;border-radius:14px;text-decoration:none}
+#lfrl-home.lfrl a.lfrl-shot img{display:block;width:100%;height:auto;mix-blend-mode:multiply;transition:transform .5s ease}
+#lfrl-home.lfrl a.lfrl-shot:hover img{transform:translateY(-4px)}
+#lfrl-home.lfrl a.lfrl-shot.duo{position:relative;padding-bottom:12%}
+#lfrl-home.lfrl a.lfrl-shot.duo img.lfrl-main{width:88%;margin-left:auto}
+#lfrl-home.lfrl a.lfrl-shot.duo img.lfrl-float{position:absolute;left:0;bottom:0;width:56%;mix-blend-mode:normal;border-radius:10px;border:1px solid rgba(20,26,43,.12);box-shadow:0 22px 50px rgba(20,26,43,.30)}
+#lfrl-home.lfrl a.lfrl-shot.duo:hover img.lfrl-float{transform:translateY(-6px)}
+#lfrl-home.lfrl .lfrl-steps{list-style:none;margin:0 0 26px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;counter-reset:rs}
+#lfrl-home.lfrl .lfrl-steps li{counter-increment:rs;background:#FFFFFF;border:1px solid var(--r-line);border-radius:14px;padding:16px;margin:0;font-size:14.5px;line-height:1.45;color:var(--r-body)}
+#lfrl-home.lfrl .lfrl-steps li::before{content:counter(rs);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1px solid var(--r-line);font:600 13px 'Poppins',sans-serif;color:var(--r-brand);margin-bottom:10px}
+#lfrl-home.lfrl .lfrl-steps b{display:block;font-family:'Poppins',sans-serif;font-size:14.5px;color:var(--r-ink);margin-bottom:2px}
+#lfrl-home.lfrl.lfrl-slim{padding:36px 0}
+#lfrl-home.lfrl.lfrl-slim .lfrl-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:18px}
+#lfrl-home.lfrl.lfrl-slim .lfrl-slim-t{font:700 clamp(18px,2vw,22px)/1.25 'Poppins',sans-serif;color:var(--r-ink);margin:0}
+#lfrl-home.lfrl.lfrl-slim .lfrl-slim-t .g{color:var(--r-brand)}
+#lfrl-home.lfrl.lfrl-slim .lfrl-slim-s{font-size:15px;color:var(--r-body);margin:4px 0 0}
+#lfrl-home.lfrl .lfrl-rv{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+#lfrl-home.lfrl .lfrl-rv.in{opacity:1;transform:none}
+@media (max-width:900px){#lfrl-home.lfrl .lfrl-wrap{grid-template-columns:1fr;gap:28px}#lfrl-home.lfrl .lfrl-steps{grid-template-columns:1fr}#lfrl-home.lfrl{padding:52px 0}}
+@media (max-width:640px){#lfrl-home.lfrl .lfrl-wrap{padding:0 16px}}
+@media (prefers-reduced-motion:reduce){#lfrl-home.lfrl .lfrl-rv{opacity:1;transform:none;transition:none}#lfrl-home.lfrl a.lfrl-shot img{transition:none}}
+</style>
+<div class="lfrl" id="lfrl-home">
+  <div class="lfrl-wrap">
+    <div class="lfrl-copy lfrl-rv">
+      <p class="lfrl-name"><b>Relay</b><span>The LongFi Connect client portal</span></p>
+      <h2>Monitor your sites. <span class="g">Grow your portfolio.</span></h2>
+      <p class="lfrl-lede">Relay is the LongFi Connect client portal, included at no extra cost. One sign‑in shows the whole portfolio: how many sites are active, how many people connected, and how much mobile data moved onto the venue Wi‑Fi this week.</p>
+      <ul class="lfrl-pts"><li><span><b>Fleet summary</b> for the whole portfolio</span></li><li><span><b>Daily people connected and data carried</b>, by carrier</span></li><li><span><b>7 day, 30 day or custom</b> ranges</span></li></ul>
+      <div class="lfrl-ctas"><a class="lfrl-btn lfrl-pri" href="https://www.longfisolutions.com/relay/">Explore Relay</a><a class="lfrl-btn lfrl-ghost" href="https://www.longfisolutions.com/relay/#signin">Sign in to Relay</a></div>
+    </div>
+    <a class="lfrl-shot lfrl-rv" href="https://www.longfisolutions.com/relay/#sample" aria-label="Try the Relay demo"><img src="https://www.longfisolutions.com/wp-content/uploads/relay-dashboard-laptop-sample-data.webp" alt="Relay dashboard on a laptop showing a sample portfolio: data transferred, people connected, and daily data offload by carrier" width="1072" height="730" loading="lazy" decoding="async"></a>
+  </div>
+</div>
+<script>(function(){var r=document.getElementById('lfrl-home');if(!r||r.__i)return;r.__i=1;var els=r.querySelectorAll('.lfrl-rv');if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches){els.forEach(function(e){e.classList.add('in')});return;}var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)})})();</script>
+
+<section class="ind" id="learn">
+    <div class="wrap">
+      <div class="rv" style="max-width:760px">
+        <h2 class="h-grad">Designed for <span class="h-shine">high-traffic</span> indoor environments.</h2>
+        <p class="lede">LongFi Connect works across hospitality, healthcare, entertainment, retail, and transportation environments where strong indoor cellular connectivity matters most.</p>
+      </div>
+      <div class="ind-rows rv">
+        <div class="ind-row">
+          <div class="ind-track">
+            <a class="ind-card" href="https://www.longfisolutions.com/restaurants/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s2-1.webp" alt="Restaurants" loading="lazy"><div class="veil"></div><div class="label"><h3>Restaurants</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/shoppingcenters/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4s.webp" alt="Shopping Malls" loading="lazy"><div class="veil"></div><div class="label"><h3>Shopping Malls</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/gyms/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/b50ec9e110d39a2dc399b41f3d08ebbe3b04f4f0-1.webp" alt="Gyms" loading="lazy"><div class="veil"></div><div class="label"><h3>Gyms</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/convention-centers/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s3.webp" alt="Convention Centers" loading="lazy"><div class="veil"></div><div class="label"><h3>Convention Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/sports-bars/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/283b5e842e9620fda559c22922dea6b292b69fa9.webp" alt="Sports Bars" loading="lazy"><div class="veil"></div><div class="label"><h3>Sports Bars</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/airports/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4b569ba1ce71b58cf32332e40e67a778697b2f87-2.webp" alt="Airports" loading="lazy"><div class="veil"></div><div class="label"><h3>Airports</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/restaurants/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s2-1.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Restaurants</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/shoppingcenters/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4s.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Shopping Malls</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/gyms/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/b50ec9e110d39a2dc399b41f3d08ebbe3b04f4f0-1.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Gyms</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/convention-centers/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/s3.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Convention Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/sports-bars/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/283b5e842e9620fda559c22922dea6b292b69fa9.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Sports Bars</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/airports/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/4b569ba1ce71b58cf32332e40e67a778697b2f87-2.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Airports</h3><span>Explore</span></div></a>
+          </div>
+        </div>
+        <div class="ind-row rev">
+          <div class="ind-track">
+            <a class="ind-card" href="https://www.longfisolutions.com/nightclubs/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/newnn.webp" alt="Nightclubs" loading="lazy"><div class="veil"></div><div class="label"><h3>Nightclubs</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hotels/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/28fda275712682d60bb6aab192df19486ac416a2.webp" alt="Hotels" loading="lazy"><div class="veil"></div><div class="label"><h3>Hotels</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hospital-clinics/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/932e96b5d7149ebfb64f0f68c9b807a0f90049f8.webp" alt="Clinics" loading="lazy"><div class="veil"></div><div class="label"><h3>Clinics</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/event-centers/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/116ff62268096b1817a7cc1043847f42f9552bed.webp" alt="Event Centers" loading="lazy"><div class="veil"></div><div class="label"><h3>Event Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/education-campuses/"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/03/66c89bd9e1cb5fddebdfe9f67c6f04d2991a2180.webp" alt="Education Campuses" loading="lazy"><div class="veil"></div><div class="label"><h3>Education Campuses</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/state-parks/"><img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-tile-campground-registration-building.webp" alt="State and National Parks" loading="lazy"><div class="veil"></div><div class="label"><h3>State Parks</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/nightclubs/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/newnn.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Nightclubs</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hotels/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/28fda275712682d60bb6aab192df19486ac416a2.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Hotels</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/hospital-clinics/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/932e96b5d7149ebfb64f0f68c9b807a0f90049f8.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Clinics</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/event-centers/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/01/116ff62268096b1817a7cc1043847f42f9552bed.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Event Centers</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/education-campuses/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/03/66c89bd9e1cb5fddebdfe9f67c6f04d2991a2180.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>Education Campuses</h3><span>Explore</span></div></a>
+            <a class="ind-card" href="https://www.longfisolutions.com/state-parks/" tabindex="-1" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/state-parks-tile-campground-registration-building.webp" alt="" loading="lazy"><div class="veil"></div><div class="label"><h3>State Parks</h3><span>Explore</span></div></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================================================
        SNIPPET: lf_case_logos_v2
        ============================================================ -->
     <section class="cases">
     <div class="wrap">
       <div class="rv" style="max-width:840px;margin:0 auto;text-align:center">
-        <h2><span class="h-grad">LongFi Connect:</span><br><span class="h-shine">Real places, proven results.&nbsp;Nationwide.</span></h2>
-        <p class="lede" style="max-width:660px;margin:0 auto">See how LongFi Connect held up where the crowds were biggest, and where it is&nbsp;live&nbsp;today.</p>
+        <h2><span class="h-grad">LongFi Connect:</span><br><span class="h-shine">Real places, proven results. Nationwide.</span></h2>
+        <p class="lede" style="max-width:660px;margin:0 auto">See how LongFi Connect held up where the crowds were biggest, and where it is live today.</p>
       </div>
       <style id="lf-hcards-rail">#lf-home .cases .hcaro2{position:relative;margin-top:30px}#lf-home .cases .hcards{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;grid-template-rows:auto auto;grid-auto-columns:340px;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;padding:6px 2px 14px;margin:0!important;max-width:none!important;scroll-behavior:smooth;-ms-overflow-style:none;scrollbar-width:none}#lf-home .cases .hcards::-webkit-scrollbar{display:none}#lf-home .cases .hcards .hcard{scroll-snap-align:start;max-width:none;height:100%}@media(max-width:980px){#lf-home .cases .hcards{grid-auto-columns:300px}}@media(max-width:640px){#lf-home .cases .hcards{grid-auto-columns:82vw}}#lf-home .cases .hcaro2-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;box-shadow:0 6px 20px rgba(36,72,153,.16);cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:6;color:var(--ink);transition:transform .18s ease,box-shadow .18s ease,opacity .2s ease}#lf-home .cases .hcaro2-btn:hover{transform:translateY(-50%) scale(1.07);box-shadow:0 12px 30px rgba(36,72,153,.24)}#lf-home .cases .hcaro2-btn:active{transform:translateY(-50%) scale(.96)}#lf-home .cases .hcaro2-btn.prev{left:-16px}#lf-home .cases .hcaro2-btn.next{right:-16px}#lf-home .cases .hcaro2-btn[hidden]{opacity:0;pointer-events:none}#lf-home .cases .hcaro2-btn svg{width:22px;height:22px}@media(max-width:1180px){#lf-home .cases .hcaro2-btn.prev{left:2px}#lf-home .cases .hcaro2-btn.next{right:2px}}@media(max-width:560px){#lf-home .cases .hcaro2-btn{width:40px;height:40px}}</style><div class="hcaro2"><button class="hcaro2-btn prev" type="button" aria-label="Previous case studies" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button><div class="hcards rv-stagger">
-        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/ymca-birmingham-01-hero-lobby-arrival.webp" alt="YMCA of Greater Birmingham" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">YMCA &middot;&nbsp;Birmingham</span><span class="vn">YMCA Birmingham</span><span class="qq">&ldquo;Members stay connected inside the Y, at no cost to the&nbsp;association.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a>
-        <a class="hcard c" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/wanitta-wynwood-hero.jpg" alt="Wanitta Wynwood" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Wanitta &middot;&nbsp;Wynwood</span><span class="vn">Wanitta</span><span class="qq">&ldquo;650,000+ shopper connections, browse to buy, no password&nbsp;to&nbsp;share.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a>
-        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img01.jpg" alt="SILO" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">SILO &middot;&nbsp;Brooklyn</span><span class="vn">SILO</span><span class="qq">&ldquo;Guests used to step outside just to pay their tab. That problem&nbsp;is&nbsp;gone.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a>
-        <a class="hcard g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img02.jpg" alt="JazzFest 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">JazzFest 2026 &middot;&nbsp;New&nbsp;Orleans</span><span class="vn">JazzFest 2026</span><span class="qq">&ldquo;104,080 guests moved through the gates,&nbsp;connected.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a>
-        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/world-cup-houston-hero.jpg" alt="World Cup, Houston" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">World Cup &middot;&nbsp;Houston</span><span class="vn">World&nbsp;Cup</span><span class="qq">&ldquo;400,000+ automatic connections across Houston during the&nbsp;World&nbsp;Cup.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a>
-        <a class="hcard c" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img03.jpg" alt="Sunset Rooftop" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Sunset Rooftop &middot;&nbsp;Houston</span><span class="vn">Sunset Rooftop</span><span class="qq">&ldquo;Through a packed tournament crowd, guests stayed&nbsp;connected.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a>
-      <a class="hcard g" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-bauhaus-houston-01-image.jpg" alt="Bauhaus Houston" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Bauhaus &middot;&nbsp;Houston</span><span class="vn">Bauhaus</span><span class="qq">&ldquo;Cell signal used to drop when we packed the room. Now it&nbsp;holds.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a>
-      <a class="hcard p" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-city-of-easton-01.jpg" alt="City of Easton" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">City of Easton &middot;&nbsp;PA</span><span class="vn">City of&nbsp;Easton</span><span class="qq">&ldquo;Phones work better when LongFi Connect is&nbsp;live.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a><a class="hcard gr" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mardi-gras-2026-01-image.jpg" alt="Mardi Gras 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Mardi Gras 2026 &middot;&nbsp;New Orleans</span><span class="vn">Mardi Gras 2026</span><span class="qq">&ldquo;In past Mardi Gras weekends we heard complaints about cell signal. This year we&nbsp;did&nbsp;not.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a><a class="hcard b" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mccarthy-03-image.jpg" alt="National Construction Firm" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Offices &amp;&nbsp;Enterprise</span><span class="vn">National Construction&nbsp;Firm</span><span class="qq">&ldquo;It has been working flawlessly. No complaints, and connections&nbsp;improved.&rdquo;</span><span class="mm">Read the case study &rarr;</span></div></a></div><button class="hcaro2-btn next" type="button" aria-label="Next case studies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div><script>(function(){var root=document.getElementById("lf-home");if(!root)return;var caro=root.querySelector(".hcaro2");if(!caro||caro.__i)return;caro.__i=1;var track=caro.querySelector(".hcards");var prev=caro.querySelector(".hcaro2-btn.prev"),next=caro.querySelector(".hcaro2-btn.next");function page(){return Math.max(260,Math.round(track.clientWidth*0.9));}function maxs(){return track.scrollWidth-track.clientWidth;}function upd(){prev.hidden=track.scrollLeft<=6;next.hidden=track.scrollLeft>=maxs()-6;}next.addEventListener("click",function(){track.scrollLeft=Math.min(maxs(),track.scrollLeft+page());});prev.addEventListener("click",function(){track.scrollLeft=Math.max(0,track.scrollLeft-page());});track.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);setTimeout(upd,60);})();</script>
-      <div class="cases-sub rv">Live across 200+ venues and high-density environments&nbsp;nationwide</div>
+        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/ymca-birmingham-01-hero-lobby-arrival.webp" alt="YMCA of Greater Birmingham" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">YMCA · Birmingham</span><span class="vn">YMCA Birmingham</span><span class="qq">“Members stay connected inside the Y, at no cost to the association.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard c" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/wanitta-wynwood-hero.jpg" alt="Wanitta Wynwood" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Wanitta · Wynwood</span><span class="vn">Wanitta</span><span class="qq">“650,000+ shopper connections, browse to buy, no password to share.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img01.jpg" alt="SILO" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">SILO · Brooklyn</span><span class="vn">SILO</span><span class="qq">“Guests used to step outside just to pay their tab. That problem is gone.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard g" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img02.jpg" alt="JazzFest 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">JazzFest 2026 · New Orleans</span><span class="vn">JazzFest 2026</span><span class="qq">“104,080 guests moved through the gates, connected.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard t" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/world-cup-houston-hero.jpg" alt="World Cup, Houston" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">World Cup · Houston</span><span class="vn">World Cup</span><span class="qq">“400,000+ automatic connections across Houston during the World Cup.”</span><span class="mm">Read the case study →</span></div></a>
+        <a class="hcard c" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img03.jpg" alt="Sunset Rooftop" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Sunset Rooftop · Houston</span><span class="vn">Sunset Rooftop</span><span class="qq">“Through a packed tournament crowd, guests stayed connected.”</span><span class="mm">Read the case study →</span></div></a>
+      <a class="hcard g" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-bauhaus-houston-01-image.jpg" alt="Bauhaus Houston" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Bauhaus · Houston</span><span class="vn">Bauhaus</span><span class="qq">“Cell signal used to drop when we packed the room. Now it holds.”</span><span class="mm">Read the case study →</span></div></a>
+      <a class="hcard p" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-city-of-easton-01.jpg" alt="City of Easton" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">City of Easton · PA</span><span class="vn">City of Easton</span><span class="qq">“Phones work better when LongFi Connect is live.”</span><span class="mm">Read the case study →</span></div></a><a class="hcard gr" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mardi-gras-2026-01-image.jpg" alt="Mardi Gras 2026" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Mardi Gras 2026 · New Orleans</span><span class="vn">Mardi Gras 2026</span><span class="qq">“In past Mardi Gras weekends we heard complaints about cell signal. This year we did not.”</span><span class="mm">Read the case study →</span></div></a><a class="hcard b" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><div class="im"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mccarthy-03-image.jpg" alt="National Construction Firm" loading="lazy" decoding="async"></div><div class="cc"><span class="tg">Offices & Enterprise</span><span class="vn">National Construction Firm</span><span class="qq">“It has been working flawlessly. No complaints, and connections improved.”</span><span class="mm">Read the case study →</span></div></a></div><button class="hcaro2-btn next" type="button" aria-label="Next case studies"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button></div><script>(function(){var root=document.getElementById("lf-home");if(!root)return;var caro=root.querySelector(".hcaro2");if(!caro||caro.__i)return;caro.__i=1;var track=caro.querySelector(".hcards");var prev=caro.querySelector(".hcaro2-btn.prev"),next=caro.querySelector(".hcaro2-btn.next");function page(){return Math.max(260,Math.round(track.clientWidth*0.9));}function upd(){prev.hidden=track.scrollLeft<=6;next.hidden=track.scrollLeft+track.clientWidth>=track.scrollWidth-6;}function maxs(){return track.scrollWidth-track.clientWidth;}next.addEventListener("click",function(){track.scrollLeft=Math.min(maxs(),track.scrollLeft+page());});prev.addEventListener("click",function(){track.scrollLeft=Math.max(0,track.scrollLeft-page());});track.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);setTimeout(upd,60);})();</script>
+      <div class="cases-sub rv">Live across 200+ venues and high-density environments nationwide</div>
       <style id="lf-casetrack-fix">#lf-home .cases .case-card:not(:has(img)){justify-content:center}#lf-home .cases .case-card:not(:has(img)) h3{font-size:17px;line-height:1.25}#lf-home .cases .case-card h3{max-width:100%;overflow-wrap:break-word}#lf-home .cases .case-track:hover{animation-play-state:paused}#lf-home .cases .case-card:not(.cslink){cursor:default}</style><div class="case-row rv">
-        <div class="case-track"><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><span class="case-badge">Case Study</span><img src="https://wanitta.com.co/cdn/shop/files/LOGO.svg?v=1774212018" alt="Wanitta logo" loading="lazy"><div><h3>Wanitta</h3><div class="loc">Wynwood, Miami</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><span class="case-badge">Case Study</span><div><h3>World Cup</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/silo-venue-longfi-connect-case-study-logo-1024x175.webp" alt="SILO logo" loading="lazy"><div><h3>SILO</h3><div class="loc">Brooklyn, NY</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><span class="case-badge">Case Study</span><div><h3>JazzFest 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img04.png" alt="Sunset Rooftop logo" loading="lazy"><div><h3>Sunset Rooftop</h3><div class="loc">Houston, TX</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/creole-house-restaurant-longfi-case-study-logo-1024x227.webp" alt="Creole House logo" loading="lazy"><div><h3>Creole House</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><span class="case-badge">Case Study</span><div><h3>Mardi Gras 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><span class="case-badge">Case Study</span><img src="https://bauhaushouston.com/wp-content/uploads/2024/03/Logo-Hori-Black.svg" alt="Bauhaus logo" loading="lazy"><div><h3>Bauhaus</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><span class="case-badge">Case Study</span><div><h3>City of Easton</h3><div class="loc">Easton, PA</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/village-market-retail-longfi-case-study-logo-1024x363.webp" alt="The Village Market logo" loading="lazy"><div><h3>The Village Market</h3><div class="loc">Miami, FL</div></div></div><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ymca-fitness-center-longfi-case-study-logo-1024x777.webp" alt="YMCA logo" loading="lazy"><div><h3>YMCA</h3><div class="loc">Birmingham, AL</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><span class="case-badge">Case Study</span><div><h3>National Construction Firm</h3><div class="loc">Corporate Offices</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/east-end-residences-longfi-case-study-logo-1024x993.webp" alt="East End Residences logo" loading="lazy"><div><h3>East End Residences</h3><div class="loc">Akron, OH</div></div></div><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cafe-beignet-restaurant-longfi-case-study-logo-1024x780.webp" alt="Caf&eacute; Beignet logo" loading="lazy"><div><h3>Caf&eacute; Beignet</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><span class="case-badge">Case Study</span><img src="https://wanitta.com.co/cdn/shop/files/LOGO.svg?v=1774212018" alt="Wanitta logo" loading="lazy"><div><h3>Wanitta</h3><div class="loc">Wynwood, Miami</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><span class="case-badge">Case Study</span><div><h3>World Cup</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/silo-venue-longfi-connect-case-study-logo-1024x175.webp" alt="SILO logo" loading="lazy"><div><h3>SILO</h3><div class="loc">Brooklyn, NY</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><span class="case-badge">Case Study</span><div><h3>JazzFest 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img04.png" alt="Sunset Rooftop logo" loading="lazy"><div><h3>Sunset Rooftop</h3><div class="loc">Houston, TX</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/creole-house-restaurant-longfi-case-study-logo-1024x227.webp" alt="Creole House logo" loading="lazy"><div><h3>Creole House</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><span class="case-badge">Case Study</span><div><h3>Mardi Gras 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><span class="case-badge">Case Study</span><img src="https://bauhaushouston.com/wp-content/uploads/2024/03/Logo-Hori-Black.svg" alt="Bauhaus logo" loading="lazy"><div><h3>Bauhaus</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><span class="case-badge">Case Study</span><div><h3>City of Easton</h3><div class="loc">Easton, PA</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/village-market-retail-longfi-case-study-logo-1024x363.webp" alt="The Village Market logo" loading="lazy"><div><h3>The Village Market</h3><div class="loc">Miami, FL</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ymca-fitness-center-longfi-case-study-logo-1024x777.webp" alt="YMCA logo" loading="lazy"><div><h3>YMCA</h3><div class="loc">Birmingham, AL</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><span class="case-badge">Case Study</span><div><h3>National Construction Firm</h3><div class="loc">Corporate Offices</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/east-end-residences-longfi-case-study-logo-1024x993.webp" alt="East End Residences logo" loading="lazy"><div><h3>East End Residences</h3><div class="loc">Akron, OH</div></div></div><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cafe-beignet-restaurant-longfi-case-study-logo-1024x780.webp" alt="Caf&eacute; Beignet logo" loading="lazy"><div><h3>Caf&eacute; Beignet</h3><div class="loc">New Orleans, LA</div></div></div></div>
+        <div class="case-track"><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><span class="case-badge">Case Study</span><img src="https://wanitta.com.co/cdn/shop/files/LOGO.svg?v=1774212018" alt="Wanitta logo" loading="lazy"><div><h3>Wanitta</h3><div class="loc">Wynwood, Miami</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><span class="case-badge">Case Study</span><div><h3>World Cup</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/silo-venue-longfi-connect-case-study-logo-1024x175.webp" alt="SILO logo" loading="lazy"><div><h3>SILO</h3><div class="loc">Brooklyn, NY</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><span class="case-badge">Case Study</span><div><h3>JazzFest 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img04.png" alt="Sunset Rooftop logo" loading="lazy"><div><h3>Sunset Rooftop</h3><div class="loc">Houston, TX</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/creole-house-restaurant-longfi-case-study-logo-1024x227.webp" alt="Creole House logo" loading="lazy"><div><h3>Creole House</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><span class="case-badge">Case Study</span><div><h3>Mardi Gras 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><span class="case-badge">Case Study</span><img src="https://bauhaushouston.com/wp-content/uploads/2024/03/Logo-Hori-Black.svg" alt="Bauhaus logo" loading="lazy"><div><h3>Bauhaus</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><span class="case-badge">Case Study</span><div><h3>City of Easton</h3><div class="loc">Easton, PA</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/village-market-retail-longfi-case-study-logo-1024x363.webp" alt="The Village Market logo" loading="lazy"><div><h3>The Village Market</h3><div class="loc">Miami, FL</div></div></div><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ymca-fitness-center-longfi-case-study-logo-1024x777.webp" alt="YMCA logo" loading="lazy"><div><h3>YMCA</h3><div class="loc">Birmingham, AL</div></div></a><a class="card case-card cslink" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><span class="case-badge">Case Study</span><div><h3>National Construction Firm</h3><div class="loc">Corporate Offices</div></div></a><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/east-end-residences-longfi-case-study-logo-1024x993.webp" alt="East End Residences logo" loading="lazy"><div><h3>East End Residences</h3><div class="loc">Akron, OH</div></div></div><div class="card case-card"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cafe-beignet-restaurant-longfi-case-study-logo-1024x780.webp" alt="Café Beignet logo" loading="lazy"><div><h3>Café Beignet</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/"><span class="case-badge">Case Study</span><img src="https://wanitta.com.co/cdn/shop/files/LOGO.svg?v=1774212018" alt="Wanitta logo" loading="lazy"><div><h3>Wanitta</h3><div class="loc">Wynwood, Miami</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/world-cup-houston/"><span class="case-badge">Case Study</span><div><h3>World Cup</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/silo-venue-longfi-connect-case-study-logo-1024x175.webp" alt="SILO logo" loading="lazy"><div><h3>SILO</h3><div class="loc">Brooklyn, NY</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/"><span class="case-badge">Case Study</span><div><h3>JazzFest 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img04.png" alt="Sunset Rooftop logo" loading="lazy"><div><h3>Sunset Rooftop</h3><div class="loc">Houston, TX</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/webp/2026/02/creole-house-restaurant-longfi-case-study-logo-1024x227.webp" alt="Creole House logo" loading="lazy"><div><h3>Creole House</h3><div class="loc">New Orleans, LA</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/"><span class="case-badge">Case Study</span><div><h3>Mardi Gras 2026</h3><div class="loc">New Orleans, LA</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/"><span class="case-badge">Case Study</span><img src="https://bauhaushouston.com/wp-content/uploads/2024/03/Logo-Hori-Black.svg" alt="Bauhaus logo" loading="lazy"><div><h3>Bauhaus</h3><div class="loc">Houston, TX</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><span class="case-badge">Case Study</span><div><h3>City of Easton</h3><div class="loc">Easton, PA</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/village-market-retail-longfi-case-study-logo-1024x363.webp" alt="The Village Market logo" loading="lazy"><div><h3>The Village Market</h3><div class="loc">Miami, FL</div></div></div><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/"><span class="case-badge">Case Study</span><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/ymca-fitness-center-longfi-case-study-logo-1024x777.webp" alt="YMCA logo" loading="lazy"><div><h3>YMCA</h3><div class="loc">Birmingham, AL</div></div></a><a class="card case-card cslink" aria-hidden="true" tabindex="-1" href="https://www.longfisolutions.com/case-studies/corporate-offices/"><span class="case-badge">Case Study</span><div><h3>National Construction Firm</h3><div class="loc">Corporate Offices</div></div></a><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/east-end-residences-longfi-case-study-logo-1024x993.webp" alt="East End Residences logo" loading="lazy"><div><h3>East End Residences</h3><div class="loc">Akron, OH</div></div></div><div class="card case-card" aria-hidden="true"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/05/cafe-beignet-restaurant-longfi-case-study-logo-1024x780.webp" alt="Café Beignet logo" loading="lazy"><div><h3>Café Beignet</h3><div class="loc">New Orleans, LA</div></div></div></div>
       </div>
       <div class="btn-row rv" style="justify-content:center">
         <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
@@ -608,13 +709,13 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
     <section class="recap">
       <div class="wrap">
         <div class="cta-panel rv" style="display:block;text-align:center">
-          <h2>Use the Wi&#8209;Fi already in place to bring excellent indoor cell connectivity to&nbsp;the&nbsp;venue.</h2>
-          <p class="lede" style="max-width:660px;margin:0 auto">Book a short call, or run a quick venue check to see if the venue is a&nbsp;fit. Our team confirms compatibility at no cost and&nbsp;without&nbsp;disruption.</p>
+          <h2>Use the Wi‑Fi already in place to bring excellent indoor cell connectivity to the venue.</h2>
+          <p class="lede" style="max-width:660px;margin:0 auto">Book a short call, or run a quick venue check to see if the venue is a fit. Our team confirms compatibility at no cost and without disruption.</p>
           <div class="btn-row" style="justify-content:center;margin-top:26px">
             <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
             <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/check-my-venue/">Check if your venue qualifies</a>
           </div>
-          <p class="lede" style="max-width:660px;margin:22px auto 0;font-size:14px;opacity:.72">Works with <a href="https://www.longfisolutions.com/compatibility/">business grade Wi&#8209;Fi</a> such as Cisco, Meraki, Aruba, or comparable, and supports major mobile&nbsp;carriers.</p>
+          <p class="lede" style="max-width:660px;margin:22px auto 0;font-size:14px;opacity:.72">Works with <a href="https://www.longfisolutions.com/compatibility/">business grade Wi‑Fi</a> such as Cisco, Meraki, Aruba, or comparable, and supports major mobile carriers.</p>
         </div>
       </div>
     </section>
@@ -626,18 +727,79 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
        ============================================================ -->
 
   <script>
-  (function(){var row=document.querySelector('#lf-home .cases .case-row');if(!row||row.__d)return;row.__d=1;
-    var down=false,sx=0,sl=0,moved=false;
-    row.addEventListener('pointerdown',function(e){down=true;moved=false;sx=e.clientX;sl=row.scrollLeft;row.classList.add('grabbing');try{row.setPointerCapture(e.pointerId);}catch(_){}}); 
-    row.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;if(Math.abs(dx)>4)moved=true;row.scrollLeft=sl-dx;});
-    function end(){down=false;row.classList.remove('grabbing');}
-    row.addEventListener('pointerup',end);row.addEventListener('pointercancel',end);
-    row.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();}},true);
-    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function half(){return row.scrollWidth/2;}
-    function step(){ if(!reduce && !down && !row.matches(':hover')){ row.scrollLeft+=0.4; if(row.scrollLeft>=half())row.scrollLeft-=half(); } requestAnimationFrame(step); }
+  (function () {
+  var root = document.getElementById('lf-home');
+  if (!root) return;
+  var row = root.querySelector('.cases .case-row');
+  if (!row || row.__d) return;
+  row.__d = 1;
+
+  /* Vertical scrolling stays with the browser, horizontal is ours. */
+  row.style.touchAction = 'pan-y';
+
+  var THRESHOLD = 8;
+  var down = false, moved = false, captured = false;
+  var pid = null, sx = 0, sy = 0, sl = 0;
+
+  function releaseCapture() {
+    if (!captured || pid === null) return;
+    try { if (row.hasPointerCapture(pid)) row.releasePointerCapture(pid); } catch (_) {}
+    captured = false;
+  }
+
+  row.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    down = true; moved = false; pid = e.pointerId;
+    sx = e.clientX; sy = e.clientY; sl = row.scrollLeft;
+    row.classList.add('grabbing');
+    /* Deliberately no pointer capture here. Capturing before the gesture is
+       known to be a drag makes the browser dispatch the click at the rail
+       instead of at the card, so the card links never open. Capture happens
+       below, only once the pointer has actually travelled. */
+  });
+
+  row.addEventListener('pointermove', function (e) {
+    if (!down || e.pointerId !== pid) return;
+    var dx = e.clientX - sx, dy = e.clientY - sy;
+    if (!moved) {
+      if (Math.abs(dx) <= THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
+      moved = true;
+      try { row.setPointerCapture(pid); captured = true; } catch (_) {}
+    }
+    row.scrollLeft = sl - dx;
+    e.preventDefault();
+  });
+
+  function end() {
+    releaseCapture();
+    down = false; pid = null;
+    row.classList.remove('grabbing');
+  }
+  row.addEventListener('pointerup', end);
+  row.addEventListener('pointercancel', end);
+  row.addEventListener('lostpointercapture', function () { captured = false; });
+
+  /* Swallow the click only when the gesture really was a drag, then clear the
+     flag so the next plain click is never affected. */
+  row.addEventListener('click', function (e) {
+    if (moved) { e.preventDefault(); e.stopPropagation(); }
+    moved = false;
+  }, true);
+
+  /* Native image dragging on the card logos can also cancel the click. */
+  row.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function half() { return row.scrollWidth / 2; }
+  function step() {
+    if (!reduce && !down && !row.matches(':hover') && !row.contains(document.activeElement)) {
+      row.scrollLeft += 0.4;
+      if (row.scrollLeft >= half()) row.scrollLeft -= half();
+    }
     requestAnimationFrame(step);
-  })();
+  }
+  requestAnimationFrame(step);
+})();
   </script>
 </main>
 
@@ -670,3 +832,6 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
   },150);
 })();
 </script>
+
+<!-- Accent bars removed (GP-04, 2026-09-30): colored edge stripes on cards and callouts become the standard hairline -->
+<style>#lf-home .mon-high{border-left:1px solid #E6EAF2!important}#lf-home .hcard .im::after,#lfcs .hcard .im::after{display:none!important}</style>

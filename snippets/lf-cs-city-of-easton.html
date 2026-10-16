@@ -1,4 +1,4 @@
-<!-- LongFi snippet | lf-cs-city-of-easton.html | v1.0 | 2026-07-26 | REVIEW | case-study page, scoped #lf-cs-city-of-easton -->
+<!-- LongFi snippet | lf-cs-city-of-easton.html | v1.0 + mobile-guard 2026-10-16 | 2026-07-26 | REVIEW | case-study page, scoped #lf-cs-city-of-easton -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0!important;padding:0!important;overflow-x:hidden}
@@ -20,6 +20,9 @@ html,body{margin:0!important;padding:0!important;overflow-x:hidden}
 #lf-cs-city-of-easton .results .pull cite{display:block;margin-top:12px;font-style:normal}
 #lf-cs-city-of-easton .results .pull .qname{font-weight:800;font-size:14px;color:var(--ink)}
 #lf-cs-city-of-easton .results .pull .qrole{font-weight:500;font-size:13px;color:var(--muted);margin-left:8px}
+
+/* mobile guard 2026-10-16: keep content inside a 393px phone viewport */
+@media(max-width:600px){#lf-cs-city-of-easton .hero-inner{grid-template-columns:minmax(0,1fr)}#lf-cs-city-of-easton .hero-inner>*{min-width:0}#lf-cs-city-of-easton h1 .nw,#lf-cs-city-of-easton h2 .nw,#lf-cs-city-of-easton h3 .nw{white-space:normal}#lf-cs-city-of-easton .big-outcome{flex-wrap:wrap}#lf-cs-city-of-easton .big-txt{min-width:0}}
 </style>
 <main id="lf-cs-city-of-easton">
 <section class="hero block reveal"><div class="wrap"><div class="hero-inner"><div class="hero-copy"><span class="eyebrow">Cities and Main Streets · Easton, PA</span><h1>LongFi Connect: better cell phone service for Easton's biggest <span class="nw">festivals.</span></h1><span class="accent">The City of Easton, Pennsylvania, on the <span class="nowrap">Wi-Fi</span> already in place at Centre Square. Live <span class="nw">since August 2025.</span></span><p>Easton's downtown festivals draw crowds far larger than the cellular network around them was built to carry. LongFi Connect runs on the city's existing <span class="nowrap">Wi-Fi</span> at The Circle in Centre Square and connects phones automatically, with no passwords and <span class="nw">no new hardware.</span></p></div><div class="hero-img"><img class="shot hero-shot" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-city-of-easton-01.jpg" alt="A packed festival crowd filling Centre Square in downtown Easton"></div></div></div></section><section class="stat-block block reveal" style="padding:0"><div class="stat-intro">City of Easton, Pennsylvania · Centre Square</div><div class="stat-strip" style="--statcols:3"><div class="stat-cell"><div class="stat-num">658,349</div><div class="stat-label">Device connections in the first year, made automatically with no guest action</div></div><div class="stat-cell"><div class="stat-num">8,385 GB</div><div class="stat-label">Mobile data carried off the macro cellular network</div></div><div class="stat-cell"><div class="stat-num">No new hardware</div><div class="stat-label">Enabled on the city's existing <span class="nowrap">Wi-Fi</span> at Centre Square</div></div></div></section>

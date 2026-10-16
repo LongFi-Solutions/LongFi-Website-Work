@@ -1,4 +1,4 @@
-<!-- LongFi snippet | lf-relay.html | v1.0 | created 2026-09-30 | REVIEW -->
+<!-- LongFi snippet | lf-relay.html | v1.1 | created 2026-09-30 | updated 2026-10-16 (@container rules scoped: mobile mockup fix) | REVIEW -->
 <!-- Native Relay page for longfisolutions.com/relay/. Built from the no-revenue Relay sign-in build (v12)
      by build_relay_page.py. Sign in happens on app.longfisolutions.com; this page only links out.
      All styles scoped under #lf-relay; keyframes prefixed lfr-. Sample data only, no revenue. -->
@@ -324,14 +324,14 @@
 #lf-relay .rl-side .soon{margin-left:auto;font-size:10px;font-weight:600;color:var(--tx3);border:1px solid var(--bd);border-radius:999px;padding:1px 7px}
 #lf-relay .rl-main{overflow:auto;padding:18px 22px 28px;min-width:0}
 @container fr (max-width:820px){
-  .rl{height:auto;grid-template-rows:auto auto}
-  .rl-top{flex-wrap:wrap;padding:10px 12px;gap:10px}
-  .rl-logo{min-width:0}.rl-org{max-width:190px}
-  .rl-body{grid-template-columns:1fr}
-  .rl-side{display:flex;gap:4px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--bd);padding:8px}
-  .rl-side h6{display:none}.rl-side button{white-space:nowrap;width:auto}
-  .rl-main{overflow:visible;padding:16px 12px 24px}
-  .rl-theme{display:none}
+  #lf-relay .rl{height:auto;grid-template-rows:auto auto}
+  #lf-relay .rl-top{flex-wrap:wrap;padding:10px 12px;gap:10px}
+  #lf-relay .rl-logo{min-width:0}#lf-relay .rl-org{max-width:190px}
+  #lf-relay .rl-body{grid-template-columns:1fr}
+  #lf-relay .rl-side{display:flex;gap:4px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--bd);padding:8px}
+  #lf-relay .rl-side h6{display:none}#lf-relay .rl-side button{white-space:nowrap;width:auto}
+  #lf-relay .rl-main{overflow:visible;padding:16px 12px 24px}
+  #lf-relay .rl-theme{display:none}
 }
 #lf-relay .crumbs{display:flex;align-items:center;gap:8px;color:var(--tx3);font-size:13px;margin-bottom:14px;flex-wrap:wrap}
 #lf-relay .crumbs button{background:none;border:0;color:var(--tx2);cursor:pointer;padding:0;font-size:13px}
@@ -355,8 +355,8 @@
 #lf-relay .sec-t .rtx{margin-left:auto;font-weight:400;font-size:12.5px;color:var(--tx3)}
 #lf-relay .sec-b{padding:14px 16px}
 #lf-relay .tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-@container fr (max-width:1100px){.tiles{grid-template-columns:repeat(3,1fr)}}
-@container fr (max-width:560px){.tiles{grid-template-columns:1fr 1fr}}
+@container fr (max-width:1100px){#lf-relay .tiles{grid-template-columns:repeat(3,1fr)}}
+@container fr (max-width:560px){#lf-relay .tiles{grid-template-columns:1fr 1fr}}
 #lf-relay .tile{background:var(--panel-2);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;min-width:0}
 #lf-relay .tile small{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--tx2)}
 #lf-relay .tile strong{display:block;font-size:22px;font-weight:700;margin-top:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -364,11 +364,13 @@
 #lf-relay .tiles.t3{grid-template-columns:repeat(3,1fr)}
 #lf-relay .tiles.t4{grid-template-columns:repeat(4,1fr)}
 #lf-relay .tiles.t2{grid-template-columns:repeat(2,1fr)}
-@container fr (max-width:560px){.tiles.t3{grid-template-columns:1fr}}
+@container fr (max-width:560px){#lf-relay .tiles.t3{grid-template-columns:1fr}}
+/* phone polish 2026-10-16: 2-up KPI tiles, hidden strip scrollbars, leaderboard fits without sideways scroll */
+@container fr (max-width:560px){#lf-relay .tiles.t4{grid-template-columns:1fr 1fr}#lf-relay .rl-side,#lf-relay .tabs{scrollbar-width:none}#lf-relay .rl-side::-webkit-scrollbar,#lf-relay .tabs::-webkit-scrollbar{display:none}#lf-relay #rl-leader .rt{min-width:0;font-size:12.5px}#lf-relay #rl-leader .rt th,#lf-relay #rl-leader .rt td{padding:9px 8px;white-space:normal}#lf-relay .tabs button{padding:9px 10px}}
 #lf-relay .tip{display:inline-grid;place-items:center;width:15px;height:15px;border-radius:50%;border:1px solid var(--tx3);color:var(--tx2);font:600 9.5px/1 Inter,sans-serif;cursor:help;position:relative;text-transform:none;letter-spacing:0;flex:none}
 #lf-relay .tip:hover::after,#lf-relay .tip:focus::after{content:attr(data-tip);position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);width:230px;background:#0B0C0E;color:#ECEDEF;border:1px solid #2B2D33;font:500 12px/1.45 Inter,sans-serif;padding:8px 10px;border-radius:8px;z-index:50;text-align:left;white-space:normal;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 #lf-relay .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@container fr (max-width:1000px){.two{grid-template-columns:1fr}}
+@container fr (max-width:1000px){#lf-relay .two{grid-template-columns:1fr}}
 #lf-relay .pnl{background:var(--panel-2);border:1px solid var(--bd);border-radius:10px;padding:12px 12px 6px;min-width:0}
 #lf-relay .pnl-t{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--tx2);margin-bottom:4px}
 #lf-relay svg.ch{width:100%;height:auto;display:block}
@@ -411,14 +413,14 @@
 #lf-relay .tabs button[aria-selected="true"]{color:var(--tx);border-bottom-color:var(--ac)}
 #lf-relay .tabs .n{font-weight:500;color:var(--tx3);margin-left:6px}
 #lf-relay .kv{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 20px}
-@container fr (max-width:700px){.kv{grid-template-columns:1fr 1fr}}
+@container fr (max-width:700px){#lf-relay .kv{grid-template-columns:1fr 1fr}}
 #lf-relay .kv div small{display:block;font-size:11.5px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
 #lf-relay .kv div b{font-weight:500}
 #lf-relay .tag{display:inline-block;font-size:12px;background:var(--panel-2);border:1px solid var(--bd);border-radius:6px;padding:1px 7px;margin-right:4px}
 #lf-relay .empty{padding:30px 16px;text-align:center;color:var(--tx3)}
 #lf-relay .note{display:flex;gap:10px;align-items:flex-start;background:var(--ac-soft);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;color:var(--tx);font-size:13.5px;margin-bottom:16px}
 #lf-relay .form-g{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@container fr (max-width:700px){.form-g{grid-template-columns:1fr}}
+@container fr (max-width:700px){#lf-relay .form-g{grid-template-columns:1fr}}
 #lf-relay .form-g .full{grid-column:1/-1}
 #lf-relay .fl{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--tx2);font-weight:500;position:relative}
 #lf-relay .fl .hint{font-size:12px;color:var(--tx3);font-weight:400}
@@ -435,9 +437,9 @@
 #lf-relay .stepper .done b{background:var(--ok);border-color:var(--ok);color:#fff}
 #lf-relay .rows{display:grid;gap:10px}
 #lf-relay .eqrow{display:grid;grid-template-columns:1.3fr 1fr .6fr 1fr 34px;gap:8px;align-items:center}
-@container fr (max-width:700px){.eqrow{grid-template-columns:1fr 1fr}}
+@container fr (max-width:700px){#lf-relay .eqrow{grid-template-columns:1fr 1fr}}
 #lf-relay .eqhead{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
-@container fr (max-width:700px){.eqhead{display:none}}
+@container fr (max-width:700px){#lf-relay .eqhead{display:none}}
 #lf-relay .xbtn{width:34px;height:34px;border-radius:8px;border:1px solid var(--bd);background:var(--panel-2);color:var(--tx2);cursor:pointer}
 #lf-relay .acts{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
 #lf-relay .modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:60;display:grid;place-items:center;padding:16px}

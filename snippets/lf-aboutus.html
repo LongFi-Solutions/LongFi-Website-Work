@@ -1,4 +1,4 @@
-<!-- LongFi snippet | lf-aboutus.html | v1.10 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- LongFi snippet | lf-aboutus.html | v1.10 + mobile-guard 2026-10-16 | updated 2026-07-15 12:10 | REVIEW -->
 <!-- [1] Google Fonts, load once (per DigitalHypePro guide) -->
 <script>
 (function(){
@@ -344,6 +344,9 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 #lf-aboutus .cta-ok .ok-ic{width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(47,184,136,.16);border:1px solid rgba(143,227,194,.5);display:flex;align-items:center;justify-content:center;color:#8FE3C2;font-size:26px;font-weight:700}
 #lf-aboutus .cta-ok h2{font-size:clamp(19px,2vw,24px);margin-bottom:8px}
 #lf-aboutus .cta-ok .lede{font-size:15px;margin:0 auto}
+
+/* mobile guard 2026-10-16: keep content inside a 393px phone viewport */
+@media(max-width:600px){#lf-aboutus .dual{grid-template-columns:minmax(0,1fr)}#lf-aboutus .dcard{min-width:0}}
 </style>
 <!-- [3] Page content -->
 <main id="lf-aboutus"><!-- ============================================================
@@ -396,11 +399,11 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
   <div class="wrap">
     <div class="dual rv-stagger">
       <div class="card dcard">
-        <h2 class="h-grad">Why&nbsp;interconnectivity&nbsp;fails</h2>
+        <h2 class="h-grad">Why interconnectivity&nbsp;fails</h2>
         <p class="lede" style="margin-top:10px">Outdoor cellular networks are not designed to perform well inside buildings. Dense materials, layout complexity, and user density degrade signal quality, even when devices show&nbsp;full&nbsp;bars.</p>
       </div>
       <div class="card dcard">
-        <h2 class="h-grad">The LongFi&nbsp;Solutions&nbsp;approach</h2>
+        <h2 class="h-grad">The LongFi&nbsp;Solutions approach</h2>
         <p class="lede" style="margin-top:10px">LongFi enables carriers to route mobile traffic over venue Wi&#8209;Fi indoors. By using Wi&#8209;Fi as a transport layer, we help deliver more reliable calls, messages, and data&nbsp;inside&nbsp;buildings.</p>
       </div>
     </div>

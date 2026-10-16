@@ -1,4 +1,4 @@
-<!-- LongFi snippet | lf-faq.html | v1.15 | updated 2026-07-15 12:10 | REVIEW -->
+<!-- LongFi snippet | lf-faq.html | v1.15 + mobile-guard 2026-10-16 | updated 2026-07-15 12:10 | REVIEW -->
 <!-- [1] Google Fonts, load once (per DigitalHypePro guide) -->
 <script>
 (function(){
@@ -378,6 +378,9 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 /* FAQ wrap hardening: win over any theme/Elementor global so questions can never be cut */
 #lf-faq .faq-q{display:grid !important;grid-template-columns:auto 1fr auto !important;align-items:center !important}
 #lf-faq .faq-q .faq-txt{min-width:0 !important;white-space:normal !important;overflow-wrap:anywhere !important;word-break:break-word}
+
+/* mobile guard 2026-10-16: keep content inside a 393px phone viewport */
+@media(max-width:600px){#lf-faq .faq-cat-head{flex-wrap:wrap}#lf-faq .faq-cat-head h2{min-width:0}#lf-faq .dual{grid-template-columns:minmax(0,1fr)}#lf-faq .dcard{min-width:0}}
 </style>
 <!-- [3] Page content -->
 <main id="lf-faq"><!-- ============================================================
@@ -487,7 +490,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 
     <!-- ===== CATEGORY: COMPATIBILITY & HARDWARE ===== -->
     <div class="faq-cat" id="compatibility" data-cat="Compatibility and hardware">
-      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="wifi"></i></div><h2 class="h-grad">Compatibility&nbsp;&amp;&nbsp;hardware</h2></div>
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="wifi"></i></div><h2 class="h-grad">Compatibility &amp;&nbsp;hardware</h2></div>
       <p class="faq-cat-sub">What your network needs, and what stays exactly as it is today.</p>
       <div class="faq-list">
 
@@ -541,7 +544,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 
     <!-- ===== CATEGORY: PARTNERSHIP & QUALIFICATION ===== -->
     <div class="faq-cat" id="revenue" data-cat="Partnership and qualification">
-      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="signal"></i></div><h2 class="h-grad">Partnership&nbsp;&amp;&nbsp;qualification</h2></div>
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="signal"></i></div><h2 class="h-grad">Partnership &amp;&nbsp;qualification</h2></div>
       <p class="faq-cat-sub">What the LongFi partnership includes, reviewed with our team during site qualification.</p>
       <div class="faq-list">
 
@@ -565,7 +568,7 @@ html{scroll-padding-top:96px}/* anchor jumps (#form, #footer, etc.) stop below t
 
     <!-- ===== CATEGORY: INSTALLATION & OPERATIONS ===== -->
     <div class="faq-cat" id="install" data-cat="Installation and operations">
-      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="settings"></i></div><h2 class="h-grad">Installation&nbsp;&amp;&nbsp;operations</h2></div>
+      <div class="faq-cat-head"><div class="faq-cat-ic"><i data-lucide="settings"></i></div><h2 class="h-grad">Installation &amp;&nbsp;operations</h2></div>
       <p class="faq-cat-sub">What setup looks like and how it runs day to day.</p>
       <div class="faq-list">
 

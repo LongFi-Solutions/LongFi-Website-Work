@@ -1,4 +1,4 @@
-<!-- LongFi snippet | lf-cs-corp-office.html | v1.0 | 2026-07-20 | REVIEW | case-study page, scoped #lf-cs-corp-office -->
+<!-- LongFi snippet | lf-cs-corp-office.html | v1.0 + mobile-guard 2026-10-16 | 2026-07-20 | REVIEW | case-study page, scoped #lf-cs-corp-office -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0!important;padding:0!important;overflow-x:hidden}
@@ -7,6 +7,9 @@ html,body{margin:0!important;padding:0!important;overflow-x:hidden}
 
 #lf-cs-corp-office .accent{border-left:none;padding-left:0}
 #lf-cs-corp-office .top .lf-mark{height:27px;width:auto;display:block}#lf-cs-corp-office .top .wordmark{font-size:0}#lf-cs-corp-office .top-right{gap:12px}#lf-cs-corp-office .top-right a{display:inline-flex;align-items:center;text-decoration:none}#lf-cs-corp-office .top-right .vmark{height:24px;width:auto;max-width:132px;object-fit:contain;display:block}#lf-cs-corp-office .top-right .vmark-t{font-family:var(--head);font-weight:800;font-size:14px;color:var(--ink);letter-spacing:.02em;text-decoration:none}
+
+/* mobile guard 2026-10-16: keep content inside a 393px phone viewport */
+@media(max-width:600px){#lf-cs-corp-office .hero-inner{grid-template-columns:minmax(0,1fr)}#lf-cs-corp-office .hero-inner>*{min-width:0}#lf-cs-corp-office h1 .nw,#lf-cs-corp-office h2 .nw,#lf-cs-corp-office h3 .nw{white-space:normal}#lf-cs-corp-office .big-outcome{flex-wrap:wrap}#lf-cs-corp-office .big-txt{min-width:0}}
 </style>
 <main id="lf-cs-corp-office">
 <section class="hero block reveal"><div class="wrap"><div class="hero-inner"><div class="hero-copy"><span class="eyebrow">Case Study</span><h1>With LongFi Connect, employees are connected the moment <span class="nw">they walk in.</span></h1><span class="accent">One of the largest construction firms in the United States, on the Cisco network already in&nbsp;place.</span><p>Its people move between offices through the day. Now their phones stay connected the moment they step inside, with no new hardware and <span class="nw">no added cost.</span></p></div><div class="hero-img"><img class="shot hero-shot" src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mccarthy-03-image.jpg" alt=""></div></div></div></section><section class="stat-block block reveal" style="padding:0"><div class="stat-intro">Averages across the offices on the network</div><div class="stat-strip"><div class="stat-cell"><div class="stat-num">1.6+ TB</div><div class="stat-label">Mobile data carried monthly, on the <span class="nowrap">Wi-Fi</span> already in place</div></div><div class="stat-cell"><div class="stat-num">2,860+</div><div class="stat-label">Mobile users connected each month, across sites</div></div><div class="stat-cell"><div class="stat-num">No new hardware</div><div class="stat-label">Configured on the venue’s existing Cisco&nbsp;network</div></div></div></section>

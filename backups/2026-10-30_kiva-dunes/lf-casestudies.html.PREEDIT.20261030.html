@@ -1,0 +1,223 @@
+<!-- LongFi snippet | lf-casestudies.html | v0.6 | updated 2026-07-15 15:00 | SAMPLE -->
+<!-- Case Studies HUB. Scope #lf-casestudies. Compact hero, aligned photo cards (GP-04 Card Row Alignment), per-vertical accents. Built to extend: drop more cards into .cards and add a category filter bar above it later. Venue photos inlined for the local sample; swap to WordPress media URLs on deploy. -->
+<script>
+(function(){ if(document.getElementById('lf-fonts'))return; var l=document.createElement('link');l.id='lf-fonts';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap';document.head.appendChild(l);})();
+</script>
+<style>
+html,body{margin:0 !important;padding:0 !important;overflow-x:hidden}
+html{scroll-padding-top:96px}
+.e-con:has(#lf-casestudies),.e-con-inner:has(#lf-casestudies),.elementor-widget-html:has(#lf-casestudies),.elementor-widget-shortcode:has(#lf-casestudies),.elementor-widget-container:has(#lf-casestudies){--container-default-padding-top:0px;--container-default-padding-right:0px;--container-default-padding-bottom:0px;--container-default-padding-left:0px;--padding-top:0px;--padding-right:0px;--padding-bottom:0px;--padding-left:0px;--content-width:100%;--width:100%;max-width:100%!important;width:100%!important;padding:0!important}
+#lf-casestudies{--skyline:#244899;--indigo:#2C2C6E;--teal:#1FA58E;--coral:#FF4E7A;--gold:#C9A227;--white:#FFFFFF;--bg:#F5F6FA;--paper:#FFFFFF;--ink:#14172B;--body:#4A536B;--muted:#7A8299;--line:#E6EAF2;--soft:#F2F5FB;--shadow:0 14px 46px rgba(36,72,153,.12);--shadow-soft:0 4px 16px rgba(36,72,153,.07);--head:'Poppins',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--body-font:'Nunito',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;}
+#lf-casestudies *{box-sizing:border-box;margin:0;padding:0}
+#lf-casestudies{scroll-behavior:smooth;font-family:var(--body-font);background:var(--bg);color:var(--body);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased}
+#lf-casestudies img{max-width:100%;height:auto;display:block}
+#lf-casestudies a{color:var(--skyline);text-decoration:none}
+#lf-casestudies h1,#lf-casestudies h2,#lf-casestudies h3,#lf-casestudies .btn{font-family:var(--head)}
+#lf-casestudies .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media(max-width:680px){ #lf-casestudies .wrap{padding:0 16px} }
+#lf-casestudies h1,#lf-casestudies h2,#lf-casestudies h3{text-wrap:balance}
+#lf-casestudies p{text-wrap:pretty}
+#lf-casestudies .h-grad{background:linear-gradient(120deg,var(--ink) 20%,#1E3A75 60%,var(--skyline) 108%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;padding-bottom:.12em}
+#lf-casestudies .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:13px;font-weight:600;font-size:13px;line-height:1;cursor:pointer;border:1.5px solid transparent;transition:transform .2s ease,box-shadow .2s ease;white-space:nowrap}
+#lf-casestudies .btn-gold{background:linear-gradient(115deg,#C2CBDA 0%,#EDF1F7 30%,#FFFFFF 50%,#D5DCE9 72%,#A9B5C9 100%);color:var(--ink);border-color:rgba(255,255,255,.65);box-shadow:0 0 18px rgba(213,220,233,.38),0 4px 14px rgba(20,23,43,.16),inset 0 1px 0 rgba(255,255,255,.85)}
+#lf-casestudies .btn-gold:hover{transform:translateY(-2px)}
+#lf-casestudies .btn-ghost-dark{background:rgba(255,255,255,.04);border-color:rgba(213,220,233,.45);color:#E9EEF6}
+#lf-casestudies .btn-ghost-dark:hover{background:rgba(233,238,246,.12)}
+#lf-casestudies .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+#lf-casestudies .dark-band{background:linear-gradient(135deg,var(--skyline) 0%,var(--indigo) 100%);color:rgba(255,255,255,.9);position:relative;overflow:hidden;width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
+#lf-casestudies .dark-band::after{content:"";position:absolute;inset:0;background:radial-gradient(560px circle at 88% 6%, rgba(233,238,246,.16), transparent 58%);pointer-events:none}
+#lf-casestudies .dark-band>.wrap{position:relative;z-index:1}
+/* Reveal + hover */
+#lf-casestudies .rv{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity .6s ease,transform .6s ease,filter .6s ease}
+#lf-casestudies .rv.in-view{opacity:1;transform:none;filter:none}
+#lf-casestudies .rv-stagger>*{opacity:0;transform:translateY(20px);filter:blur(4px);transition:opacity .65s ease,transform .65s ease,filter .65s ease}
+#lf-casestudies .rv-stagger.in-view>*{opacity:1;transform:none;filter:none}
+#lf-casestudies .rv-stagger.in-view>*:nth-child(2){transition-delay:.1s}
+#lf-casestudies .rv-stagger.in-view>*:nth-child(3){transition-delay:.2s}
+@media(prefers-reduced-motion:reduce){ #lf-casestudies .rv,#lf-casestudies .rv-stagger>*{opacity:1;transform:none;filter:none;transition:none} }
+/* Compact hero */
+#lf-casestudies .hero{padding:118px 0 30px}
+@media(max-width:680px){ #lf-casestudies .hero{padding:96px 0 26px} }
+#lf-casestudies .hero h1{font-size:clamp(27px,3.4vw,40px);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--white);margin-bottom:10px;max-width:760px}
+#lf-casestudies .hero .sub{font-family:var(--head);font-weight:600;font-size:clamp(15px,1.7vw,19px);color:rgba(255,255,255,.86)}
+/* Slim inline stat strip */
+#lf-casestudies .statbar{display:flex;flex-wrap:wrap;gap:8px 30px;margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14)}
+#lf-casestudies .sb{display:flex;align-items:baseline;gap:7px}
+#lf-casestudies .sb b{font-family:var(--head);font-weight:800;font-size:19px;color:#fff}
+#lf-casestudies .sb span{font-size:12.5px;color:rgba(255,255,255,.7)}
+/* Cards (aligned rows per GP-04) */
+#lf-casestudies .csw{padding:44px 0 60px}
+#lf-casestudies .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+@media(max-width:920px){ #lf-casestudies .cards{grid-template-columns:1fr;max-width:440px;margin:0 auto} }
+#lf-casestudies .cs-card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-soft);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+#lf-casestudies .cs-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(36,72,153,.18)}
+#lf-casestudies .cs-photo{position:relative;aspect-ratio:16/10;overflow:hidden;background:#0F1122;border-bottom:4px solid var(--skyline)}
+#lf-casestudies .cs-teal .cs-photo{border-bottom-color:var(--teal)}#lf-casestudies .cs-coral .cs-photo{border-bottom-color:var(--coral)}#lf-casestudies .cs-gold .cs-photo{border-bottom-color:var(--gold)}
+#lf-casestudies .cs-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+#lf-casestudies .cs-card:hover .cs-photo img{transform:scale(1.05)}
+#lf-casestudies .cs-badge{position:absolute;left:13px;bottom:13px;background:rgba(255,255,255,.94);border-radius:9px;padding:6px 11px;box-shadow:0 4px 14px rgba(0,0,0,.22);display:flex;align-items:center}
+#lf-casestudies .cs-badge img{height:18px;width:auto;max-width:104px;object-fit:contain;display:block}
+#lf-casestudies .cs-badge .cs-jazz{font-family:var(--head);font-weight:800;font-size:13px;color:#9a7a15}
+#lf-casestudies .cs-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+#lf-casestudies .cs-tag{font-family:var(--head);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-height:14px}
+#lf-casestudies .cs-teal .cs-tag{color:#12876f}#lf-casestudies .cs-coral .cs-tag{color:#d63862}#lf-casestudies .cs-gold .cs-tag{color:#9a7a15}
+#lf-casestudies .cs-venue{font-family:var(--head);font-size:19px;font-weight:800;color:var(--ink);line-height:1.15;margin:7px 0 10px;min-height:22px}
+#lf-casestudies .cs-loc{font-size:13px;font-weight:600;color:var(--muted)}
+#lf-casestudies .cs-title{font-family:var(--head);font-size:15.5px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:12px;min-height:2.6em}
+#lf-casestudies .cs-quote{font-size:14px;color:var(--body);font-style:italic;border-left:3px solid var(--line);padding-left:14px;margin-bottom:18px;min-height:4.4em}
+#lf-casestudies .cs-teal .cs-quote{border-left-color:var(--teal)}#lf-casestudies .cs-coral .cs-quote{border-left-color:var(--coral)}#lf-casestudies .cs-gold .cs-quote{border-left-color:var(--gold)}
+#lf-casestudies .cs-more{margin-top:auto;font-family:var(--head);font-size:13px;font-weight:700;color:var(--skyline);display:inline-flex;align-items:center;gap:7px;transition:gap .2s ease}
+#lf-casestudies .cs-teal .cs-more{color:#12876f}#lf-casestudies .cs-coral .cs-more{color:#d63862}#lf-casestudies .cs-gold .cs-more{color:#9a7a15}#lf-casestudies .cs-purple .cs-photo{border-bottom-color:#C13AF0}#lf-casestudies .cs-purple .cs-tag{color:#9b1fce}#lf-casestudies .cs-purple .cs-quote{border-left-color:#C13AF0}#lf-casestudies .cs-purple .cs-more{color:#9b1fce}#lf-casestudies .cs-green .cs-photo{border-bottom-color:#2E9E7E}#lf-casestudies .cs-green .cs-tag{color:#1f7d62}#lf-casestudies .cs-green .cs-quote{border-left-color:#2E9E7E}#lf-casestudies .cs-green .cs-more{color:#1f7d62}#lf-casestudies .cs-blue .cs-photo{border-bottom-color:#244899}#lf-casestudies .cs-blue .cs-tag{color:#1d3b80}#lf-casestudies .cs-blue .cs-quote{border-left-color:#244899}#lf-casestudies .cs-blue .cs-more{color:#1d3b80}
+#lf-casestudies .cs-card:hover .cs-more{gap:12px}
+/* CTA */
+#lf-casestudies .cta{text-align:center}#lf-casestudies .cta .wrap{max-width:720px}#lf-casestudies .cta h2{color:#fff;font-size:clamp(23px,2.7vw,31px);font-weight:700;margin-bottom:10px}#lf-casestudies .cta .btn-row{justify-content:center}#lf-casestudies .cta p{margin:0 auto;max-width:560px}
+#lf-casestudies section{padding:0}
+</style>
+
+<main id="lf-casestudies">
+  <div class="dark-band on-dark">
+    <section class="hero">
+      <div class="wrap rv-stagger">
+        <h1>LongFi Connect:<br>Real venues. Real&nbsp;results.</h1>
+        <p class="sub">How real venues turned the Wi&#8209;Fi they already had into reliable indoor cell&nbsp;coverage.</p>
+        <div class="statbar">
+          <div class="sb"><b>200+</b><span>active venues</span></div>
+          <div class="sb"><b>130+ TB</b><span>carried monthly</span></div>
+          <div class="sb"><b>7M+</b><span>users monthly</span></div>
+          <div class="sb"><b>70%</b><span>supported on day one</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="csw">
+    <div class="wrap">
+      <!-- FUTURE: a category filter bar (Hospitality, Live Events, Corporate, etc.) drops in right here, above .cards -->
+      <div class="cards rv-stagger">
+
+        <a class="cs-card cs-teal" href="https://www.longfisolutions.com/case-studies/ymca-birmingham/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/ymca-birmingham-01-hero-lobby-arrival.webp" alt="YMCA of Greater Birmingham" loading="lazy" decoding="async"><span class="cs-badge"><span class="cs-jazz" style="color:#12876f">YMCA</span></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Gyms &amp;&nbsp;Wellness</span>
+            <h3 class="cs-venue">YMCA <span class="cs-loc">&middot; Birmingham,&nbsp;AL</span></h3>
+            <p class="cs-title">Members stay connected in the rooms they use most, at no cost to&nbsp;the&nbsp;Y.</p>
+            <p class="cs-quote">&ldquo;Our members get seamless mobile connectivity inside the building, and the revenue goes straight back into our&nbsp;branches.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="cs-card cs-coral" href="https://www.longfisolutions.com/case-studies/wanitta-wynwood/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/wanitta-wynwood-hero.jpg" alt="Wanitta Wynwood" loading="lazy" decoding="async"><span class="cs-badge"><img src="https://wanitta.com.co/cdn/shop/files/LOGO.svg?v=1774212018" alt="Wanitta"></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Retail &amp;&nbsp;Boutiques</span>
+            <h3 class="cs-venue">Wanitta <span class="cs-loc">&middot; Wynwood,&nbsp;Miami</span></h3>
+            <p class="cs-title">Shoppers go from browsing to buying, with no password&nbsp;to&nbsp;share.</p>
+            <p class="cs-quote">&ldquo;Connectivity is part of the sale and part of how people remember&nbsp;Wanitta.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="cs-card cs-teal" href="https://www.longfisolutions.com/case-studies/silo-brooklyn/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img01.jpg" alt="SILO" loading="lazy" decoding="async"><span class="cs-badge"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-nightclubs-img01.png" alt="SILO Brooklyn"></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Nightlife &amp;&nbsp;Hospitality</span>
+            <h3 class="cs-venue">SILO <span class="cs-loc">&middot; Brooklyn,&nbsp;NY</span></h3>
+            <p class="cs-title">Guests connect and pay without stepping&nbsp;outside.</p>
+            <p class="cs-quote">&ldquo;Guests would lose signal right when they needed it. Since turning on LongFi Connect, that problem&nbsp;is&nbsp;gone.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="cs-card cs-gold" href="https://www.longfisolutions.com/case-studies/jazzfest-2026/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img02.jpg" alt="JazzFest" loading="lazy" decoding="async"><span class="cs-badge"><span class="cs-jazz">JazzFest&nbsp;2026</span></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Live&nbsp;Events</span>
+            <h3 class="cs-venue">JazzFest <span class="cs-loc">&middot; New Orleans,&nbsp;LA</span></h3>
+            <p class="cs-title">Festival guests stayed connected in the&nbsp;gate&nbsp;crowd.</p>
+            <p class="cs-quote">&ldquo;Tickets live in an app, so data at the gate is everything. LongFi Connect kept guests&nbsp;moving.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="cs-card cs-teal" href="https://www.longfisolutions.com/case-studies/world-cup-houston/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/08/world-cup-houston-hero.jpg" alt="World Cup, Houston" loading="lazy" decoding="async"><span class="cs-badge"><span class="cs-jazz" style="color:#12876f">World&nbsp;Cup</span></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Live&nbsp;Events</span>
+            <h3 class="cs-venue">World Cup <span class="cs-loc">&middot; Houston,&nbsp;TX</span></h3>
+            <p class="cs-title">400,000+ automatic connections across East Downtown Houston, with Cambium Networks and&nbsp;the&nbsp;WBA.</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="cs-card cs-coral" href="https://www.longfisolutions.com/case-studies/sunset-rooftop-houston/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-home-img03.jpg" alt="Sunset Rooftop" loading="lazy" decoding="async"><span class="cs-badge"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/lf-sportsbars-img01.png" alt="Sunset Rooftop Houston"></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Rooftop Bar &amp;&nbsp;Events</span>
+            <h3 class="cs-venue">Sunset Rooftop <span class="cs-loc">&middot; Houston,&nbsp;TX</span></h3>
+            <p class="cs-title">A packed rooftop that stayed connected through&nbsp;the&nbsp;rush.</p>
+            <p class="cs-quote">&ldquo;The downtown view is why people come. Through a packed tournament crowd, guests stayed&nbsp;connected.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+        <a class="cs-card cs-purple" href="https://www.longfisolutions.com/case-studies/bauhaus-houston/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-bauhaus-houston-01-image.jpg" alt="Bauhaus" loading="lazy" decoding="async"><span class="cs-badge"><img src="https://bauhaushouston.com/wp-content/uploads/2024/03/Logo-Hori-Black.svg" alt="Bauhaus Houston"></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Nightlife</span>
+            <h3 class="cs-venue">Bauhaus <span class="cs-loc">&middot; Houston,&nbsp;TX</span></h3>
+            <p class="cs-title">Phones keep working when the club&nbsp;is&nbsp;packed.</p>
+            <p class="cs-quote">&ldquo;Cell signal used to drop when we packed the room. Now it holds, guests share and tap&nbsp;to&nbsp;pay.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="cs-card cs-green" href="https://www.longfisolutions.com/case-studies/mardi-gras-2026/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mardi-gras-2026-01-image.jpg" alt="Mardi Gras 2026" loading="lazy" decoding="async"><span class="cs-badge"><span class="cs-jazz">Mardi Gras&nbsp;2026</span></span></div>
+          <div class="cs-body">
+            <span class="cs-tag">Live&nbsp;Events</span>
+            <h3 class="cs-venue">Mardi Gras 2026 <span class="cs-loc">&middot; New Orleans,&nbsp;LA</span></h3>
+            <p class="cs-title">Guests stayed connected through the Mardi Gras&nbsp;crowds.</p>
+            <p class="cs-quote">&ldquo;In past Mardi Gras weekends we heard complaints about cell signal. This year we&nbsp;did&nbsp;not.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+
+        <a class="cs-card cs-blue" href="https://www.longfisolutions.com/case-studies/corporate-offices/">
+          <div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-mccarthy-03-image.jpg" alt="National Construction Firm" loading="lazy" decoding="async"></div>
+          <div class="cs-body">
+            <span class="cs-tag">Offices &amp;&nbsp;Enterprise</span>
+            <h3 class="cs-venue">National Construction Firm <span class="cs-loc">&middot; U.S.&nbsp;Offices</span></h3>
+            <p class="cs-title">Employees connect the moment they&nbsp;walk&nbsp;in.</p>
+            <p class="cs-quote">&ldquo;It has been working flawlessly. No complaints, and people said their connection&nbsp;improved.&rdquo;</p>
+            <span class="cs-more">Read the case study &rarr;</span>
+          </div>
+        </a>
+          <a class="cs-card cs-gold" href="https://www.longfisolutions.com/case-studies/city-of-easton/"><div class="cs-photo"><img src="https://www.longfisolutions.com/wp-content/uploads/2026/07/cs-city-of-easton-01.jpg" alt="City of Easton" loading="lazy" decoding="async"></div><div class="cs-body"><span class="cs-tag">Cities &amp;&nbsp;Main Streets</span><h3 class="cs-venue">City of Easton <span class="cs-loc">&middot; Easton, PA</span></h3><p class="cs-title">Better cell phone service through the city’s biggest&nbsp;festivals.</p><p class="cs-quote">&ldquo;Phones work better when LongFi Connect is&nbsp;live.&rdquo;</p><span class="cs-more">Read the case study &rarr;</span></div></a>
+
+
+      </div>
+    </div>
+  </section>
+
+  <div class="dark-band on-dark cta">
+    <section style="padding:62px 0">
+      <div class="wrap rv">
+        <h2>See what LongFi Connect could do for&nbsp;your&nbsp;venue.</h2>
+        <p>Tell us about your space and the Wi&#8209;Fi you run, and we will show you what strong indoor connectivity looks&nbsp;like&nbsp;there.</p>
+        <div class="btn-row">
+          <a class="lf-book-cta" href="https://calendar.app.google/s6mBeR8NvmFLXRXB8" target="_blank" rel="noopener">Book a short call</a>
+          <a class="btn btn-ghost-dark" href="https://www.longfisolutions.com/how-it-works/">See how it works</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+(function(){
+  var r=document.getElementById('lf-casestudies'); if(!r)return;
+  var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in-view');io.unobserve(x.target);}});},{threshold:0.14,rootMargin:'0px 0px -10% 0px'});
+  r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){ reduced?el.classList.add('in-view'):io.observe(el); });
+  setTimeout(function(){ r.querySelectorAll('.rv,.rv-stagger').forEach(function(el){ var c=el.getBoundingClientRect(); if(c.top<window.innerHeight&&c.bottom>0)el.classList.add('in-view'); }); },150);
+})();
+</script>
